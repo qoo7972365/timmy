@@ -1,0 +1,15 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-09 05:20 EST
+Nmap scan report for 10.11.1.222
+Host is up (0.22s latency).
+
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|     RDSTLS: SUCCESS
+|     SSL: SUCCESS
+|_  RDP Protocol Version:  RDP 10.6 server
+
+Nmap done: 1 IP address (1 host up) scanned in 5.31 seconds

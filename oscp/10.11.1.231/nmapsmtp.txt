@@ -1,0 +1,14 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-09 22:01 EST
+Nmap scan report for 10.11.1.231
+Host is up (0.22s latency).
+
+PORT   STATE SERVICE
+25/tcp open  smtp
+|_smtp-commands: mail.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, 
+| smtp-enum-users: 
+|_  Method RCPT returned a unhandled status code.
+|_smtp-open-relay: Server doesn't seem to be an open relay, all tests failed
+| smtp-vuln-cve2010-4344: 
+|_  The SMTP server is not Exim: NOT VULNERABLE
+
+Nmap done: 1 IP address (1 host up) scanned in 40.00 seconds

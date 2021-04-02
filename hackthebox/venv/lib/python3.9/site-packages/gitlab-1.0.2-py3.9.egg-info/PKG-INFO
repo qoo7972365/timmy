@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: gitlab
+Version: 1.0.2
+Summary: Get GitLab user Details
+Home-page: https://yoginth.ml
+Author: Yoginth
+Author-email: yoginth@zoho.com
+License: UNKNOWN
+Project-URL: Patreon, https://www.patreon.com/yoginth
+Project-URL: Source, https://gitlab.com/yoginth/gitlab
+Description: ## GitLab
+        
+        > Get GitLab user Details
+        
+        ## Install
+        
+        ```
+        $ pip install gitlab
+        ```
+        
+        ## Usage
+        
+        ```python
+        import gitlab
+        
+        gitlab.get('yoginth')
+        
+        """
+        {
+        	'username': 'yoginth',
+        	'bio': 'Open-Source Enthusiast • Developer & Toolmaker • Pythonista 🐍 • Issue Resolver • Jack 🃏 of all trades, master of none • Beating the odds • I 💜 science 🌌',
+        	'location': 'Parallel Universe',
+        	'twitter': 'yoginths',
+        	'linkedin': '',
+        	'skype': '',
+        	'website_url': 'https://t.me/yoginth',
+        	'id': 2580049,
+        	'state': 'active',
+        	'avatar_url': 'https://secure.gravatar.com/avatar/ef5eb22b653730b5d7d7c32a73ff64e7?s=80&d=identicon',
+        	'web_url': 'https://gitlab.com/yoginth'
+        }
+        """
+        ```
+        
+        ## Get Help
+        
+        There are few ways to get help:
+        
+         1. Please [post questions on Stack Overflow](https://stackoverflow.com/questions/ask). You can open issues with questions, as long you add a link to your Stack Overflow question.
+        
+         2. For bug reports and feature requests, open issues.
+        
+         3. For direct and quick help, you can [email me](mailto://yoginth@zoho.com).
+        
+        ## How to contribute
+        Have an idea? Found a bug? See [how to contribute][contributing].
+        
+        Thanks!
+        
+        ## License
+        
+        [MIT][license]
+        
+        [LICENSE]: https://yoginth.mit-license.org/
+        [contributing]: /CONTRIBUTING.md
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: English
+Classifier: Environment :: Plugins
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown

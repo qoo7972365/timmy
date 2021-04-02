@@ -1,0 +1,25 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-24 08:21 EDT
+Nmap scan report for 10.11.1.7
+Host is up (0.24s latency).
+Not shown: 999 filtered ports
+PORT     STATE SERVICE       VERSION
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: PEDRO
+|   NetBIOS_Domain_Name: PEDRO
+|   NetBIOS_Computer_Name: PEDRO
+|   DNS_Domain_Name: pedro
+|   DNS_Computer_Name: pedro
+|   Product_Version: 10.0.17134
+|_  System_Time: 2021-03-24T12:21:57+00:00
+| ssl-cert: Subject: commonName=pedro
+| Not valid before: 2020-11-26T01:43:20
+|_Not valid after:  2021-05-28T01:43:20
+|_ssl-date: 2021-03-24T12:21:58+00:00; -1s from scanner time.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -1s, deviation: 0s, median: -2s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 28.36 seconds

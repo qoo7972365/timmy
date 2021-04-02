@@ -1,0 +1,2 @@
+nmap -sSTVC 10.11.1.251 -Pn > nmap.txt
+nmap -sTVC 10.1.1.246 -p- > nmapall.txt

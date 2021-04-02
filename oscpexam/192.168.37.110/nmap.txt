@@ -1,0 +1,18 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 08:57 EST
+Nmap scan report for 192.168.37.110
+Host is up (0.26s latency).
+Not shown: 995 filtered ports
+PORT      STATE SERVICE VERSION
+135/tcp   open  msrpc   Microsoft Windows RPC
+554/tcp   open  rtsp?
+2869/tcp  open  http    Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+5357/tcp  open  http    Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Service Unavailable
+10243/tcp open  http    Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 216.57 seconds

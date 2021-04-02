@@ -1,0 +1,2 @@
+1.查看隱藏檔案windows---attrib *.* -h -s /s /d
+2.dir /r  查看到有 "htm.txt以及hm.txt:root.txt:$DATA" 指令查看 powershell (Get-Content hm.txt -Stream root.txt)

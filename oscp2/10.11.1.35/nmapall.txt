@@ -1,0 +1,26 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-01 11:21 EDT
+Warning: 10.11.1.35 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.11.1.35
+Host is up (0.24s latency).
+Not shown: 65517 closed ports
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+80/tcp    open     http
+12415/tcp filtered unknown
+17205/tcp filtered unknown
+18387/tcp filtered unknown
+24909/tcp filtered unknown
+41480/tcp filtered unknown
+42511/tcp filtered unknown
+43571/tcp filtered unknown
+43893/tcp filtered unknown
+44270/tcp filtered unknown
+44632/tcp filtered unknown
+45289/tcp filtered unknown
+49821/tcp filtered unknown
+56004/tcp filtered unknown
+61715/tcp filtered unknown
+61867/tcp filtered unknown
+64491/tcp filtered unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 20692.17 seconds

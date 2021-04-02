@@ -1,0 +1,22 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-27 09:03 EDT
+Stats: 0:01:57 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 25.09% done; ETC: 09:11 (0:05:52 remaining)
+Stats: 0:01:59 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 25.45% done; ETC: 09:11 (0:05:49 remaining)
+Nmap scan report for 10.11.1.8
+Host is up (0.24s latency).
+Not shown: 65524 filtered ports
+PORT     STATE  SERVICE
+21/tcp   open   ftp
+22/tcp   open   ssh
+25/tcp   closed smtp
+80/tcp   open   http
+111/tcp  open   rpcbind
+139/tcp  open   netbios-ssn
+443/tcp  open   https
+445/tcp  open   microsoft-ds
+631/tcp  open   ipp
+868/tcp  closed unknown
+3306/tcp open   mysql
+
+Nmap done: 1 IP address (1 host up) scanned in 350.38 seconds

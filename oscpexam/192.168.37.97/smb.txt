@@ -1,0 +1,42 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 05:55 EST
+NSE: Loaded 35 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating Ping Scan at 05:55
+Scanning 445 (0.0.1.189) [4 ports]
+Completed Ping Scan at 05:55, 3.04s elapsed (1 total hosts)
+Nmap scan report for 445 (0.0.1.189) [host down]
+Initiating Ping Scan at 05:55
+Scanning 192.168.37.97 [4 ports]
+Completed Ping Scan at 05:55, 0.30s elapsed (1 total hosts)
+Initiating SYN Stealth Scan at 05:55
+Scanning konki.oscp (192.168.37.97) [1 port]
+Completed SYN Stealth Scan at 05:55, 2.63s elapsed (1 total ports)
+NSE: Script scanning 192.168.37.97.
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Nmap scan report for konki.oscp (192.168.37.97)
+Host is up (0.26s latency).
+
+PORT    STATE    SERVICE
+139/tcp filtered netbios-ssn
+
+NSE: Script Post-scanning.
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Initiating NSE at 05:55
+Completed NSE at 05:55, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 2 IP addresses (1 host up) scanned in 6.47 seconds
+           Raw packets sent: 14 (544B) | Rcvd: 3 (140B)

@@ -1,0 +1,35 @@
+
+Nmap scan report for 10.11.1.251
+Host is up (0.22s latency).
+Not shown: 995 filtered ports
+PORT      STATE  SERVICE  VERSION
+20/tcp    closed ftp-data
+21/tcp    open   ftp      vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: PASV IP 10.1.1.246 is not the same as 10.11.1.251
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.119.197
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 3
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp    open   ssh      OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 7a:ca:a2:4c:99:8b:6d:f4:46:78:fe:4a:69:6d:e4:94 (RSA)
+|   256 04:2c:70:84:84:03:43:42:a4:c3:33:d2:95:0d:5e:91 (ECDSA)
+|_  256 11:ad:73:55:cc:e9:cb:0c:a4:23:d6:46:e8:7d:da:f0 (ED25519)
+80/tcp    open   http     Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+10180/tcp closed unknown
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 31.48 seconds

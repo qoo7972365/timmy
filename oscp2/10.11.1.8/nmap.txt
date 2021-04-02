@@ -1,0 +1,90 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-27 04:18 EDT
+Nmap scan report for 10.11.1.8
+Host is up (0.67s latency).
+Not shown: 990 filtered ports
+PORT     STATE  SERVICE     VERSION
+21/tcp   open   ftp         vsftpd 2.0.1
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: ERROR
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.119.134
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 2.0.1 - secure, fast, stable
+|_End of status
+22/tcp   open   ssh         OpenSSH 3.9p1 (protocol 1.99)
+| ssh-hostkey: 
+|   1024 89:94:af:2e:5d:c1:da:84:25:11:2c:12:45:c6:70:ac (RSA1)
+|   1024 c1:c5:d1:83:0f:4d:d8:9e:8f:82:4c:be:53:4b:6e:14 (DSA)
+|_  1024 bc:e1:e6:dd:ab:5e:fd:d1:21:2e:11:7c:d5:b2:03:52 (RSA)
+|_sshv1: Server supports SSHv1
+25/tcp   closed smtp
+80/tcp   open   http        Apache httpd 2.0.52 ((CentOS))
+| http-methods: 
+|_  Potentially risky methods: TRACE
+| http-robots.txt: 2 disallowed entries 
+|_/internal/  /tmp/ 
+|_http-server-header: Apache/2.0.52 (CentOS)
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+111/tcp  open   rpcbind     2 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2            111/tcp   rpcbind
+|   100000  2            111/udp   rpcbind
+|   100024  1            789/udp   status
+|_  100024  1            792/tcp   status
+139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: MYGROUP)
+443/tcp  open   ssl/https?
+| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
+| Not valid before: 2009-09-16T14:03:22
+|_Not valid after:  2010-09-16T14:03:22
+|_ssl-date: 2021-03-27T12:26:14+00:00; +4h00m28s from scanner time.
+| sslv2: 
+|   SSLv2 supported
+|   ciphers: 
+|     SSL2_RC4_128_WITH_MD5
+|     SSL2_DES_64_CBC_WITH_MD5
+|     SSL2_RC2_128_CBC_WITH_MD5
+|     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
+|     SSL2_DES_192_EDE3_CBC_WITH_MD5
+|     SSL2_RC4_64_WITH_MD5
+|_    SSL2_RC4_128_EXPORT40_WITH_MD5
+445/tcp  open   netbios-ssn Samba smbd 3.0.33-0.17.el4 (workgroup: MYGROUP)
+631/tcp  open   ipp         CUPS 1.1
+| http-methods: 
+|_  Potentially risky methods: PUT
+|_http-title: 403 Forbidden
+3306/tcp open   mysql?
+|_mysql-info: ERROR: Script execution failed (use -d to debug)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+|_sslv2: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+Service Info: OS: Unix
+
+Host script results:
+|_clock-skew: mean: 5h20m28s, deviation: 2h18m36s, median: 4h00m27s
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.33-0.17.el4)
+|   Computer name: phoenix
+|   NetBIOS computer name: 
+|   Domain name: 
+|   FQDN: phoenix
+|_  System time: 2021-03-27T08:25:40-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 462.56 seconds

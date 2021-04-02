@@ -1,0 +1,40 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-31 21:34 EST
+NSE: Loaded 1 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 21:34
+Completed NSE at 21:34, 0.00s elapsed
+Initiating Ping Scan at 21:34
+Scanning 2 hosts [2 ports/host]
+Completed Ping Scan at 21:34, 2.80s elapsed (2 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 21:34
+Completed Parallel DNS resolution of 1 host. at 21:34, 0.01s elapsed
+Nmap scan report for 445 (0.0.1.189) [host down]
+Initiating Connect Scan at 21:34
+Scanning 10.11.1.5 [1 port]
+Discovered open port 139/tcp on 10.11.1.5
+Completed Connect Scan at 21:34, 0.18s elapsed (1 total ports)
+NSE: Script scanning 10.11.1.5.
+Initiating NSE at 21:34
+Completed NSE at 21:34, 2.35s elapsed
+Nmap scan report for 10.11.1.5
+Host is up (0.18s latency).
+
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+
+Host script results:
+| smb-os-discovery: 
+|   OS: Windows XP (Windows 2000 LAN Manager)
+|   OS CPE: cpe:/o:microsoft:windows_xp::-
+|   Computer name: alice
+|   NetBIOS computer name: ALICE\x00
+|   Domain name: thinc.local
+|   Forest name: thinc.local
+|   FQDN: alice.thinc.local
+|_  System time: 2021-01-01T02:34:12+00:00
+
+NSE: Script Post-scanning.
+Initiating NSE at 21:34
+Completed NSE at 21:34, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 2 IP addresses (1 host up) scanned in 5.53 seconds

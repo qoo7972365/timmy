@@ -1,0 +1,52 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-09 21:45 EST
+Nmap scan report for 10.11.1.231
+Host is up (0.22s latency).
+Not shown: 995 closed ports
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 6.7p1 Debian 5+deb8u3 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 b6:8d:1e:f3:80:64:3f:8a:96:52:92:7a:9f:b1:be:67 (DSA)
+|   2048 72:c4:06:a7:2f:71:1b:6a:6b:57:fe:cf:ad:3f:9c:16 (RSA)
+|_  256 6b:c6:6e:fb:ba:06:dc:23:f9:3e:01:a6:2a:87:48:1a (ECDSA)
+
+25/tcp  open  smtp        Postfix smtpd
+|_smtp-commands: mail.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN,
+
+
+111/tcp open  rpcbind     2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|_  100000  3,4          111/udp6  rpcbind
+
+
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: SECURITY)
+445/tcp open  netbios-ssn Samba smbd 4.2.10-Debian (workgroup: SECURITY)
+Service Info: Hosts:  mail.local, MAILMAN; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h39m58s, deviation: 2h53m12s, median: -2s
+|_nbstat: NetBIOS name: MAILMAN, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.2.10-Debian)
+|   Computer name: mailman
+|   NetBIOS computer name: MAILMAN\x00
+|   Domain name: local
+|   FQDN: mailman.local
+|_  System time: 2021-01-09T21:45:31-05:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-01-10T02:45:31
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 59.29 seconds

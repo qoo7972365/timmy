@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy bypass -File ./39719.ps1

@@ -1,0 +1,15 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-01 07:38 EST
+NSE: Loaded 1 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 07:38
+Completed NSE at 07:38, 0.00s elapsed
+Initiating Ping Scan at 07:38
+Scanning 2 hosts [2 ports/host]
+Completed Ping Scan at 07:38, 3.01s elapsed (2 total hosts)
+Nmap scan report for 445 (0.0.1.189) [host down]
+Nmap scan report for 10.129.106.14 [host down]
+NSE: Script Post-scanning.
+Initiating NSE at 07:38
+Completed NSE at 07:38, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 2 IP addresses (0 hosts up) scanned in 3.27 seconds

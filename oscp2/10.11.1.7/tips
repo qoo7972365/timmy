@@ -1,0 +1,7 @@
+nmap -sV -sC -Pn 10.11.1.7 > nmap.txt
+nmap -p- -Pn 10.11.1.7 > nmapall.txt
+nmap -Pn --script "rdp-enum-encryption" -p 3389 -T4 10.11.1.7
+nmap -Pn --script "rdp-vuln-ms12-020" -p 3389 -T4 10.11.1.7
+nmap -Pn --script "rdp-ntlm-info" -p 3389 -T4 10.11.1.7
+
+

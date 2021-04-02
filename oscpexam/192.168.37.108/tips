@@ -1,0 +1,11 @@
+nmap -sTVC 192.168.37.108 -Pn > nmap.txt
+nmap -sTVC 192.168.37.108 -p- > nmapall.txt
+gobuster dir  -u http://192.168.37.108 /  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+nmap -v -p 139, 445 --script=smb* 192.168.37.108   > smb.txt
+
+nmap --script=smb-enum-shares -Pn -p 445 10.11.1.31
+
+
+smbclient -L 192.168.37.108
+
+smbclient //192.168.37.108/

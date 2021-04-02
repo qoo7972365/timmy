@@ -1,0 +1,2 @@
+nmap -sTVC 192.168.37.110 -Pn > nmap.txt
+nmap -sTVC 192.168.37.110 -p- > nmapall.txt

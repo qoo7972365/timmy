@@ -1,0 +1,60 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 02:22 EST
+Nmap scan report for 192.168.37.97
+Host is up (0.23s latency).
+Not shown: 65531 filtered ports
+PORT    STATE SERVICE     VERSION
+21/tcp  open  ftp         vsftpd 2.0.8 or later
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: TIMEOUT
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.19.37
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 2
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 78:a7:2e:5e:69:c8:93:b0:f5:46:a0:2f:de:74:88:86 (RSA)
+|   256 bd:69:2a:7b:8a:25:f6:54:7f:0b:05:07:18:fe:3b:e4 (ECDSA)
+|_  256 ae:eb:6c:25:08:2f:21:c7:48:ac:a1:46:f9:36:bc:5a (ED25519)
+80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+| http-title: Millhouse
+|_Requested resource was views/login.php
+445/tcp open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+Service Info: Hosts: konki.oscp, KONKI; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h39m58s, deviation: 2h53m14s, median: -2s
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)
+|   Computer name: konki
+|   NetBIOS computer name: KONKI\x00
+|   Domain name: oscp
+|   FQDN: konki.oscp
+|_  System time: 2021-01-23T02:29:32-05:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-01-23T07:29:33
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 443.47 seconds

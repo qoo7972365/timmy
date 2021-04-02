@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/heist/impacket" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/jewel/CVE-2020-8165" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laboratory/python-gitlab" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/remote/Umbraco-RCE" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/worker/evil-winrm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/worker/nishang" vcs="Git" />
+  </component>
+</project>

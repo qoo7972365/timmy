@@ -1,0 +1,46 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.11.1.8/manual/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,cgi
+[+] Timeout:        10s
+===============================================================
+2021/03/27 08:22:37 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.cgi (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.cgi (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htaccess.cgi (Status: 403)
+/de (Status: 301)
+/developer (Status: 301)
+/en (Status: 301)
+/faq (Status: 301)
+/fr (Status: 301)
+/howto (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+/ja (Status: 301)
+/ko (Status: 301)
+/LICENSE (Status: 200)
+/misc (Status: 301)
+/mod (Status: 301)
+/programs (Status: 301)
+/ru (Status: 301)
+/ssl (Status: 301)
+/style (Status: 301)
+===============================================================
+2021/03/27 08:37:43 Finished
+===============================================================

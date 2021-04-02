@@ -1,0 +1,8 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 03:19 EST
+Nmap scan report for 192.168.37.97
+Host is up (0.26s latency).
+
+PORT   STATE SERVICE
+21/tcp open  ftp
+
+Nmap done: 1 IP address (1 host up) scanned in 23.48 seconds

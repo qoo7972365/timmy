@@ -1,0 +1,12 @@
+Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-25 09:02 EDT
+Nmap scan report for 10.11.1.50
+Host is up (0.24s latency).
+
+PORT     STATE SERVICE VERSION
+9505/tcp open  http    HttpFileServer httpd
+|_http-title: /
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 20.50 seconds

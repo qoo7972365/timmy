@@ -1,0 +1,141 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 01:08 EST
+Nmap scan report for 192.168.37.87
+Host is up (0.23s latency).
+Not shown: 996 filtered ports
+PORT    STATE SERVICE   VERSION
+21/tcp  open  ftp       FileZilla ftpd
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+23/tcp  open  telnet    APC PDU/UPS devices or Windows CE telnetd
+| fingerprint-strings: 
+|   GenericLines, NULL, RPCCheck: 
+|     [JWillkommen am ActiveFax Server.
+|     Bitte w
+|     hlen Sie aus einem der folgenden Men
+|     punkte:
+|     Version und Lizenznummer anzeigen
+|     Faxstatus abfragen
+|     Kommunikationsstatus abfragen
+|     Verbindung beenden
+|   GetRequest: 
+|     [JWillkommen am ActiveFax Server.
+|     Bitte w
+|     hlen Sie aus einem der folgenden Men
+|     punkte:
+|     Version und Lizenznummer anzeigen
+|     Faxstatus abfragen
+|     Kommunikationsstatus abfragen
+|     Verbindung beenden
+|     [JActiveFax Server Version 6.92 (Build 0316)
+|     Lizenziert f
+|     Demoversion
+|     Lizenznummer : 00000-00000-00000-00000
+|     Lizenztyp : Demoversion
+|     cken Sie eine Taste, um fortzusetzen...
+|   tn3270: 
+|     [JWillkommen am ActiveFax Server.
+|     Bitte w
+|     hlen Sie aus einem der folgenden Men
+|     punkte:
+|     Version und Lizenznummer anzeigen
+|     Faxstatus abfragen
+|     Kommunikationsstatus abfragen
+|     Verbindung beenden
+|     [JIm Moment sind 1 Verbindungen aktiv:
+|     Netzwerk (TELNET Server)
+|_    cken Sie eine Taste, um fortzusetzen...
+80/tcp  open  http
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.1 404 Not Found
+|   GenericLines, HTTPOptions, RTSPRequest, SIPOptions: 
+|     HTTP/1.1 400 Bad Request
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Content-Type: text/html
+|     Content-Length: 1219
+|     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+|     <html>
+|     <head>
+|     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+|     <meta name='Author' content='Flexense HTTP Server v10.4.18'>
+|     <meta name='GENERATOR' content='Flexense HTTP v10.4.18'>
+|     <title>Disk Savvy Enterprise @ zeek-01</title>
+|     <link rel='stylesheet' type='text/css' href='resources/disksavvy.css' media='all'>
+|     <script type='text/javascript' src='resources/commands.js'></script>
+|     </head>
+|     <body onload="scheduleCommandsUpdate();">
+|     <div id='header'><table border=0 padding=0 cellpadding=0 cellspacing=0 width='100%'><tr>
+|     width=220 align=left>Disk Savvy Enterprise v10.4.18</td>
+|     <td></td>
+|     width=220 align=right id='stime'>22-Jan-2021 22:08:50</td>
+|     </tr></table></div>
+|_    <div id='content'>
+|_http-generator: Flexense HTTP v10.4.18
+|_http-title: Disk Savvy Enterprise @ zeek-01
+515/tcp open  activefax ActFax Communication ActiveFax (German)
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port23-TCP:V=7.91%I=7%D=1/23%Time=600BBD76%P=x86_64-pc-linux-gnu%r(NULL
+SF:,E5,"\xff\xfb\x01\xff\xfb\x03\r\n\r\n\x1b\[H\x1b\[JWillkommen\x20am\x20
+SF:ActiveFax\x20Server\.\r\n\r\nBitte\x20w\xe4hlen\x20Sie\x20aus\x20einem\
+SF:x20der\x20folgenden\x20Men\xfcpunkte:\r\n\r\n\[1\]\x20Version\x20und\x2
+SF:0Lizenznummer\x20anzeigen\r\n\[2\]\x20Faxstatus\x20abfragen\r\n\[3\]\x2
+SF:0Kommunikationsstatus\x20abfragen\r\n\[Q\]\x20Verbindung\x20beenden\r\n
+SF:")%r(GenericLines,E5,"\xff\xfb\x01\xff\xfb\x03\r\n\r\n\x1b\[H\x1b\[JWil
+SF:lkommen\x20am\x20ActiveFax\x20Server\.\r\n\r\nBitte\x20w\xe4hlen\x20Sie
+SF:\x20aus\x20einem\x20der\x20folgenden\x20Men\xfcpunkte:\r\n\r\n\[1\]\x20
+SF:Version\x20und\x20Lizenznummer\x20anzeigen\r\n\[2\]\x20Faxstatus\x20abf
+SF:ragen\r\n\[3\]\x20Kommunikationsstatus\x20abfragen\r\n\[Q\]\x20Verbindu
+SF:ng\x20beenden\r\n")%r(tn3270,164,"\xff\xfb\x01\xff\xfb\x03\r\n\r\n\x1b\
+SF:[H\x1b\[JWillkommen\x20am\x20ActiveFax\x20Server\.\r\n\r\nBitte\x20w\xe
+SF:4hlen\x20Sie\x20aus\x20einem\x20der\x20folgenden\x20Men\xfcpunkte:\r\n\
+SF:r\n\[1\]\x20Version\x20und\x20Lizenznummer\x20anzeigen\r\n\[2\]\x20Faxs
+SF:tatus\x20abfragen\r\n\[3\]\x20Kommunikationsstatus\x20abfragen\r\n\[Q\]
+SF:\x20Verbindung\x20beenden\r\n\xff\xfc\x18\r\n\r\n\x1b\[H\x1b\[JIm\x20Mo
+SF:ment\x20sind\x201\x20Verbindungen\x20aktiv:\r\n\r\n\x20\x201\x20Netzwer
+SF:k\x20\(TELNET\x20Server\)\r\n\r\nDr\xfccken\x20Sie\x20eine\x20Taste,\x2
+SF:0um\x20fortzusetzen\.\.\.")%r(GetRequest,1AF,"\xff\xfb\x01\xff\xfb\x03\
+SF:r\n\r\n\x1b\[H\x1b\[JWillkommen\x20am\x20ActiveFax\x20Server\.\r\n\r\nB
+SF:itte\x20w\xe4hlen\x20Sie\x20aus\x20einem\x20der\x20folgenden\x20Men\xfc
+SF:punkte:\r\n\r\n\[1\]\x20Version\x20und\x20Lizenznummer\x20anzeigen\r\n\
+SF:[2\]\x20Faxstatus\x20abfragen\r\n\[3\]\x20Kommunikationsstatus\x20abfra
+SF:gen\r\n\[Q\]\x20Verbindung\x20beenden\r\n\r\n\r\n\x1b\[H\x1b\[JActiveFa
+SF:x\x20Server\x20Version\x206\.92\x20\(Build\x200316\)\r\n\r\nLizenziert\
+SF:x20f\xfcr\x20:\x20Demoversion\r\nLizenznummer\x20\x20\x20:\x2000000-000
+SF:00-00000-00000\r\nLizenztyp\x20\x20\x20\x20\x20\x20:\x20Demoversion\r\n
+SF:\r\nDr\xfccken\x20Sie\x20eine\x20Taste,\x20um\x20fortzusetzen\.\.\.")%r
+SF:(RPCCheck,E5,"\xff\xfb\x01\xff\xfb\x03\r\n\r\n\x1b\[H\x1b\[JWillkommen\
+SF:x20am\x20ActiveFax\x20Server\.\r\n\r\nBitte\x20w\xe4hlen\x20Sie\x20aus\
+SF:x20einem\x20der\x20folgenden\x20Men\xfcpunkte:\r\n\r\n\[1\]\x20Version\
+SF:x20und\x20Lizenznummer\x20anzeigen\r\n\[2\]\x20Faxstatus\x20abfragen\r\
+SF:n\[3\]\x20Kommunikationsstatus\x20abfragen\r\n\[Q\]\x20Verbindung\x20be
+SF:enden\r\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port80-TCP:V=7.91%I=7%D=1/23%Time=600BBD74%P=x86_64-pc-linux-gnu%r(GetR
+SF:equest,505,"HTTP/1\.1\x20200\x20OK\r\nContent-Type:\x20text/html\r\nCon
+SF:tent-Length:\x201219\r\n\r\n<!DOCTYPE\x20HTML\x20PUBLIC\x20\"-//W3C//DT
+SF:D\x20HTML\x204\.01\x20Transitional//EN\"\x20\"http://www\.w3\.org/TR/ht
+SF:ml4/loose\.dtd\">\r\n<html>\r\n<head>\r\n<meta\x20http-equiv='Content-T
+SF:ype'\x20content='text/html;\x20charset=UTF-8'>\r\n<meta\x20name='Author
+SF:'\x20content='Flexense\x20HTTP\x20Server\x20v10\.4\.18'>\r\n<meta\x20na
+SF:me='GENERATOR'\x20content='Flexense\x20HTTP\x20v10\.4\.18'>\r\n<title>D
+SF:isk\x20Savvy\x20Enterprise\x20@\x20zeek-01</title>\r\n<link\x20rel='sty
+SF:lesheet'\x20type='text/css'\x20href='resources/disksavvy\.css'\x20media
+SF:='all'>\r\n<script\x20type='text/javascript'\x20src='resources/commands
+SF:\.js'></script>\r\n</head>\r\n<body\x20onload=\"scheduleCommandsUpdate\
+SF:(\);\">\r\n<div\x20id='header'><table\x20border=0\x20padding=0\x20cellp
+SF:adding=0\x20cellspacing=0\x20width='100%'><tr>\r\n<td\x20width=220\x20a
+SF:lign=left>Disk\x20Savvy\x20Enterprise\x20v10\.4\.18</td>\r\n<td></td>\r
+SF:\n<td\x20width=220\x20align=right\x20id='stime'>22-Jan-2021\x2022:08:50
+SF:</td>\r\n</tr></table></div>\r\n<div\x20id='content'>\r\n<di")%r(HTTPOp
+SF:tions,1C,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")%r(RTSPRequest,1C
+SF:,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")%r(FourOhFourRequest,1A,"
+SF:HTTP/1\.1\x20404\x20Not\x20Found\r\n\r\n")%r(GenericLines,1C,"HTTP/1\.1
+SF:\x20400\x20Bad\x20Request\r\n\r\n")%r(SIPOptions,1C,"HTTP/1\.1\x20400\x
+SF:20Bad\x20Request\r\n\r\n");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 170.82 seconds

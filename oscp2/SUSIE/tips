@@ -1,0 +1,7 @@
+nmap -sV -sC -Pn 10.11.1.146 > nmap.txt
+
+smbclient -N -U guest //10.11.1.146/SusieShare
+
+use linux/samba/is_known_pipename
+set SMB::PROTOCOLVERSION 1
+set SMB::ALWAYSENCRYPT false

@@ -1,0 +1,70 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-10 09:20 EST
+NSE: Loaded 35 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 09:20
+Completed NSE at 09:20, 0.00s elapsed
+Initiating NSE at 09:20
+Completed NSE at 09:20, 0.00s elapsed
+Initiating NSE at 09:20
+Completed NSE at 09:20, 0.00s elapsed
+Initiating Ping Scan at 09:20
+Scanning 445 (0.0.1.189) [4 ports]
+Completed Ping Scan at 09:20, 3.05s elapsed (1 total hosts)
+Nmap scan report for 445 (0.0.1.189) [host down]
+Initiating Ping Scan at 09:20
+Scanning 10.11.1.231 [4 ports]
+Completed Ping Scan at 09:20, 0.27s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 09:20
+Completed Parallel DNS resolution of 1 host. at 09:20, 0.17s elapsed
+Initiating SYN Stealth Scan at 09:20
+Scanning 10.11.1.231 [1 port]
+Discovered open port 139/tcp on 10.11.1.231
+Completed SYN Stealth Scan at 09:20, 0.25s elapsed (1 total ports)
+NSE: Script scanning 10.11.1.231.
+Initiating NSE at 09:20
+Completed NSE at 09:25, 301.52s elapsed
+Initiating NSE at 09:25
+NSE Timing: About 50.00% done; ETC: 09:26 (0:00:31 remaining)
+NSE Timing: About 75.00% done; ETC: 09:27 (0:00:30 remaining)
+NSE Timing: About 75.00% done; ETC: 09:28 (0:00:40 remaining)
+NSE Timing: About 75.00% done; ETC: 09:29 (0:00:54 remaining)
+NSE Timing: About 75.00% done; ETC: 09:30 (0:01:09 remaining)
+NSE Timing: About 75.00% done; ETC: 09:31 (0:01:24 remaining)
+NSE Timing: About 91.67% done; ETC: 09:31 (0:00:30 remaining)
+NSE Timing: About 91.67% done; ETC: 09:32 (0:00:33 remaining)
+NSE Timing: About 91.67% done; ETC: 09:32 (0:00:36 remaining)
+NSE Timing: About 91.67% done; ETC: 09:33 (0:00:40 remaining)
+NSE Timing: About 91.67% done; ETC: 09:34 (0:00:43 remaining)
+NSE Timing: About 91.67% done; ETC: 09:35 (0:00:48 remaining)
+NSE Timing: About 91.67% done; ETC: 09:36 (0:00:52 remaining)
+NSE Timing: About 91.67% done; ETC: 09:37 (0:00:57 remaining)
+NSE Timing: About 91.67% done; ETC: 09:38 (0:01:03 remaining)
+NSE Timing: About 91.67% done; ETC: 09:39 (0:01:09 remaining)
+NSE Timing: About 91.67% done; ETC: 09:40 (0:01:15 remaining)
+NSE Timing: About 91.67% done; ETC: 09:42 (0:01:22 remaining)
+NSE Timing: About 91.67% done; ETC: 09:43 (0:01:30 remaining)
+NSE Timing: About 91.67% done; ETC: 09:45 (0:01:38 remaining)
+NSE Timing: About 91.67% done; ETC: 09:47 (0:01:47 remaining)
+NSE Timing: About 91.67% done; ETC: 09:49 (0:01:57 remaining)
+NSE Timing: About 91.67% done; ETC: 09:51 (0:02:08 remaining)
+NSE Timing: About 91.67% done; ETC: 09:53 (0:02:19 remaining)
+NSE Timing: About 91.67% done; ETC: 09:56 (0:02:32 remaining)
+NSE Timing: About 91.67% done; ETC: 09:58 (0:02:46 remaining)
+NSE Timing: About 91.67% done; ETC: 10:02 (0:03:01 remaining)
+NSE Timing: About 91.67% done; ETC: 10:05 (0:03:18 remaining)
+NSE Timing: About 91.67% done; ETC: 10:08 (0:03:36 remaining)
+NSE Timing: About 91.67% done; ETC: 10:12 (0:03:56 remaining)
+NSE Timing: About 91.67% done; ETC: 10:17 (0:04:18 remaining)
+NSE Timing: About 91.67% done; ETC: 10:21 (0:04:41 remaining)
+NSE Timing: About 91.67% done; ETC: 10:27 (0:05:07 remaining)
+NSE Timing: About 91.67% done; ETC: 10:32 (0:05:35 remaining)
+NSE Timing: About 91.67% done; ETC: 10:38 (0:06:06 remaining)
+Stats: 1:13:01 elapsed; 1 hosts completed (1 up), 1 undergoing Script Scan
+NSE: Active NSE Script Threads: 1 (1 waiting)
+NSE Timing: About 91.67% done; ETC: 10:39 (0:06:10 remaining)
+Stats: 1:13:01 elapsed; 1 hosts completed (1 up), 1 undergoing Script Scan
+NSE: Active NSE Script Threads: 1 (1 waiting)
+NSE Timing: About 91.67% done; ETC: 10:39 (0:06:11 remaining)
+Stats: 1:13:01 elapsed; 1 hosts completed (1 up), 1 undergoing Script Scan
+NSE: Active NSE Script Threads: 1 (1 waiting)
+NSE Timing: About 91.67% done; ETC: 10:39 (0:06:11 remaining)

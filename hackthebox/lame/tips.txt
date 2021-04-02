@@ -1,0 +1,4 @@
+10.129.87.183
+nmap -sTVC 10.129.87.183 -Pn > nmap.txt
+
+python -c 'import pty; pty.spawn("/bin/sh")'

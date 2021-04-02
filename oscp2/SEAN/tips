@@ -1,0 +1,4 @@
+nmap -sC -sV -Pn 10.1.1.246 > nmap.txt
+nmap -p- -Pn 10.1.1.246 > nmapall.txt
+
+這台就是10.11.1.251

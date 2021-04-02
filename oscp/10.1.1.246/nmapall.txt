@@ -1,0 +1,13 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-14 03:36 EST
+Nmap scan report for 10.1.1.246
+Host is up (0.0038s latency).
+Not shown: 65532 filtered ports
+PORT      STATE SERVICE    VERSION
+53/tcp    open  domain     dnsmasq 2.48
+| dns-nsid: 
+|_  bind.version: dnsmasq-2.48
+4735/tcp  open  tcpwrapped
+37140/tcp open  tcpwrapped
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 2044.39 seconds

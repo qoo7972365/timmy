@@ -1,0 +1,8 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 06:25 EST
+Nmap scan report for 192.168.37.108
+Host is up (1.3s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Nmap done: 1 IP address (1 host up) scanned in 7.19 seconds

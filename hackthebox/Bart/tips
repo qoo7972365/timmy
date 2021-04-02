@@ -1,0 +1,6 @@
+nmap -sC -sV 10.129.110.87 -Pn >nmap.txt
+gobuster dir  -u http://forum.bart.htb/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://10.129.110.87  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -s "204,301,302,307,401,403" -x txt,php,cgi -t50 > gobuster.txt
+
+
+10.129.90.147

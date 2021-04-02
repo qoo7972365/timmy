@@ -1,0 +1,109 @@
+Target IP: 192.168.37.87
+--------------------------------------
+
+Maximum Potential Points: 10
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain proof.txt file in valid way
+- Submit proof.txt in the Control Panel
+
+
+Documentation Requirements:
+
+- Document each step and command of your attack in a way that it can be replicated following a "copy/paste" approach
+- Create screenshots showing various steps and stages of the attack performed
+- Create a valid screenshot showing the content of proof.txt and machine IP address
+- Provide the link or the copy of the script/exploits being used
+- Document any changes done to the original scripts or exploits being used
+- Provide a summary and overview of the vulnerabilities found, performed attacks and exploitation process
+
+Target IP: 192.168.37.97
+--------------------------------------
+
+Maximum Potential Points: 20
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain local.txt file in valid way
+- Submit local.txt in the Control Panel
+- Get interactive access to the machine and obtain proof.txt file in valid way
+- Submit proof.txt in the Control Panel
+
+
+Documentation Requirements:
+
+- Document each step and command of your attack in a way that it can be replicated following a "copy/paste" approach
+- Create screenshots showing various steps and stages of the attack performed
+- Create a valid screenshot showing the content of local.txt and machine IP address
+- Create a valid screenshot showing the content of proof.txt and machine IP address
+- Provide the link or the copy of the script/exploits being used
+- Document any changes done to the original scripts or exploits being used
+- Provide a summary and overview of the vulnerabilities found, performed attacks and exploitation process
+
+Target IP: 192.168.37.108
+--------------------------------------
+
+Maximum Potential Points: 20
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain local.txt file in valid way
+- Submit local.txt in the Control Panel
+- Get interactive access to the machine and obtain proof.txt file in valid way
+- Submit proof.txt in the Control Panel
+
+
+Documentation Requirements:
+
+- Document each step and command of your attack in a way that it can be replicated following a "copy/paste" approach
+- Create screenshots showing various steps and stages of the attack performed
+- Create a valid screenshot showing the content of local.txt and machine IP address
+- Create a valid screenshot showing the content of proof.txt and machine IP address
+- Provide the link or the copy of the script/exploits being used
+- Document any changes done to the original scripts or exploits being used
+- Provide a summary and overview of the vulnerabilities found, performed attacks and exploitation process
+
+Target IP: 192.168.37.109
+--------------------------------------
+
+Maximum Potential Points: 25
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain local.txt file in valid way
+- Submit local.txt in the Control Panel
+- Get interactive access to the machine and obtain proof.txt file in valid way
+- Submit proof.txt in the Control Panel
+
+
+Documentation Requirements:
+
+- Document each step and command of your attack in a way that it can be replicated following a "copy/paste" approach
+- Create screenshots showing various steps and stages of the attack performed
+- Create a valid screenshot showing the content of local.txt and machine IP address
+- Create a valid screenshot showing the content of proof.txt and machine IP address
+- Provide the link or the copy of the script/exploits being used
+- Document any changes done to the original scripts or exploits being used
+- Provide a summary and overview of the vulnerabilities found, performed attacks and exploitation process
+
+Target IP: 192.168.37.110
+--------------------------------------
+
+Points: 25
+Main Objectives:
+- Get working exploit on the debugging machine
+- Get administrator access on the target machine and obtain proof.txt file
+- Submit proof.txt in control panel
+- Provide written detailed documentation of the exploit development process. Explain all the steps taken between reviewing the given proof of concept and finalizing your exploit code. Include your process for finding a valid return address, your discovery of bad characters, the full final exploit code used and any MSFvenom command(s) you have used to generate shellcode. Your report should contain informative screenshots of the debugger for each major step taken.
+
+Additional Information:
+You do not need to fuzz the server; a proof of concept can be found on your debugging machine desktop.
+
+Debugging Machine Information:
+We have provided a debugging machine available at 192.168.37.111. The debugging machine should only be used during the exploit development process. The debugging machine should not be any indication of the configuration of the target machine. The debugging machine and target machine are not identical. The only similarities between the two machines are the OS, Service Pack, and vulnerable application.
+
+You can log into the debugging machine using RDP. The username and password are provided below.
+Username: admin
+Password: lab
+

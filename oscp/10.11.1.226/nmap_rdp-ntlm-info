@@ -1,0 +1,10 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-08 22:21 EST
+Stats: 0:00:00 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 1 host. Timing: About 0.00% done
+Nmap scan report for 10.11.1.226
+Host is up (0.22s latency).
+
+PORT     STATE  SERVICE
+3389/tcp closed ms-wbt-server
+
+Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds

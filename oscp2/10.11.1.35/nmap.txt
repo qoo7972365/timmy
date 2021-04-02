@@ -1,0 +1,18 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-01 11:20 EDT
+Nmap scan report for 10.11.1.35
+Host is up (0.24s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 45:4a:21:25:8c:04:dc:c8:48:76:0c:52:77:14:6c:73 (RSA)
+|   256 a0:b8:2d:0f:07:79:36:47:ac:9f:bf:53:9b:0f:87:eb (ECDSA)
+|_  256 ee:06:c5:14:bc:2f:ae:9e:1e:0b:88:cd:3f:12:e0:6d (ED25519)
+80/tcp open  http    Apache httpd 2.4.6 ((CentOS) PHP/5.4.16)
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Apache/2.4.6 (CentOS) PHP/5.4.16
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 45.19 seconds

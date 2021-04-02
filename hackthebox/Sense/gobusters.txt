@@ -1,0 +1,45 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            https://10.129.63.216/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     py,cgi,txt,php
+[+] Timeout:        10s
+===============================================================
+2021/02/14 03:29:17 Starting gobuster
+===============================================================
+/index.php (Status: 200)
+/help.php (Status: 200)
+/themes (Status: 301)
+/stats.php (Status: 200)
+/css (Status: 301)
+/edit.php (Status: 200)
+/includes (Status: 301)
+/license.php (Status: 200)
+/system.php (Status: 200)
+/status.php (Status: 200)
+/javascript (Status: 301)
+/changelog.txt (Status: 200)
+/classes (Status: 301)
+/exec.php (Status: 200)
+/widgets (Status: 301)
+/graph.php (Status: 200)
+/tree (Status: 301)
+/wizard.php (Status: 200)
+/shortcuts (Status: 301)
+/pkg.php (Status: 200)
+/installer (Status: 301)
+/wizards (Status: 301)
+/xmlrpc.php (Status: 200)
+/reboot.php (Status: 200)
+/interfaces.php (Status: 200)
+/csrf (Status: 301)
+
+[!] Keyboard interrupt detected, terminating.
+===============================================================
+2021/02/14 07:26:16 Finished
+===============================================================

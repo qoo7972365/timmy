@@ -1,0 +1,8 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 06:27 EST
+Nmap scan report for 192.168.37.87
+Host is up.
+
+PORT    STATE    SERVICE
+445/tcp filtered microsoft-ds
+
+Nmap done: 1 IP address (1 host up) scanned in 2.59 seconds

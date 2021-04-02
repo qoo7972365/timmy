@@ -1,0 +1,9 @@
+nmap -sC -sV -Pn 10.11.1.217 > nmap.txt
+gobuster dir  -u http://10.11.1.217/ -w /usr/share/dirb/wordlists/common.txt -x txt,php> gobuster.txt
+svwar -m invite -e100-1000 10.11.1.217
+
+
+1.nmap掃描出80端口,在firefox直接打開,使用弱密碼嘗試登入,登入後可查看到elastix版本為2.2.0
+2.searchexploit發現elastix有remote code execution漏洞
+3.設置代理,便免python腳本報錯,可成功取得reverse shell,若無法則需要調整extension值(svwar)
+4.nmap提權

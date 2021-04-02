@@ -1,0 +1,30 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-23 06:12 EST
+NSE: Loaded 35 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 06:12
+Completed NSE at 06:12, 0.00s elapsed
+Initiating NSE at 06:12
+Completed NSE at 06:12, 0.00s elapsed
+Initiating NSE at 06:12
+Completed NSE at 06:12, 0.00s elapsed
+Initiating Ping Scan at 06:12
+Scanning 445 (0.0.1.189) [4 ports]
+Completed Ping Scan at 06:12, 3.05s elapsed (1 total hosts)
+Nmap scan report for 445 (0.0.1.189) [host down]
+Initiating Ping Scan at 06:12
+Scanning 192.168.37.108 [4 ports]
+Completed Ping Scan at 06:12, 0.30s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 06:12
+Completed Parallel DNS resolution of 1 host. at 06:12, 0.01s elapsed
+Initiating SYN Stealth Scan at 06:12
+Scanning 192.168.37.108 [1 port]
+Discovered open port 139/tcp on 192.168.37.108
+Completed SYN Stealth Scan at 06:12, 0.28s elapsed (1 total ports)
+NSE: Script scanning 192.168.37.108.
+Initiating NSE at 06:12
+Completed NSE at 06:13, 22.99s elapsed
+Initiating NSE at 06:13
+Stats: 1:38:17 elapsed; 1 hosts completed (1 up), 1 undergoing Script Scan
+NSE: Active NSE Script Threads: 1 (1 waiting)
+Stats: 1:38:17 elapsed; 1 hosts completed (1 up), 1 undergoing Script Scan
+NSE: Active NSE Script Threads: 1 (1 waiting)

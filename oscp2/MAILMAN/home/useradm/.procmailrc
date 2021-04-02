@@ -1,0 +1,16 @@
+VERBOSE=yes
+DEBUG=yes
+PATH=/bin:/usr/bin:/usr/local/bin
+SHELL=/bin/bash
+MAILDIR=$HOME/Maildir/
+DEFAULT=$HOME/Maildir/
+PMDIR=$HOME/Procmail
+LOGFILE=$PMDIR/log
+
+SUBJECT=`formail -xSubject:`
+FROM=`formail -rt -xTo:`
+
+:0:
+* !^From:.offsec\.com
+| (formail) | $SENDMAIL -t -oi
+security

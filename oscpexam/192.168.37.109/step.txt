@@ -1,0 +1,20 @@
+nmap -sTVC 192.168.37.109 -Pn > nmap.txt
+this is my command
+nmap -sS VC 192.168.37.109 -Pn > nmapudp.txt
+nmap -sTVC 192.168.37.109 -p- > nmapall.txt
+
+smbclient -L 192.168.37.109
+smbclient -N -U guest //192.168.37.109/finance
+smbclient -N -U theseus //192.168.37.109/finance
+smbclient -N -U theseus //192.168.37.109/backups
+smbclient -N -U guest //192.168.37.109/backups
+
+Enter WORKGROUP\root's password:
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        finance         Disk      Share for finance
+        backups         Disk      Share for backup retrieval
+        IPC$            IPC       IPC Service (Samba 4.5.16-Debian)
+
+SMB1 disabled -- no workgroup available

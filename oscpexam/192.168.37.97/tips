@@ -1,0 +1,11 @@
+nmap -sTVC 192.168.37.97 -Pn > nmap.txt
+nmap --script ftp-vsftpd-backdoor -p 21 192.168.37.97  > vsftpd_nmap.txt
+gobuster dir  -u http://192.168.37.97 /  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+nmap -v -p 139, 445 --script=smb* 192.168.37.97  > smb.txt
+
+smbclient -L konki.oscp
+smbclient -N -U guest //konki.oscp
+smbclient //konki.oscp/
+
+usage: 40136 [-h] [-u USER | -U USERLIST] [-e] [-s] [--bytes BYTES] [--samples SAMPLES] [--factor FACTOR] [--trials TRIALS] host
+python3 40136 -h 192.168.37.97 -U /usr/share/set/src/fasttrack/wordlist.txt

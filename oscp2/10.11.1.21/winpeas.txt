@@ -1,0 +1,1110 @@
+ANSI color bit for Windows is not set. If you are execcuting this from a Windows terminal inside the host you should run 'REG ADD HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1' and then start a new CMD
+[1;90m   Creating Dynamic lists, this could take a while, please wait...[0m
+[1;90m   - Checking if domain...[0m
+[1;90m   - Getting Win32_UserAccount info...[0m
+[1;90m   - Creating current user groups list...[0m
+[1;90m   - Creating active users list...[0m
+[1;90m   - Creating disabled users list...[0m
+[1;90m   - Admin users list...[0m
+[34m     
+             [1;32m*((,.,/((((((((((((((((((((/,  */               
+      [1;32m,/*,..*((((((((((((((((((((((((((((((((((,           
+    [1;32m,*/((((((((((((((((((/,  .*//((//**, .*(((((((*       
+    [1;32m(((((((((((((((([34m**********/[1;32m########## [1;32m.(* ,(((((((   
+    [1;32m(((((((((((/[34m********************/[1;32m####### [1;32m.(. (((((((
+    [1;32m((((((..[34m******************[0m/@@@@@/[34m***/[1;32m###### [1;32m./(((((((
+    [1;32m,,....[34m********************[0m@@@@@@@@@@[34m(***,[1;32m#### [1;32m.//((((((
+    [1;32m, ,..[34m********************[0m/@@@@@%@@@@[34m/********[1;32m##[1;32m((/ /((((
+    [1;32m..(([1;32m###########[34m*********[0m/%@@@@@@@@@[34m/************[1;32m,,..((((
+    [1;32m.([1;32m##################(/[34m******[0m/@@@@@[34m/***************[1;32m.. /((
+    [1;32m.([1;32m#########################(/[34m**********************[1;32m..*((
+    [1;32m.([1;32m##############################(/[34m*****************[1;32m.,(((
+    [1;32m.([1;32m###################################(/[34m************[1;32m..(((
+    [1;32m.([1;32m#######################################([34m*********[1;32m..(((
+    [1;32m.([1;32m#######(,.***.,(###################(..***.[34m*******[1;32m..(((
+    [1;32m.([1;32m#######*(#####((##################((######/([34m*****[1;32m..(((
+    [1;32m.([1;32m###################(/***********(##############([1;32m...(((
+    [1;32m.(([1;32m#####################/*******(################[1;32m.((((((
+    [1;32m.((([1;32m############################################[1;32m(..((((
+    [1;32m..((([1;32m##########################################[1;32m(..(((((
+    [1;32m....(([1;32m########################################[1;32m( .(((((
+    [1;32m......(([1;32m####################################[1;32m( .((((((
+    [1;32m((((((((([1;32m#################################[1;32m(../((((((
+        [1;32m(((((((((/[1;32m##########################[1;32m(/..((((((
+              [1;32m(((((((((/,.  ,*//////*,. ./(((((((((((((((.
+                 [1;32m(((((((((((((((((((((((((((((/[0m
+
+[1;33mADVISORY: [34mwinpeas should be used for authorized penetration testing and/or educational purposes only.Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.
+
+[33m  WinPEAS [1;32mv1.1[0m[33m by carlospolop[0m
+
+[33m  [+] [1;32mLegend:[0m
+[1;31m         Red[1;37m                Indicates a special privilege over an object or something is misconfigured[0m
+[1;32m         Green[1;37m              Indicates that some protection is enabled or something is well configured[0m
+[36m         Cyan[1;37m               Indicates active users[0m
+[34m         Blue[1;37m               Indicates disabled users[0m
+[1;33m         LightYellow[1;37m        Indicates links[0m
+
+[33m   [?] [1;34mYou can find a Windows local PE Checklist here: [1;33mhttps://book.hacktricks.xyz/windows/checklist-windows-privilege-escalation[0m
+
+
+[1;36m  ==========================================([0m[33mSystem Information[1;36m)==========================================[0m
+
+[33m  [+] [1;32mBasic System Information[0m
+[33m   [?] [1;34mCheck if the Windows versions is vulnerable to some known exploit [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#kernel-exploits[0m
+[1;37m    Hostname: [0msv-file01
+[1;37m    Domain Name: [0msvcorp.com
+[1;37m    ProductName: [0mWindows Server 2016 Standard
+[1;37m    EditionID: [0mServerStandard
+[1;37m    ReleaseId: [0m1607
+[1;37m    BuildBranch: [0mrs1_release
+[1;37m    CurrentMajorVersionNumber: [0m10
+[1;37m    CurrentVersion: [0m6.3
+[1;37m    Architecture: [0mAMD64
+[1;37m    ProcessorCount: [0m1
+[1;37m    SystemLang: [0men-US
+[1;37m    KeyboardLang: [0mEnglish (United States)
+[1;37m    TimeZone: [0m(UTC-08:00) Pacific Time (US & Canada)
+[1;37m    IsVirtualMachine: [0m[0m[1;31mTrue[0m
+[1;37m    Current Time: [0m3/31/2021 8:54:27 PM
+[1;37m    HighIntegrity: [0mFalse
+[1;37m    PartOfDomain: [0m[0m[1;31mTrue[0m
+[1;37m    Hotfixes: [0m[1;32m[0m
+
+[33m  [?] [1;34mWindows vulns search powered by [1;31mWatson[1;34m(https://github.com/rasta-mouse/Watson)[0m
+    OS Build Number: 14393
+[1;31m       [!] CVE-2019-0836 : VULNERABLE[0m
+[1;31m        [>] https://exploit-db.com/exploits/46718[0m
+[1;31m        [>] https://decoder.cloud/2019/04/29/combinig-luafv-postluafvpostreadwrite-race-condition-pe-with-diaghub-collector-exploit-from-standard-user-to-system/[0m
+
+[1;31m       [!] CVE-2019-0841 : VULNERABLE[0m
+[1;31m        [>] https://github.com/rogue-kdc/CVE-2019-0841[0m
+[1;31m        [>] https://rastamouse.me/tags/cve-2019-0841/[0m
+
+[1;31m       [!] CVE-2019-1064 : VULNERABLE[0m
+[1;31m        [>] https://www.rythmstick.net/posts/cve-2019-1064/[0m
+
+[1;31m       [!] CVE-2019-1130 : VULNERABLE[0m
+[1;31m        [>] https://github.com/S3cur3Th1sSh1t/SharpByeBear[0m
+
+[1;31m       [!] CVE-2019-1253 : VULNERABLE[0m
+[1;31m        [>] https://github.com/padovah4ck/CVE-2019-1253[0m
+
+[1;31m       [!] CVE-2019-1315 : VULNERABLE[0m
+[1;31m        [>] https://offsec.almond.consulting/windows-error-reporting-arbitrary-file-move-eop.html[0m
+
+[1;31m       [!] CVE-2019-1385 : VULNERABLE[0m
+[1;31m        [>] https://www.youtube.com/watch?v=K6gHnr-VkAg[0m
+
+[1;31m       [!] CVE-2019-1388 : VULNERABLE[0m
+[1;31m        [>] https://github.com/jas502n/CVE-2019-1388[0m
+
+[1;31m       [!] CVE-2019-1405 : VULNERABLE[0m
+[1;31m        [>] https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2019/november/cve-2019-1405-and-cve-2019-1322-elevation-to-system-via-the-upnp-device-host-service-and-the-update-orchestrator-service/[0m
+
+[1;37m    Finished. Found [1;31m9[1;37m potential vulnerabilities.[0m
+
+[33m  [+] [1;32mUser Environment Variables[0m
+[33m   [?] [1;34mCheck for some passwords or keys in the env variables [1;33m[0m
+[1;37m    COMPUTER[0m[1;31mNAME[0m: [0mSV-FILE01
+[1;37m    USERPROFILE: [0mC:\Users\pete
+[1;37m    HOMEPATH: [0m\Users\pete
+[1;37m    LOCALAPPDATA: [0mC:\Users\pete\AppData\Local
+[1;37m    PSModulePath: [0mC:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+[1;37m    PROCESSOR_ARCHITECTURE: [0mAMD64
+[1;37m    Path: [0mC:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Users\pete\AppData\Local\Microsoft\WindowsApps;
+[1;37m    CommonProgramFiles(x86): [0mC:\Program Files (x86)\Common Files
+[1;37m    ProgramFiles(x86): [0mC:\Program Files (x86)
+[1;37m    PROCESSOR_LEVEL: [0m23
+[1;37m    LOGONSERVER: [0m\\SV-DC01
+[1;37m    PATHEXT: [0m.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+[1;37m    HOMEDRIVE: [0mC:
+[1;37m    SystemRoot: [0mC:\Windows
+[1;37m    TEMP: [0mC:\Users\pete\AppData\Local\Temp\2
+[1;37m    [0m[1;31mSESSIONNAME[0m: [0mRDP-Tcp#1
+[1;37m    ALLUSERSPROFILE: [0mC:\ProgramData
+[1;37m    PUBLIC: [0mC:\Users\Public
+[1;37m    FPS_BROWSER_APP_PROFILE_STRING: [0mInternet Explorer
+[1;37m    APPDATA: [0mC:\Users\pete\AppData\Roaming
+[1;37m    PROCESSOR_REVISION: [0m0102
+[1;37m    USER[0m[1;31mNAME[0m: [0mpete
+[1;37m    CommonProgramW6432: [0mC:\Program Files\Common Files
+[1;37m    CommonProgramFiles: [0mC:\Program Files\Common Files
+[1;37m    CLIENT[0m[1;31mNAME[0m: [0mkali
+[1;37m    OS: [0mWindows_NT
+[1;37m    USERDOMAIN_ROAMINGPROFILE: [0msvcorp
+[1;37m    PROCESSOR_IDENTIFIER: [0mAMD64 Family 23 Model 1 Stepping 2, AuthenticAMD
+[1;37m    ComSpec: [0mC:\Windows\system32\cmd.exe
+[1;37m    PROMPT: [0m$P$G
+[1;37m    SystemDrive: [0mC:
+[1;37m    FPS_BROWSER_USER_PROFILE_STRING: [0mDefault
+[1;37m    ProgramFiles: [0mC:\Program Files
+[1;37m    NUMBER_OF_PROCESSORS: [0m1
+[1;37m    TMP: [0mC:\Users\pete\AppData\Local\Temp\2
+[1;37m    ProgramData: [0mC:\ProgramData
+[1;37m    ProgramW6432: [0mC:\Program Files
+[1;37m    windir: [0mC:\Windows
+[1;37m    USERDOMAIN: [0msvcorp
+[1;37m    USERDNSDOMAIN: [0mSVCORP.COM
+
+[33m  [+] [1;32mSystem Environment Variables[0m
+[33m   [?] [1;34mCheck for some passwords or keys in the env variables [1;33m[0m
+[1;37m    ComSpec: [0mC:\Windows\system32\cmd.exe
+[1;37m    OS: [0mWindows_NT
+[1;37m    Path: [0mC:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
+[1;37m    PATHEXT: [0m.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+[1;37m    PROCESSOR_ARCHITECTURE: [0mAMD64
+[1;37m    PSModulePath: [0mC:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+[1;37m    TEMP: [0mC:\Windows\TEMP
+[1;37m    TMP: [0mC:\Windows\TEMP
+[1;37m    USER[0m[1;31mNAME[0m: [0mSYSTEM
+[1;37m    windir: [0mC:\Windows
+[1;37m    NUMBER_OF_PROCESSORS: [0m1
+[1;37m    PROCESSOR_LEVEL: [0m23
+[1;37m    PROCESSOR_IDENTIFIER: [0mAMD64 Family 23 Model 1 Stepping 2, AuthenticAMD
+[1;37m    PROCESSOR_REVISION: [0m0102
+
+[33m  [+] [1;32mAudit Settings[0m
+[33m   [?] [1;34mCheck what is being logged [1;33m[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mWEF Settings[0m
+[33m   [?] [1;34mWindows Event Forwarding, is interesting to know were are sent the logs [1;33m[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLAPS Settings[0m
+[33m   [?] [1;34mIf installed, local administrator password is changed frequently and is restricted by ACL [1;33m[0m
+[1;37m    LAPS Enabled: [0m[0m[1;31mLAPS not installed[0m
+
+[33m  [+] [1;32mWdigest[0m
+[33m   [?] [1;34mIf enabled, plain-text crds could be stored in LSASS [1;33mhttps://book.hacktricks.xyz/windows/stealing-credentials/credentials-protections#wdigest[0m
+[1;32m    Wdigest is not enabled[0m
+
+[33m  [+] [1;32mLSA Protection[0m
+[33m   [?] [1;34mIf enabled, a driver is needed to read LSASS memory (If Secure Boot or UEFI, RunAsPPL cannot be disabled by deleting the registry key) [1;33mhttps://book.hacktricks.xyz/windows/stealing-credentials/credentials-protections#lsa-protection[0m
+[1;31m    LSA Protection is not enabled[0m
+
+[33m  [+] [1;32mCredentials Guard[0m
+[33m   [?] [1;34mIf enabled, a driver is needed to read LSASS memory [1;33mhttps://book.hacktricks.xyz/windows/stealing-credentials/credentials-protections#credential-guard[0m
+[1;31m    CredentialGuard is not enabled[0m
+
+[33m  [+] [1;32mCached Creds[0m
+[33m   [?] [1;34mIf > 0, credentials will be cached in the registry and accessible by SYSTEM user [1;33mhttps://book.hacktricks.xyz/windows/stealing-credentials/credentials-protections#cached-credentials[0m
+[1;31m    cachedlogonscount is 10[0m
+
+[33m  [+] [1;32mAV Information[0m
+[1;90m  [X] Exception: Invalid namespace [0m
+[1;31m    No AV was detected!![0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mUAC Status[0m
+[33m   [?] [1;34mIf you are in the Administrators group check how to bypass the UAC [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#basic-uac-bypass-full-file-system-access[0m
+[1;37m    ConsentPromptBehaviorAdmin: [0m5 - [0m[1;31mPromptForNonWindowsBinaries[0m
+[1;37m    EnableLUA: [0m1
+[1;37m    LocalAccountTokenFilterPolicy: [0m
+[1;37m    FilterAdministratorToken: [0m
+[1;32m      [*] LocalAccountTokenFilterPolicy set to 0 and FilterAdministratorToken != 1.
+      [-] Only the RID-500 local admin account can be used for lateral movement.[0m
+
+[33m  [+] [1;32mPowerShell Settings[0m
+[1;37m    PowerShell v2 Version: [0m2.0
+[1;37m    PowerShell v5 Version: [0m5.1.14393.0
+[1;37m    Transcription Settings: [0m
+[1;37m    Module Logging Settings: [0m
+[1;37m    Scriptblock Logging Settings: [0m
+[1;37m    [0m[1;31mPS history file: [0m[0m
+[1;37m    [0m[1;31mPS history size: [0m[0m
+
+[33m  [+] [1;32mPS default transcripts history[0m
+[33m    [i] [1;34mRead the PS history inside these files (if any)[0m
+
+[33m  [+] [1;32mPowershell Console Host History[0m
+
+[33m  [+] [1;32mHKCU Internet Settings[0m
+[1;37m    DisableCachingOfSSLPages: [0m1
+[1;37m    IE5_UA_Backup_Flag: [0m5.0
+[1;37m    PrivacyAdvanced: [0m1
+[1;37m    SecureProtocols: [0m2688
+[1;37m    User Agent: [0mMozilla/4.0 (compatible; MSIE 8.0; Win32)
+[1;37m    CertificateRevocation: [0m1
+[1;37m    ZonesSecurityUpgrade: [0mSystem.Byte[]
+[1;37m    WarnonZoneCrossing: [0m1
+[1;37m    EnableNegotiate: [0m1
+[1;37m    MigrateProxy: [0m1
+[1;37m    ProxyEnable: [0m0
+
+[33m  [+] [1;32mHKLM Internet Settings[0m
+[1;37m    ActiveXCache: [0mC:\Windows\Downloaded Program Files
+[1;37m    CodeBaseSearchPath: [0mCODEBASE
+[1;37m    EnablePunycode: [0m1
+[1;37m    MinorVersion: [0m0
+[1;37m    WarnOnIntranet: [0m1
+
+[33m  [+] [1;32mDrives Information[0m
+[33m   [?] [1;34mRemember that you should search more info inside the other drives [1;33m[0m
+    C:\ (Type: Fixed)(Filesystem: NTFS)(Available space: 8 GB)([0m[1;31mPermissions: Users [AppendData/CreateDirectories])[0m
+    D:\ (Type: CDRom)
+
+[33m  [+] [1;32mChecking WSUS[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#wsus[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mChecking AlwaysInstallElevated[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#alwaysinstallelevated[0m
+[1;32m    AlwaysInstallElevated isn't available[0m
+
+
+[1;36m  ===========================================([0m[33mUsers Information[1;36m)===========================================[0m
+
+[33m  [+] [1;32mUsers[0m
+[33m   [?] [1;34mCheck if you have some admin equivalent privileges [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#users-and-groups[0m
+  Current user: [0m[36m[0m[1:35m[0m[1;31mpete[0m[0m[0m
+  Current groups: Domain Users, Everyone, Users, [0m[1;31mRemote [0mInteractive Logon, Interactive, Authenticated Users, This Organization, Local, Server_Admin, Company_Mail, Mail_Editor, Mail_Reader, Authentication authority asserted identity
+[1;90m   =================================================================================================[0m
+
+    SV-FILE01\[0m[1;31mAdministrator[0m: Built-in account for administering the computer/domain
+        |->Groups: [0m[1;31mAdministrator[0ms
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SV-FILE01\[0m[34mDefaultAccount[0m([0m[34mDisabled[0m): A user account managed by the system.
+        |->Groups: System Managed Accounts Group
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-NotReq
+
+    SV-FILE01\[0m[34mGuest[0m([0m[34mDisabled[0m): Built-in account for guest access to the computer/domain
+        |->Groups: [0m[34mGuest[0ms
+        |->Password: [0m[1;31mNotChange[0m-[0m[1;31mNotExpi[0m-NotReq
+
+    SVCORP\[0m[1;31mAdministrator[0m: Built-in account for administering the computer/domain
+        |->Groups: Domain Users,[0m[1;31mAdministrator[0ms,Schema [0m[1;31m[0m[1;31m[0m[1;31mAdmins[0m[0m[0m,Enterprise [0m[1;31m[0m[1;31m[0m[1;31mAdmins[0m[0m[0m,Domain [0m[1;31m[0m[1;31m[0m[1;31mAdmins[0m[0m[0m,Group Policy Creator Owners
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[34mGuest[0m([0m[34mDisabled[0m): Built-in account for guest access to the computer/domain
+        |->Groups: Domain [0m[34m[0m[34mGuest[0m[0ms,[0m[34m[0m[34mGuest[0m[0ms
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-NotReq
+
+    SVCORP\[0m[34mkrbtgt[0m([0m[34mDisabled[0m): Key Distribution Center Service Account
+        |->Groups: Domain Users,Denied RODC Password Replication Group
+        |->Password: CanChange-Expi-Req
+
+    SVCORP\[0m[36malice[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mpedro[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mmike[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mbob[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mralph[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mbethany[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mbruce[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36msherlock[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mnicky[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mjeff[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mjoe[0m
+        |->Groups: Domain Users,Help_Desk
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mkevin[0m
+        |->Groups: Domain Users,Help_Desk
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mcory[0m
+        |->Groups: Domain Users,Help_Desk
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mnina[0m[0m
+        |->Groups: Domain Users,Mail_Reader,Workstation_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mbrett[0m[0m
+        |->Groups: Domain Users,Mail_Reader,Workstation_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mcarol[0m[0m
+        |->Groups: Domain Users,Mail_Reader,Workstation_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mjames[0m[0m
+        |->Groups: Domain Users,Mail_Editor,Server_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mjohn[0m[0m
+        |->Groups: Domain Users,Mail_Editor,Server_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1:35m[0m[1;31mpete[0m[0m[0m
+        |->Groups: Domain Users,Mail_Editor,Server_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31madam[0m[0m
+        |->Groups: Domain Users,Mail_Editor,Server_Admin
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mevan[0m[0m
+        |->Groups: Domain Users,Domain [0m[1;31mAdmins[0m
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36m[0m[1;31mtris[0m[0m
+        |->Groups: Domain Users,Domain [0m[1;31mAdmins[0m
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36msqlServer[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mHP3service[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+    SVCORP\[0m[36mextmailservice[0m
+        |->Groups: Domain Users
+        |->Password: CanChange-[0m[1;31mNotExpi[0m-Req
+
+
+[33m  [+] [1;32mCurrent Token privileges[0m
+[33m   [?] [1;34mCheck if you can escalate privilege using some enabled token [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#token-manipulation[0m
+[1;37m    SeShutdownPrivilege: [0mDISABLED
+[1;37m    SeChangeNotifyPrivilege: [0mSE_PRIVILEGE_ENABLED_BY_DEFAULT, SE_PRIVILEGE_ENABLED
+[1;37m    SeUndockPrivilege: [0mDISABLED
+[1;37m    SeIncreaseWorkingSetPrivilege: [0mDISABLED
+[1;37m    SeTimeZonePrivilege: [0mDISABLED
+
+[33m  [+] [1;32mClipboard text[0m
+[1;31m[0m
+
+[33m  [+] [1;32mLogged users[0m
+    [0m[1:35msvcorp[0m\[0m[36m[0m[1;31mtris[0m[0m
+    [0m[1:35msvcorp[0m\[0m[36m[0m[1:35m[0m[1;31mpete[0m[0m[0m
+
+[33m  [+] [1;32mRDP Sessions[0m
+[1;90m    SessID    pSessionName   pUserName      pDomainName              State     SourceIP[0m
+    1         Console        [0m[36m[0m[1;31mtris[0m[0m           [0m[1:35msvcorp[0m                   Active    
+    2         RDP-Tcp#1      [0m[36m[0m[1:35m[0m[1;31mpete[0m[0m[0m           [0m[1:35msvcorp[0m                   Active    192.168.119.134
+
+[33m  [+] [1;32mEver logged users[0m
+    [0m[1:35msvcorp[0m\[0m[1;31mAdministrator[0m
+    [0m[1:35msvcorp[0m\[0m[36m[0m[1;31mtris[0m[0m
+    [0m[1:35msvcorp[0m\[0m[36m[0m[1;31madam[0m[0m
+    [0m[1:35msvcorp[0m\[0m[36m[0m[1:35m[0m[1;31mpete[0m[0m[0m
+    [0m[1:35msvcorp[0m\[0m[36m[0m[1;31mjames[0m[0m
+    SV-FILE01\[0m[1;31mAdministrator[0m
+
+[33m  [+] [1;32mHome folders found[0m
+[1;31m    C:\Users\adam : pete [AllAccess][0m
+[1;31m    C:\Users\Administrator : pete [AllAccess][0m
+[1;31m    C:\Users\administrator.svcorp : pete [AllAccess][0m
+[1;32m    C:\Users\All Users[0m
+[1;31m    C:\Users\Default : Users [AppendData/CreateDirectories WriteData/CreateFiles][0m
+[1;32m    C:\Users\Default User[0m
+[1;31m    C:\Users\james : pete [AllAccess][0m
+[1;31m    C:\Users\pete : pete [AllAccess][0m
+[1;31m    C:\Users\Public : Interactive [WriteData/CreateFiles][0m
+[1;31m    C:\Users\tris : pete [AllAccess][0m
+
+[33m  [+] [1;32mLooking for AutoLogon credentials[0m
+[1;31m    Some AutoLogon credentials were found!![0m
+    DefaultUserName               :  [0m[1:35msvcorp[0m\Tris
+    [0m[1;31mDefaultPassword               :  ThisIsTheUsersPassword22[0m
+
+[33m  [+] [1;32mPassword Policies[0m
+[33m   [?] [1;34mCheck for a possible brute-force [1;33m[0m
+[1;37m    Domain: [0mBuiltin
+[1;37m    SID: [0mS-1-5-32
+[1;37m    MaxPasswordAge: [0m42.22:47:31.7437440
+[1;37m    MinPasswordAge: [0m00:00:00
+[1;37m    MinPasswordLength: [0m0
+[1;37m    PasswordHistoryLength: [0m0
+[1;37m    PasswordProperties: [0m0
+[1;90m   =================================================================================================[0m
+
+[1;37m    Domain: [0mSV-FILE01
+[1;37m    SID: [0mS-1-5-21-1778687363-177302961-343062978
+[1;37m    MaxPasswordAge: [0m42.00:00:00
+[1;37m    MinPasswordAge: [0m1.00:00:00
+[1;37m    MinPasswordLength: [0m7
+[1;37m    PasswordHistoryLength: [0m24
+[1;37m    PasswordProperties: [0mDOMAIN_PASSWORD_COMPLEX
+[1;90m   =================================================================================================[0m
+
+
+
+[1;36m  =======================================([0m[33mProcesses Information[1;36m)=======================================[0m
+
+[33m  [+] [1;32mInteresting Processes -non Microsoft-[0m
+[33m   [?] [1;34mCheck if any interesting proccesses for memmory dump or if you could overwrite some binary running [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#running-processes[0m
+    dllhost(4520)[[0m[1;32mC:\Windows\system32\DllHost.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: [0m[1;32mC:\Windows\system32\DllHost.exe [0m/Processid:{49F6E667-6658-4BD1-9DE9-6AF87F9FAF85}
+[1;90m   =================================================================================================[0m
+
+    SearchUI(4768)[[0m[1;32mC:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: "C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe" -ServerName:CortanaUI.AppXa50dqqa5gqv4a428c9y1jjw7m3btvepj.mca
+[1;90m   =================================================================================================[0m
+
+    taskhostw(1156)[[0m[1;32mC:\Windows\system32\taskhostw.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: taskhostw.exe
+[1;90m   =================================================================================================[0m
+
+    winPEAS(2196)[[0m[1;31mC:\Users\pete\winPEAS.exe][0m -- POwn:[0m[1:35m pete[0m -- isDotNet
+    [0m[1;31mPermissions:[0m[1:35m pete[0m [AllAccess][0m
+    [0m[1;31mPossible DLL Hijacking folder: C:\Users\pete (pete [AllAccess])[0m
+    [1;37mCommand Line: winPEAS.exe  
+[1;90m   =================================================================================================[0m
+
+    cmd(2904)[[0m[1;32mC:\Windows\system32\cmd.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: "C:\Windows\system32\cmd.exe" 
+[1;90m   =================================================================================================[0m
+
+    ShellExperienceHost(2992)[[0m[1;32mC:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy\ShellExperienceHost.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: "C:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy\ShellExperienceHost.exe" -ServerName:App.AppXtk181tbxbce2qsex02s8tw7hfxa9xb3t.mca
+[1;90m   =================================================================================================[0m
+
+    rdpclip(4056)[[0m[1;32mC:\Windows\System32\rdpclip.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: rdpclip
+[1;90m   =================================================================================================[0m
+
+    explorer(2872)[[0m[1;32mC:\Windows\Explorer.EXE][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: C:\Windows\Explorer.EXE
+[1;90m   =================================================================================================[0m
+
+    taskhostw(3120)[[0m[1;32mC:\Windows\system32\taskhostw.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: taskhostw.exe {222A245B-E637-4AE9-A93F-A59CA119A75E}
+[1;90m   =================================================================================================[0m
+
+    conhost(360)[[0m[1;32mC:\Windows\system32\conhost.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: \??\[0m[1;32mC:\Windows\system32\conhost.exe [0m0x4
+[1;90m   =================================================================================================[0m
+
+    RuntimeBroker(4464)[[0m[1;32mC:\Windows\System32\RuntimeBroker.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: [0m[1;32mC:\Windows\System32\RuntimeBroker.exe [0m-Embedding
+[1;90m   =================================================================================================[0m
+
+    svchost(4100)[[0m[1;32mC:\Windows\system32\svchost.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: [0m[1;32mC:\Windows\system32\svchost.exe [0m-k UnistackSvcGroup
+[1;90m   =================================================================================================[0m
+
+    sihost(1696)[[0m[1;32mC:\Windows\system32\sihost.exe][0m -- POwn:[0m[1:35m pete[0m
+    [1;37mCommand Line: sihost.exe
+[1;90m   =================================================================================================[0m
+
+
+
+[1;36m  ========================================([0m[33mServices Information[1;36m)========================================[0m
+
+[33m  [+] [1;32mInteresting Services -non Microsoft-[0m
+[33m   [?] [1;34mCheck if you can overwrite some service binary or perform a DLL hijacking, also check for unquoted paths [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services[0m
+    FileZilla Server(FileZilla Project - FileZilla Server FTP server)[[0m[1;32m"C:\Program Files (x86)\FileZilla Server\FileZilla Server.exe"[0m] - Auto - Running
+[1;90m   =================================================================================================[0m
+
+    VGAuthService(VMware, Inc. - VMware Alias Manager and Ticket Service)[[0m[1;32m"C:\Program Files\VMware\VMware Tools\VMware VGAuth\VGAuthService.exe"[0m] - Auto - Running
+    [1;37mAlias Manager and Ticket Service
+[1;90m   =================================================================================================[0m
+
+    VMTools(VMware, Inc. - VMware Tools)[[0m[1;32m"C:\Program Files\VMware\VMware Tools\vmtoolsd.exe"[0m] - Auto - Running
+    [1;37mProvides support for synchronizing objects between the host and guest operating systems.
+[1;90m   =================================================================================================[0m
+
+    VMwareCAFCommAmqpListener(VMware CAF AMQP Communication Service)[[0m[1;32m"C:\Program Files\VMware\VMware Tools\VMware CAF\pme\bin\CommAmqpListener.exe"[0m] - Manual - Stopped
+    [1;37mVMware Common Agent AMQP Communication Service
+[1;90m   =================================================================================================[0m
+
+    VMwareCAFManagementAgentHost(VMware CAF Management Agent Service)[[0m[1;32m"C:\Program Files\VMware\VMware Tools\VMware CAF\pme\bin\ManagementAgentHost.exe"[0m] - Manual - Stopped
+    [1;37mVMware Common Agent Management Agent Service
+[1;90m   =================================================================================================[0m
+
+
+[33m  [+] [1;32mModifiable Services[0m
+[33m   [?] [1;34mCheck if you can modify any service [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services[0m
+[1;32m    You cannot modify any service[0m
+
+[33m  [+] [1;32mLooking if you can modify any service registry[0m
+[33m   [?] [1;34mCheck if you can modify the registry of a service [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#services-registry-permissions[0m
+[1;32m    [-] Looks like you cannot change the registry of any service...[0m
+
+[33m  [+] [1;32mChecking write permissions in PATH folders (DLL Hijacking)[0m
+[33m   [?] [1;34mCheck for DLL Hijacking in PATH folders [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#dll-hijacking[0m
+[1;32m    C:\Windows\system32[0m
+[1;32m    C:\Windows[0m
+[1;32m    C:\Windows\System32\Wbem[0m
+[1;32m    C:\Windows\System32\WindowsPowerShell\v1.0\[0m
+
+
+[1;36m  ====================================([0m[33mApplications Information[1;36m)====================================[0m
+
+[33m  [+] [1;32mCurrent Active Window Application[0m
+[1;32m    Command Prompt - winPEAS.exe  [0m
+
+[33m  [+] [1;32mInstalled Applications --Via Program Files/Uninstall registry--[0m
+[33m   [?] [1;34mCheck if you can modify installed software [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#software[0m
+[1;32m    C:\Program Files (x86)\FileZilla Server[0m
+[1;32m    C:\Program Files\Common Files[0m
+[1;32m    C:\Program Files\desktop.ini[0m
+[1;32m    C:\Program Files\Internet Explorer[0m
+[1;32m    C:\Program Files\Uninstall Information[0m
+[1;32m    C:\Program Files\VMware[0m
+[1;32m    C:\Program Files\Windows Defender[0m
+[1;32m    C:\Program Files\Windows Mail[0m
+[1;32m    C:\Program Files\Windows Media Player[0m
+[1;32m    C:\Program Files\Windows Multimedia Platform[0m
+[1;32m    C:\Program Files\Windows NT[0m
+[1;32m    C:\Program Files\Windows Photo Viewer[0m
+[1;32m    C:\Program Files\Windows Portable Devices[0m
+[1;32m    C:\Program Files\Windows Sidebar[0m
+[1;32m    C:\Program Files\WindowsApps[0m
+[1;32m    C:\Program Files\WindowsPowerShell[0m
+
+
+[33m  [+] [1;32mAutorun Applications[0m
+[33m   [?] [1;34mCheck if you can modify other users AutoRuns binaries (Note that is normal that you can modify HKCU registry and binaries indicated there) [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation/privilege-escalation-with-autorun-binaries[0m
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run[0m
+    Key: VMware User Process
+    Folder: [0m[1;32mC:\Program Files\VMware\VMware Tools[0m
+    File: [0m[1;32mC:\Program Files\VMware\VMware Tools[0m\vmtoolsd.exe -n vmusr ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run[0m
+    Key: FileZilla Server Interface
+    Folder: [0m[1;32mC:\Program Files (x86)\FileZilla Server[0m
+    File: [0m[1;32mC:\Program Files (x86)\FileZilla Server[0m\FileZilla Server Interface.exe ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders[0m
+    Key: Common Startup
+    Folder: [0m[1;32mC:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup[0m ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders[0m
+    Key: Common Startup
+    Folder: [0m[1;32mC:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup[0m ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon[0m
+    Key: Userinit
+    Folder: [0m[1;32mC:\Windows\system32[0m
+    File: [0m[1;32mC:\Windows\system32[0m\userinit.exe,
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon[0m
+    Key: Shell
+    Folder: None ([0m[1;31mPATH Injection[0m)
+    File: [0m[1;32mexplorer.exe[0m
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SYSTEM\CurrentControlSet\Control\SafeBoot[0m
+    Key: AlternateShell
+    Folder: None ([0m[1;31mPATH Injection[0m)
+    File: [0m[1;32mcmd.exe[0m
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Font Drivers[0m
+    Key: Adobe Type Manager
+    Folder: None ([0m[1;31mPATH Injection[0m)
+    File: [0m[1;32matmfd.dll[0m
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Font Drivers[0m
+    Key: Adobe Type Manager
+    Folder: None ([0m[1;31mPATH Injection[0m)
+    File: [0m[1;32matmfd.dll[0m
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Classes\htmlfile\shell\open\command[0m
+    Folder: [0m[1;32mC:\Program Files\Internet Explorer[0m
+    File: [0m[1;32mC:\Program Files\Internet Explorer[0m\iexplore.exe %1 ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: HKLM[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m\[0m[0m[0m[0m[0mSOFTWARE[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m\[0m[0m[0m[0m[0mMicrosoft[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m\[0m[0m[0m[0m[0mActive Setup[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m\[0m[0m[0m[0m[0mInstalled Components[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m[0m[1;31m\[0m[0m[0m[0m[0m{2C7339CF-2B09-4501-B3F3-F3508C9228ED}
+    Key: StubPath
+    Folder: [0m[1;31m\[0m
+    [0m[1;31mFolderPerms: Users [AppendData/CreateDirectories][0m
+    File: [0m[1;32m/UserInstall[0m
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA840-CC51-11CF-AAFA-00AA00B6015C}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Program Files\Windows Mail[0m
+    File: [0m[1;32mC:\Program Files\Windows Mail[0m\WinMail.exe OCInstallUserConfigOE ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\system32[0m
+    File: [0m[1;32mC:\Windows\system32[0m\unregmp2.exe /FirstLogon
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{89820200-ECBD-11cf-8B85-00AA005B4340}[0m
+    Key: StubPath
+    Folder: None ([0m[1;31mPATH Injection[0m)
+    File: [0m[1;32mU[0m
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{89820200-ECBD-11cf-8B85-00AA005B4383}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\System32[0m
+    File: [0m[1;32mC:\Windows\System32[0m\ie4uinit.exe -UserConfig
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{89B4C1CD-B018-4511-B0A1-5476DBF70820}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\System32[0m
+    File: [0m[1;32m[0m[1;32mC:\Windows\System32[0m[0m\Rundll32.exe [0m[1;32m[0m[1;32mC:\Windows\System32[0m[0m\mscories.dll,Install
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\System32\rundll32.exe C:\Windows\System32[0m
+    File: [0m[1;32mC:\Windows\System32\rundll32.exe C:\Windows\System32[0m\iesetup.dll,IEHardenAdmin
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\System32\rundll32.exe C:\Windows\System32[0m
+    File: [0m[1;32mC:\Windows\System32\rundll32.exe C:\Windows\System32[0m\iesetup.dll,IEHardenUser
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Installed Components\{44BBA840-CC51-11CF-AAFA-00AA00B6015C}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Program Files\Windows Mail[0m
+    File: [0m[1;32mC:\Program Files\Windows Mail[0m\WinMail.exe OCInstallUserConfigOE ([0m[1;31mUnquoted and Space detected[0m)
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Installed Components\{6BF52A52-394A-11d3-B153-00C04F79FAA6}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\system32[0m
+    File: [0m[1;32mC:\Windows\system32[0m\unregmp2.exe /FirstLogon
+[1;90m   =================================================================================================[0m
+
+
+    RegPath: [0m[1;32mHKLM\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Installed Components\{89B4C1CD-B018-4511-B0A1-5476DBF70820}[0m
+    Key: StubPath
+    Folder: [0m[1;32mC:\Windows\SysWOW64[0m
+    File: [0m[1;32m[0m[1;32mC:\Windows\SysWOW64[0m[0m\Rundll32.exe [0m[1;32m[0m[1;32mC:\Windows\SysWOW64[0m[0m\mscories.dll,Install
+[1;90m   =================================================================================================[0m
+
+
+    Folder: [0m[1;31mC:\Users\pete\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup[0m
+    [0m[1;31mFolderPerms: pete [AllAccess][0m
+    File: [0m[1;31mC:\Users\pete\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup[0m\desktop.ini
+    [0m[1;31mFilePerms: pete [AllAccess][0m
+[1;90m   =================================================================================================[0m
+
+
+    Folder: [0m[1;32mC:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup[0m
+    File: [0m[1;32mC:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup[0m\desktop.ini
+[1;90m   =================================================================================================[0m
+
+
+    Key: From WMIC
+    Folder: [0m[1;32mC:\Program Files\VMware\VMware Tools[0m
+    File: [0m[1;32mC:\Program Files\VMware\VMware Tools[0m\vmtoolsd.exe -n vmusr
+[1;90m   =================================================================================================[0m
+
+
+[33m  [+] [1;32mScheduled Applications --Non Microsoft--[0m
+[33m   [?] [1;34mCheck if you can modify other users scheduled binaries [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation/privilege-escalation-with-autorun-binaries[0m
+[1;90mError: System.InvalidCastException: Unable to cast COM object of type 'System.__ComObject' to interface type 'Microsoft.Win32.TaskScheduler.V2Interop.IExecAction'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{4C3D624D-FD6B-49A3-B9B7-09CB3CD3F047}' failed due to the following error: No such interface supported (Exception from HRESULT: 0x80004002 (E_NOINTERFACE)).
+   at Microsoft.Win32.TaskScheduler.Action.GetProperty[T,TB](String propName, T defaultValue)
+   at Microsoft.Win32.TaskScheduler.ExecAction.ParsePowerShellItems()
+   at Microsoft.Win32.TaskScheduler.Action.ConvertFromPowerShellAction(ExecAction execAction)
+   at Microsoft.Win32.TaskScheduler.ActionCollection.UnconvertUnsupportedActions()
+   at Microsoft.Win32.TaskScheduler.TaskDefinition.get_Actions()
+   at winPEAS.ApplicationInfo.<GetScheduledAppsNoMicrosoft>g__ActOnTask|9_1(Task t, <>c__DisplayClass9_0& )
+   at winPEAS.ApplicationInfo.<GetScheduledAppsNoMicrosoft>g__EnumFolderTasks|9_0(TaskFolder fld, <>c__DisplayClass9_0& )
+   at winPEAS.ApplicationInfo.<GetScheduledAppsNoMicrosoft>g__EnumFolderTasks|9_0(TaskFolder fld, <>c__DisplayClass9_0& )
+   at winPEAS.ApplicationInfo.<GetScheduledAppsNoMicrosoft>g__EnumFolderTasks|9_0(TaskFolder fld, <>c__DisplayClass9_0& )
+   at winPEAS.ApplicationInfo.<GetScheduledAppsNoMicrosoft>g__EnumFolderTasks|9_0(TaskFolder fld, <>c__DisplayClass9_0& )
+   at winPEAS.ApplicationInfo.GetScheduledAppsNoMicrosoft()[0m
+
+[33m  [+] [1;32mDevice Drivers --Non Microsoft--[0m
+[33m   [?] [1;34mCheck 3rd party drivers for known vulnerabilities/rootkits. [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#vulnerable-drivers[0m
+    QLogic Gigabit Ethernet - 7.12.31.105 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\bxvbda.sys[0m
+    QLogic 10 GigE - 7.13.65.105 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\evbda.sys[0m
+    VMware vSockets Service - 9.8.12.0 build-8538197 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\system32\DRIVERS\vsock.sys[0m
+    NVIDIA nForce(TM) RAID Driver - 10.6.0.23 [NVIDIA Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\nvraid.sys[0m
+    VMware PCI VMCI Bus Device - 9.8.6.0 build-3966680 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\vmci.sys[0m
+    Intel Matrix Storage Manager driver - 8.6.2.1019 [Intel Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\iaStorV.sys[0m
+    VIA StorX RAID Controller Driver - 8.0.9200.8110 [VIA Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\vstxraid.sys[0m
+    LSI 3ware RAID Controller - WindowsBlue [LSI]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\3ware.sys[0m
+    AHCI 1.3 Device Driver - 1.1.3.277 [Advanced Micro Devices]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\amdsata.sys[0m
+    Storage Filter Driver - 1.1.3.277 [Advanced Micro Devices]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\amdxata.sys[0m
+    AMD Technology AHCI Compatible Controller - 3.7.1540.43 [AMD Technologies Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\amdsbs.sys[0m
+    Adaptec RAID Controller - 7.5.0.32048 [PMC-Sierra, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\arcsas.sys[0m
+    Intel(R) Rapid Storage Technology driver (inbox) - 13.2.0.1022 [Intel Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\iaStorAV.sys[0m
+    LSI Fusion-MPT SAS Driver (StorPort) - 1.34.03.83 [LSI Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\lsi_sas.sys[0m
+    Microsoftr Windowsr Operating System - 10.0.14304.1001 [LSI Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\lsi_sas2i.sys[0m
+    Microsoftr Windowsr Operating System - 10.0.14304.1001 [Avago Technologies]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\lsi_sas3i.sys[0m
+    LSI SSS PCIe/Flash Driver (StorPort) - 2.10.61.81 [LSI Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\lsi_sss.sys[0m
+    MEGASAS RAID Controller Driver for Windows - 6.706.06.00 [Avago Technologies]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\megasas.sys[0m
+    MegaRAID Software RAID - 15.02.2013.0129 [LSI Corporation, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\megasr.sys[0m
+    Marvell Flash Controller -  1.0.5.1016  [Marvell Semiconductor, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\mvumis.sys[0m
+    NVIDIA nForce(TM) SATA Driver - 10.6.0.23 [NVIDIA Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\nvstor.sys[0m
+    MEGASAS RAID Controller Driver for Windows - 6.805.03.00 [Avago Technologies]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\percsas2i.sys[0m
+    MEGASAS RAID Controller Driver for Windows - 6.603.06.00 [Avago Technologies]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\percsas3i.sys[0m
+    Microsoftr Windowsr Operating System - 2.60.01 [Silicon Integrated Systems Corp.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\SiSRaid2.sys[0m
+    Microsoftr Windowsr Operating System - 6.1.6918.0 [Silicon Integrated Systems]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\sisraid4.sys[0m
+     Promiser SuperTrak EX Series -  5.1.0000.10 [Promise Technology, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\stexstor.sys[0m
+    VIA RAID driver - 7.0.9600,6352 [VIA Technologies Inc.,Ltd]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\vsmraid.sys[0m
+    QLogic BR-series FC/FCoE HBA Stor Miniport Driver - 3.2.26.1 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\bfadi.sys[0m
+    QLogic BR-series FC/FCoE HBA Stor Miniport Driver - 3.2.26.1 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\bfadfcoei.sys[0m
+    QLogic Fibre Channel Stor Miniport Driver - 9.1.15.1 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\ql2300i.sys[0m
+    QLA40XX iSCSI Host Bus Adapter - 2.1.5.0 (STOREx wx64) [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\ql40xx2i.sys[0m
+    QLogic FCoE Stor Miniport Inbox Driver - 9.1.11.3 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\qlfcoei.sys[0m
+    PMC-Sierra HBA Controller - 1.3.0.10769 [PMC-Sierra]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\ADP80XX.SYS[0m
+    Emulex WS2K12 Storport Miniport Driver x64 - 11.0.247.8000 01/26/2016 WS2K12 64 bit x64 [Emulex]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\elxfcoe.sys[0m
+    Emulex WS2K12 Storport Miniport Driver x64 - 11.0.247.8000 01/26/2016 WS2K12 64 bit x64 [Emulex]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\elxstor.sys[0m
+    Smart Array SAS/SATA Controller Media Driver - 8.0.4.0 Build 1 Media Driver (x86-64) [Hewlett-Packard Company]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\HpSAMD.sys[0m
+    VMware PVSCSI StorPort driver (64-bit) - 1.3.10.0 build-8420001 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\pvscsi.sys[0m
+    QLogic iSCSI offload driver - 7.14.1.1 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\bxois.sys[0m
+    QLogic FCoE Offload driver - 7.14.4.1 [QLogic Corporation]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\bxfcoe.sys[0m
+    VMware Pointing PS/2 Device Driver - 12.5.7.0 build-3574480 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\vmmouse.sys[0m
+    VMware SVGA 3D - 8.16.01.0024 - build-12210530 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\system32\DRIVERS\vm3dmp_loader.sys[0m
+    VMware SVGA 3D - 8.16.01.0024 - build-12210530 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\system32\DRIVERS\vm3dmp.sys[0m
+    VMware server memory controller - 7.4.2.0 build-5980934 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\system32\DRIVERS\vmmemctl.sys[0m
+    VMware PCIe Ethernet Adapter NDIS 6.30 (64-bit) - 1.8.10.0 build-11711477 [VMware, Inc.]: [0m[1;32m\\.\GLOBALROOT\SystemRoot\System32\drivers\vmxnet3.sys[0m
+
+
+[1;36m  =========================================([0m[33mNetwork Information[1;36m)=========================================[0m
+
+[33m  [+] [1;32mNetwork Shares[0m
+    [0m[1;32mADMIN$[0m ([1;37mPath: C:\Windows[0m)
+    [0m[1;32mC$[0m ([1;37mPath: C:\[0m)
+    Docs ([1;37mPath: C:\Docs[0m) -- [0m[1;31mPermissions: AllAccess[0m
+    [0m[1;32mIPC$[0m ([1;37mPath: [0m)
+
+[33m  [+] [1;32mHost File[0m
+
+[33m  [+] [1;32mNetwork Ifaces and known hosts[0m
+[33m   [?] [1;34mThe masks are only for the IPv4 addresses [1;33m[0m
+[1;90m  [X] Exception: The requested protocol has not been configured into the system, or no implementation for it exists[0m
+    Ethernet0[00:50:56:BF:82:75]: 10.11.1.21 / 255.255.0.0
+        [1;37mGateways: [0m10.11.0.1
+        [1;37mDNSs: [0m10.11.1.20
+    Loopback Pseudo-Interface 1[]: 127.0.0.1, ::1 / 255.0.0.0
+        [1;37mDNSs: [0mfec0:0:0:ffff::1%1, fec0:0:0:ffff::2%1, fec0:0:0:ffff::3%1
+
+[33m  [+] [1;32mCurrent Listening Ports[0m
+[33m   [?] [1;34mCheck for services restricted from the outside [1;33m[0m
+    Proto     Local Address          Foreign Address        State
+    TCP       0.0.0.0:21                                    Listening
+    TCP       0.0.0.0:80                                    Listening
+    TCP       0.0.0.0:135                                   Listening
+    TCP       0.0.0.0:445                                   Listening
+    TCP       0.0.0.0:3389                                  Listening
+    TCP       0.0.0.0:5985                                  Listening
+    TCP       0.0.0.0:47001                                 Listening
+    TCP       0.0.0.0:49664                                 Listening
+    TCP       0.0.0.0:49665                                 Listening
+    TCP       0.0.0.0:49666                                 Listening
+    TCP       0.0.0.0:49667                                 Listening
+    TCP       0.0.0.0:49668                                 Listening
+    TCP       0.0.0.0:49669                                 Listening
+    TCP       0.0.0.0:49670                                 Listening
+    TCP       0.0.0.0:49671                                 Listening
+    TCP       10.11.1.21:139                                Listening
+    TCP       [0m[1;31m127.0.0.1[0m:14147                               Listening
+    TCP       [::]:21                                       Listening
+    TCP       [::]:80                                       Listening
+    TCP       [::]:135                                      Listening
+    TCP       [::]:445                                      Listening
+    TCP       [::]:3389                                     Listening
+    TCP       [::]:5985                                     Listening
+    TCP       [::]:47001                                    Listening
+    TCP       [::]:49664                                    Listening
+    TCP       [::]:49665                                    Listening
+    TCP       [::]:49666                                    Listening
+    TCP       [::]:49667                                    Listening
+    TCP       [::]:49668                                    Listening
+    TCP       [::]:49669                                    Listening
+    TCP       [::]:49670                                    Listening
+    TCP       [::]:49671                                    Listening
+    TCP       [::1]:14147                                   Listening
+    UDP       0.0.0.0:123                                   Listening
+    UDP       0.0.0.0:500                                   Listening
+    UDP       0.0.0.0:3389                                  Listening
+    UDP       0.0.0.0:4500                                  Listening
+    UDP       0.0.0.0:5050                                  Listening
+    UDP       0.0.0.0:5353                                  Listening
+    UDP       0.0.0.0:5355                                  Listening
+    UDP       10.11.1.21:137                                Listening
+    UDP       10.11.1.21:138                                Listening
+    UDP       [0m[1;31m127.0.0.1[0m:51646                               Listening
+    UDP       [0m[1;31m127.0.0.1[0m:55200                               Listening
+    UDP       [0m[1;31m127.0.0.1[0m:65430                               Listening
+    UDP       [::]:123                                      Listening
+    UDP       [::]:500                                      Listening
+
+[33m  [+] [1;32mFirewall Rules[0m
+[33m   [?] [1;34mShowing only DENY rules (too many ALLOW rules always) [1;33m[0m
+    Current Profiles: PUBLIC
+    FirewallEnabled (Domain):    [0m[1;31mFalse[0m
+    FirewallEnabled (Private):    [0m[1;31mFalse[0m
+    FirewallEnabled (Public):    [0m[1;31mFalse[0m
+[1;90m    DENY rules:[0m
+
+[33m  [+] [1;32mDNS cached --limit 70--[0m
+[1;90m    Entry                                 Name                                  Data[0m
+    _vlmcs._tcp                                                                 
+    ...e-name._sites.sv-dc01.svcorp.com                                         
+    ...name._sites.gc._msdcs.svcorp.com   ...Name._sites.gc._msdcs.svcorp.com   sv-dc01.svcorp.com 0 100 3268
+    ...name._sites.gc._msdcs.svcorp.com   sv-dc01.svcorp.com                    10.11.1.20
+    ...e-name._sites.sv-dc01.svcorp.com                                         
+    sv-dc01.svcorp.com                    sv-dc01.svcorp.com                    10.11.1.20
+    sv-dc01.svcorp.com                    sv-dc01.svcorp.com                    10.11.1.20
+    _ldap._tcp.sv-dc01.svcorp.com                                               
+    _ldap._tcp.pdc._msdcs.svcorp.com      _ldap._tcp.pdc._msdcs.svcorp.com      sv-dc01.svcorp.com 0 100 389
+    _ldap._tcp.pdc._msdcs.svcorp.com      sv-dc01.svcorp.com                    10.11.1.20
+    wpad                                                                        
+    _ldap._tcp.sv-file01                                                        
+    ...name._sites.dc._msdcs.svcorp.com   ...Name._sites.dc._msdcs.svcorp.com   sv-dc01.svcorp.com 0 100 389
+    ...name._sites.dc._msdcs.svcorp.com   sv-dc01.svcorp.com                    10.11.1.20
+    _gc._tcp.sv-dc01.svcorp.com                                                 
+    ...first-site-name._sites.sv-file01                                         
+
+
+[1;36m  =========================================([0m[33mWindows Credentials[1;36m)=========================================[0m
+
+[33m  [+] [1;32mChecking Windows Vault[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#credentials-manager-windows-vault[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mChecking Credential manager[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#credentials-manager-windows-vault[0m
+[1;90m    This function is not yet implemented.[0m
+[33m    [i] [1;34mIf you want to list credentials inside Credential Manager use 'cmdkey /list'[0m
+
+[33m  [+] [1;32mSaved RDP connections[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mRecently run commands[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mChecking for DPAPI Master Keys[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#dpapi[0m
+[1;37m    MasterKey: [0mC:\Users\pete\AppData\Roaming\Microsoft\Protect\S-1-5-21-466546139-763938477-1796994327-1121\8531f328-f5e4-463a-8fed-8f37b42c4726
+[1;37m    Accessed: [0m3/31/2021 8:47:32 PM
+[1;37m    Modified: [0m3/31/2021 8:47:32 PM
+[1;90m   =================================================================================================[0m
+
+
+[33m  [+] [1;32mChecking for DPAPI Credential Files[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#dpapi[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mChecking for RDCMan Settings Files[0m
+[33m   [?] [1;34mDump credentials from Remote Desktop Connection Manager [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#remote-desktop-credential-manager[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLooking for kerberos tickets[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/pentesting/pentesting-kerberos-88[0m
+[1;37m    serverName: [0mkrbtgt/SVCORP.COM
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:45:30 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, pre_authent, renewable, forwarded, forwardable
+[1;90m   =================================================================================================[0m
+
+[1;37m    serverName: [0mkrbtgt/SVCORP.COM
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:45:30 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, pre_authent, initial, renewable, forwardable
+[1;90m   =================================================================================================[0m
+
+[1;37m    serverName: [0mldap/sv-dc01.svcorp.com
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:53:59 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, ok_as_delegate, pre_authent, renewable, forwardable
+[1;90m   =================================================================================================[0m
+
+[1;37m    serverName: [0mProtectedStorage/sv-dc01.svcorp.com
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:47:32 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, ok_as_delegate, pre_authent, renewable, forwardable
+[1;90m   =================================================================================================[0m
+
+[1;37m    serverName: [0mcifs/sv-dc01.svcorp.com
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:47:32 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, ok_as_delegate, pre_authent, renewable, forwardable
+[1;90m   =================================================================================================[0m
+
+[1;37m    serverName: [0mcifs/SV-DC01
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:45:30 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, ok_as_delegate, pre_authent, renewable, forwardable
+[1;90m   =================================================================================================[0m
+
+[1;37m    serverName: [0mLDAP/sv-dc01.svcorp.com/svcorp.com
+[1;37m    RealmName: [0mSVCORP.COM
+[1;37m    StartTime: [0m3/31/2021 8:45:30 PM
+[1;37m    EndTime: [0m4/1/2021 6:45:30 AM
+[1;37m    RenewTime: [0m4/7/2021 8:45:30 PM
+[1;37m    EncryptionType: [0maes256_cts_hmac_sha1_96
+[1;37m    TicketFlags: [0mname_canonicalize, ok_as_delegate, pre_authent, renewable, forwardable
+[1;90m   =================================================================================================[0m
+
+
+[33m  [+] [1;32mLooking saved Wifis[0m
+[1;90m    This function is not yet implemented.[0m
+[33m    [i] [1;34mIf you want to list saved Wifis connections you can list the using 'netsh wlan show profile'[0m
+[33m    [i] [1;34mIf you want to get the clear-text password use 'netsh wlan show profile <SSID> key=clear'[0m
+
+[33m  [+] [1;32mLooking AppCmd.exe[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#appcmd-exe[0m
+[1;31m    AppCmd.exe was found in C:\Windows\system32\inetsrv\appcmd.exe You should try to search for credentials[0m
+
+[33m  [+] [1;32mLooking SSClient.exe[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#scclient-sccm[0m
+[1;90m    Not Found[0m
+
+
+[1;36m  ========================================([0m[33mBrowsers Information[1;36m)========================================[0m
+
+[33m  [+] [1;32mLooking for Firefox DBs[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#browsers-history[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLooking for GET credentials in Firefox history[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#browsers-history[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLooking for Chrome DBs[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#browsers-history[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLooking for GET credentials in Chrome history[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#browsers-history[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mChrome bookmarks[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mCurrent IE tabs[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#browsers-history[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLooking for GET credentials in IE history[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#browsers-history[0m
+
+
+[33m  [+] [1;32mIE favorites[0m
+    http://go.microsoft.com/fwlink/p/?LinkId=255142
+
+
+[1;36m  ==============================([0m[33mInteresting files and registry[1;36m)==============================[0m
+
+[33m  [+] [1;32mPutty Sessions[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mPutty SSH Host keys[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mSSH keys in registry[0m
+[33m   [?] [1;34mIf you find anything here, follow the link to learn how to decrypt the SSH keys [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#ssh-keys-in-registry[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mCloud Credentials[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#credentials-inside-files[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mUnattend Files[0m
+
+[33m  [+] [1;32mLooking for common SAM & SYSTEM backups[0m
+
+[33m  [+] [1;32mLooking for McAfee Sitelist.xml Files[0m
+
+[33m  [+] [1;32mCached GPP Passwords[0m
+  [X] Exception: Could not find a part of the path 'C:\ProgramData\Microsoft\Group Policy\History'.
+
+[33m  [+] [1;32mLooking for possible regs with creds[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#inside-the-registry[0m
+[1;90m    Not Found[0m
+[1;90m    Not Found[0m
+[1;90m    Not Found[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mLooking for possible password files in users homes[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#credentials-inside-files[0m
+    C:\Users\All Users\Microsoft\UEV\InboxTemplates\Roaming[0m[1;31mCredential[0mSettings.xml
+
+[33m  [+] [1;32mLooking inside the Recycle Bin for creds files[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#credentials-inside-files[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mSearching known files that can contain creds in home[0m
+[33m   [?] [1;34m [1;33mhttps://book.hacktricks.xyz/windows/windows-local-privilege-escalation#credentials-inside-files[0m
+    C:\Users\pete\NTUSER.DAT
+
+[33m  [+] [1;32mLooking for documents --limit 100--[0m
+[1;90m    Not Found[0m
+
+[33m  [+] [1;32mRecent files --limit 70--[0m
+    C:\inetpub\history\CFGHISTORY_0000000001\administration.config(3/31/2021 8:52:58 PM)
+    C:\inetpub\history\CFGHISTORY_0000000001(3/31/2021 8:52:58 PM)
+    C:\Users\Administrator\Desktop(3/31/2021 8:46:32 PM)
+    C:\Users\Administrator\Desktop\proof.txt(3/31/2021 8:46:32 PM)
+    C:\inetpub\logs\LogFiles\W3SVC1\u_ex190307.log(3/31/2021 8:52:40 PM)
+    C:\inetpub\logs\LogFiles\W3SVC1(3/31/2021 8:52:40 PM)
+    C:\inetpub\wwwroot\[0m[1;31mweb.config[0m(3/31/2021 8:53:30 PM)
+    C:\inetpub\wwwroot(3/31/2021 8:53:30 PM)

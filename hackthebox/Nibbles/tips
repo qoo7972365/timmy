@@ -1,0 +1,8 @@
+nmap   10.129.1.135 -Pn > nmapall.txt
+gobuster dir  -u http://10.129.1.135/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir  -u http://10.129.1.135/nibbleblog/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > nibblegobuster.txt
+
+
+一、通過暴力破解得到後台密碼nibbles
+二、使用sudo取得root權限
+

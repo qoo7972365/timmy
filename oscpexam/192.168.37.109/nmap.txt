@@ -1,0 +1,40 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-22 21:00 EST
+Nmap scan report for 192.168.37.109
+Host is up (0.23s latency).
+Not shown: 996 closed ports
+PORT     STATE SERVICE     VERSION
+
+22/tcp   open  ssh         OpenSSH 7.4p1 Debian 10+deb9u7 (protocol 2.0)
+| ssh-hostkey:
+|   2048 b4:2f:45:4e:fe:59:09:cf:97:d9:57:8a:e8:af:72:2b (RSA)
+|   256 2d:80:f6:2f:80:06:45:e5:34:72:df:ab:1f:d7:bc:4f (ECDSA)
+|_  256 3b:a8:9f:7d:79:59:fd:58:7c:16:b8:62:d1:7a:cc:b8 (ED25519)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: SALSACORP)
+445/tcp  open  netbios-ssn Samba smbd 4.5.16-Debian (workgroup: SALSACORP)
+2121/tcp open  tcpwrapped
+
+Service Info: Host: THESEUS; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+Host script results:
+|_clock-skew: mean: 1h39m57s, deviation: 2h53m12s, median: -3s
+|_nbstat: NetBIOS name: THESEUS, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery:
+|   OS: Windows 6.1 (Samba 4.5.16-Debian)
+|   Computer name: theseus
+|   NetBIOS computer name: THESEUS\x00
+|   Domain name: \x00
+|   FQDN: theseus
+|_  System time: 2021-01-22T21:00:35-05:00
+| smb-security-mode:
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode:
+|   2.02:
+|_    Message signing enabled but not required
+| smb2-time:
+|   date: 2021-01-23T02:00:35
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 35.36 seconds

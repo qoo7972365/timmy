@@ -1,0 +1,14 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-15 09:44 EST
+Warning: 10.129.37.18 giving up on port because retransmission cap hit (2).
+Nmap scan report for 10.129.37.18
+Host is up (0.25s latency).
+Not shown: 65466 closed ports, 63 filtered ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+25/tcp   open  smtp
+80/tcp   open  http
+110/tcp  open  pop3
+119/tcp  open  nntp
+4555/tcp open  rsip
+
+Nmap done: 1 IP address (1 host up) scanned in 808.41 seconds

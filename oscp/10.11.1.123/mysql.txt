@@ -1,0 +1,45 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-12 03:25 EST
+NSE: Loaded 11 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 03:25
+Completed NSE at 03:25, 0.00s elapsed
+Initiating NSE at 03:25
+Completed NSE at 03:25, 0.00s elapsed
+Initiating Ping Scan at 03:25
+Scanning 10.11.1.123 [4 ports]
+Completed Ping Scan at 03:25, 0.25s elapsed (1 total hosts)
+Initiating SYN Stealth Scan at 03:25
+Scanning xor.com (10.11.1.123) [1 port]
+Discovered open port 3306/tcp on 10.11.1.123
+Completed SYN Stealth Scan at 03:25, 0.25s elapsed (1 total ports)
+NSE: Script scanning 10.11.1.123.
+Initiating NSE at 03:25
+Completed NSE at 03:26, 8.00s elapsed
+Initiating NSE at 03:26
+Completed NSE at 03:26, 0.00s elapsed
+Nmap scan report for xor.com (10.11.1.123)
+Host is up (0.22s latency).
+
+PORT     STATE SERVICE
+3306/tcp open  mysql
+| mysql-brute: 
+|   Accounts: No valid accounts found
+|   Statistics: Performed 0 guesses in 5 seconds, average tps: 0.0
+|_  ERROR: The service seems to have failed or is heavily firewalled...
+|_mysql-empty-password: ERROR: Script execution failed (use -d to debug)
+| mysql-enum: 
+|   Accounts: No valid accounts found
+|   Statistics: Performed 0 guesses in 5 seconds, average tps: 0.0
+|_  ERROR: The service seems to have failed or is heavily firewalled...
+| mysql-info: 
+|_  MySQL Error: Host '192.168.119.197' is not allowed to connect to this MariaDB server
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+
+NSE: Script Post-scanning.
+Initiating NSE at 03:26
+Completed NSE at 03:26, 0.00s elapsed
+Initiating NSE at 03:26
+Completed NSE at 03:26, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 8.88 seconds
+           Raw packets sent: 5 (196B) | Rcvd: 2 (84B)

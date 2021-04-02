@@ -1,0 +1,4 @@
+nmap -sV -sC -Pn 10.11.1.5 > nmap.txt
+
+nmap --script=smb-enum-shares -Pn -p 445 10.11.1.5
+nmap --script vuln -sV -p 135,139,445,1025 -Pn  10.11.1.5   > nmapvuln.txt
