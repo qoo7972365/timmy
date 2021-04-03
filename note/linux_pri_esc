@@ -2,3 +2,5 @@
 2.git變更紀錄,查看是否有ssh.key可以使用(參考DevOops)
 3.查看var/www/html下有無config.php,內含DB的帳密(參考ALPHA)
 4.linux-suggester透過gcc提權(參考BETA)
+5.SUID提權限cp指令,參考oscp2/10.11.1.35
+6./etc/passwd可以寫入,參考oscp2/10.11.1.39
