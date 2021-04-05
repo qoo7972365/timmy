@@ -2,7 +2,7 @@ nmap -sV -sC -Pn 10.11.1.222 > nmap.txt
 gobuster dir -u http://10.11.1.222:8080 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobuster.txt
 
 1.nmap掃描發現8080端口,使用gobuster查找發現blog登入頁面
-2.嘗試SQL Inejection 查找部份 返回156可成功bypass登入
+2.嘗試SQL Inejection （admin' or '1'='1'--）查找部份 返回156可成功bypass登入
 3. 使用' order by 1--  發現到3正常,4以後異常,確認欄位有3欄
 4.使用SQL Injection取得帳號密碼
 5.破解出admin密碼是adminadmin

