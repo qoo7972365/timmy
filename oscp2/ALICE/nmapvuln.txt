@@ -1,37 +1,13 @@
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-20 03:55 EDT
-Pre-scan script results:
-| broadcast-avahi-dos: 
-|   Discovered hosts:
-|     224.0.0.251
-|   After NULL UDP avahi packet DoS (CVE-2011-1002).
-|_  Hosts are all up (not vulnerable).
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-05 08:31 EDT
 Nmap scan report for 10.11.1.5
-Host is up (0.24s latency).
+Host is up (0.25s latency).
 
-PORT     STATE  SERVICE      VERSION
-135/tcp  open   msrpc        Microsoft Windows RPC
-139/tcp  open   netbios-ssn  Microsoft Windows netbios-ssn
-445/tcp  open   microsoft-ds Microsoft Windows XP microsoft-ds
-1025/tcp closed NFS-or-IIS
+PORT     STATE SERVICE      VERSION
+135/tcp  open  msrpc        Microsoft Windows RPC
+139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds Microsoft Windows XP microsoft-ds
+1025/tcp open  msrpc        Microsoft Windows RPC
 Service Info: OSs: Windows, Windows XP; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_xp
 
-Host script results:
-|_smb-vuln-ms10-054: false
-|_smb-vuln-ms10-061: NT_STATUS_OBJECT_NAME_NOT_FOUND
-| smb-vuln-ms17-010: 
-|   VULNERABLE:
-|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
-|     State: VULNERABLE
-|     IDs:  CVE:CVE-2017-0143
-|     Risk factor: HIGH
-|       A critical remote code execution vulnerability exists in Microsoft SMBv1
-|        servers (ms17-010).
-|           
-|     Disclosure date: 2017-03-14
-|     References:
-|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
-|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
-|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
-
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 79.45 seconds
+Nmap done: 1 IP address (1 host up) scanned in 7.85 seconds

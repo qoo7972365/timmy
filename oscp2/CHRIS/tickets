@@ -1,0 +1,56 @@
+mimikatz # sekurlsa::tickets
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : CHRIS$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 4/6/2021 8:03:54 AM
+SID               : S-1-5-20
+
+         * Username : chris$
+         * Domain   : WORKGROUP
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 4/6/2021 8:03:54 AM
+SID               : S-1-5-19
+
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : CHRIS$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 4/6/2021 8:03:53 AM
+SID               : S-1-5-18
+
+         * Username : chris$
+         * Domain   : WORKGROUP
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+

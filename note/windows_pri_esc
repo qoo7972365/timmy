@@ -4,7 +4,7 @@
 4.winPEAS.exe像是suggester查看漏洞訊息
 5.accesschk 提權方式,參考oscp2/10.11.1.14
 6.Bypass UAC 參考oscp2/10.11.1.21
-
+7.使用其他用戶執行指令 參考oscp2/BETHANY
 
 
 whoami /priv查看有哪些提權限方式,根據以下可提權

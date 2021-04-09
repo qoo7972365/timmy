@@ -1,3 +1,5 @@
 1. reverse cheat sheet 的三種方法
 2. php reverse 若是出現fatal,須使用exploit.php 執行網頁指令powershell(參考10.11.1.35)
 3. 若是shell沒有錯誤返回,嘗試執行本地Invoke-PowerShellTcp.ps1
+4. samba的話參考alice及suise
+5. samba傳檔案可參考alice

