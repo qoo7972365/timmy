@@ -4,3 +4,4 @@
 4.linux-suggester透過gcc提權(參考BETA)
 5.SUID提權限cp指令,參考oscp2/10.11.1.35
 6./etc/passwd可以寫入,參考oscp2/10.11.1.39
+7.根據內核版本提權限(參考oscp2/10.11.1.116)

@@ -4,3 +4,5 @@
 4.查看有無SQL Injection可以利用(參考CHRIS)
 5.查看smtp 25是否有 RemoteCodeExecution可以利用(參考MAILMAN)
 6.LFI的php reverse shell,參考oscp2/10.11.1.35
+7.Samba 2.2.7a版本可直接perl腳本取得revershe shell(參考10.11.1.115)
+8.linux phpliteadmin取得一般用戶(參考oscp2的10.11.1.116或是nineveh)

@@ -1,0 +1,20 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-10 01:38 EDT
+Nmap scan report for 10.11.1.116
+Host is up (0.24s latency).
+Not shown: 995 closed ports
+PORT    STATE SERVICE    VERSION
+21/tcp  open  ftp        vsftpd 3.0.3
+22/tcp  open  ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 86:88:7a:3f:91:95:26:ff:1a:d1:64:44:39:ea:8c:1a (RSA)
+|   256 07:62:18:a5:a3:89:2f:3e:91:d9:06:c2:ea:37:cc:23 (ECDSA)
+|_  256 c2:be:a4:4f:01:a1:71:fb:b2:0c:3a:3e:a4:c8:56:51 (ED25519)
+80/tcp  open  http       Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Dotty
+110/tcp open  tcpwrapped
+143/tcp open  tcpwrapped
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 48.71 seconds

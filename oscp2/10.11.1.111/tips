@@ -1,0 +1,10 @@
+nmap -sV -sC -Pn 10.11.1.111 > nmap.txt
+nmap -sV -sC -sU -Pn 10.11.1.111 > nmap.txt
+nmap -p- 10.11.1.111 -T5 > nmapall.txt
+nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 10.11.1.111
+
+
+nmap --script vuln -sV -p 135,139,445,1433,3389 -Pn  10.11.1.111 > nmapvuln.txt
+nmap --script vuln -sU -p 69,123,137,138,500,3389,4500,5353,5355,27707 -Pn  10.11.1.111
+
+1.nmap掃描出來後必須在使用UDP掃描一次，可以發現TFTP及MS-SQL服務

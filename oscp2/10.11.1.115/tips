@@ -1,0 +1,13 @@
+nmap -sV -sC -Pn 10.11.1.115 > nmap.txt
+gobuster dir  -u http://tophat.acme.local/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t 50 > gobuster.txt
+
+
+
+* OK [CAPABILITY IMAP4REV1 LOGIN-REFERRALS STARTTLS AUTH=LOGIN] tophat.acme.local IMAP4rev1 2001.315rh at Sat, 10 Apr 2021 06:44:31 +0300 (IDT)
+
+1.nmap掃描出來端口,smbclient可以看到使用anonymous登入連線,但nmap查看不到版本
+2.使用wireshark查找smbclient連線時的"Session Setup Andx Respones"封包,可以發現samba版本
+Native LAN Manager: Samba 2.2.7a
+3.根據版本號上網搜索可以找到perl腳本,直接取得到reverse sll
+
+

