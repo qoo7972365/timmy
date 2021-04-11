@@ -1,0 +1,22 @@
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.11.1.128
++ Target Hostname:    10.11.1.128
++ Target Port:        4167
++ Start Time:         2021-04-11 00:00:09 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Microsoft-IIS/8.5
++ Retrieved x-powered-by header: ASP.NET
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Retrieved x-aspnet-version header: 2.0.50727
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Cookie ASPSESSIONIDSSRTSDCB created without the httponly flag
++ Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ Public HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ /login.asp: Admin login page/section found.
++ 7919 requests: 0 error(s) and 9 item(s) reported on remote host
++ End Time:           2021-04-11 00:34:43 (GMT-4) (2074 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested

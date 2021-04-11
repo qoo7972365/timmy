@@ -1,0 +1,16 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-10 10:04 EDT
+Stats: 0:05:41 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan
+UDP Scan Timing: About 31.96% done; ETC: 10:22 (0:12:06 remaining)
+Nmap scan report for 10.11.1.128
+Host is up (0.24s latency).
+Not shown: 993 closed ports
+PORT     STATE         SERVICE
+123/udp  open|filtered ntp
+137/udp  open|filtered netbios-ns
+138/udp  open|filtered netbios-dgm
+500/udp  open|filtered isakmp
+3389/udp open|filtered ms-wbt-server
+4500/udp open|filtered nat-t-ike
+5355/udp open|filtered llmnr
+
+Nmap done: 1 IP address (1 host up) scanned in 1091.05 seconds

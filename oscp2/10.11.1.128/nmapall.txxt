@@ -1,0 +1,37 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-10 09:40 EDT
+Nmap scan report for 10.11.1.128
+Host is up (0.24s latency).
+Scanned at 2021-04-10 09:40:11 EDT for 14875s
+Not shown: 65508 closed ports
+PORT      STATE    SERVICE
+21/tcp    open     ftp
+135/tcp   open     msrpc
+139/tcp   open     netbios-ssn
+445/tcp   open     microsoft-ds
+1433/tcp  open     ms-sql-s
+3389/tcp  open     ms-wbt-server
+4167/tcp  open     ddgn
+5702/tcp  filtered unknown
+5800/tcp  open     vnc-http
+5900/tcp  open     vnc
+5985/tcp  open     wsman
+6914/tcp  filtered unknown
+11090/tcp filtered unknown
+14342/tcp filtered unknown
+19310/tcp filtered unknown
+22554/tcp filtered unknown
+39730/tcp filtered unknown
+44452/tcp filtered unknown
+47001/tcp open     winrm
+47629/tcp filtered unknown
+49152/tcp open     unknown
+49153/tcp open     unknown
+49154/tcp open     unknown
+49155/tcp open     unknown
+49156/tcp open     unknown
+49157/tcp open     unknown
+49158/tcp open     unknown
+Final times for host: srtt: 236191 rttvar: 674  to: 238887
+
+Read from /usr/bin/../share/nmap: nmap-payloads nmap-services.
+Nmap done: 1 IP address (1 host up) scanned in 14875.18 seconds
