@@ -1,0 +1,34 @@
+nmap -sV -sC -Pn 10.11.1.133 > nmap.txt
+nmap -p- 10.11.1.133 > nmapall.txt
+
+binwalk nineveh.png
+binwalk -Me nineveh.png
+
+gobuster dir  -u http://10.11.1.133/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://10.11.1.133/test/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t50 > gobustertest.txt
+gobuster dir  -u http://10.11.1.133/error/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t50 > gobustererror.txt
+gobuster dir  -u http://10.11.1.133/bak/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t50 > gobusterbak.txt
+gobuster dir  -u http://10.11.1.133/Sites -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t50 > gobusterSites.txt
+gobuster dir  -u http://10.11.1.133/img -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t50 > gobusterimg.txt
+gobuster dir  -u http://10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi  > gobuster666.txt
+gobuster dir  -u http://10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -s "204,301,307,401" -t50 > 1f2e73705207bdd6467e109c1606ed29-21213.txt
+
+
+1.nmap掃描查看每個業內容,發現有http://10.11.1.133/hidd3n-script
+2.將js代碼拿上網轉換https://lelinhtinh.github.io/de4js/
+3.安裝nodejs及處理document的問題後執行代碼,可以得到f2e73705207bdd6467e109c1606ed29-21213/offsecphun1.gif
+4.但代碼裡面還有一個offsecphun5.bmp,訪問後可得到login地址
+http://10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/111111111/
+5.根據slogin exploit可以查找到/slog_users.txt
+https://www.exploit-db.com/exploits/7444
+6.嘗試帳號密碼無法登入,嘗試RFI可以使用
+7.使用sweetuu.php可以執行命令下面功能直接取得reverse shell
+8.查看passwd發現有Kibosh用戶,嘗試使用slogin的Kibosh密碼可以成功取得kibosh用戶
+
+python3 -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 54 && stty columns 235 && export TERM=xterm
+export TERM=xterm

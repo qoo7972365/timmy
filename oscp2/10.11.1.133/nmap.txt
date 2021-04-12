@@ -1,0 +1,107 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-10 12:39 EDT
+Nmap scan report for 10.11.1.133
+Host is up (0.25s latency).
+Not shown: 999 filtered ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS 5.6
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Date: Sat, 10 Apr 2021 16:40:17 GMT
+|     Server: Microsoft IIS 5.6
+|     Vary: Accept-Encoding
+|     Content-Length: 619
+|     Connection: close
+|     Content-Type: text/html; charset=UTF-8
+|     <html>
+|     <head>
+|     <title>Let's play with the offsec team</title>
+|     </head>
+|     <body style="color: #FFFFFF; background-color: #000000;font-family: verdana;">
+|     <center>
+|     <div style="width:600px;height:399px;background-image:url(offsec-team.jpg);">
+|     <form method="post" action="login.asp">
+|     <table style="padding-top:170px;">
+|     <tr>
+|     <td>Username: </td><td><input type="text" name="username" value=""></td>
+|     </tr>
+|     <tr>
+|     <td>Password: </td><td><input type="password" name="password"></td>
+|     </tr>
+|     <tr>
+|     colspan="2" align="right"><input type="submit" name="submit" value="Enter"></td>
+|     </tr>
+|     </table>
+|     </form>
+|     </div>
+|     </center>
+|     </body>
+|     </html>
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     Date: Sat, 10 Apr 2021 16:40:20 GMT
+|     Server: Microsoft IIS 5.6
+|     Vary: Accept-Encoding
+|     Content-Length: 619
+|     Connection: close
+|     Content-Type: text/html; charset=UTF-8
+|     <html>
+|     <head>
+|     <title>Let's play with the offsec team</title>
+|     </head>
+|     <body style="color: #FFFFFF; background-color: #000000;font-family: verdana;">
+|     <center>
+|     <div style="width:600px;height:399px;background-image:url(offsec-team.jpg);">
+|     <form method="post" action="login.asp">
+|     <table style="padding-top:170px;">
+|     <tr>
+|     <td>Username: </td><td><input type="text" name="username" value=""></td>
+|     </tr>
+|     <tr>
+|     <td>Password: </td><td><input type="password" name="password"></td>
+|     </tr>
+|     <tr>
+|     colspan="2" align="right"><input type="submit" name="submit" value="Enter"></td>
+|     </tr>
+|     </table>
+|     </form>
+|     </div>
+|     </center>
+|     </body>
+|_    </html>
+|_http-server-header: Microsoft IIS 5.6
+|_http-title: Let's play with the offsec team
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port80-TCP:V=7.91%I=7%D=4/10%Time=6071D4F5%P=x86_64-pc-linux-gnu%r(GetR
+SF:equest,325,"HTTP/1\.1\x20200\x20OK\r\nDate:\x20Sat,\x2010\x20Apr\x20202
+SF:1\x2016:40:17\x20GMT\r\nServer:\x20Microsoft\x20IIS\x205\.6\r\nVary:\x2
+SF:0Accept-Encoding\r\nContent-Length:\x20619\r\nConnection:\x20close\r\nC
+SF:ontent-Type:\x20text/html;\x20charset=UTF-8\r\n\r\n<html>\n<head>\n<tit
+SF:le>Let's\x20play\x20with\x20the\x20offsec\x20team</title>\n</head>\n<bo
+SF:dy\x20style=\"color:\x20#FFFFFF;\x20background-color:\x20#000000;font-f
+SF:amily:\x20verdana;\">\n<center>\n<div\x20style=\"width:600px;height:399
+SF:px;background-image:url\(offsec-team\.jpg\);\">\n<form\x20method=\"post
+SF:\"\x20action=\"login\.asp\">\n<table\x20style=\"padding-top:170px;\">\n
+SF:<tr>\n<td>Username:\x20</td><td><input\x20type=\"text\"\x20name=\"usern
+SF:ame\"\x20value=\"\"></td>\n</tr>\n<tr>\n<td>Password:\x20</td><td><inpu
+SF:t\x20type=\"password\"\x20name=\"password\"></td>\n</tr>\n<tr>\n<td\x20
+SF:colspan=\"2\"\x20align=\"right\"><input\x20type=\"submit\"\x20name=\"su
+SF:bmit\"\x20value=\"Enter\"></td>\n</tr>\n</table>\n</form>\n</div>\n</ce
+SF:nter>\n</body>\n</html>\n")%r(HTTPOptions,325,"HTTP/1\.1\x20200\x20OK\r
+SF:\nDate:\x20Sat,\x2010\x20Apr\x202021\x2016:40:20\x20GMT\r\nServer:\x20M
+SF:icrosoft\x20IIS\x205\.6\r\nVary:\x20Accept-Encoding\r\nContent-Length:\
+SF:x20619\r\nConnection:\x20close\r\nContent-Type:\x20text/html;\x20charse
+SF:t=UTF-8\r\n\r\n<html>\n<head>\n<title>Let's\x20play\x20with\x20the\x20o
+SF:ffsec\x20team</title>\n</head>\n<body\x20style=\"color:\x20#FFFFFF;\x20
+SF:background-color:\x20#000000;font-family:\x20verdana;\">\n<center>\n<di
+SF:v\x20style=\"width:600px;height:399px;background-image:url\(offsec-team
+SF:\.jpg\);\">\n<form\x20method=\"post\"\x20action=\"login\.asp\">\n<table
+SF:\x20style=\"padding-top:170px;\">\n<tr>\n<td>Username:\x20</td><td><inp
+SF:ut\x20type=\"text\"\x20name=\"username\"\x20value=\"\"></td>\n</tr>\n<t
+SF:r>\n<td>Password:\x20</td><td><input\x20type=\"password\"\x20name=\"pas
+SF:sword\"></td>\n</tr>\n<tr>\n<td\x20colspan=\"2\"\x20align=\"right\"><in
+SF:put\x20type=\"submit\"\x20name=\"submit\"\x20value=\"Enter\"></td>\n</t
+SF:r>\n</table>\n</form>\n</div>\n</center>\n</body>\n</html>\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 130.81 seconds

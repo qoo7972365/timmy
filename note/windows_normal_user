@@ -3,3 +3,4 @@
 3. 若是shell沒有錯誤返回,嘗試執行本地Invoke-PowerShellTcp.ps1
 4. samba的話參考alice及suise
 5. samba傳檔案可參考alice
+6. mssql injection可以參考oscp2/10.11.1.128
