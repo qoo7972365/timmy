@@ -1,0 +1,19 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-13 07:58 EDT
+Nmap scan report for 10.11.1.141
+Host is up (0.24s latency).
+Not shown: 997 closed ports
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 4.0 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 fe:cd:bb:f6:36:d4:59:62:92:b4:10:e4:75:04:43:54 (DSA)
+|_  1024 9a:99:25:75:ac:04:e5:f9:f7:21:c6:f5:88:4f:12:6a (RSA)
+111/tcp   open  rpcbind 2 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2            111/tcp   rpcbind
+|_  100000  2            111/udp   rpcbind
+10000/tcp open  http    MiniServ 0.01 (Webmin httpd)
+|_http-title: Site doesn't have a title (text/html; Charset=iso-8859-1).
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 67.10 seconds

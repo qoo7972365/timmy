@@ -8,6 +8,9 @@
     <mapping directory="$PROJECT_DIR$/hackthebox/Chatterbox/achat_reverse_tcp_exploit" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Sunday/finger-user-enum" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/poison/vncpasswd.py" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oscp2/10.11.1.136(netyetdone)/Symlink-Directory-Traversal-smb-manually" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oscp2/10.11.1.136/Symlink-Directory-Traversal-smb-manually" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oscp2/10.11.1.141/Webmin-1.910-Exploit-Script" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oscp2/ALICE/AutoBlue-MS17-010" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oscp2/ALICE/MS17-010" vcs="Git" />
   </component>

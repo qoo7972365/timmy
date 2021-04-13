@@ -1,0 +1,35 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-12 11:51 EDT
+Nmap scan report for 10.11.1.136
+Host is up (0.24s latency).
+Not shown: 996 closed ports
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 4.3p2 Debian 9 (protocol 2.0)
+|_auth-owners: root
+| ssh-hostkey: 
+|   1024 88:23:98:0d:9d:8a:20:59:35:b8:14:12:14:d5:d0:44 (DSA)
+|_  2048 6b:5d:04:71:76:78:56:96:56:92:a8:02:30:73:ee:fa (RSA)
+113/tcp open  ident
+|_auth-owners: identd
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: LOCAL)
+|_auth-owners: root
+445/tcp open  netbios-ssn Samba smbd 3.0.24 (workgroup: LOCAL)
+|_auth-owners: root
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 2h00m05s, deviation: 2h49m43s, median: 4s
+|_nbstat: NetBIOS name: SUFFERANCE, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.24)
+|   NetBIOS computer name: 
+|   Workgroup: THINC.LOCAL\x00
+|_  System time: 2021-04-12T11:52:34-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: share (dangerous)
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 39.87 seconds

