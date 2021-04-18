@@ -1,0 +1,51 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-17 10:25 EDT
+Nmap scan report for 10.11.1.220
+Host is up (0.24s latency).
+
+PORT     STATE SERVICE            VERSION
+21/tcp   open  ftp                FileZilla ftpd 0.9.34 beta
+|_sslv2-drown: 
+53/tcp   open  domain             Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+88/tcp   open  kerberos-sec       Microsoft Windows Kerberos (server time: 2013-12-28 07:37:21Z)
+135/tcp  open  msrpc              Microsoft Windows RPC
+139/tcp  open  netbios-ssn        Microsoft Windows netbios-ssn
+389/tcp  open  ldap               Microsoft Windows Active Directory LDAP (Domain: thinc.local, Site: Default-First-Site-Name)
+|_sslv2-drown: 
+445/tcp  open  microsoft-ds       Microsoft Windows Server 2008 R2 - 2012 microsoft-ds (workgroup: THINC)
+464/tcp  open  kpasswd5?
+593/tcp  open  ncacn_http         Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_sslv2-drown: 
+3268/tcp open  ldap               Microsoft Windows Active Directory LDAP (Domain: thinc.local, Site: Default-First-Site-Name)
+|_sslv2-drown: 
+3269/tcp open  tcpwrapped
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_sslv2-drown: 
+3389/tcp open  ssl/ms-wbt-server?
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: RFC2409/Oakley Group 2
+|             Modulus Length: 1024
+|             Generator Length: 1024
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+|_sslv2-drown: 
+Service Info: Host: MASTER; OS: Windows; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_server_2008:r2:sp1
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 70.53 seconds

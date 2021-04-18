@@ -1,0 +1,57 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-14 10:33 EDT
+Nmap scan report for 10.11.1.223
+Host is up (0.25s latency).
+Not shown: 992 closed ports
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           FileZilla ftpd
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+80/tcp   open  http          Apache httpd 2.4.38 ((Win64) OpenSSL/1.0.2q PHP/5.6.40)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-server-header: Apache/2.4.38 (Win64) OpenSSL/1.0.2q PHP/5.6.40
+|_http-title: ApPHP MicroBlog
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+443/tcp  open  ssl/http      Apache httpd 2.4.38 ((Win64) OpenSSL/1.0.2q PHP/5.6.40)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-server-header: Apache/2.4.38 (Win64) OpenSSL/1.0.2q PHP/5.6.40
+|_http-title: ApPHP MicroBlog
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+445/tcp  open  microsoft-ds?
+3306/tcp open  mysql         MariaDB (unauthorized)
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: JEFF
+|   NetBIOS_Domain_Name: JEFF
+|   NetBIOS_Computer_Name: JEFF
+|   DNS_Domain_Name: jeff
+|   DNS_Computer_Name: jeff
+|   Product_Version: 10.0.17763
+|_  System_Time: 2021-04-14T14:33:54+00:00
+| ssl-cert: Subject: commonName=jeff
+| Not valid before: 2021-03-31T16:44:24
+|_Not valid after:  2021-09-30T16:44:24
+|_ssl-date: 2021-04-14T14:34:02+00:00; -1s from scanner time.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-04-14T14:33:55
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 55.78 seconds

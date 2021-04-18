@@ -1,0 +1,36 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-17 06:56 EDT
+Nmap scan report for 10.11.1.237
+Host is up (0.24s latency).
+Not shown: 996 closed ports
+PORT    STATE SERVICE    VERSION
+22/tcp  open  ssh        OpenSSH 6.0p1 Debian 4 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 fc:89:ba:50:c2:ea:2d:ab:b9:19:f1:f9:0a:b4:c0:5a (DSA)
+|   2048 de:2d:b8:bd:43:8a:c3:28:2b:d3:22:84:d0:6c:e0:9d (RSA)
+|_  256 a5:58:4d:9d:e8:61:de:55:83:e2:71:6b:5d:ad:83:e2 (ECDSA)
+80/tcp  open  http       Apache httpd 2.2.22 ((Debian))
+|_http-server-header: Apache/2.2.22 (Debian)
+|_http-title: Site doesn't have a title (text/html).
+111/tcp open  rpcbind    2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100024  1          32907/tcp6  status
+|   100024  1          33451/udp6  status
+|   100024  1          42769/tcp   status
+|_  100024  1          46372/udp   status
+443/tcp open  ssl/https?
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2013-12-26T16:25:05
+|_Not valid after:  2023-12-24T16:25:05
+|_ssl-date: 2021-04-17T10:57:17+00:00; +5s from scanner time.
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: 4s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 28.65 seconds

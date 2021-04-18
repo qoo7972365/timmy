@@ -96,7 +96,7 @@ sleep 3s
 ## Ping test
 echo -e "\n\n${YELLOW}[i]${RESET} Ping Test (Internal VPN: 10.11.1.220)"
 echo -e "\n\n[i] Ping Test (Internal VPN: 10.11.1.220)" >> troubleshoot.log
-ping -c 8 10.11.1.220 | tee -a troubleshoot.log
+ping -c 8 10.11.1.220(10.11.1.229netyetdone) | tee -a troubleshoot.log
 if [[ $? != '0' ]]; then
   echo -e "${RED}[-]${RESET} Ping test failed (10.11.1.220).\n${RED}[-]${RESET} Please make sure you are connected to the VPN (if it is possible)."
   sleep 2s

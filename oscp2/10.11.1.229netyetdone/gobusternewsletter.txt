@@ -1,0 +1,29 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.11.1.229/newsletter
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     cgi,txt,php
+[+] Timeout:        10s
+===============================================================
+2021/04/15 11:40:19 Starting gobuster
+===============================================================
+/about (Status: 200)
+/About (Status: 200)
+/contact (Status: 200)
+/Contact (Status: 200)
+/content (Status: 301)
+/Content (Status: 301)
+/default (Status: 200)
+/Default (Status: 200)
+/favicon.ico (Status: 200)
+/fonts (Status: 301)
+/Scripts (Status: 301)
+/scripts (Status: 301)
+===============================================================
+2021/04/15 11:48:17 Finished
+===============================================================

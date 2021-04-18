@@ -1,0 +1,40 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-15 11:17 EDT
+Nmap scan report for 10.11.1.229
+Host is up (0.24s latency).
+Not shown: 994 filtered ports
+PORT     STATE SERVICE       VERSION
+25/tcp   open  smtp          hMailServer smtpd
+| smtp-commands: MAIL, SIZE 20480000, AUTH LOGIN, HELP, 
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY 
+80/tcp   open  http          Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: Home Page - Long Live the Squirrel
+110/tcp  open  pop3          hMailServer pop3d
+|_pop3-capabilities: UIDL TOP USER
+143/tcp  open  imap          hMailServer imapd
+|_imap-capabilities: ACL OK IMAP4rev1 CHILDREN completed CAPABILITY IDLE RIGHTS=texkA0001 NAMESPACE QUOTA IMAP4 SORT
+587/tcp  open  smtp          hMailServer smtpd
+| smtp-commands: MAIL, SIZE 20480000, AUTH LOGIN, HELP, 
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY 
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: MAIL
+|   NetBIOS_Domain_Name: MAIL
+|   NetBIOS_Computer_Name: MAIL
+|   DNS_Domain_Name: mail
+|   DNS_Computer_Name: mail
+|   Product_Version: 10.0.14393
+|_  System_Time: 2021-04-15T15:17:53+00:00
+| ssl-cert: Subject: commonName=mail
+| Not valid before: 2021-03-09T16:52:52
+|_Not valid after:  2021-09-08T16:52:52
+|_ssl-date: 2021-04-15T15:17:57+00:00; -3s from scanner time.
+Service Info: Host: MAIL; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -3s, deviation: 0s, median: -3s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 44.94 seconds

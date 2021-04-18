@@ -1,0 +1,2 @@
+nmap -sU 10.11.1.247 > nmapu.txt
+nmap -p-  10.11.1.247 > nmapall.txt

