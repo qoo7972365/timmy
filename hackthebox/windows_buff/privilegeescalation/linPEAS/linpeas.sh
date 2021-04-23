@@ -216,8 +216,8 @@ if [ "$MACPEAS" ]; then
     if [ "`grep \"$ushell\" /etc/shells`" ]; then sh_usrs="$sh_usrs|$uname"; else nosh_usrs="$nosh_usrs|$uname"; fi
   done
 else
-  sh_usrs=`cat /etc/passwd 2>/dev/null | grep -v "^root:" | grep -i "sh$" | cut -d ":" -f 1 | tr '\n' '|' | sed 's/|bin|/|bin[\\\s:]|^bin$|/' | sed 's/|sys|/|sys[\\\s:]|^sys$|/' | sed 's/|daemon|/|daemon[\\\s:]|^daemon$|/'`"ImPoSSssSiBlEee" #Modified bin, sys and daemon so they are not colored everywhere
-  nosh_usrs=`cat /etc/passwd 2>/dev/null | grep -i -v "sh$" | sort | cut -d ":" -f 1 | tr '\n' '|' | sed 's/|bin|/|bin[\\\s:]|^bin$|/'`"ImPoSSssSiBlEee"
+  sh_usrs=`cat /etc/passwd.json 2>/dev/null | grep -v "^root:" | grep -i "sh$" | cut -d ":" -f 1 | tr '\n' '|' | sed 's/|bin|/|bin[\\\s:]|^bin$|/' | sed 's/|sys|/|sys[\\\s:]|^sys$|/' | sed 's/|daemon|/|daemon[\\\s:]|^daemon$|/'`"ImPoSSssSiBlEee" #Modified bin, sys and daemon so they are not colored everywhere
+  nosh_usrs=`cat /etc/passwd.json 2>/dev/null | grep -i -v "sh$" | sort | cut -d ":" -f 1 | tr '\n' '|' | sed 's/|bin|/|bin[\\\s:]|^bin$|/'`"ImPoSSssSiBlEee"
 fi
 knw_usrs='daemon\W|^daemon$|message\+|syslog|www|www-data|mail|noboby|Debian\-\+|rtkit|systemd\+'
 USER=`whoami`
@@ -853,7 +853,7 @@ if [ "`echo $CHECKS | grep ProCronSrvcsTmrsSocks`" ] || [ "`echo $CHECKS | grep 
   FIND_PASSWORD_RELEVANT_NAMES=$(prep_to_find "$PASSWORD_RELEVANT_NAMES")
 
   #Get home 
-  HOMESEARCH="/home/ /Users/ /root/ `cat /etc/passwd 2>/dev/null | grep "sh$" | cut -d ":" -f 6 | grep -Ev "^/root|^/home|^/Users" | tr "\n" " "`"
+  HOMESEARCH="/home/ /Users/ /root/ `cat /etc/passwd.json 2>/dev/null | grep "sh$" | cut -d ":" -f 6 | grep -Ev "^/root|^/home|^/Users" | tr "\n" " "`"
   if [ ! "`echo \"$HOMESEARCH\" | grep \"$HOME\"`" ] && [ ! "`echo \"$HOMESEARCH\" | grep -E \"^/root|^/home|^/Users\"`" ]; then #If not listed and not in /home, /Users/ or /root, add current home folder
     HOMESEARCH="$HOME $HOMESEARCH"
   fi
@@ -1487,7 +1487,7 @@ if [ "`echo $CHECKS | grep UsrI`" ]; then
     printf $Y"[+] "$GREEN"Testing 'su' as other users with shell using as passwords: null pwd, the username and top2000pwds\n"$NC
     POSSIBE_SU_BRUTE=`check_if_su_brute`;
     if [ "$POSSIBE_SU_BRUTE" ]; then
-      SHELLUSERS=`cat /etc/passwd 2>/dev/null | grep -i "sh$" | cut -d ":" -f 1`
+      SHELLUSERS=`cat /etc/passwd.json 2>/dev/null | grep -i "sh$" | cut -d ":" -f 1`
       printf "$SHELLUSERS\n" | while read u; do
         echo "  Bruteforcing user $u..."
         su_brute_user_num $u $PASSTRY
@@ -1503,7 +1503,7 @@ if [ "`echo $CHECKS | grep UsrI`" ]; then
 
   #-- UI) Superusers
   printf $Y"[+] "$GREEN"Superusers\n"$NC
-  awk -F: '($3 == "0") {print}' /etc/passwd 2>/dev/null | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m," | sed -E "s,$nosh_usrs,${C}[1;34m&${C}[0m," | sed -E "s,$knw_usrs,${C}[1;32m&${C}[0m," | sed "s,$USER,${C}[1;31;103m&${C}[0m," | sed "s,root,${C}[1;31m&${C}[0m,"
+  awk -F: '($3 == "0") {print}' /etc/passwd.json 2>/dev/null | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m," | sed -E "s,$nosh_usrs,${C}[1;34m&${C}[0m," | sed -E "s,$knw_usrs,${C}[1;32m&${C}[0m," | sed "s,$USER,${C}[1;31;103m&${C}[0m," | sed "s,root,${C}[1;31m&${C}[0m,"
   echo ""
 
   #-- UI) Users with console
@@ -1517,7 +1517,7 @@ if [ "`echo $CHECKS | grep UsrI`" ]; then
       fi
     done
   else
-    cat /etc/passwd 2>/dev/null | grep "sh$" | sort | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m," | sed "s,$USER,${C}[1;95m&${C}[0m," | sed "s,root,${C}[1;31m&${C}[0m,"
+    cat /etc/passwd.json 2>/dev/null | grep "sh$" | sort | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m," | sed "s,$USER,${C}[1;95m&${C}[0m," | sed "s,root,${C}[1;31m&${C}[0m,"
   fi
   echo ""
 
@@ -1526,7 +1526,7 @@ if [ "`echo $CHECKS | grep UsrI`" ]; then
   if [ "$MACPEAS" ]; then
     dscl . list /Users | while read i; do id $i;done 2>/dev/null | sort | sed -E "s,$groupsB,${C}[1;31m&${C}[0m,g" | sed -E "s,$groupsVB,${C}[1;31m&${C}[0m,g" | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m,g" | sed "s,$USER,${C}[1;95m&${C}[0m,g" | sed -E "s,$nosh_usrs,${C}[1;34m&${C}[0m,g" | sed -E "s,$knw_usrs,${C}[1;32m&${C}[0m,g" | sed "s,root,${C}[1;31m&${C}[0m," | sed -E "s,$knw_grps,${C}[1;32m&${C}[0m,g"
   else
-    cut -d":" -f1 /etc/passwd 2>/dev/null| while read i; do id $i;done 2>/dev/null | sort | sed -E "s,$groupsB,${C}[1;31m&${C}[0m,g" | sed -E "s,$groupsVB,${C}[1;31m&${C}[0m,g" | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m,g" | sed "s,$USER,${C}[1;95m&${C}[0m,g" | sed -E "s,$nosh_usrs,${C}[1;34m&${C}[0m,g" | sed -E "s,$knw_usrs,${C}[1;32m&${C}[0m,g" | sed "s,root,${C}[1;31m&${C}[0m," | sed -E "s,$knw_grps,${C}[1;32m&${C}[0m,g"
+    cut -d":" -f1 /etc/passwd.json 2>/dev/null| while read i; do id $i;done 2>/dev/null | sort | sed -E "s,$groupsB,${C}[1;31m&${C}[0m,g" | sed -E "s,$groupsVB,${C}[1;31m&${C}[0m,g" | sed -E "s,$sh_usrs,${C}[1;96m&${C}[0m,g" | sed "s,$USER,${C}[1;95m&${C}[0m,g" | sed -E "s,$nosh_usrs,${C}[1;34m&${C}[0m,g" | sed -E "s,$knw_usrs,${C}[1;32m&${C}[0m,g" | sed "s,root,${C}[1;31m&${C}[0m," | sed -E "s,$knw_grps,${C}[1;32m&${C}[0m,g"
   fi
   echo ""
 
@@ -2236,9 +2236,9 @@ if [ "`echo $CHECKS | grep SofI`" ]; then
   done
   echo ""
 
-  ##-- SI) passwd files (splunk)
+  ##-- SI) passwd.json files (splunk)
   printf $Y"[+] "$GREEN"Searching uncommon passwd files (splunk)\n"$NC
-  backupmanager=$(echo "$FIND_HOME $FIND_ETC $FIND_VAR $FIND_OPT $FIND_USR $FIND_MNT $FIND_USR $FIND_SYSTEM $FIND_PRIVATE $FIND_APPLICATIONS" | grep -v "/etc/passwd$" | grep -E 'passwd$')
+  backupmanager=$(echo "$FIND_HOME $FIND_ETC $FIND_VAR $FIND_OPT $FIND_USR $FIND_MNT $FIND_USR $FIND_SYSTEM $FIND_PRIVATE $FIND_APPLICATIONS" | grep -v "/etc/passwd$" | grep -E 'passwd.json$')
   SPLUNK_BIN="`which splunk 2>/dev/null`"
   if [ "$SPLUNK_BIN" ]; then echo "splunk binary was found installed on $SPLUNK_BIN" | sed "s,.*,${C}[1;31m&${C}[0m,"; fi
   printf "$backupmanager\n" | sort | uniq | while read f; do
@@ -2419,13 +2419,13 @@ if [ "`echo $CHECKS | grep IntFiles`" ]; then
   fi
   echo ""
 
-  ##-- IF) Hashes in passwd file
+  ##-- IF) Hashes in passwd.json file
   printf $Y"[+] "$GREEN"Hashes inside passwd file? ........... "$NC
-  if [ "`grep -v '^[^:]*:[x\*]\|^#\|^$' /etc/passwd /etc/pwd.db /etc/master.passwd /etc/group 2>/dev/null`" ]; then grep -v '^[^:]*:[x\*]\|^#\|^$' /etc/passwd /etc/pwd.db /etc/master.passwd /etc/group 2>/dev/null | sed -E "s,.*,${C}[1;31m&${C}[0m,"
+  if [ "`grep -v '^[^:]*:[x\*]\|^#\|^$' /etc/passwd.json /etc/pwd.db /etc/master.passwd.json /etc/group 2>/dev/null`" ]; then grep -v '^[^:]*:[x\*]\|^#\|^$' /etc/passwd.json /etc/pwd.db /etc/master.passwd.json /etc/group 2>/dev/null | sed -E "s,.*,${C}[1;31m&${C}[0m,"
   else echo_no
   fi
 
-  ##-- IF) Writable in passwd file
+  ##-- IF) Writable in passwd.json file
   printf $Y"[+] "$GREEN"Writable passwd file? ................ "$NC
   if [ -w "/etc/passwd" ]; then echo "/etc/passwd is writable" | sed -E "s,.*,${C}[1;31;103m&${C}[0m,"
   elif [ -w "/etc/pwd.db" ]; then echo "/etc/pwd.db is writable" | sed -E "s,.*,${C}[1;31;103m&${C}[0m,"
@@ -2441,7 +2441,7 @@ if [ "`echo $CHECKS | grep IntFiles`" ]; then
 
   ##-- IF) Read shadow files
   printf $Y"[+] "$GREEN"Can I read shadow files? ............. "$NC
-  if [ "`cat /etc/shadow /etc/shadow- /etc/shadow~ /etc/gshadow /etc/gshadow- /etc/master.passwd /etc/spwd.db 2>/dev/null`" ]; then cat /etc/shadow /etc/shadow- /etc/shadow~ /etc/gshadow /etc/gshadow- /etc/master.passwd /etc/spwd.db 2>/dev/null | sed -E "s,.*,${C}[1;31m&${C}[0m,"
+  if [ "`cat /etc/shadow /etc/shadow- /etc/shadow~ /etc/gshadow /etc/gshadow- /etc/master.passwd.json /etc/spwd.db 2>/dev/null`" ]; then cat /etc/shadow /etc/shadow- /etc/shadow~ /etc/gshadow /etc/gshadow- /etc/master.passwd.json /etc/spwd.db 2>/dev/null | sed -E "s,.*,${C}[1;31m&${C}[0m,"
   else echo_no
   fi
 
@@ -2722,7 +2722,7 @@ if [ "`echo $CHECKS | grep IntFiles`" ]; then
     printf $Y"[+] "$GREEN"Finding possible password in config files\n"$NC
     ppicf=`find /home /etc /root /tmp /Users /private /Applications -name "*.conf" -o -name "*.cnf" -o -name "*.config" 2>/dev/null`
     printf "$ppicf\n" | while read f; do
-      if [ "`grep -EiI 'passwd.*|creden.*' \"$f\" 2>/dev/null`" ]; then
+      if [ "`grep -EiI 'passwd.json.*|creden.*' \"$f\" 2>/dev/null`" ]; then
         echo $ITALIC" $f"$NC
         grep -EiIo 'passw.*|creden.*' "$f" 2>/dev/null | sed -E "s,[pP][aA][sS][sS][wW]|[cC][rR][eE][dD][eE][nN],${C}[1;31m&${C}[0m,g"
       fi

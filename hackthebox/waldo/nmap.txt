@@ -1,0 +1,21 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-22 08:31 EDT
+Nmap scan report for 10.129.1.191
+Host is up (0.25s latency).
+Not shown: 995 closed ports
+PORT     STATE    SERVICE        VERSION
+22/tcp   open     ssh            OpenSSH 7.5 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 c4:ff:81:aa:ac:df:66:9e:da:e1:c8:78:00:ab:32:9e (RSA)
+|   256 b3:e7:54:6a:16:bd:c9:29:1f:4a:8c:cd:4c:01:24:27 (ECDSA)
+|_  256 38:64:ac:57:56:44:d5:69:de:74:a8:88:dc:a0:b4:fd (ED25519)
+80/tcp   open     http           nginx 1.12.2
+|_http-server-header: nginx/1.12.2
+| http-title: List Manager
+|_Requested resource was /list.html
+|_http-trane-info: Problem with XML parsing of /evox/about
+264/tcp  filtered bgmp
+7911/tcp filtered unknown
+8888/tcp filtered sun-answerbook
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 40.32 seconds
