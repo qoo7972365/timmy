@@ -12,7 +12,7 @@ http://www.inetd-secure.net
 # usage   : ./sq125x themecount username password
 url command
 # example : ./sq125x 2 pokley 123456
-http://mail.pokleyzz.my/mail "cat /etc/passwd"
+http://mail.pokleyzz.my/mail "cat /etc/passwd.json"
 #
 # curl can be found at http://curl.haxx.se/libcurl/
 #

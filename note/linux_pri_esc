@@ -5,3 +5,4 @@
 5.SUID提權限cp指令,參考oscp2/10.11.1.35
 6./etc/passwd可以寫入,參考oscp2/10.11.1.39
 7.根據內核版本提權限(參考oscp2/10.11.1.116)
+8.python腳本提權,function內有input輸入$(/bin/bash),參考Jarvis

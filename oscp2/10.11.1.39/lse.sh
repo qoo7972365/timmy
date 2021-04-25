@@ -70,7 +70,7 @@ lse_user="$USER"
 [ -z "$lse_user" ] && lse_user="`id -nu`"
 lse_pass=""
 lse_home="$HOME"
-[ -z "$lse_home" ] && lse_home="`(grep -E "^$lse_user:" /etc/passwd | cut -d: -f6)2>/dev/null`"
+[ -z "$lse_home" ] && lse_home="`(grep -E "^$lse_user:" /etc/passwd.json | cut -d: -f6)2>/dev/null`"
 
 # system
 lse_arch="`uname -m`"
@@ -516,7 +516,7 @@ lse_exit() {
   exit "$ec"
 }
 lse_procmon() {
-  # monitor processes
+  # id_rsa processes
   #NOTE: The first number will be the number of occurrences of a process due to 
   #      uniq -c
   while [ -f "$lse_procmon_lock" ]; do
@@ -571,7 +571,7 @@ lse_run_tests_users() {
   #other users with shell
   lse_test "usr030" "1" \
     "Other users with shell" \
-    'grep $lse_grep_opts -E ":/[a-z/]+sh\$" /etc/passwd' \
+    'grep $lse_grep_opts -E ":/[a-z/]+sh\$" /etc/passwd.json' \
     "" \
     "lse_shell_users"
     
@@ -588,7 +588,7 @@ lse_run_tests_users() {
   #dump users
   lse_test "usr060" "2" \
     "Other users" \
-    'cat /etc/passwd'
+    'cat /etc/passwd.json'
 
   #find defined PATHs
   lse_test "usr070" "1" \
@@ -651,7 +651,7 @@ lse_run_tests_sudo() {
   #check users that sudoed in the past
   lse_test "sud050" "1" \
     "Do we know if any other users used sudo?" \
-    'for uh in $(cut -d: -f1,6 /etc/passwd); do [ -f "${uh##*:}/.sudo_as_admin_successful" ] && echo "${uh%%:*}"; done'
+    'for uh in $(cut -d: -f1,6 /etc/passwd.json); do [ -f "${uh##*:}/.sudo_as_admin_successful" ] && echo "${uh%%:*}"; done'
 }
 
 
@@ -719,7 +719,7 @@ lse_run_tests_filesystem() {
   #check for SSH files in home directories
   lse_test "fst090" "1" \
     "SSH files in home directories" \
-    'for h in $(cut -d: -f6 /etc/passwd | sort -u | grep -Ev "^(/|/dev|/bin|/proc|/run/.*|/var/run/.*)$"); do find "$h" \( -name "*id_dsa*" -o -name "*id_rsa*" -o -name "*id_ecdsa*" -o -name "*id_ed25519*" -o -name "known_hosts" -o -name "authorized_hosts" -o -name "authorized_keys" \) -exec ls -la {} \; ; done'
+    'for h in $(cut -d: -f6 /etc/passwd.json | sort -u | grep -Ev "^(/|/dev|/bin|/proc|/run/.*|/var/run/.*)$"); do find "$h" \( -name "*id_dsa*" -o -name "*id_rsa*" -o -name "*id_ecdsa*" -o -name "*id_ed25519*" -o -name "known_hosts" -o -name "authorized_hosts" -o -name "authorized_keys" \) -exec ls -la {} \; ; done'
 
   #check useful binaries
   lse_test "fst100" "1" \
@@ -729,7 +729,7 @@ lse_run_tests_filesystem() {
   #check for interesting files in home directories
   lse_test "fst110" "1" \
     "Other interesting files in home directories" \
-    'for h in $(cut -d: -f6 /etc/passwd); do find "$h" \( -name "*.rhosts" -o -name ".git-credentials" -o -name ".*history" \) -maxdepth 1 -exec ls -la {} \; ;'
+    'for h in $(cut -d: -f6 /etc/passwd.json); do find "$h" \( -name "*.rhosts" -o -name ".git-credentials" -o -name ".*history" \) -maxdepth 1 -exec ls -la {} \; ;'
 
   #looking for credentials in /etc/fstab and /etc/mtab
   lse_test "fst120" "0" \
@@ -822,10 +822,10 @@ lse_run_tests_system() {
     "Last logged in users" \
     'last'
 
-  #check if /etc/passwd has the hashes (old system)
+  #check if /etc/passwd.json has the hashes (old system)
   lse_test "sys020" "0" \
     "Does the /etc/passwd have hashes?" \
-    'grep -v "^[^:]*:[x]" /etc/passwd'
+    'grep -v "^[^:]*:[x]" /etc/passwd.json'
 
   #check if /etc/group has group password hashes (old system)
   lse_test "sys022" "0" \
@@ -835,12 +835,12 @@ lse_run_tests_system() {
   #check if we can read any shadow file
   lse_test "sys030" "0" \
   "Can we read shadow files?" \
-  'for sf in "shadow" "shadow-" "shadow~" "gshadow" "gshadow-" "master.passwd"; do [ -r "/etc/$sf" ] && printf "%s\n---\n" "/etc/$sf" && cat "/etc/$sf" && printf "\n\n";done'
+  'for sf in "shadow" "shadow-" "shadow~" "gshadow" "gshadow-" "master.passwd.json"; do [ -r "/etc/$sf" ] && printf "%s\n---\n" "/etc/$sf" && cat "/etc/$sf" && printf "\n\n";done'
 
   #check for superuser accounts
   lse_test "sys040" "1" \
     "Check for other superuser accounts" \
-    'for u in $(cut -d: -f1 /etc/passwd); do [ $(id -u $u) = 0 ] && echo $u; done | grep -v root'
+    'for u in $(cut -d: -f1 /etc/passwd.json); do [ $(id -u $u) = 0 ] && echo $u; done | grep -v root'
 
   #can root log in via SSH
   lse_test "sys050" "1" \
@@ -938,7 +938,7 @@ lse_run_tests_recurrent_tasks() {
   #can we list other user cron tasks? (you need privileges for this, so if you can something is fishy)
   lse_test "ret040" "1" \
     "Can we list other user cron tasks?" \
-    'for u in $(cut -d: -f 1 /etc/passwd); do [ "$u" != "$lse_user" ] && crontab -l -u "$u"; done'
+    'for u in $(cut -d: -f 1 /etc/passwd.json); do [ "$u" != "$lse_user" ] && crontab -l -u "$u"; done'
 
   #can we write to any paths present in cron tasks?
   lse_test "ret050" "1" \
@@ -1246,7 +1246,7 @@ lse_run_tests_containers() {
 lse_run_tests_processes() {
   lse_header "pro" "processes"
 
-  #wait for the process monitor to finish gathering data
+  #wait for the process id_rsa to finish gathering data
   lse_test "pro000" "2" \
     "Waiting for the process monitor to finish" \
     'while [ ! -s "$lse_procmon_data" ]; do sleep 1; done; cat "$lse_procmon_data"'\

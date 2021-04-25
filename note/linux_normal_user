@@ -7,3 +7,4 @@
 7.Samba 2.2.7a版本可直接perl腳本取得revershe shell(參考10.11.1.115)
 8.linux phpliteadmin取得一般用戶(參考oscp2的10.11.1.116或是nineveh)
 9.wordpress登入後台,上傳theme取得reverse shell(參考10.11.1234)
+10.phpmyadmin4.8的Remote code executin(參考Jarvis)
