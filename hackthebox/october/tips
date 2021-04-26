@@ -1,0 +1,2 @@
+nmap -sV -sC -Pn 10.129.137.24 > nmap.txt
+nmap -sU -Pn 10.129.137.24 > nmapuu.txt

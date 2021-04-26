@@ -7,3 +7,4 @@
 7. RealVNC/4.0 參考oscp2/10.11.1.227
 8. Microsoft ftpd 5.0  參考oscp2/10.11.1.227
 9. samba發現mssql帳密,透過sqsh登入(參考oscp2/10.11.1.31)
+10. samba,kerbrute,,rpcclient(參考blackfield)

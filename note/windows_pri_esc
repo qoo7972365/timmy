@@ -5,7 +5,7 @@
 5.accesschk 提權方式,參考oscp2/10.11.1.14
 6.Bypass UAC 參考oscp2/10.11.1.21
 7.使用其他用戶執行指令 參考oscp2/BETHANY
-
+8. SeBackupPrivilege 提權(參考blackfiled)
 
 whoami /priv查看有哪些提權限方式,根據以下可提權
 https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/

