@@ -1,0 +1,172 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-30 23:28 EDT
+Nmap scan report for 192.168.23.103
+Host is up (0.23s latency).
+
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Apache httpd 2.0.58 ((Win32))
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.23.103
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.23.103:80/manual/
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://192.168.23.103:80/manual/es/
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://192.168.23.103:80/manual/de/
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://192.168.23.103:80/manual/ko/
+|     Form id: 
+|_    Form action: http://www.google.com/search
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /config/: Potentially interesting directory w/ listing on 'apache/2.0.58 (win32)'
+|   /icons/: Potentially interesting directory w/ listing on 'apache/2.0.58 (win32)'
+|_  /manual/: Potentially interesting folder
+|_http-server-header: Apache/2.0.58 (Win32)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-trace: TRACE is enabled
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|_      https://www.securityfocus.com/bid/49303
+| vulners: 
+|   cpe:/a:apache:http_server:2.0.58: 
+|     	SSV:69341	10.0	https://vulners.com/seebug/SSV:69341	*EXPLOIT*
+|     	SSV:19282	10.0	https://vulners.com/seebug/SSV:19282	*EXPLOIT*
+|     	SSV:19236	10.0	https://vulners.com/seebug/SSV:19236	*EXPLOIT*
+|     	PACKETSTORM:86964	10.0	https://vulners.com/packetstorm/PACKETSTORM:86964	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-RHSA-2010-0602/	10.0	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2010-0602/	*EXPLOIT*
+|     	MSF:AUXILIARY/DOS/HTTP/APACHE_MOD_ISAPI	10.0	https://vulners.com/metasploit/MSF:AUXILIARY/DOS/HTTP/APACHE_MOD_ISAPI	*EXPLOIT*
+|     	EXPLOITPACK:30ED468EC8BD5B71B2CB93825A852B80	10.0	https://vulners.com/exploitpack/EXPLOITPACK:30ED468EC8BD5B71B2CB93825A852B80	*EXPLOIT*
+|     	EDB-ID:14288	10.0	https://vulners.com/exploitdb/EDB-ID:14288	*EXPLOIT*
+|     	EDB-ID:11650	10.0	https://vulners.com/exploitdb/EDB-ID:11650	*EXPLOIT*
+|     	CVE-2010-0425	10.0	https://vulners.com/cve/CVE-2010-0425
+|     	SSV:72403	7.8	https://vulners.com/seebug/SSV:72403	*EXPLOIT*
+|     	SSV:26043	7.8	https://vulners.com/seebug/SSV:26043	*EXPLOIT*
+|     	SSV:20899	7.8	https://vulners.com/seebug/SSV:20899	*EXPLOIT*
+|     	PACKETSTORM:126851	7.8	https://vulners.com/packetstorm/PACKETSTORM:126851	*EXPLOIT*
+|     	PACKETSTORM:123527	7.8	https://vulners.com/packetstorm/PACKETSTORM:123527	*EXPLOIT*
+|     	PACKETSTORM:122962	7.8	https://vulners.com/packetstorm/PACKETSTORM:122962	*EXPLOIT*
+|     	MSF:AUXILIARY/DOS/HTTP/APACHE_RANGE_DOS	7.8	https://vulners.com/metasploit/MSF:AUXILIARY/DOS/HTTP/APACHE_RANGE_DOS	*EXPLOIT*
+|     	EXPLOITPACK:186B5FCF5C57B52642E62C06BABC6F83	7.8	https://vulners.com/exploitpack/EXPLOITPACK:186B5FCF5C57B52642E62C06BABC6F83	*EXPLOIT*
+|     	EDB-ID:18221	7.8	https://vulners.com/exploitdb/EDB-ID:18221	*EXPLOIT*
+|     	EDB-ID:17696	7.8	https://vulners.com/exploitdb/EDB-ID:17696	*EXPLOIT*
+|     	CVE-2011-3192	7.8	https://vulners.com/cve/CVE-2011-3192
+|     	1337DAY-ID-21170	7.8	https://vulners.com/zdt/1337DAY-ID-21170	*EXPLOIT*
+|     	SSV:6610	7.6	https://vulners.com/seebug/SSV:6610	*EXPLOIT*
+|     	SSV:63874	7.6	https://vulners.com/seebug/SSV:63874	*EXPLOIT*
+|     	SSV:429	7.6	https://vulners.com/seebug/SSV:429	*EXPLOIT*
+|     	SSV:16391	7.6	https://vulners.com/seebug/SSV:16391	*EXPLOIT*
+|     	SAINT:B572402CE6E5C851D7572BF044507A14	7.6	https://vulners.com/saint/SAINT:B572402CE6E5C851D7572BF044507A14	*EXPLOIT*
+|     	SAINT:386ECCECD3AA34FA1E84E6D3D2B71C7B	7.6	https://vulners.com/saint/SAINT:386ECCECD3AA34FA1E84E6D3D2B71C7B	*EXPLOIT*
+|     	SAINT:35A5AA91DCF68555669689272BFFD3E7	7.6	https://vulners.com/saint/SAINT:35A5AA91DCF68555669689272BFFD3E7	*EXPLOIT*
+|     	PACKETSTORM:83108	7.6	https://vulners.com/packetstorm/PACKETSTORM:83108	*EXPLOIT*
+|     	PACKETSTORM:62377	7.6	https://vulners.com/packetstorm/PACKETSTORM:62377	*EXPLOIT*
+|     	PACKETSTORM:56989	7.6	https://vulners.com/packetstorm/PACKETSTORM:56989	*EXPLOIT*
+|     	PACKETSTORM:55727	7.6	https://vulners.com/packetstorm/PACKETSTORM:55727	*EXPLOIT*
+|     	PACKETSTORM:49400	7.6	https://vulners.com/packetstorm/PACKETSTORM:49400	*EXPLOIT*
+|     	MSF:EXPLOIT/WINDOWS/HTTP/APACHE_MOD_REWRITE_LDAP	7.6	https://vulners.com/metasploit/MSF:EXPLOIT/WINDOWS/HTTP/APACHE_MOD_REWRITE_LDAP	*EXPLOIT*
+|     	EXPLOITPACK:8FEEBCD1B617ED74B8D2179061252A44	7.6	https://vulners.com/exploitpack/EXPLOITPACK:8FEEBCD1B617ED74B8D2179061252A44	*EXPLOIT*
+|     	EXPLOITPACK:6E3090CD46CEEE08D52992589E824D90	7.6	https://vulners.com/exploitpack/EXPLOITPACK:6E3090CD46CEEE08D52992589E824D90	*EXPLOIT*
+|     	EDB-ID:3996	7.6	https://vulners.com/exploitdb/EDB-ID:3996	*EXPLOIT*
+|     	EDB-ID:3680	7.6	https://vulners.com/exploitdb/EDB-ID:3680	*EXPLOIT*
+|     	EDB-ID:2237	7.6	https://vulners.com/exploitdb/EDB-ID:2237	*EXPLOIT*
+|     	EDB-ID:16752	7.6	https://vulners.com/exploitdb/EDB-ID:16752	*EXPLOIT*
+|     	CVE-2006-3747	7.6	https://vulners.com/cve/CVE-2006-3747
+|     	SSV:60913	7.5	https://vulners.com/seebug/SSV:60913	*EXPLOIT*
+|     	CVE-2013-2249	7.5	https://vulners.com/cve/CVE-2013-2249
+|     	SSV:11802	7.1	https://vulners.com/seebug/SSV:11802	*EXPLOIT*
+|     	SSV:11762	7.1	https://vulners.com/seebug/SSV:11762	*EXPLOIT*
+|     	CVE-2009-1891	7.1	https://vulners.com/cve/CVE-2009-1891
+|     	CVE-2009-1890	7.1	https://vulners.com/cve/CVE-2009-1890
+|     	SSV:60427	6.9	https://vulners.com/seebug/SSV:60427	*EXPLOIT*
+|     	SSV:60386	6.9	https://vulners.com/seebug/SSV:60386	*EXPLOIT*
+|     	SSV:60069	6.9	https://vulners.com/seebug/SSV:60069	*EXPLOIT*
+|     	CVE-2012-0883	6.9	https://vulners.com/cve/CVE-2012-0883
+|     	CVE-2006-4154	6.8	https://vulners.com/cve/CVE-2006-4154
+|     	MSF:AUXILIARY/DOS/HTTP/SLOWLORIS	6.4	https://vulners.com/metasploit/MSF:AUXILIARY/DOS/HTTP/SLOWLORIS	*EXPLOIT*
+|     	SSV:61874	5.0	https://vulners.com/seebug/SSV:61874	*EXPLOIT*
+|     	SSV:20993	5.0	https://vulners.com/seebug/SSV:20993	*EXPLOIT*
+|     	SSV:20979	5.0	https://vulners.com/seebug/SSV:20979	*EXPLOIT*
+|     	SSV:20969	5.0	https://vulners.com/seebug/SSV:20969	*EXPLOIT*
+|     	PACKETSTORM:105672	5.0	https://vulners.com/packetstorm/PACKETSTORM:105672	*EXPLOIT*
+|     	PACKETSTORM:105591	5.0	https://vulners.com/packetstorm/PACKETSTORM:105591	*EXPLOIT*
+|     	MSF:AUXILIARY/SCANNER/HTTP/REWRITE_PROXY_BYPASS	5.0	https://vulners.com/metasploit/MSF:AUXILIARY/SCANNER/HTTP/REWRITE_PROXY_BYPASS	*EXPLOIT*
+|     	EXPLOITPACK:460143F0ACAE117DD79BD75EDFDA154B	5.0	https://vulners.com/exploitpack/EXPLOITPACK:460143F0ACAE117DD79BD75EDFDA154B	*EXPLOIT*
+|     	EDB-ID:17969	5.0	https://vulners.com/exploitdb/EDB-ID:17969	*EXPLOIT*
+|     	CVE-2014-0098	5.0	https://vulners.com/cve/CVE-2014-0098
+|     	CVE-2013-6438	5.0	https://vulners.com/cve/CVE-2013-6438
+|     	CVE-2011-3368	5.0	https://vulners.com/cve/CVE-2011-3368
+|     	CVE-2007-6750	5.0	https://vulners.com/cve/CVE-2007-6750
+|     	SSV:30024	4.6	https://vulners.com/seebug/SSV:30024	*EXPLOIT*
+|     	EDB-ID:41768	4.6	https://vulners.com/exploitdb/EDB-ID:41768	*EXPLOIT*
+|     	CVE-2012-0031	4.6	https://vulners.com/cve/CVE-2012-0031
+|     	1337DAY-ID-27465	4.6	https://vulners.com/zdt/1337DAY-ID-27465	*EXPLOIT*
+|     	SSV:23169	4.4	https://vulners.com/seebug/SSV:23169	*EXPLOIT*
+|     	EDB-ID:41769	4.4	https://vulners.com/exploitdb/EDB-ID:41769	*EXPLOIT*
+|     	CVE-2011-3607	4.4	https://vulners.com/cve/CVE-2011-3607
+|     	1337DAY-ID-27473	4.4	https://vulners.com/zdt/1337DAY-ID-27473	*EXPLOIT*
+|     	SSV:4786	4.3	https://vulners.com/seebug/SSV:4786	*EXPLOIT*
+|     	SSV:3804	4.3	https://vulners.com/seebug/SSV:3804	*EXPLOIT*
+|     	SSV:30094	4.3	https://vulners.com/seebug/SSV:30094	*EXPLOIT*
+|     	SSV:2818	4.3	https://vulners.com/seebug/SSV:2818	*EXPLOIT*
+|     	SSV:2801	4.3	https://vulners.com/seebug/SSV:2801	*EXPLOIT*
+|     	SSV:24250	4.3	https://vulners.com/seebug/SSV:24250	*EXPLOIT*
+|     	SSV:20934	4.3	https://vulners.com/seebug/SSV:20934	*EXPLOIT*
+|     	SSV:20555	4.3	https://vulners.com/seebug/SSV:20555	*EXPLOIT*
+|     	EXPLOITPACK:FDCB3D93694E48CD5EE27CE55D6801DE	4.3	https://vulners.com/exploitpack/EXPLOITPACK:FDCB3D93694E48CD5EE27CE55D6801DE	*EXPLOIT*
+|     	EDB-ID:36663	4.3	https://vulners.com/exploitdb/EDB-ID:36663	*EXPLOIT*
+|     	EDB-ID:36352	4.3	https://vulners.com/exploitdb/EDB-ID:36352	*EXPLOIT*
+|     	EDB-ID:35738	4.3	https://vulners.com/exploitdb/EDB-ID:35738	*EXPLOIT*
+|     	EDB-ID:31759	4.3	https://vulners.com/exploitdb/EDB-ID:31759	*EXPLOIT*
+|     	EDB-ID:31052	4.3	https://vulners.com/exploitdb/EDB-ID:31052	*EXPLOIT*
+|     	EDB-ID:30835	4.3	https://vulners.com/exploitdb/EDB-ID:30835	*EXPLOIT*
+|     	EDB-ID:28365	4.3	https://vulners.com/exploitdb/EDB-ID:28365	*EXPLOIT*
+|     	CVE-2011-4317	4.3	https://vulners.com/cve/CVE-2011-4317
+|     	CVE-2011-3639	4.3	https://vulners.com/cve/CVE-2011-3639
+|     	CVE-2011-3348	4.3	https://vulners.com/cve/CVE-2011-3348
+|     	CVE-2011-0419	4.3	https://vulners.com/cve/CVE-2011-0419
+|     	CVE-2008-2939	4.3	https://vulners.com/cve/CVE-2008-2939
+|     	CVE-2008-2168	4.3	https://vulners.com/cve/CVE-2008-2168
+|     	CVE-2008-0455	4.3	https://vulners.com/cve/CVE-2008-0455
+|     	CVE-2007-6388	4.3	https://vulners.com/cve/CVE-2007-6388
+|     	CVE-2007-6203	4.3	https://vulners.com/cve/CVE-2007-6203
+|     	CVE-2007-5000	4.3	https://vulners.com/cve/CVE-2007-5000
+|     	CVE-2007-4465	4.3	https://vulners.com/cve/CVE-2007-4465
+|     	CVE-2006-4110	4.3	https://vulners.com/cve/CVE-2006-4110
+|     	CVE-2008-0456	2.6	https://vulners.com/cve/CVE-2008-0456
+|     	SSV:60250	1.2	https://vulners.com/seebug/SSV:60250	*EXPLOIT*
+|     	CVE-2011-4415	1.2	https://vulners.com/cve/CVE-2011-4415
+|     	1337DAY-ID-7972	0.0	https://vulners.com/zdt/1337DAY-ID-7972	*EXPLOIT*
+|     	1337DAY-ID-23169	0.0	https://vulners.com/zdt/1337DAY-ID-23169	*EXPLOIT*
+|_    	1337DAY-ID-12139	0.0	https://vulners.com/zdt/1337DAY-ID-12139	*EXPLOIT*
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+3306/tcp open  mysql         MySQL 8.0.21
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_sslv2-drown: 
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 350.42 seconds

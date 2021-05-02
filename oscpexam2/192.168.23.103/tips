@@ -1,0 +1,43 @@
+nmap 192.168.23.103 -sC -sV -Pn > nmap.txt
+nmap 192.168.23.103 -p- > nmapall.txt
+
+
+
+80,135,139,445,2110,3306,33060,38080
+
+nmap --script vuln -sV -p 80,135,139,445,3306 -Pn  192.168.23.103 > nmapvuln.txt
+nmap --script vuln -sV -p 80,135,139,445,2110,3306,33060,38080 -Pn  192.168.23.103 > nmapvuln2.txt
+
+gobuster dir  -u http://192.168.23.103/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://192.168.23.103/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobusterfull.txt
+gobuster dir  -u http://192.168.23.103/config/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi  > gobusterconfig.txt
+gobuster dir  -u http://192.168.23.103/manual/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi  > gobustermanual.txt
+gobuster dir -u http://192.168.23.103/cgi-bin/  -w /usr/share/wordlists/dirb/vulns/cgis.txt -x txt,php,cgi  > gobustercgi.txt
+gobuster dir -u http://192.168.23.103:38080/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi  > gobustercgidup.txt
+
+mysql -u dbadmin -h 192.168.23.103 test_db -P 3306 -pxk7GQzU4qxDWe
+mysql -u mysqladmin -h 192.168.23.103  -P 3306 -pxk7GQzU4qxDWe
+mysql -u root -h 192.168.23.103  -P 3306 -pxk7GQzU4qxDWe
+mysql -u root -h 192.168.23.103 test_db -p
+返回這種報錯ERROR 1044 (42000): Access denied for user
+
+mysqladmin -u dbadmin -h 192.168.23.103 test_db -p flush-hosts
+mysqladmin -h 192.168.23.103 -P 3306 -u dbadmin -p flush-hosts
+
+smbclient -U dbadmin -L //192.168.23.103 -p
+smbclient -L //192.168.23.103
+user          = dbadmin
+password      = xk7GQzU4qxDWe
+
+
+rpcclient -U dbadmin  192.168.23.103
+
+
+mysql -u dbadmin -h 192.168.23.103 -p -e 'show variables like "open_files_limit";'
+mysql -u root -h 192.168.23.103 -p -e 'show variables like "open_files_limit";'
+
+
+davtest -url http://192.168.23.103
+
+
+ALTER USER 'mysqladmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'xk7GQzU4qxDWe';

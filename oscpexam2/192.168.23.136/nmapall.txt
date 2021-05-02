@@ -1,0 +1,30 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-01 02:53 EDT
+Stats: 0:17:15 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 79.78% done; ETC: 03:14 (0:04:23 remaining)
+Stats: 0:17:17 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 79.89% done; ETC: 03:14 (0:04:21 remaining)
+Stats: 0:17:37 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 81.37% done; ETC: 03:14 (0:04:02 remaining)
+Stats: 0:17:37 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 81.39% done; ETC: 03:14 (0:04:02 remaining)
+Stats: 0:17:37 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 81.39% done; ETC: 03:14 (0:04:02 remaining)
+Nmap scan report for 192.168.23.136
+Host is up (0.22s latency).
+Not shown: 65522 filtered ports
+PORT      STATE  SERVICE
+21/tcp    closed ftp
+22/tcp    closed ssh
+111/tcp   closed rpcbind
+139/tcp   closed netbios-ssn
+443/tcp   closed https
+445/tcp   closed microsoft-ds
+2049/tcp  closed nfs
+10000/tcp closed snet-sensor-mgmt
+18080/tcp open   unknown
+27017/tcp open   mongod
+28022/tcp open   unknown
+40873/tcp open   unknown
+54445/tcp open   unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 1338.46 seconds

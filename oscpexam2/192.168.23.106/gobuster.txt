@@ -1,0 +1,32 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://192.168.23.106/
+[+] Threads:        50
+[+] Wordlist:       /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,cgi
+[+] Timeout:        10s
+===============================================================
+2021/05/01 01:46:01 Starting gobuster
+===============================================================
+/resources (Status: 301)
+/themes (Status: 301)
+/public (Status: 301)
+/version (Status: 200)
+/tests (Status: 301)
+/storage (Status: 301)
+/server.php (Status: 200)
+/database (Status: 301)
+/dev (Status: 301)
+/app (Status: 301)
+/vendor (Status: 301)
+/LICENSE (Status: 200)
+/routes (Status: 301)
+/artisan (Status: 200)
+/bootstrap (Status: 301)
+===============================================================
+2021/05/01 03:00:45 Finished
+===============================================================

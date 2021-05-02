@@ -1,0 +1,16 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-30 23:46 EDT
+Nmap scan report for 192.168.23.103
+Host is up (0.22s latency).
+Not shown: 65527 filtered ports
+PORT      STATE SERVICE
+80/tcp    open  http
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+2110/tcp  open  umsp
+3306/tcp  open  mysql
+33060/tcp open  mysqlx
+38080/tcp open  unknown Dup Scout Enterprise v10.0.18
+有BOF但不會用
+
+Nmap done: 1 IP address (1 host up) scanned in 625.67 seconds

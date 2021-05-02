@@ -1,0 +1,40 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-30 23:24 EDT
+Nmap scan report for 192.168.23.103
+Host is up (0.23s latency).
+Not shown: 995 filtered ports
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Apache httpd 2.0.58 ((Win32))
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Apache/2.0.58 (Win32)
+|_http-title: Test Page for Apache Installation
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+samba client無法查看資料夾
+3306/tcp open  mysql         MySQL 8.0.21
+| mysql-info: 
+|   Protocol: 10
+|   Version: 8.0.21
+|   Thread ID: 10
+|   Capabilities flags: 65535
+|   Some Capabilities: SupportsTransactions, SupportsLoadDataLocal, SwitchToSSLAfterHandshake, Support41Auth, IgnoreSigpipes, Speaks41ProtocolOld, InteractiveClient, ODBCClient, Speaks41ProtocolNew, IgnoreSpaceBeforeParenthesis, DontAllowDatabaseTableColumn, FoundRows, SupportsCompression, LongColumnFlag, LongPassword, ConnectWithDatabase, SupportsMultipleResults, SupportsMultipleStatments, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: C/\-\x186>sOO1\x1Ae\x01u\x08'\x0Fh9
+|_  Auth Plugin Name: caching_sha2_password
+| ssl-cert: Subject: commonName=MySQL_Server_8.0.21_Auto_Generated_Server_Certificate
+| Not valid before: 2020-08-05T18:11:34
+|_Not valid after:  2030-08-03T18:11:34
+|_ssl-date: TLS randomness does not represent time
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-05-01T03:25:08
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 77.64 seconds

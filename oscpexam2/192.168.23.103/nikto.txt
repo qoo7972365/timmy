@@ -1,0 +1,52 @@
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          192.168.23.103
++ Target Hostname:    192.168.23.103
++ Target Port:        80
++ Start Time:         2021-05-01 00:02:47 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Apache/2.0.58 (Win32)
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ Uncommon header 'tcn' found, with contents: choice
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Apache/2.0.58 appears to be outdated (current is at least Apache/2.4.37). Apache 2.2.34 is the EOL for the 2.x branch.
++ Allowed HTTP Methods: GET, HEAD, POST, OPTIONS, TRACE 
++ OSVDB-877: HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-3268: /config/: Directory indexing found.
++ /config/: Configuration information may be available remotely.
++ OSVDB-2117: /: Appears to be a default Apache install.
++ OSVDB-3092: /manual/: Web server manual found.
++ Server may leak inodes via ETags, header found with file /index.html.ca, inode: 90746, size: 1701, mtime: Sun Jun  1 07:20:32 2036
++ OSVDB-3233: /index.html.ca: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.cz.iso8859-2: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.de: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.dk: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ee: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.el: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.en: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.es: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.et: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.fr: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.he.iso8859-8: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.hr.iso8859-2: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.it: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ja.iso2022-jp: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.nl: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.nn: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.no: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.po.iso8859-2: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.pt: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.pt-br: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ru.cp-1251: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ru.cp866: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ru.iso-ru: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ru.koi8-r: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.ru.utf8: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3233: /index.html.var: Apache default foreign language file found. All default files should be removed from the web server as they may give an attacker additional system information.
++ OSVDB-3268: /icons/: Directory indexing found.
++ OSVDB-3268: /manual/images/: Directory indexing found.
++ 8732 requests: 8 error(s) and 40 item(s) reported on remote host
++ End Time:           2021-05-01 00:40:01 (GMT-4) (2234 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested

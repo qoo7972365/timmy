@@ -1,9 +1,20 @@
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-26 06:25 EDT
-Nmap scan report for 10.129.137.24
-Host is up (0.018s latency).
-Not shown: 999 filtered ports
-PORT   STATE SERVICE    VERSION
-53/tcp open  tcpwrapped
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-26 10:53 EDT
+Nmap scan report for 10.129.137.53
+Host is up (0.25s latency).
+Not shown: 998 filtered ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 79:b1:35:b6:d1:25:12:a3:0c:b5:2e:36:9c:33:26:28 (DSA)
+|   2048 16:08:68:51:d1:7b:07:5a:34:66:0d:4c:d0:25:56:f5 (RSA)
+|   256 e3:97:a7:92:23:72:bf:1d:09:88:85:b6:6c:17:4e:85 (ECDSA)
+|_  256 89:85:90:98:20:bf:03:5d:35:7f:4a:a9:e1:1b:65:31 (ED25519)
+80/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))
+| http-methods: 
+|_  Potentially risky methods: PUT PATCH DELETE
+|_http-server-header: Apache/2.4.7 (Ubuntu)
+|_http-title: October CMS - Vanilla
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 34.97 seconds
+Nmap done: 1 IP address (1 host up) scanned in 33.35 seconds

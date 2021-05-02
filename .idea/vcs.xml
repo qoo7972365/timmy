@@ -14,5 +14,7 @@
     <mapping directory="$PROJECT_DIR$/oscp2/10.11.1.141/Webmin-1.910-Exploit-Script" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oscp2/ALICE/AutoBlue-MS17-010" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oscp2/ALICE/MS17-010" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oscpexam2/192.168.23.106/192.168.23.106" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oscpexam2/192.168.23.136/Webmin-1.910-Exploit-Script" vcs="Git" />
   </component>
 </project>

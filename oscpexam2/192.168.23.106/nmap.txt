@@ -1,0 +1,53 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-01 01:03 EDT
+Nmap scan report for 192.168.23.106
+Host is up (0.26s latency).
+Not shown: 995 filtered ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.8 (FreeBSD 20180909; protocol 2.0)
+| ssh-hostkey: 
+|   2048 1f:e5:75:e1:16:6c:b9:00:57:9f:a2:1c:71:bc:d0:b1 (RSA)
+|   256 c0:6c:ad:b7:99:9f:8a:1c:09:0b:dc:16:92:65:81:f5 (ECDSA)
+|_  256 3b:d6:c5:00:af:ef:4b:02:a8:01:e0:e3:42:8b:b3:f5 (ED25519)
+80/tcp   open  http    Apache httpd 2.4.41 ((FreeBSD) PHP/7.3.13)
+| http-git: 
+|   192.168.23.106:80/.git/
+|     Git repository found!
+|     .gitignore matched patterns 'bug'
+|     Repository description: Unnamed repository; edit this file 'description' to name the...
+|     Remotes:
+|       https://github.com/BookStackApp/BookStack.git
+|_    Project type: node.js application (guessed from .gitignore)
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Apache/2.4.41 (FreeBSD) PHP/7.3.13
+|_http-title: Index of /
+111/tcp  open  rpcbind 2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100003  2,3         2049/tcp   nfs
+|   100003  2,3         2049/tcp6  nfs
+|   100003  2,3         2049/udp   nfs
+|   100003  2,3         2049/udp6  nfs
+|   100005  1,3          893/tcp   mountd
+|   100005  1,3          893/tcp6  mountd
+|   100005  1,3          893/udp   mountd
+|_  100005  1,3          893/udp6  mountd
+2049/tcp open  nfs     2-3 (RPC #100003)
+3306/tcp open  mysql   MySQL 5.5.5-10.2.30-MariaDB
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.5-10.2.30-MariaDB
+|   Thread ID: 19
+|   Capabilities flags: 63486
+|   Some Capabilities: ConnectWithDatabase, Support41Auth, SupportsCompression, LongColumnFlag, Speaks41ProtocolNew, ODBCClient, Speaks41ProtocolOld, SupportsTransactions, IgnoreSpaceBeforeParenthesis, IgnoreSigpipes, DontAllowDatabaseTableColumn, InteractiveClient, SupportsLoadDataLocal, FoundRows, SupportsAuthPlugins, SupportsMultipleResults, SupportsMultipleStatments
+|   Status: Autocommit
+|   Salt: KjVOh=55IM+*4cwOa|m,
+|_  Auth Plugin Name: mysql_native_password
+Service Info: OS: FreeBSD; CPE: cpe:/o:freebsd:freebsd
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 32.56 seconds

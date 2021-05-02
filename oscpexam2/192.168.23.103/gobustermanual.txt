@@ -1,0 +1,87 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://192.168.23.103/manual/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,cgi
+[+] Timeout:        10s
+===============================================================
+2021/05/01 04:35:07 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.hta.cgi (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.cgi (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.cgi (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+/aux (Status: 403)
+/aux.txt (Status: 403)
+/aux.php (Status: 403)
+/aux.cgi (Status: 403)
+/com1 (Status: 403)
+/com1.txt (Status: 403)
+/com1.php (Status: 403)
+/com1.cgi (Status: 403)
+/com3 (Status: 403)
+/com3.txt (Status: 403)
+/com3.php (Status: 403)
+/com3.cgi (Status: 403)
+/com2 (Status: 403)
+/com2.txt (Status: 403)
+/com2.php (Status: 403)
+/com2.cgi (Status: 403)
+/con (Status: 403)
+/con.txt (Status: 403)
+/con.php (Status: 403)
+/con.cgi (Status: 403)
+/de (Status: 301)
+/developer (Status: 301)
+/en (Status: 301)
+/es (Status: 301)
+/faq (Status: 301)
+/FAQ (Status: 301)
+/fr (Status: 301)
+/howto (Status: 301)
+/images (Status: 301)
+/Images (Status: 301)
+/index.html (Status: 200)
+/ja (Status: 301)
+/ko (Status: 301)
+/LICENSE (Status: 200)
+/license (Status: 200)
+/lpt1 (Status: 403)
+/lpt1.txt (Status: 403)
+/lpt1.php (Status: 403)
+/lpt1.cgi (Status: 403)
+/lpt2 (Status: 403)
+/lpt2.txt (Status: 403)
+/lpt2.php (Status: 403)
+/lpt2.cgi (Status: 403)
+/misc (Status: 301)
+/Misc (Status: 301)
+/mod (Status: 301)
+/nul (Status: 403)
+/nul.txt (Status: 403)
+/nul.php (Status: 403)
+/nul.cgi (Status: 403)
+/prn (Status: 403)
+/prn.txt (Status: 403)
+/prn.php (Status: 403)
+/prn.cgi (Status: 403)
+/programs (Status: 301)
+/ru (Status: 301)
+/ssl (Status: 301)
+/style (Status: 301)
+===============================================================
+2021/05/01 04:42:17 Finished
+===============================================================

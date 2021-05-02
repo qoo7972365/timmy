@@ -1,0 +1,265 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-01 00:13 EDT
+Nmap scan report for 192.168.23.103
+Host is up (0.23s latency).
+
+PORT      STATE SERVICE       VERSION
+80/tcp    open  http          Apache httpd 2.0.58 ((Win32))
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.23.103
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.23.103:80/manual/
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://192.168.23.103:80/manual/fr/
+|     Form id: 
+|_    Form action: http://www.google.com/search
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /config/: Potentially interesting directory w/ listing on 'apache/2.0.58 (win32)'
+|   /icons/: Potentially interesting directory w/ listing on 'apache/2.0.58 (win32)'
+|_  /manual/: Potentially interesting folder
+|_http-server-header: Apache/2.0.58 (Win32)
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-trace: TRACE is enabled
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|_      https://www.securityfocus.com/bid/49303
+| vulners: 
+|   cpe:/a:apache:http_server:2.0.58: 
+|     	SSV:69341	10.0	https://vulners.com/seebug/SSV:69341	*EXPLOIT*
+|     	SSV:19282	10.0	https://vulners.com/seebug/SSV:19282	*EXPLOIT*
+|     	SSV:19236	10.0	https://vulners.com/seebug/SSV:19236	*EXPLOIT*
+|     	PACKETSTORM:86964	10.0	https://vulners.com/packetstorm/PACKETSTORM:86964	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-RHSA-2010-0602/	10.0	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2010-0602/	*EXPLOIT*
+|     	MSF:AUXILIARY/DOS/HTTP/APACHE_MOD_ISAPI	10.0	https://vulners.com/metasploit/MSF:AUXILIARY/DOS/HTTP/APACHE_MOD_ISAPI	*EXPLOIT*
+|     	EXPLOITPACK:30ED468EC8BD5B71B2CB93825A852B80	10.0	https://vulners.com/exploitpack/EXPLOITPACK:30ED468EC8BD5B71B2CB93825A852B80	*EXPLOIT*
+|     	EDB-ID:14288	10.0	https://vulners.com/exploitdb/EDB-ID:14288	*EXPLOIT*
+|     	EDB-ID:11650	10.0	https://vulners.com/exploitdb/EDB-ID:11650	*EXPLOIT*
+|     	CVE-2010-0425	10.0	https://vulners.com/cve/CVE-2010-0425
+|     	SSV:72403	7.8	https://vulners.com/seebug/SSV:72403	*EXPLOIT*
+|     	SSV:26043	7.8	https://vulners.com/seebug/SSV:26043	*EXPLOIT*
+|     	SSV:20899	7.8	https://vulners.com/seebug/SSV:20899	*EXPLOIT*
+|     	PACKETSTORM:126851	7.8	https://vulners.com/packetstorm/PACKETSTORM:126851	*EXPLOIT*
+|     	PACKETSTORM:123527	7.8	https://vulners.com/packetstorm/PACKETSTORM:123527	*EXPLOIT*
+|     	PACKETSTORM:122962	7.8	https://vulners.com/packetstorm/PACKETSTORM:122962	*EXPLOIT*
+|     	MSF:AUXILIARY/DOS/HTTP/APACHE_RANGE_DOS	7.8	https://vulners.com/metasploit/MSF:AUXILIARY/DOS/HTTP/APACHE_RANGE_DOS	*EXPLOIT*
+|     	EXPLOITPACK:186B5FCF5C57B52642E62C06BABC6F83	7.8	https://vulners.com/exploitpack/EXPLOITPACK:186B5FCF5C57B52642E62C06BABC6F83	*EXPLOIT*
+|     	EDB-ID:18221	7.8	https://vulners.com/exploitdb/EDB-ID:18221	*EXPLOIT*
+|     	EDB-ID:17696	7.8	https://vulners.com/exploitdb/EDB-ID:17696	*EXPLOIT*
+|     	CVE-2011-3192	7.8	https://vulners.com/cve/CVE-2011-3192
+|     	1337DAY-ID-21170	7.8	https://vulners.com/zdt/1337DAY-ID-21170	*EXPLOIT*
+|     	SSV:6610	7.6	https://vulners.com/seebug/SSV:6610	*EXPLOIT*
+|     	SSV:63874	7.6	https://vulners.com/seebug/SSV:63874	*EXPLOIT*
+|     	SSV:429	7.6	https://vulners.com/seebug/SSV:429	*EXPLOIT*
+|     	SSV:16391	7.6	https://vulners.com/seebug/SSV:16391	*EXPLOIT*
+|     	SAINT:B572402CE6E5C851D7572BF044507A14	7.6	https://vulners.com/saint/SAINT:B572402CE6E5C851D7572BF044507A14	*EXPLOIT*
+|     	SAINT:386ECCECD3AA34FA1E84E6D3D2B71C7B	7.6	https://vulners.com/saint/SAINT:386ECCECD3AA34FA1E84E6D3D2B71C7B	*EXPLOIT*
+|     	SAINT:35A5AA91DCF68555669689272BFFD3E7	7.6	https://vulners.com/saint/SAINT:35A5AA91DCF68555669689272BFFD3E7	*EXPLOIT*
+|     	PACKETSTORM:83108	7.6	https://vulners.com/packetstorm/PACKETSTORM:83108	*EXPLOIT*
+|     	PACKETSTORM:62377	7.6	https://vulners.com/packetstorm/PACKETSTORM:62377	*EXPLOIT*
+|     	PACKETSTORM:56989	7.6	https://vulners.com/packetstorm/PACKETSTORM:56989	*EXPLOIT*
+|     	PACKETSTORM:55727	7.6	https://vulners.com/packetstorm/PACKETSTORM:55727	*EXPLOIT*
+|     	PACKETSTORM:49400	7.6	https://vulners.com/packetstorm/PACKETSTORM:49400	*EXPLOIT*
+|     	MSF:EXPLOIT/WINDOWS/HTTP/APACHE_MOD_REWRITE_LDAP	7.6	https://vulners.com/metasploit/MSF:EXPLOIT/WINDOWS/HTTP/APACHE_MOD_REWRITE_LDAP	*EXPLOIT*
+|     	EXPLOITPACK:8FEEBCD1B617ED74B8D2179061252A44	7.6	https://vulners.com/exploitpack/EXPLOITPACK:8FEEBCD1B617ED74B8D2179061252A44	*EXPLOIT*
+|     	EXPLOITPACK:6E3090CD46CEEE08D52992589E824D90	7.6	https://vulners.com/exploitpack/EXPLOITPACK:6E3090CD46CEEE08D52992589E824D90	*EXPLOIT*
+|     	EDB-ID:3996	7.6	https://vulners.com/exploitdb/EDB-ID:3996	*EXPLOIT*
+|     	EDB-ID:3680	7.6	https://vulners.com/exploitdb/EDB-ID:3680	*EXPLOIT*
+|     	EDB-ID:2237	7.6	https://vulners.com/exploitdb/EDB-ID:2237	*EXPLOIT*
+|     	EDB-ID:16752	7.6	https://vulners.com/exploitdb/EDB-ID:16752	*EXPLOIT*
+|     	CVE-2006-3747	7.6	https://vulners.com/cve/CVE-2006-3747
+|     	SSV:60913	7.5	https://vulners.com/seebug/SSV:60913	*EXPLOIT*
+|     	CVE-2013-2249	7.5	https://vulners.com/cve/CVE-2013-2249
+|     	SSV:11802	7.1	https://vulners.com/seebug/SSV:11802	*EXPLOIT*
+|     	SSV:11762	7.1	https://vulners.com/seebug/SSV:11762	*EXPLOIT*
+|     	CVE-2009-1891	7.1	https://vulners.com/cve/CVE-2009-1891
+|     	CVE-2009-1890	7.1	https://vulners.com/cve/CVE-2009-1890
+|     	SSV:60427	6.9	https://vulners.com/seebug/SSV:60427	*EXPLOIT*
+|     	SSV:60386	6.9	https://vulners.com/seebug/SSV:60386	*EXPLOIT*
+|     	SSV:60069	6.9	https://vulners.com/seebug/SSV:60069	*EXPLOIT*
+|     	CVE-2012-0883	6.9	https://vulners.com/cve/CVE-2012-0883
+|     	CVE-2006-4154	6.8	https://vulners.com/cve/CVE-2006-4154
+|     	MSF:AUXILIARY/DOS/HTTP/SLOWLORIS	6.4	https://vulners.com/metasploit/MSF:AUXILIARY/DOS/HTTP/SLOWLORIS	*EXPLOIT*
+|     	SSV:61874	5.0	https://vulners.com/seebug/SSV:61874	*EXPLOIT*
+|     	SSV:20993	5.0	https://vulners.com/seebug/SSV:20993	*EXPLOIT*
+|     	SSV:20979	5.0	https://vulners.com/seebug/SSV:20979	*EXPLOIT*
+|     	SSV:20969	5.0	https://vulners.com/seebug/SSV:20969	*EXPLOIT*
+|     	PACKETSTORM:105672	5.0	https://vulners.com/packetstorm/PACKETSTORM:105672	*EXPLOIT*
+|     	PACKETSTORM:105591	5.0	https://vulners.com/packetstorm/PACKETSTORM:105591	*EXPLOIT*
+|     	MSF:AUXILIARY/SCANNER/HTTP/REWRITE_PROXY_BYPASS	5.0	https://vulners.com/metasploit/MSF:AUXILIARY/SCANNER/HTTP/REWRITE_PROXY_BYPASS	*EXPLOIT*
+|     	EXPLOITPACK:460143F0ACAE117DD79BD75EDFDA154B	5.0	https://vulners.com/exploitpack/EXPLOITPACK:460143F0ACAE117DD79BD75EDFDA154B	*EXPLOIT*
+|     	EDB-ID:17969	5.0	https://vulners.com/exploitdb/EDB-ID:17969	*EXPLOIT*
+|     	CVE-2014-0098	5.0	https://vulners.com/cve/CVE-2014-0098
+|     	CVE-2013-6438	5.0	https://vulners.com/cve/CVE-2013-6438
+|     	CVE-2011-3368	5.0	https://vulners.com/cve/CVE-2011-3368
+|     	CVE-2007-6750	5.0	https://vulners.com/cve/CVE-2007-6750
+|     	SSV:30024	4.6	https://vulners.com/seebug/SSV:30024	*EXPLOIT*
+|     	EDB-ID:41768	4.6	https://vulners.com/exploitdb/EDB-ID:41768	*EXPLOIT*
+|     	CVE-2012-0031	4.6	https://vulners.com/cve/CVE-2012-0031
+|     	1337DAY-ID-27465	4.6	https://vulners.com/zdt/1337DAY-ID-27465	*EXPLOIT*
+|     	SSV:23169	4.4	https://vulners.com/seebug/SSV:23169	*EXPLOIT*
+|     	EDB-ID:41769	4.4	https://vulners.com/exploitdb/EDB-ID:41769	*EXPLOIT*
+|     	CVE-2011-3607	4.4	https://vulners.com/cve/CVE-2011-3607
+|     	1337DAY-ID-27473	4.4	https://vulners.com/zdt/1337DAY-ID-27473	*EXPLOIT*
+|     	SSV:4786	4.3	https://vulners.com/seebug/SSV:4786	*EXPLOIT*
+|     	SSV:3804	4.3	https://vulners.com/seebug/SSV:3804	*EXPLOIT*
+|     	SSV:30094	4.3	https://vulners.com/seebug/SSV:30094	*EXPLOIT*
+|     	SSV:2818	4.3	https://vulners.com/seebug/SSV:2818	*EXPLOIT*
+|     	SSV:2801	4.3	https://vulners.com/seebug/SSV:2801	*EXPLOIT*
+|     	SSV:24250	4.3	https://vulners.com/seebug/SSV:24250	*EXPLOIT*
+|     	SSV:20934	4.3	https://vulners.com/seebug/SSV:20934	*EXPLOIT*
+|     	SSV:20555	4.3	https://vulners.com/seebug/SSV:20555	*EXPLOIT*
+|     	EXPLOITPACK:FDCB3D93694E48CD5EE27CE55D6801DE	4.3	https://vulners.com/exploitpack/EXPLOITPACK:FDCB3D93694E48CD5EE27CE55D6801DE	*EXPLOIT*
+|     	EDB-ID:36663	4.3	https://vulners.com/exploitdb/EDB-ID:36663	*EXPLOIT*
+|     	EDB-ID:36352	4.3	https://vulners.com/exploitdb/EDB-ID:36352	*EXPLOIT*
+|     	EDB-ID:35738	4.3	https://vulners.com/exploitdb/EDB-ID:35738	*EXPLOIT*
+|     	EDB-ID:31759	4.3	https://vulners.com/exploitdb/EDB-ID:31759	*EXPLOIT*
+|     	EDB-ID:31052	4.3	https://vulners.com/exploitdb/EDB-ID:31052	*EXPLOIT*
+|     	EDB-ID:30835	4.3	https://vulners.com/exploitdb/EDB-ID:30835	*EXPLOIT*
+|     	EDB-ID:28365	4.3	https://vulners.com/exploitdb/EDB-ID:28365	*EXPLOIT*
+|     	CVE-2011-4317	4.3	https://vulners.com/cve/CVE-2011-4317
+|     	CVE-2011-3639	4.3	https://vulners.com/cve/CVE-2011-3639
+|     	CVE-2011-3348	4.3	https://vulners.com/cve/CVE-2011-3348
+|     	CVE-2011-0419	4.3	https://vulners.com/cve/CVE-2011-0419
+|     	CVE-2008-2939	4.3	https://vulners.com/cve/CVE-2008-2939
+|     	CVE-2008-2168	4.3	https://vulners.com/cve/CVE-2008-2168
+|     	CVE-2008-0455	4.3	https://vulners.com/cve/CVE-2008-0455
+|     	CVE-2007-6388	4.3	https://vulners.com/cve/CVE-2007-6388
+|     	CVE-2007-6203	4.3	https://vulners.com/cve/CVE-2007-6203
+|     	CVE-2007-5000	4.3	https://vulners.com/cve/CVE-2007-5000
+|     	CVE-2007-4465	4.3	https://vulners.com/cve/CVE-2007-4465
+|     	CVE-2006-4110	4.3	https://vulners.com/cve/CVE-2006-4110
+|     	CVE-2008-0456	2.6	https://vulners.com/cve/CVE-2008-0456
+|     	SSV:60250	1.2	https://vulners.com/seebug/SSV:60250	*EXPLOIT*
+|     	CVE-2011-4415	1.2	https://vulners.com/cve/CVE-2011-4415
+|     	1337DAY-ID-7972	0.0	https://vulners.com/zdt/1337DAY-ID-7972	*EXPLOIT*
+|     	1337DAY-ID-23169	0.0	https://vulners.com/zdt/1337DAY-ID-23169	*EXPLOIT*
+|_    	1337DAY-ID-12139	0.0	https://vulners.com/zdt/1337DAY-ID-12139	*EXPLOIT*
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds?
+2110/tcp  open  umsp?
+3306/tcp  open  mysql         MySQL 8.0.21
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_sslv2-drown: 
+33060/tcp open  mysqlx?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: 
+|     Invalid message"
+|_    HY000
+38080/tcp open  unknown
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.1 404 Not Found
+|   GenericLines, HTTPOptions, RTSPRequest, SIPOptions: 
+|     HTTP/1.1 400 Bad Request
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Content-Type: text/html
+|     Content-Length: 1516
+|     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+|     <html>
+|     <head>
+|     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+|     <meta name='Author' content='Flexense HTTP Server v10.0.18'>
+|     <meta name='GENERATOR' content='Flexense HTTP v10.0.18'>
+|     <title>Dup Scout Enterprise @ oscp - Online Registration</title>
+|     <link rel='stylesheet' type='text/css' href='resources/dupscout.css' media='all'>
+|     </head>
+|     <body>
+|     <div id='header'><table border=0 padding=0 cellpadding=0 cellspacing=0 width='100%'><tr>
+|     width=220 align=left>Dup Scout Enterprise v10.0.18</td>
+|     <td></td>
+|     width=220 align=right id='stime'>30-Apr-2021 21:13:31</td>
+|     </tr></table></div>
+|     <div id='content'>
+|     <form method='POST' action='online_registration'>
+|_    <table border=0 padding=0 cellpadding=0 c
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port33060-TCP:V=7.91%I=7%D=5/1%Time=608CD56C%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(GenericLines,9,"\x05\0\0\0\x0b\x
+SF:08\x05\x1a\0")%r(GetRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(HTTPOpt
+SF:ions,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(RTSPRequest,9,"\x05\0\0\0\x0b\
+SF:x08\x05\x1a\0")%r(RPCCheck,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(DNSVersi
+SF:onBindReqTCP,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(DNSStatusRequestTCP,2B
+SF:,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fIn
+SF:valid\x20message\"\x05HY000")%r(Help,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%
+SF:r(SSLSessionReq,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\
+SF:x10\x88'\x1a\x0fInvalid\x20message\"\x05HY000")%r(TerminalServerCookie,
+SF:9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(TLSSessionReq,2B,"\x05\0\0\0\x0b\x0
+SF:8\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\
+SF:x05HY000")%r(Kerberos,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(SMBProgNeg,9,
+SF:"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(X11Probe,2B,"\x05\0\0\0\x0b\x08\x05\x
+SF:1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05HY00
+SF:0")%r(FourOhFourRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(LPDString,9
+SF:,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(LDAPSearchReq,2B,"\x05\0\0\0\x0b\x08
+SF:\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x
+SF:05HY000")%r(LDAPBindReq,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(SIPOptions,
+SF:9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(LANDesk-RC,9,"\x05\0\0\0\x0b\x08\x0
+SF:5\x1a\0")%r(TerminalServer,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(NCP,9,"\
+SF:x05\0\0\0\x0b\x08\x05\x1a\0")%r(NotesRPC,2B,"\x05\0\0\0\x0b\x08\x05\x1a
+SF:\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05HY000"
+SF:)%r(JavaRMI,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(WMSRequest,9,"\x05\0\0\
+SF:0\x0b\x08\x05\x1a\0")%r(oracle-tns,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(
+SF:ms-sql-s,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(afp,2B,"\x05\0\0\0\x0b\x08
+SF:\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x
+SF:05HY000")%r(giop,9,"\x05\0\0\0\x0b\x08\x05\x1a\0");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port38080-TCP:V=7.91%I=7%D=5/1%Time=608CD56A%P=x86_64-pc-linux-gnu%r(Ge
+SF:nericLines,1C,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")%r(GetReques
+SF:t,62E,"HTTP/1\.1\x20200\x20OK\r\nContent-Type:\x20text/html\r\nContent-
+SF:Length:\x201516\r\n\r\n<!DOCTYPE\x20HTML\x20PUBLIC\x20\"-//W3C//DTD\x20
+SF:HTML\x204\.01\x20Transitional//EN\"\x20\"http://www\.w3\.org/TR/html4/l
+SF:oose\.dtd\">\r\n<html>\r\n<head>\r\n<meta\x20http-equiv='Content-Type'\
+SF:x20content='text/html;\x20charset=UTF-8'>\r\n<meta\x20name='Author'\x20
+SF:content='Flexense\x20HTTP\x20Server\x20v10\.0\.18'>\r\n<meta\x20name='G
+SF:ENERATOR'\x20content='Flexense\x20HTTP\x20v10\.0\.18'>\r\n<title>Dup\x2
+SF:0Scout\x20Enterprise\x20@\x20oscp\x20-\x20Online\x20Registration</title
+SF:>\r\n<link\x20rel='stylesheet'\x20type='text/css'\x20href='resources/du
+SF:pscout\.css'\x20media='all'>\r\n</head>\r\n<body>\r\n<div\x20id='header
+SF:'><table\x20border=0\x20padding=0\x20cellpadding=0\x20cellspacing=0\x20
+SF:width='100%'><tr>\r\n<td\x20width=220\x20align=left>Dup\x20Scout\x20Ent
+SF:erprise\x20v10\.0\.18</td>\r\n<td></td>\r\n<td\x20width=220\x20align=ri
+SF:ght\x20id='stime'>30-Apr-2021\x2021:13:31</td>\r\n</tr></table></div>\r
+SF:\n<div\x20id='content'>\r\n<form\x20method='POST'\x20action='online_reg
+SF:istration'>\r\n<table\x20border=0\x20padding=0\x20cellpadding=0\x20c")%
+SF:r(HTTPOptions,1C,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")%r(RTSPRe
+SF:quest,1C,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n\r\n")%r(FourOhFourRequ
+SF:est,1A,"HTTP/1\.1\x20404\x20Not\x20Found\r\n\r\n")%r(SIPOptions,1C,"HTT
+SF:P/1\.1\x20400\x20Bad\x20Request\r\n\r\n");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 458.87 seconds

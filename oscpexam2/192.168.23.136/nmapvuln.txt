@@ -1,0 +1,167 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-01 05:21 EDT
+Nmap scan report for 192.168.23.136
+Host is up (0.23s latency).
+
+PORT      STATE SERVICE     VERSION
+18080/tcp open  http        Node.js Express framework
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|_      https://www.securityfocus.com/bid/49303
+27017/tcp open  mongod?
+| fingerprint-strings: 
+|   FourOhFourRequest, GetRequest: 
+|     HTTP/1.0 200 OK
+|     Connection: close
+|     Content-Type: text/plain
+|     Content-Length: 85
+|     looks like you are trying to access MongoDB over HTTP on the native driver port.
+|   mongodb: 
+|     errmsg
+|     command serverStatus requires authentication
+|     code
+|     codeName
+|_    Unauthorized
+28022/tcp open  ssh         OpenSSH 8.3 (protocol 2.0)
+| vulners: 
+|   cpe:/a:openbsd:openssh:8.3: 
+|     	CVE-2020-15778	6.8	https://vulners.com/cve/CVE-2020-15778
+|     	CVE-2021-28041	4.6	https://vulners.com/cve/CVE-2021-28041
+|     	CVE-2020-14145	4.3	https://vulners.com/cve/CVE-2020-14145
+|_    	MSF:AUXILIARY/SCANNER/SSH/FORTINET_BACKDOOR/	0.0	https://vulners.com/metasploit/MSF:AUXILIARY/SCANNER/SSH/FORTINET_BACKDOOR/	*EXPLOIT*
+40873/tcp open  http        Apache httpd 2.4.46 ((Fedora))
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /admin/login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /admin/login.php: Possible admin folder
+|   /admin/home.php: Possible admin folder
+|   /css/: Potentially interesting folder w/ directory listing
+|   /database/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /js/: Potentially interesting folder w/ directory listing
+|_http-server-header: Apache/2.4.46 (Fedora)
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://192.168.23.136:40873/index.php?page=courses%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=about_us%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=milestones%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=home%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=courses%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=about_us%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=view_course%27%20OR%20sqlspider&id=1&f=courese_content_1
+|     http://192.168.23.136:40873/index.php?page=view_course&id=1%27%20OR%20sqlspider&f=courese_content_1
+|     http://192.168.23.136:40873/index.php?page=view_course&id=1&f=courese_content_1%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=milestones%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=home%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=courses%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=about_us%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=milestones%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=home%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=courses%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=about_us%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=milestones%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=home%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=courses%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=about_us%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=milestones%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=home%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=courses%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=about_us%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=view_course%27%20OR%20sqlspider&id=1&f=courese_content_1
+|     http://192.168.23.136:40873/index.php?page=view_course&id=1%27%20OR%20sqlspider&f=courese_content_1
+|     http://192.168.23.136:40873/index.php?page=view_course&id=1&f=courese_content_1%27%20OR%20sqlspider
+|     http://192.168.23.136:40873/index.php?page=milestones%27%20OR%20sqlspider
+|_    http://192.168.23.136:40873/index.php?page=home%27%20OR%20sqlspider
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-trace: TRACE is enabled
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+54445/tcp open  netbios-ssn Samba smbd 4.6.2
+| vulners: 
+|   cpe:/a:samba:samba:4.6.2: 
+|     	SSV:93139	10.0	https://vulners.com/seebug/SSV:93139	*EXPLOIT*
+|     	SAMBA_IS_KNOWN_PIPENAME	10.0	https://vulners.com/canvas/SAMBA_IS_KNOWN_PIPENAME	*EXPLOIT*
+|     	SAINT:C50A339EFD5B2F96051BC00F96014CAA	10.0	https://vulners.com/saint/SAINT:C50A339EFD5B2F96051BC00F96014CAA	*EXPLOIT*
+|     	SAINT:3579A721D51A069C725493EA48A26E42	10.0	https://vulners.com/saint/SAINT:3579A721D51A069C725493EA48A26E42	*EXPLOIT*
+|     	MSF:EXPLOIT/LINUX/SAMBA/IS_KNOWN_PIPENAME	10.0	https://vulners.com/metasploit/MSF:EXPLOIT/LINUX/SAMBA/IS_KNOWN_PIPENAME	*EXPLOIT*
+|     	EXPLOITPACK:11BDEE18B40708887778CCF837705185	10.0	https://vulners.com/exploitpack/EXPLOITPACK:11BDEE18B40708887778CCF837705185	*EXPLOIT*
+|     	CVE-2017-7494	10.0	https://vulners.com/cve/CVE-2017-7494
+|     	1337DAY-ID-27859	10.0	https://vulners.com/zdt/1337DAY-ID-27859	*EXPLOIT*
+|     	1337DAY-ID-27836	10.0	https://vulners.com/zdt/1337DAY-ID-27836	*EXPLOIT*
+|     	SAMBA:CVE-2020-1472	9.3	https://vulners.com/samba/SAMBA:CVE-2020-1472
+|     	PACKETSTORM:160127	9.3	https://vulners.com/packetstorm/PACKETSTORM:160127	*EXPLOIT*
+|     	EDB-ID:49071	9.3	https://vulners.com/exploitdb/EDB-ID:49071	*EXPLOIT*
+|     	CVE-2020-10745	7.8	https://vulners.com/cve/CVE-2020-10745
+|     	CVE-2017-14746	7.5	https://vulners.com/cve/CVE-2017-14746
+|     	CVE-2017-11103	6.8	https://vulners.com/cve/CVE-2017-11103
+|     	CVE-2018-10858	6.5	https://vulners.com/cve/CVE-2018-10858
+|     	CVE-2019-14870	6.4	https://vulners.com/cve/CVE-2019-14870
+|     	SAMBA:CVE-2017-12151	5.8	https://vulners.com/samba/SAMBA:CVE-2017-12151
+|     	SAMBA:CVE-2017-12150	5.8	https://vulners.com/samba/SAMBA:CVE-2017-12150
+|     	CVE-2017-12151	5.8	https://vulners.com/cve/CVE-2017-12151
+|     	CVE-2017-12150	5.8	https://vulners.com/cve/CVE-2017-12150
+|     	SAMBA:CVE-2019-14902	5.5	https://vulners.com/samba/SAMBA:CVE-2019-14902
+|     	MSF:ILITIES/SUSE-CVE-2020-10704/	5.0	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2020-10704/	*EXPLOIT*
+|     	CVE-2020-10704	5.0	https://vulners.com/cve/CVE-2020-10704
+|     	CVE-2017-15275	5.0	https://vulners.com/cve/CVE-2017-15275
+|     	CVE-2019-14833	4.9	https://vulners.com/cve/CVE-2019-14833
+|     	CVE-2017-12163	4.8	https://vulners.com/cve/CVE-2017-12163
+|     	SAMBA:CVE-2020-14383	4.0	https://vulners.com/samba/SAMBA:CVE-2020-14383
+|     	SAMBA:CVE-2019-19344	4.0	https://vulners.com/samba/SAMBA:CVE-2019-19344
+|     	CVE-2020-14383	4.0	https://vulners.com/cve/CVE-2020-14383
+|     	CVE-2020-14318	4.0	https://vulners.com/cve/CVE-2020-14318
+|     	CVE-2020-10760	4.0	https://vulners.com/cve/CVE-2020-10760
+|     	CVE-2020-10730	4.0	https://vulners.com/cve/CVE-2020-10730
+|     	CVE-2019-14847	4.0	https://vulners.com/cve/CVE-2019-14847
+|     	CVE-2018-16851	4.0	https://vulners.com/cve/CVE-2018-16851
+|     	CVE-2018-16841	4.0	https://vulners.com/cve/CVE-2018-16841
+|     	CVE-2018-14629	4.0	https://vulners.com/cve/CVE-2018-14629
+|     	CVE-2018-10919	4.0	https://vulners.com/cve/CVE-2018-10919
+|     	CVE-2019-14861	3.5	https://vulners.com/cve/CVE-2019-14861
+|     	PACKETSTORM:142782	0.0	https://vulners.com/packetstorm/PACKETSTORM:142782	*EXPLOIT*
+|     	PACKETSTORM:142715	0.0	https://vulners.com/packetstorm/PACKETSTORM:142715	*EXPLOIT*
+|     	PACKETSTORM:142657	0.0	https://vulners.com/packetstorm/PACKETSTORM:142657	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/X86/SHELL_FIND_TAG	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/X86/SHELL_FIND_TAG	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/X86/SHELL_BIND_TCP	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/X86/SHELL_BIND_TCP	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/PPC64/SHELL_BIND_TCP	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/PPC64/SHELL_BIND_TCP	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/PPC/SHELL_BIND_TCP	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/PPC/SHELL_BIND_TCP	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/MIPSBE/EXEC	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/MIPSBE/EXEC	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/ARMLE/SHELL_REVERSE_TCP	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/ARMLE/SHELL_REVERSE_TCP	*EXPLOIT*
+|     	MSF:PAYLOAD/LINUX/ARMLE/EXEC	0.0	https://vulners.com/metasploit/MSF:PAYLOAD/LINUX/ARMLE/EXEC	*EXPLOIT*
+|     	EDB-ID:42084	0.0	https://vulners.com/exploitdb/EDB-ID:42084	*EXPLOIT*
+|_    	EDB-ID:42060	0.0	https://vulners.com/exploitdb/EDB-ID:42060	*EXPLOIT*
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port27017-TCP:V=7.91%I=7%D=5/1%Time=608D1D9F%P=x86_64-pc-linux-gnu%r(mo
+SF:ngodb,93,"\x93\0\0\0\xd7\xe0\0\0:0\0\0\x01\0\0\0\x08\0\0\0\0\0\0\0\0\0\
+SF:0\0\0\0\0\0\x01\0\0\0o\0\0\0\x01ok\0\0\0\0\0\0\0\0\0\x02errmsg\0-\0\0\0
+SF:command\x20serverStatus\x20requires\x20authentication\0\x10code\0\r\0\0
+SF:\0\x02codeName\0\r\0\0\0Unauthorized\0\0")%r(GetRequest,A9,"HTTP/1\.0\x
+SF:20200\x20OK\r\nConnection:\x20close\r\nContent-Type:\x20text/plain\r\nC
+SF:ontent-Length:\x2085\r\n\r\nIt\x20looks\x20like\x20you\x20are\x20trying
+SF:\x20to\x20access\x20MongoDB\x20over\x20HTTP\x20on\x20the\x20native\x20d
+SF:river\x20port\.\r\n")%r(FourOhFourRequest,A9,"HTTP/1\.0\x20200\x20OK\r\
+SF:nConnection:\x20close\r\nContent-Type:\x20text/plain\r\nContent-Length:
+SF:\x2085\r\n\r\nIt\x20looks\x20like\x20you\x20are\x20trying\x20to\x20acce
+SF:ss\x20MongoDB\x20over\x20HTTP\x20on\x20the\x20native\x20driver\x20port\
+SF:.\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 138.01 seconds

