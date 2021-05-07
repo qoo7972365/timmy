@@ -1,8 +1,10 @@
-friendzone.red
-administrator1.friendzone.red
-hr.friendzone.red
-uploads.friendzone.red
-admin.friendzoneportal.red
-files.friendzoneportal.red
-imports.friendzoneportal.red
-vpn.friendzoneportal.red
+10.129.139.203 friendzone.red 11
+10.129.139.203 administrator1.friendzone.red
+使用creds可以成功登入
+10.129.139.203 hr.friendzone.red
+10.129.139.203 uploads.friendzone.red
+上傳後返回timestump
+10.129.139.203 admin.friendzoneportal.red  check for another one
+10.129.139.203 files.friendzoneportal.red
+10.129.139.203 imports.friendzoneportal.red
+10.129.139.203 vpn.friendzoneportal.red

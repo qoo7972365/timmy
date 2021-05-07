@@ -8,3 +8,5 @@ echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29i
 7.根據內核版本提權限(參考oscp2/10.11.1.116)
 8.python腳本提權,function內有input輸入$(/bin/bash),參考Jarvis
 9.BOF ovrlw參考october
+10. memcached.ini 修改容提權
+11. 腳本提權限,中斷腳本內容及source配置檔提權

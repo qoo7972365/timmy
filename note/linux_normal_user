@@ -9,3 +9,5 @@
 9.wordpress登入後台,上傳theme取得reverse shell(參考10.11.1234)
 10.phpmyadmin4.8的Remote code executin(參考Jarvis)
 11.octoberCMS漏洞
+12.vsftp backdoor漏洞,參考lacasadepapel
+13.上傳php圖片檔案,參考networked
