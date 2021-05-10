@@ -1,0 +1,10 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-08 04:00 EDT
+Nmap scan report for 10.10.181.123
+Host is up (0.29s latency).
+
+PORT    STATE SERVICE
+111/tcp open  rpcbind
+| nfs-showmount: 
+|_  /var *
+
+Nmap done: 1 IP address (1 host up) scanned in 3.08 seconds

