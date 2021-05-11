@@ -1,0 +1,38 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.232.208/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,aspx
+[+] Timeout:        10s
+===============================================================
+2021/05/11 06:59:19 Starting gobuster
+===============================================================
+/images (Status: 301)
+/media (Status: 301)
+/templates (Status: 301)
+/modules (Status: 301)
+/bin (Status: 301)
+/plugins (Status: 301)
+/includes (Status: 301)
+/language (Status: 301)
+/README.txt (Status: 200)
+/components (Status: 301)
+/cache (Status: 301)
+/libraries (Status: 301)
+/robots.txt (Status: 200)
+/tmp (Status: 301)
+/LICENSE.txt (Status: 200)
+/layouts (Status: 301)
+/administrator (Status: 301)
+/htaccess.txt (Status: 200)
+/cli (Status: 301)
+
+[!] Keyboard interrupt detected, terminating.
+===============================================================
+2021/05/11 07:41:21 Finished
+===============================================================
