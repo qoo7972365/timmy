@@ -1,0 +1,16 @@
+
+xfreerdp /u:admin /p:password /cert:ignore /v:10.10.175.32 /workarea
+
+
+Log data, item 15
+ Address=0BADF00D
+ Message=    EIP contains normal pattern : 0x33764132 (offset 638)
+
+
+!mona bytearray -b "\x00"
+
+019EFA30
+019CFA30
+!mona compare -f C:\mona\oscp\bytearray.bin -a <address>
+
+\x00\x23\x3c\x83\xba

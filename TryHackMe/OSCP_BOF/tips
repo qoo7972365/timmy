@@ -1,0 +1,4 @@
+1.找出能Crash服務的長度
+2.使用該長度的字串找出Crash的精準位置,offset
+3.置入4個B當作RETN,確認可以控制EIP地址
+4.輸入BadChars根據ESP找出BadChars
