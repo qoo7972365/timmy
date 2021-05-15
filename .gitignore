@@ -3,7 +3,7 @@ node_modules
 node
 venv
 impacket
-*MS17-010
+oscp2/ALICE/AutoBlue-MS17-010
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
