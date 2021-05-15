@@ -1,1 +1,2 @@
 nmap 10.10.15.88 -sV -sC -Pn > nmap.txt
+nmap 10.10.15.88 -p- > nmapall.txt
