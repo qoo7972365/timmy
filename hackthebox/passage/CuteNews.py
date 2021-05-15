@@ -38,7 +38,7 @@ def extract_credentials():
             if "<?php die('Direct call - access denied'); ?>" not in line:
                 credentials = b64decode(line)
                 try:
-                    sha_hash = re.search('"pass";s:64:"(.*?)"', credentials.decode()).group(1)
+                    sha_hash = re.search('"hash";s:64:"(.*?)"', credentials.decode()).group(1)
                     print (sha_hash)
                 except:
                     pass

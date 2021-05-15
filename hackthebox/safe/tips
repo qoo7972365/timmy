@@ -1,0 +1,7 @@
+nmap -sV -sC -Pn 10.129.1.173 > nmap.txt
+nmap -p- 10.129.1.173 > nmapall.txt
+
+gobuster dir  -u http://10.129.1.173   -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+gobuster dir  -u http://10.129.1.173   -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi -t 50 > gobuster.txt
+
+

