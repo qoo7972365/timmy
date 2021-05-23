@@ -335,7 +335,7 @@
 
 			$window.on('hashchange', function(event) {
 
-				// Empty hash?
+				// Empty kerberhash?
 					if (location.hash == ''
 					||	location.hash == '#') {
 

@@ -50,7 +50,7 @@ srvnet buffer info:
   - First 4 bytes contains length of SMB message
   - The possible srvnet buffer size is "..., 0x9000, 0x11000, 0x21000, ...". srvnet.sys will select the size that big enough.
 - After receiving whole SMB message or connection lost, server call SrvNetWskReceiveComplete() to handle SMB message
-- SrvNetWskReceiveComplete() check and set some value then hash SMB message to SrvNetCommonReceiveHandler()
+- SrvNetWskReceiveComplete() check and set some value then kerberhash SMB message to SrvNetCommonReceiveHandler()
 - SrvNetCommonReceiveHandler() passes SMB message to SMB handler
   - If a pointer in srvnet buffer is modified to fake struct, we can make SrvNetCommonReceiveHandler() call our shellcode
   - If SrvNetCommonReceiveHandler() call our shellcode, no SMB handler is called

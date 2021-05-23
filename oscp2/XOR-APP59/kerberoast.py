@@ -176,7 +176,7 @@ if __name__ == '__main__':
 					help='the file containing the kerberos ticket exported with mimikatz')
 	parser.add_argument('-w', '--outputfile', dest='outfile', action='store', required=True, 
 					metavar='OUTFILE.kirbi', type=argparse.FileType('wb'), 
-					help='the output file, wite hash for john the ripper to crack')
+					help='the output file, wite kerberhash for john the ripper to crack')
 	parser.add_argument('-p', '--password', dest='password', action='store', required=False, 
 					metavar='P@ss0rd1', type=str, 
 					help='the password used to decrypt/encrypt the ticket')
@@ -205,13 +205,13 @@ if __name__ == '__main__':
 
 	args = parser.parse_args()
 
-	# make sure a password or hash is provided
+	# make sure a password or kerberhash is provided
 	if args.nthash == None and args.password != None:
 		key = kerberos.ntlmhash(args.password)
 	elif args.nthash != None:
 		key = args.nthash.decode('hex')
 	else:
-		print("You must provide either the password (-p) or the hash (-n)")
+		print("You must provide either the password (-p) or the kerberhash (-n)")
 		exit(1)
 
 	# read the ticket from the file

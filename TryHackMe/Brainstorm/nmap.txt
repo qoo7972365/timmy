@@ -1,8 +1,18 @@
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-15 01:30 EDT
-Nmap scan report for 10.10.15.88
-Host is up (0.28s latency).
-Not shown: 999 filtered ports
-PORT     STATE SERVICE VERSION
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-15 03:03 EDT
+Nmap scan report for 10.10.7.161
+Host is up (0.27s latency).
+Not shown: 997 filtered ports
+PORT     STATE SERVICE            VERSION
+21/tcp   open  ftp                Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: TIMEOUT
+| ftp-syst: 
+|_  SYST: Windows_NT
+3389/tcp open  ssl/ms-wbt-server?
+| ssl-cert: Subject: commonName=brainstorm
+| Not valid before: 2021-05-14T06:44:36
+|_Not valid after:  2021-11-13T06:44:36
+|_ssl-date: 2021-05-15T07:06:39+00:00; -1s from scanner time.
 9999/tcp open  abyss?
 | fingerprint-strings: 
 |   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, RPCCheck, RTSPRequest, SSLSessionReq, TerminalServerCookie: 
@@ -12,7 +22,7 @@ PORT     STATE SERVICE VERSION
 |     Welcome to Brainstorm chat (beta)
 |_    Please enter your username (max 20 characters):
 1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port9999-TCP:V=7.91%I=7%D=5/15%Time=609F5D3B%P=x86_64-pc-linux-gnu%r(NU
+SF-Port9999-TCP:V=7.91%I=7%D=5/15%Time=609F7241%P=x86_64-pc-linux-gnu%r(NU
 SF:LL,52,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20enter
 SF:\x20your\x20username\x20\(max\x2020\x20characters\):\x20")%r(GetRequest
 SF:,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20enter\x
@@ -44,6 +54,10 @@ SF:\(max\x2020\x20characters\):\x20Write\x20a\x20message:\x20")%r(Terminal
 SF:ServerCookie,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPleas
 SF:e\x20enter\x20your\x20username\x20\(max\x2020\x20characters\):\x20Write
 SF:\x20a\x20message:\x20");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: -1s
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 387.42 seconds
+Nmap done: 1 IP address (1 host up) scanned in 218.89 seconds

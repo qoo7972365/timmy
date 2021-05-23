@@ -1,0 +1,15 @@
+svc-admin@spookysec.local
+James@spookysec.local
+robin@spookysec.local
+darkstar@spookysec.local
+administrator@spookysec.local
+backup@spookysec.local
+paradox@spookysec.local
+JAMES@spookysec.local
+Robin@spookysec.local
+Administrator@spookysec.local
+Darkstar@spookysec.local
+Paradox@spookysec.local
+DARKSTAR@spookysec.local
+ori@spookysec.local
+ROBIN@spookysec.local

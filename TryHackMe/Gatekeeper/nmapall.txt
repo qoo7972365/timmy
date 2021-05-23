@@ -1,0 +1,3 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-15 08:34 EDT
+Stats: 0:25:19 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 35.25% done; ETC: 09:46 (0:46:31 remaining)

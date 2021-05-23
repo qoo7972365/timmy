@@ -1,0 +1,55 @@
+RDP連不了改使用xfreerdp
+rdesktop -a 16 -z -u Administrator  -p 'BHN2UVw0Q' 10.10.74.171                                                                                                                                                         130 ⨯
+xfreerdp /u:Administrator /p:BHN2UVw0Q /cert:ignore /v:10.10.74.171    /workarea                                                                                                                                                    76 ⨯
+
+
+windows查詢指令行數
+Get-command  | Where-Object -Property CommandType -eq Cmdlet | Measure-Object -line
+
+windows查詢本地用戶數量
+
+Get-LocalUser | select * | select SID,Name
+windows查詢群組數量
+> Get-LocalGroup | Measure-Object
+notsointerestingcontent
+dGhpcyBpcyB0aGUgZmxhZyAtIGlob3BleW91ZGlkdGhpc29ud2luZG93cwp0aGUgcmVzdCBpcyBnYXJiYWdlCnRoZSByZXN0IGlzIGdhcmJhZ2UKdGhlIHJlc3QgaXMgZ2FyYmFnZQp0aGUgcmVzdCBpcyBnYXJiYWdlCnRoZSByZXN0IGlzIGdhcmJhZ2UKdGhlIHJlc3QgaXMgZ2FyYmFnZQp0aGUgcmVzdCBpcyBnYXJiYWdlCnRoZSByZXN0IGlzIGdhcmJhZ2UKdGhlIHJlc3QgaXMgZ2FyYmFnZQp0aGUgcmVzdCBpcyBnYXJiYWdlCnRoZSByZXN0IGlzIGdhcmJhZ2UKdGhlIHJlc3QgaXMgZ2FyYmFnZQp0aGUgcmVzdCBpcyBnYXJiYWdlCnRoZSByZXN0IGlzIGdhcmJhZ2U=
+
+windows查詢監聽的端口
+ Get-NetTCPConnection -state LISten
+
+windows查詢補釘包
+> Get-HotFix
+
+windows根據檔案名稱查找
+get-childitem  . *.bak*  -recurse
+
+
+windows根據檔案內容查找
+get-childitem  . -Recurse | Select-String -Pattern API_KEY
+
+windows查看進程
+Get-Process
+
+windows查看定時任務
+ Get-ScheduledTask
+
+  Get-ScheduledTask
+ new-sched-task
+
+  Get-ScheduledTask -TaskName new-sched-task
+
+
+  windows查看資料夾所有者
+ Get-Acl C:\
+
+
+
+ windows根據檔案內容查找
+get-childitem  . -Recurse | Select-String -Pattern password
+get-childitem  . -Recurse | Select-String -Pattern https
+
+
+windows查看本地起的port
+for($i=130; $i -le 140; $i++){
+    Test-NetConnection localhost -Port $i
+}

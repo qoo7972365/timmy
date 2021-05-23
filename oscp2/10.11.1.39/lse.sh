@@ -734,7 +734,7 @@ lse_run_tests_filesystem() {
   #looking for credentials in /etc/fstab and /etc/mtab
   lse_test "fst120" "0" \
     "Are there any credentials in fstab/mtab?" \
-    'grep $lse_grep_opts -Ei "(user|username|login|hash|password|pw|credentials)[=:]" /etc/fstab /etc/mtab'
+    'grep $lse_grep_opts -Ei "(user|username|login|kerberhash|password|pw|credentials)[=:]" /etc/fstab /etc/mtab'
 
   #check if current user has mail
   lse_test "fst130" "1" \
@@ -779,7 +779,7 @@ lse_run_tests_filesystem() {
   #are there possible credentials in any shell history files
   lse_test "fst200" "0" \
     "Are there possible credentials in any shell history file?" \
-    'for h in .bash_history .history .histfile .zhistory; do [ -f "$lse_home/$h" ] && grep $lse_grep_opts -Ei "(user|username|login|hash|password|pw|credentials)[=: ][a-z0-9]+" "$lse_home/$h"; done'
+    'for h in .bash_history .history .histfile .zhistory; do [ -f "$lse_home/$h" ] && grep $lse_grep_opts -Ei "(user|username|login|kerberhash|password|pw|credentials)[=: ][a-z0-9]+" "$lse_home/$h"; done'
 
   #files owned by user
   lse_test "fst500" "2" \
@@ -1141,7 +1141,7 @@ lse_run_tests_software() {
   #check if there are credentials stored in .mysql-history
   lse_test "sof015" "0" \
     "Are there credentials in mysql_history file?" \
-    'grep -Ei "(hash|identified by|md5\()" "$lse_home/.mysql_history"'
+    'grep -Ei "(kerberhash|identified by|md5\()" "$lse_home/.mysql_history"'
 
   #checks to see if we can connect to postgres templates without password
   lse_test "sof020" "0" \

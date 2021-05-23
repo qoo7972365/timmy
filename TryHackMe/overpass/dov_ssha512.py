@@ -41,11 +41,11 @@ if __name__ == '__main__':
     if choice is 'a':
         print(shahasher.encode(password))
     elif choice is 'b':
-        dovhash = input('Enter the hash with the {{SSHA512}} prefix:\n')
+        dovhash = input('Enter the kerberhash with the {{SSHA512}} prefix:\n')
         if shahasher.verify(password, dovhash):
             print("It's a match!")
         else:
-            print("Pass doesn't match the hash!")
+            print("Pass doesn't match the kerberhash!")
     else:
         print('You entered an incorrect option!\nExiting......')
         exit(1)

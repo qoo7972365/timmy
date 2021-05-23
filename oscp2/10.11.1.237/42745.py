@@ -36,7 +36,7 @@ parser = argparse.ArgumentParser(
          description='Check for the Optionsbleed vulnerability (CVE-2017-9798).',
          epilog="Tests server for Optionsbleed bug and other bugs in the allow header.\n\n"
          "Autmatically checks http://, https://, http://www. and https://www. -\n"
-         "except if you hash -u/--url (which means by default we check 40 times.)\n\n"
+         "except if you kerberhash -u/--url (which means by default we check 40 times.)\n\n"
          "Explanation of results:\n"
          "[bleed] corrupted header found, vulnerable\n"
          "[empty] empty allow header, does not make sense\n"
@@ -51,7 +51,7 @@ parser.add_argument('-n', nargs=1, type=int, default=[10],
 parser.add_argument("-a", "--all", action="store_true",
                     help="show headers from hosts without problems")
 parser.add_argument("-u", "--url", action='store_true',
-                    help="hash URL instead of hostname")
+                    help="kerberhash URL instead of hostname")
 args = parser.parse_args()
 howoften = int(args.n[0])
 

@@ -1,0 +1,87 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://whoisrobot.com/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,py,cgi
+[+] Timeout:        10s
+===============================================================
+2021/05/21 23:17:34 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.py (Status: 403)
+/.hta.cgi (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htaccess.py (Status: 403)
+/.htaccess.cgi (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.cgi (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+/.htpasswd.py (Status: 403)
+/0 (Status: 301)
+/admin (Status: 301)
+/atom (Status: 301)
+/audio (Status: 301)
+/blog (Status: 301)
+/css (Status: 301)
+/dashboard (Status: 302)
+/favicon.ico (Status: 200)
+/feed (Status: 301)
+/image (Status: 301)
+/Image (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+/index.php (Status: 301)
+/index.php (Status: 301)
+/intro (Status: 200)
+/js (Status: 301)
+/license (Status: 200)
+/license.txt (Status: 200)
+/login (Status: 302)
+/page1 (Status: 301)
+/phpmyadmin (Status: 403)
+/rdf (Status: 301)
+/readme (Status: 200)
+/robots (Status: 200)
+/robots.txt (Status: 200)
+/robots.txt (Status: 200)
+/rss (Status: 301)
+/rss2 (Status: 301)
+/sitemap (Status: 200)
+/sitemap.xml (Status: 200)
+/video (Status: 301)
+/wp-admin (Status: 301)
+/wp-app.php (Status: 403)
+/wp-atom.php (Status: 301)
+/wp-commentsrss2.php (Status: 301)
+/wp-config (Status: 200)
+/wp-config.php (Status: 200)
+/wp-content (Status: 301)
+/wp-cron (Status: 200)
+/wp-cron.php (Status: 200)
+/wp-feed.php (Status: 301)
+/wp-includes (Status: 301)
+/wp-links-opml (Status: 200)
+/wp-links-opml.php (Status: 200)
+/wp-load (Status: 200)
+/wp-load.php (Status: 200)
+/wp-login (Status: 200)
+/wp-login.php (Status: 200)
+/wp-register.php (Status: 301)
+/wp-rdf.php (Status: 301)
+/wp-rss.php (Status: 301)
+/wp-rss2.php (Status: 301)
+/wp-signup (Status: 302)
+/wp-signup.php (Status: 302)
+===============================================================
+2021/05/22 00:38:20 Finished
+===============================================================

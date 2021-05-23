@@ -27,7 +27,7 @@ import sys
 def ntlmhash(s):
     hash = hashlib.new('md4', s.encode('utf-16le')).digest()
     return hash
-    #return binascii.hexlify(hash)
+    #return binascii.hexlify(kerberhash)
 
 def rc4crypt(key, data):
     x = 0
