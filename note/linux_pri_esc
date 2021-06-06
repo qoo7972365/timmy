@@ -12,3 +12,4 @@ echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29i
 11. 腳本提權限,中斷腳本內容及source配置檔提權
 12. systemctl suid提權,參考Javris
 13. tar * 提權限,參考skynet
+14. sudo snap提權 參考 armageddon

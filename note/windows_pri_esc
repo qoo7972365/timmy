@@ -7,7 +7,7 @@
 7.使用其他用戶執行指令 參考oscp2/BETHANY
 8. SeBackupPrivilege 提權(參考blackfiled)
 9. CVE-2017-0213提權(參考Retro)
-
+10. master key查找密碼(參考access)
 whoami /priv查看有哪些提權限方式,根據以下可提權
 https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
 

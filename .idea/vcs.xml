@@ -6,6 +6,7 @@
     <mapping directory="$PROJECT_DIR$/TryHackMe/Daily_Bugle/joomblah-3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/Relevant/AutoBlue-MS17-010" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/overpass/ssh-backdoor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hackthebox/Access/pypyodbc" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Bastard/Chimichurri" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Bastard/Drupalgeddon2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Chatterbox/achat_reverse_tcp_exploit" vcs="Git" />

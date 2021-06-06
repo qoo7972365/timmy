@@ -36,7 +36,7 @@ Exploit Usage :
 
 parser.add_argument("-l","--url", help="Path to Bludit (Example: http://127.0.0.1/admin/login.php)") 
 parser.add_argument("-u","--userlist", help="Username Dictionary") 
-parser.add_argument("-p","--passlist", help="Password Dictionary")    
+parser.add_argument("-p","--passlist.txt", help="Password Dictionary")
 args = parser.parse_args()
 
 if len(sys.argv) < 2:

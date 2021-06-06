@@ -1,0 +1,48 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.129.1.53/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php
+[+] Timeout:        10s
+===============================================================
+2021/05/29 11:17:03 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+/index.php (Status: 301)
+/index.php (Status: 301)
+/javascript (Status: 301)
+/license.txt (Status: 200)
+
+/phpmyadmin (Status: 301)
+
+/plugins (Status: 301)
+/server-status (Status: 403)
+/wiki (Status: 301)
+/wp-admin (Status: 301)
+/wp-config.php (Status: 200)
+/wp-content (Status: 301)
+/wp-blog-header.php (Status: 200)
+/wp-cron.php (Status: 200)
+/wp-includes (Status: 301)
+/wp-load.php (Status: 200)
+/wp-login.php (Status: 200)
+/wp-mail.php (Status: 403)
+/wp-links-opml.php (Status: 200)
+/wp-trackback.php (Status: 200)
+/wp-signup.php (Status: 302)
+===============================================================
+2021/05/29 11:22:46 Finished
+===============================================================

