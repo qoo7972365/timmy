@@ -13,3 +13,5 @@
 13.上傳php圖片檔案,參考networked
 14. drupal7 參考armageddon,登入後查看site/default的DB配置密碼
 15. 上傳安卓apk包取得reverse shell 參考script kiddle
+16. php 8.1.0-dev漏洞利用,參考knife
+17. yaml parse web漏洞利用(參考ophiuchi)
