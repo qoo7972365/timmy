@@ -15,3 +15,5 @@ echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29i
 14. sudo snap提權 參考 armageddon
 15. knife題權,查看knife
 16. go語言腳本及main.wasm套件(參考ophiuchi)
+17. docker exec escape 參考(TheNotebook)
+18. Capabilities檔案提權,getcap -r / 2>/dev/null,參考cap

@@ -1,0 +1,19 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-13 02:58 EDT
+Stats: 0:02:12 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.51% done; ETC: 03:47 (0:46:38 remaining)
+Stats: 0:02:13 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.52% done; ETC: 03:47 (0:46:51 remaining)
+Stats: 0:02:13 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.53% done; ETC: 03:47 (0:46:46 remaining)
+Stats: 0:02:13 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.53% done; ETC: 03:47 (0:47:04 remaining)
+Stats: 0:02:15 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.56% done; ETC: 03:47 (0:47:05 remaining)
+Stats: 0:02:15 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.57% done; ETC: 03:47 (0:47:02 remaining)
+Stats: 0:02:16 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 4.57% done; ETC: 03:47 (0:47:20 remaining)
+Stats: 2:07:24 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 43.55% done; ETC: 07:50 (2:45:08 remaining)
+Stats: 2:07:25 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 43.55% done; ETC: 07:50 (2:45:08 remaining)

@@ -1,0 +1,6 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-13 09:05 EDT
+Warning: 10.129.161.78 giving up on port because retransmission cap hit (2).
+Nmap scan report for schooled.htb (10.129.161.78)
+Host is up (0.27s latency).
+Skipping host schooled.htb (10.129.161.78) due to host timeout
+Nmap done: 1 IP address (1 host up) scanned in 900.15 seconds

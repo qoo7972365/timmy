@@ -11,6 +11,7 @@
     <mapping directory="$PROJECT_DIR$/hackthebox/Bastard/Drupalgeddon2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Chatterbox/achat_reverse_tcp_exploit" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Ophiuchi/yaml-payload" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hackthebox/Schooled/Moodle_RCE" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Sunday/finger-user-enum" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/poison/vncpasswd.py" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oscp2/10.11.1.136(netyetdone)/Symlink-Directory-Traversal-smb-manually" vcs="Git" />
