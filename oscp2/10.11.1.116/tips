@@ -9,7 +9,7 @@ gobuster dir  -u http://10.11.1.116/ -w /usr/share/dirbuster/wordlists/directory
 4.根據內核漏洞查找到45010.c腳本
 也可以使用linux-suggester建議的第一項
 
-python -c "import pty;pty.spawn('/bin/bash')"
+python3 -c "import pty;pty.spawn('/bin/bash')"
 export TERM=xterm
 ctrl+z
 stty raw -echo && fg

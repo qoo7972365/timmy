@@ -1,0 +1,87 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://dms-pit.htb/seeddms51x/seeddms
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php
+[+] Timeout:        10s
+===============================================================
+2021/06/17 08:26:55 Starting gobuster
+===============================================================
+/.config (Status: 403)
+/.config.txt (Status: 403)
+/.htaccess (Status: 200)
+/_conf (Status: 403)
+/_conf.txt (Status: 403)
+/_config (Status: 403)
+/_config.txt (Status: 403)
+/akeeba.backend.log (Status: 403)
+/awstats.conf (Status: 403)
+/awstats.conf.txt (Status: 403)
+/conf (Status: 403)
+/conf.txt (Status: 403)
+/conference (Status: 403)
+/conference.txt (Status: 403)
+/conferences (Status: 403)
+/conferences.txt (Status: 403)
+/config (Status: 403)
+/config.txt (Status: 403)
+/configs (Status: 403)
+/configs.txt (Status: 403)
+/configuration (Status: 403)
+/config.local (Status: 403)
+/configuration.txt (Status: 403)
+/config.local.txt (Status: 403)
+/configure (Status: 403)
+/configure.txt (Status: 403)
+/confirm (Status: 403)
+/confirm.txt (Status: 403)
+/confirmed (Status: 403)
+/confirmed.txt (Status: 403)
+/controllers (Status: 301)
+/crossdomain.xml (Status: 403)
+/development.log (Status: 403)
+/dm-config (Status: 403)
+/dm-config.txt (Status: 403)
+/doc (Status: 301)
+/getconfig (Status: 403)
+/getconfig.txt (Status: 403)
+/glance_config (Status: 403)
+/glance_config.txt (Status: 403)
+/inc (Status: 301)
+/index.php (Status: 302)
+/index.php (Status: 302)
+/install-xpconf (Status: 403)
+/install-xpconf.txt (Status: 403)
+/languages (Status: 301)
+/LICENSE (Status: 200)
+/op (Status: 301)
+/out (Status: 301)
+/pconf (Status: 403)
+/pconf.txt (Status: 403)
+/pear (Status: 403)
+/pear.txt (Status: 403)
+/prodconf (Status: 403)
+/prodconf.txt (Status: 403)
+/production.log (Status: 403)
+/sitemap.xml (Status: 403)
+/spamlog.log (Status: 403)
+/styles (Status: 301)
+/TODO (Status: 200)
+/typo3conf (Status: 403)
+/typo3conf.txt (Status: 403)
+/utils (Status: 301)
+/views (Status: 301)
+/web.config (Status: 403)
+/web.config.txt (Status: 403)
+/web.xml (Status: 403)
+/wp-config (Status: 403)
+/wp-config.txt (Status: 403)
+/WS_FTP.LOG (Status: 403)
+===============================================================
+2021/06/17 08:32:28 Finished
+===============================================================
