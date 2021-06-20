@@ -21,7 +21,7 @@ if __name__ == '__main__':
                 # rem dump
                 etype = str(decoder.decode(data)[0][2][0][3][0])
                 if etype != "23":
-                    sys.stderr.write("Unsupported etype %s seen! Please report this to us.\n" % etype)
+                    sys.stderr.write("Unsupported etype %s seen! Please report.html this to us.\n" % etype)
                 et = str(decoder.decode(data)[0][2][0][3][2])
                 sys.stdout.write("$krb5tgs$%s$" % etype + et[:16].encode("hex") +
                                  "$" + et[16:].encode("hex") + "\n")
@@ -29,7 +29,7 @@ if __name__ == '__main__':
                 for ticket in data.strip().split('\n'):
                     etype = str(decoder.decode(ticket.decode('hex'))[0][4][3][0])
                     if etype != "23":
-                        sys.stderr.write("Unsupported etype %s seen! Please report this to us.\n" % etype)
+                        sys.stderr.write("Unsupported etype %s seen! Please report.html this to us.\n" % etype)
                     et = str(decoder.decode(ticket.decode('hex'))[0][4][3][2])
                     sys.stdout.write("$krb5tgs$%s$" % etype + et[:16].encode("hex") +
                                      "$" + et[16:].encode("hex") + "\n")

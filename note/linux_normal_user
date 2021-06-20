@@ -15,3 +15,6 @@
 15. 上傳安卓apk包取得reverse shell 參考script kiddle
 16. php 8.1.0-dev漏洞利用,參考knife
 17. yaml parse web漏洞利用(參考ophiuchi)
+18. no-ip dns服務API(參考dynstr)
+19. php deserialization 參考tenet
+20. moodle 參考schoold,teacher

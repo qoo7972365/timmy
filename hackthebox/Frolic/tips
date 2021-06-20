@@ -16,7 +16,7 @@ gobuster dir  -u http://10.129.156.153:9999/playsms/  -w /usr/share/dirb/wordlis
 user - admin
 password - imnothuman
 
-ssh admin@10.129.156.153
+ssh admin@10.129.106.151
 
 /admin (Status: 301)
 /backup (Status: 301)

