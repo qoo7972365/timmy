@@ -1,0 +1,3 @@
+nmap -sV -sC -Pn 10.129.164.132 > nmap.txt
+sudo mount -t cifs -o username=root //10.129.164.132/backups /mnt/smb
+guestmount --add 9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd --inspector --ro -v /mnt/vhd

@@ -1,0 +1,3 @@
+nmap -sV -sC -Pn 10.129.165.4 > nmap.txt
+
+

@@ -1,6 +1,6 @@
-Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-05 06:34 EST
-Nmap scan report for 10.129.1.182
-Host is up (0.17s latency).
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-21 07:52 EDT
+Nmap scan report for 10.129.165.4
+Host is up (0.24s latency).
 Not shown: 998 closed ports
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
@@ -10,8 +10,8 @@ PORT   STATE SERVICE VERSION
 |_  256 4c:50:d5:f2:70:c5:fd:c4:b2:f0:bc:42:20:32:64:34 (ED25519)
 80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
 |_http-server-header: Apache/2.4.18 (Ubuntu)
-|_http-title: Did not follow redirect to http://swagshop.htb/
+|_http-title: Did not follow redirect to http://10.10.10.140/
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 22.59 seconds
+Nmap done: 1 IP address (1 host up) scanned in 36.71 seconds
