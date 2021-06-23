@@ -18,3 +18,4 @@ echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29i
 17. docker exec escape 參考(TheNotebook)
 18. Capabilities檔案提權,getcap -r / 2>/dev/null,參考cap
 19. 文件復原,16進制文件xxd復原及curl提權
+20. path hijack 系統路徑變量前後順序有機可乘參考writeup

@@ -10,3 +10,4 @@
 10. samba,kerbrute,,rpcclient(參考blackfield)
 11. IKE VPN參考conceal
 12. kerberoas服務取得用戶名及密碼(參考blackfiled)
+13. nvms服務的LFI,查找到密碼(參考servMon)

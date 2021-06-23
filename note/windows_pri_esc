@@ -10,6 +10,7 @@
 10. master key查找密碼(參考access)
 whoami /priv查看有哪些提權限方式,根據以下可提權
 https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
+11. NSC client,網頁服務執行代碼(參考servMon)
 
 mimikatz用法：
 1.檢查有無權限privilege::debug

