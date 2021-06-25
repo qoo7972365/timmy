@@ -1,0 +1,15 @@
+nmap -sV -sC -Pn 192.168.189.11 > nmap.txt
+nmap -sU 192.168.189.11  > nmapuu.txxt
+nmap --script vuln -sV -p 80,139,445,3306 -Pn  192.168.189.11  > nmapvuln.txt
+
+gobuster dir  -u http://192.168.189.11/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobuster.txt
+
+
+
+1.nmap掃描到有80及samba,samba發現有寫權限,但無任何檔案
+2.gobuster發現有logs路徑下有management.log可以下載
+3.查看management.log內容有以下
+ /bin/sh -c /home/dawn/ITDEPT/product-control [0m
+ /bin/sh -c chmod 777 /home/dawn/ITDEPT/product-control [0m
+4.上傳product-control取得reverse shell
+5.SUID提權
