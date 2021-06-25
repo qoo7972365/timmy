@@ -37,3 +37,10 @@ windows/meterpreter_reverse_tcp 底線是穩定,容量小
 ###tunnel隧道windows
 .\chisel.exe client 10.10.14.45:9002 R:3306:localhost:3306 R:8888:localhost:8888
 ./chisel server --reverse --port 9002
+
+
+###nfs
+有發現nfs port的會 要showmount查看
+
+###掃出來的每個port都要仔細看,查詢是什麼用途
+###根據port直接pycharm搜紀錄
