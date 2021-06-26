@@ -1,0 +1,32 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-26 01:03 EDT
+Nmap scan report for 192.168.189.74
+Host is up (0.22s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 27:21:9e:b5:39:63:e9:1f:2c:b2:6b:d3:3a:5f:31:7b (RSA)
+|   256 bf:90:8a:a5:d7:e5:de:89:e6:1a:36:a1:93:40:18:57 (ECDSA)
+|_  256 95:1f:32:95:78:08:50:45:cd:8c:7c:71:4a:d4:6c:1c (ED25519)
+80/tcp   open  http    Apache httpd 2.4.38 ((Debian))
+|_http-generator: CMS Made Simple - Copyright (C) 2004-2020. All rights reserved.
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-title: Home - My CMS
+3306/tcp open  mysql   MySQL 8.0.19
+| mysql-info: 
+|   Protocol: 10
+|   Version: 8.0.19
+|   Thread ID: 12
+|   Capabilities flags: 65535
+|   Some Capabilities: Support41Auth, Speaks41ProtocolOld, SupportsTransactions, FoundRows, LongPassword, LongColumnFlag, DontAllowDatabaseTableColumn, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, SwitchToSSLAfterHandshake, InteractiveClient, Speaks41ProtocolNew, SupportsCompression, SupportsLoadDataLocal, ConnectWithDatabase, ODBCClient, SupportsMultipleStatments, SupportsMultipleResults, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: z6L%Xj6>w_\x07@\x06D\x19|I|N3
+|_  Auth Plugin Name: mysql_native_password
+| ssl-cert: Subject: commonName=MySQL_Server_8.0.19_Auto_Generated_Server_Certificate
+| Not valid before: 2020-03-25T09:30:14
+|_Not valid after:  2030-03-23T09:30:14
+|_ssl-date: TLS randomness does not represent time
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 45.18 seconds
