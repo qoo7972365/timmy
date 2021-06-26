@@ -1,0 +1,29 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-25 09:41 EDT
+Nmap scan report for 192.168.189.88
+Host is up (0.22s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 9c:fe:0b:8b:8d:15:e7:72:7e:3c:23:e5:86:55:51:2d (RSA)
+|   256 fe:eb:ef:5d:40:e7:06:67:9b:63:67:f8:d9:7e:d3:e2 (ECDSA)
+|_  256 35:83:68:2c:33:8b:b4:6c:24:21:20:0d:52:ed:cd:16 (ED25519)
+80/tcp   open  http    Apache httpd 2.4.38 ((Debian))
+| http-robots.txt: 1 disallowed entry 
+|_/wp-admin/
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-title: Did not follow redirect to http://sunset-midnight/
+3306/tcp open  mysql   MySQL 5.5.5-10.3.22-MariaDB-0+deb10u1
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.5-10.3.22-MariaDB-0+deb10u1
+|   Thread ID: 17
+|   Capabilities flags: 63486
+|   Some Capabilities: FoundRows, SupportsLoadDataLocal, Support41Auth, IgnoreSpaceBeforeParenthesis, SupportsTransactions, Speaks41ProtocolNew, Speaks41ProtocolOld, InteractiveClient, IgnoreSigpipes, ConnectWithDatabase, ODBCClient, DontAllowDatabaseTableColumn, LongColumnFlag, SupportsCompression, SupportsMultipleResults, SupportsAuthPlugins, SupportsMultipleStatments
+|   Status: Autocommit
+|   Salt: n8j-BCihM(~fa5&YqKd5
+|_  Auth Plugin Name: mysql_native_password
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 47.09 seconds
