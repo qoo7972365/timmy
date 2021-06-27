@@ -18,4 +18,6 @@
 18. no-ip dns服務API(參考dynstr)
 19. php deserialization 參考tenet
 20. moodle 參考schoold,teacher
-21. CMS Made Simple 參考(writeup)
+21. CMS Made Simple 腳本利用參考(writeup)
+22. CMS Made Simple 後台漏洞利用(My-CMSMS)
+23. enum4lin查找用戶名後 vsftpd 用戶名字爆破stapler

