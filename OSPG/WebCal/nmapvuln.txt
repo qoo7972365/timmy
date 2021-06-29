@@ -1,0 +1,306 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-28 11:18 EDT
+Nmap scan report for cal.local (192.168.69.37)
+Host is up (0.22s latency).
+
+PORT     STATE  SERVICE VERSION
+25/tcp   open   smtp    Postfix smtpd
+| smtp-vuln-cve2010-4344: 
+|_  The SMTP server is not Exim: NOT VULNERABLE
+| ssl-ccs-injection: 
+|   VULNERABLE:
+|   SSL/TLS MITM vulnerability (CCS Injection)
+|     State: VULNERABLE
+|     Risk factor: High
+|       OpenSSL before 0.9.8za, 1.0.0 before 1.0.0m, and 1.0.1 before 1.0.1h
+|       does not properly restrict processing of ChangeCipherSpec messages,
+|       which allows man-in-the-middle attackers to trigger use of a zero
+|       length master key in certain OpenSSL-to-OpenSSL communications, and
+|       consequently hijack sessions or obtain sensitive information, via
+|       a crafted TLS handshake, aka the "CCS Injection" vulnerability.
+|           
+|     References:
+|       http://www.cvedetails.com/cve/2014-0224
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|_      http://www.openssl.org/news/secadv_20140605.txt
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Anonymous Diffie-Hellman Key Exchange MitM Vulnerability
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use anonymous
+|       Diffie-Hellman key exchange only provide protection against passive
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|       which could completely compromise the confidentiality and integrity
+|       of any data exchanged over the resulting session.
+|     Check results:
+|       ANONYMOUS DH GROUP 1
+|             Cipher Suite: TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: postfix builtin
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|       https://www.ietf.org/rfc/rfc2246.txt
+|   
+|   Transport Layer Security (TLS) Protocol DHE_EXPORT Ciphers Downgrade MitM (Logjam)
+|     State: VULNERABLE
+|     IDs:  BID:74733  CVE:CVE-2015-4000
+|       The Transport Layer Security (TLS) protocol contains a flaw that is
+|       triggered when handling Diffie-Hellman key exchanges defined with
+|       the DHE_EXPORT cipher. This may allow a man-in-the-middle attacker
+|       to downgrade the security of a TLS session to 512-bit export-grade
+|       cryptography, which is significantly weaker, allowing the attacker
+|       to more easily break the encryption and monitor or tamper with
+|       the encrypted stream.
+|     Disclosure date: 2015-5-19
+|     Check results:
+|       EXPORT-GRADE DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: Unknown/Custom-generated
+|             Modulus Length: 512
+|             Generator Length: 8
+|             Public Key Length: 512
+|     References:
+|       https://weakdh.org
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|       https://www.securityfocus.com/bid/74733
+|   
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: postfix builtin
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+| ssl-poodle: 
+|   VULNERABLE:
+|   SSL POODLE information leak
+|     State: VULNERABLE
+|     IDs:  BID:70574  CVE:CVE-2014-3566
+|           The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other
+|           products, uses nondeterministic CBC padding, which makes it easier
+|           for man-in-the-middle attackers to obtain cleartext data via a
+|           padding-oracle attack, aka the "POODLE" issue.
+|     Disclosure date: 2014-10-14
+|     Check results:
+|       TLS_RSA_WITH_AES_128_CBC_SHA
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|       https://www.openssl.org/~bodo/ssl-poodle.pdf
+|       https://www.securityfocus.com/bid/70574
+|_      https://www.imperialviolet.org/2014/10/14/poodle.html
+|_sslv2-drown: 
+53/tcp   open   domain  ISC BIND 9.7.3
+| vulners: 
+|   cpe:/a:isc:bind:9.7.3: 
+|     	SSV:60184	8.5	https://vulners.com/seebug/SSV:60184	*EXPLOIT*
+|     	MSF:ILITIES/DNS-BIND-CVE-2012-1667/	8.5	https://vulners.com/metasploit/MSF:ILITIES/DNS-BIND-CVE-2012-1667/	*EXPLOIT*
+|     	MSF:ILITIES/APPLE-OSX-BIND-CVE-2012-1667/	8.5	https://vulners.com/metasploit/MSF:ILITIES/APPLE-OSX-BIND-CVE-2012-1667/	*EXPLOIT*
+|     	CVE-2012-1667	8.5	https://vulners.com/cve/CVE-2012-1667
+|     	SSV:60926	7.8	https://vulners.com/seebug/SSV:60926	*EXPLOIT*
+|     	SSV:60714	7.8	https://vulners.com/seebug/SSV:60714	*EXPLOIT*
+|     	SSV:60292	7.8	https://vulners.com/seebug/SSV:60292	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-ELSA-2015-2658/	7.8	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-ELSA-2015-2658/	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-ELSA-2015-2656/	7.8	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-ELSA-2015-2656/	*EXPLOIT*
+|     	CVE-2015-4620	7.8	https://vulners.com/cve/CVE-2015-4620
+|     	CVE-2014-8500	7.8	https://vulners.com/cve/CVE-2014-8500
+|     	CVE-2013-4854	7.8	https://vulners.com/cve/CVE-2013-4854
+|     	CVE-2013-2266	7.8	https://vulners.com/cve/CVE-2013-2266
+|     	CVE-2012-5166	7.8	https://vulners.com/cve/CVE-2012-5166
+|     	CVE-2012-4244	7.8	https://vulners.com/cve/CVE-2012-4244
+|     	CVE-2012-3817	7.8	https://vulners.com/cve/CVE-2012-3817
+|     	EXPLOITPACK:D6DDF5E24DE171DAAD71FD95FC1B67F2	7.2	https://vulners.com/exploitpack/EXPLOITPACK:D6DDF5E24DE171DAAD71FD95FC1B67F2	*EXPLOIT*
+|     	CVE-2017-3141	7.2	https://vulners.com/cve/CVE-2017-3141
+|     	CVE-2015-8461	7.1	https://vulners.com/cve/CVE-2015-8461
+|     	CVE-2021-25216	6.8	https://vulners.com/cve/CVE-2021-25216
+|     	CVE-2020-8625	6.8	https://vulners.com/cve/CVE-2020-8625
+|     	MSF:ILITIES/LINUXRPM-RHSA-2010-0976/	6.4	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2010-0976/	*EXPLOIT*
+|     	MSF:ILITIES/APPLE-OSX-APACHE-CVE-2010-3614/	6.4	https://vulners.com/metasploit/MSF:ILITIES/APPLE-OSX-APACHE-CVE-2010-3614/	*EXPLOIT*
+|     	CVE-2010-3614	6.4	https://vulners.com/cve/CVE-2010-3614
+|     	CVE-2015-1349	5.4	https://vulners.com/cve/CVE-2015-1349
+|     	SSV:30099	5.0	https://vulners.com/seebug/SSV:30099	*EXPLOIT*
+|     	SSV:20706	5.0	https://vulners.com/seebug/SSV:20706	*EXPLOIT*
+|     	SSV:20595	5.0	https://vulners.com/seebug/SSV:20595	*EXPLOIT*
+|     	PACKETSTORM:157836	5.0	https://vulners.com/packetstorm/PACKETSTORM:157836	*EXPLOIT*
+|     	MSF:ILITIES/VMSA-2012-0016-CVE-2012-1033/	5.0	https://vulners.com/metasploit/MSF:ILITIES/VMSA-2012-0016-CVE-2012-1033/	*EXPLOIT*
+|     	MSF:ILITIES/UBUNTU-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-ELSA-2012-0717/	5.0	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-ELSA-2012-0717/	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-ELSA-2012-0716/	5.0	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-ELSA-2012-0716/	*EXPLOIT*
+|     	MSF:ILITIES/IBM-AIX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/IBM-AIX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP1-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP1-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/HPUX-CVE-2012-1033/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HPUX-CVE-2012-1033/	*EXPLOIT*
+|     	MSF:ILITIES/GENTOO-LINUX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/GENTOO-LINUX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/GENTOO-LINUX-CVE-2012-1033/	5.0	https://vulners.com/metasploit/MSF:ILITIES/GENTOO-LINUX-CVE-2012-1033/	*EXPLOIT*
+|     	MSF:ILITIES/F5-BIG-IP-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/F5-BIG-IP-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/F5-BIG-IP-CVE-2012-1033/	5.0	https://vulners.com/metasploit/MSF:ILITIES/F5-BIG-IP-CVE-2012-1033/	*EXPLOIT*
+|     	MSF:ILITIES/DNS-BIND-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/DNS-BIND-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/DNS-BIND-CVE-2012-1033/	5.0	https://vulners.com/metasploit/MSF:ILITIES/DNS-BIND-CVE-2012-1033/	*EXPLOIT*
+|     	MSF:ILITIES/DEBIAN-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/DEBIAN-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2012-1033/	5.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2012-1033/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON_LINUX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AMAZON_LINUX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/ALPINE-LINUX-CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ALPINE-LINUX-CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/AIX-7.2.1-BIND_ADVISORY14_CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AIX-7.2.1-BIND_ADVISORY14_CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/AIX-7.2.0-BIND_ADVISORY14_CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AIX-7.2.0-BIND_ADVISORY14_CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/AIX-7.1.3-BIND_ADVISORY14_CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AIX-7.1.3-BIND_ADVISORY14_CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/AIX-6.1.9-BIND_ADVISORY14_CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AIX-6.1.9-BIND_ADVISORY14_CVE-2016-8864/	*EXPLOIT*
+|     	MSF:ILITIES/AIX-5.3.12-BIND_ADVISORY14_CVE-2016-8864/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AIX-5.3.12-BIND_ADVISORY14_CVE-2016-8864/	*EXPLOIT*
+|     	EDB-ID:48521	5.0	https://vulners.com/exploitdb/EDB-ID:48521	*EXPLOIT*
+|     	CVE-2021-25215	5.0	https://vulners.com/cve/CVE-2021-25215
+|     	CVE-2020-8617	5.0	https://vulners.com/cve/CVE-2020-8617
+|     	CVE-2020-8616	5.0	https://vulners.com/cve/CVE-2020-8616
+|     	CVE-2019-6470	5.0	https://vulners.com/cve/CVE-2019-6470
+|     	CVE-2018-5740	5.0	https://vulners.com/cve/CVE-2018-5740
+|     	CVE-2017-3145	5.0	https://vulners.com/cve/CVE-2017-3145
+|     	CVE-2016-9444	5.0	https://vulners.com/cve/CVE-2016-9444
+|     	CVE-2016-9131	5.0	https://vulners.com/cve/CVE-2016-9131
+|     	CVE-2016-8864	5.0	https://vulners.com/cve/CVE-2016-8864
+|     	CVE-2016-2848	5.0	https://vulners.com/cve/CVE-2016-2848
+|     	CVE-2016-1286	5.0	https://vulners.com/cve/CVE-2016-1286
+|     	CVE-2015-8000	5.0	https://vulners.com/cve/CVE-2015-8000
+|     	CVE-2012-1033	5.0	https://vulners.com/cve/CVE-2012-1033
+|     	CVE-2011-4313	5.0	https://vulners.com/cve/CVE-2011-4313
+|     	CVE-2011-2464	5.0	https://vulners.com/cve/CVE-2011-2464
+|     	CVE-2011-1910	5.0	https://vulners.com/cve/CVE-2011-1910
+|     	1337DAY-ID-34485	5.0	https://vulners.com/zdt/1337DAY-ID-34485	*EXPLOIT*
+|     	MSF:ILITIES/HPUX-CVE-2017-3143/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HPUX-CVE-2017-3143/	*EXPLOIT*
+|     	MSF:ILITIES/HPUX-CVE-2017-3142/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HPUX-CVE-2017-3142/	*EXPLOIT*
+|     	CVE-2017-3143	4.3	https://vulners.com/cve/CVE-2017-3143
+|     	CVE-2017-3142	4.3	https://vulners.com/cve/CVE-2017-3142
+|     	CVE-2016-2775	4.3	https://vulners.com/cve/CVE-2016-2775
+|     	CVE-2016-1285	4.3	https://vulners.com/cve/CVE-2016-1285
+|     	CVE-2020-8622	4.0	https://vulners.com/cve/CVE-2020-8622
+|     	CVE-2016-6170	4.0	https://vulners.com/cve/CVE-2016-6170
+|     	SSV:61337	2.6	https://vulners.com/seebug/SSV:61337	*EXPLOIT*
+|     	CVE-2014-0591	2.6	https://vulners.com/cve/CVE-2014-0591
+|     	PACKETSTORM:142800	0.0	https://vulners.com/packetstorm/PACKETSTORM:142800	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2021-25215/	0.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2021-25215/	*EXPLOIT*
+|     	MSF:AUXILIARY/SCANNER/HTTP/EPMP1000_WEB_LOGIN/	0.0	https://vulners.com/metasploit/MSF:AUXILIARY/SCANNER/HTTP/EPMP1000_WEB_LOGIN/	*EXPLOIT*
+|     	EDB-ID:42121	0.0	https://vulners.com/exploitdb/EDB-ID:42121	*EXPLOIT*
+|_    	1337DAY-ID-27896	0.0	https://vulners.com/zdt/1337DAY-ID-27896	*EXPLOIT*
+80/tcp   open   http    Apache httpd 2.2.20 ((Ubuntu))
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=cal.local
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://cal.local:80/
+|     Form id: 
+|     Form action: send.php
+|     
+|     Path: http://cal.local:80/send.php
+|     Form id: 
+|_    Form action: send.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-server-header: Apache/2.2.20 (Ubuntu)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| vulners: 
+|   cpe:/a:apache:http_server:2.2.20: 
+|     	SSV:60913	7.5	https://vulners.com/seebug/SSV:60913	*EXPLOIT*
+|     	CVE-2017-7679	7.5	https://vulners.com/cve/CVE-2017-7679
+|     	CVE-2017-7668	7.5	https://vulners.com/cve/CVE-2017-7668
+|     	CVE-2017-3169	7.5	https://vulners.com/cve/CVE-2017-3169
+|     	CVE-2017-3167	7.5	https://vulners.com/cve/CVE-2017-3167
+|     	CVE-2013-2249	7.5	https://vulners.com/cve/CVE-2013-2249
+|     	SSV:60427	6.9	https://vulners.com/seebug/SSV:60427	*EXPLOIT*
+|     	SSV:60386	6.9	https://vulners.com/seebug/SSV:60386	*EXPLOIT*
+|     	SSV:60069	6.9	https://vulners.com/seebug/SSV:60069	*EXPLOIT*
+|     	CVE-2012-0883	6.9	https://vulners.com/cve/CVE-2012-0883
+|     	MSF:ILITIES/LINUXRPM-RHSA-2013-1012/	6.8	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2013-1012/	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-RHSA-2013-1011/	6.8	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2013-1011/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP3-CVE-2018-1312/	6.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP3-CVE-2018-1312/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP2-CVE-2018-1312/	6.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP2-CVE-2018-1312/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP1-CVE-2018-1312/	6.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP1-CVE-2018-1312/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2017-17790/	6.8	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2017-17790/	*EXPLOIT*
+|     	MSF:ILITIES/ALPINE-LINUX-CVE-2018-1312/	6.8	https://vulners.com/metasploit/MSF:ILITIES/ALPINE-LINUX-CVE-2018-1312/	*EXPLOIT*
+|     	CVE-2018-1312	6.8	https://vulners.com/cve/CVE-2018-1312
+|     	CVE-2017-9788	6.4	https://vulners.com/cve/CVE-2017-9788
+|     	MSF:ILITIES/LINUXRPM-RHSA-2013-1208/	5.4	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2013-1208/	*EXPLOIT*
+|     	MSF:ILITIES/LINUXRPM-RHSA-2013-1207/	5.4	https://vulners.com/metasploit/MSF:ILITIES/LINUXRPM-RHSA-2013-1207/	*EXPLOIT*
+|     	SSV:60788	5.1	https://vulners.com/seebug/SSV:60788	*EXPLOIT*
+|     	CVE-2013-1862	5.1	https://vulners.com/cve/CVE-2013-1862
+|     	SSV:96537	5.0	https://vulners.com/seebug/SSV:96537	*EXPLOIT*
+|     	SSV:61874	5.0	https://vulners.com/seebug/SSV:61874	*EXPLOIT*
+|     	SSV:20993	5.0	https://vulners.com/seebug/SSV:20993	*EXPLOIT*
+|     	SSV:20979	5.0	https://vulners.com/seebug/SSV:20979	*EXPLOIT*
+|     	SSV:20969	5.0	https://vulners.com/seebug/SSV:20969	*EXPLOIT*
+|     	PACKETSTORM:105672	5.0	https://vulners.com/packetstorm/PACKETSTORM:105672	*EXPLOIT*
+|     	PACKETSTORM:105591	5.0	https://vulners.com/packetstorm/PACKETSTORM:105591	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2014-0231/	5.0	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2014-0231/	*EXPLOIT*
+|     	MSF:AUXILIARY/SCANNER/HTTP/REWRITE_PROXY_BYPASS	5.0	https://vulners.com/metasploit/MSF:AUXILIARY/SCANNER/HTTP/REWRITE_PROXY_BYPASS	*EXPLOIT*
+|     	MSF:AUXILIARY/SCANNER/HTTP/APACHE_OPTIONSBLEED	5.0	https://vulners.com/metasploit/MSF:AUXILIARY/SCANNER/HTTP/APACHE_OPTIONSBLEED	*EXPLOIT*
+|     	EXPLOITPACK:C8C256BE0BFF5FE1C0405CB0AA9C075D	5.0	https://vulners.com/exploitpack/EXPLOITPACK:C8C256BE0BFF5FE1C0405CB0AA9C075D	*EXPLOIT*
+|     	EXPLOITPACK:460143F0ACAE117DD79BD75EDFDA154B	5.0	https://vulners.com/exploitpack/EXPLOITPACK:460143F0ACAE117DD79BD75EDFDA154B	*EXPLOIT*
+|     	EDB-ID:17969	5.0	https://vulners.com/exploitdb/EDB-ID:17969	*EXPLOIT*
+|     	CVE-2017-9798	5.0	https://vulners.com/cve/CVE-2017-9798
+|     	CVE-2014-0231	5.0	https://vulners.com/cve/CVE-2014-0231
+|     	CVE-2014-0098	5.0	https://vulners.com/cve/CVE-2014-0098
+|     	CVE-2013-6438	5.0	https://vulners.com/cve/CVE-2013-6438
+|     	CVE-2012-4557	5.0	https://vulners.com/cve/CVE-2012-4557
+|     	CVE-2011-3368	5.0	https://vulners.com/cve/CVE-2011-3368
+|     	1337DAY-ID-28573	5.0	https://vulners.com/zdt/1337DAY-ID-28573	*EXPLOIT*
+|     	SSV:30024	4.6	https://vulners.com/seebug/SSV:30024	*EXPLOIT*
+|     	EDB-ID:41768	4.6	https://vulners.com/exploitdb/EDB-ID:41768	*EXPLOIT*
+|     	CVE-2012-0031	4.6	https://vulners.com/cve/CVE-2012-0031
+|     	1337DAY-ID-27465	4.6	https://vulners.com/zdt/1337DAY-ID-27465	*EXPLOIT*
+|     	SSV:23169	4.4	https://vulners.com/seebug/SSV:23169	*EXPLOIT*
+|     	MSF:ILITIES/HPSMH-CVE-2011-4415/	4.4	https://vulners.com/metasploit/MSF:ILITIES/HPSMH-CVE-2011-4415/	*EXPLOIT*
+|     	MSF:ILITIES/HPSMH-CVE-2011-3607/	4.4	https://vulners.com/metasploit/MSF:ILITIES/HPSMH-CVE-2011-3607/	*EXPLOIT*
+|     	EDB-ID:41769	4.4	https://vulners.com/exploitdb/EDB-ID:41769	*EXPLOIT*
+|     	CVE-2011-3607	4.4	https://vulners.com/cve/CVE-2011-3607
+|     	1337DAY-ID-27473	4.4	https://vulners.com/zdt/1337DAY-ID-27473	*EXPLOIT*
+|     	SSV:60905	4.3	https://vulners.com/seebug/SSV:60905	*EXPLOIT*
+|     	SSV:60657	4.3	https://vulners.com/seebug/SSV:60657	*EXPLOIT*
+|     	SSV:60653	4.3	https://vulners.com/seebug/SSV:60653	*EXPLOIT*
+|     	SSV:60345	4.3	https://vulners.com/seebug/SSV:60345	*EXPLOIT*
+|     	SSV:30056	4.3	https://vulners.com/seebug/SSV:30056	*EXPLOIT*
+|     	SSV:24250	4.3	https://vulners.com/seebug/SSV:24250	*EXPLOIT*
+|     	SSV:20934	4.3	https://vulners.com/seebug/SSV:20934	*EXPLOIT*
+|     	PACKETSTORM:109284	4.3	https://vulners.com/packetstorm/PACKETSTORM:109284	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2012-4558/	4.3	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2012-4558/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2012-3499/	4.3	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2012-3499/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2012-4558/	4.3	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2012-4558/	*EXPLOIT*
+|     	MSF:ILITIES/IBM-HTTP_SERVER-CVE-2012-3499/	4.3	https://vulners.com/metasploit/MSF:ILITIES/IBM-HTTP_SERVER-CVE-2012-3499/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP2-CVE-2016-4975/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP2-CVE-2016-4975/	*EXPLOIT*
+|     	MSF:ILITIES/HPUX-CVE-2012-4558/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HPUX-CVE-2012-4558/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2012-4558/	4.3	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2012-4558/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2012-3499/	4.3	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2012-3499/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2012-4558/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2012-4558/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2012-3499/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2012-3499/	*EXPLOIT*
+|     	EDB-ID:36352	4.3	https://vulners.com/exploitdb/EDB-ID:36352	*EXPLOIT*
+|     	EDB-ID:18442	4.3	https://vulners.com/exploitdb/EDB-ID:18442	*EXPLOIT*
+|     	CVE-2016-4975	4.3	https://vulners.com/cve/CVE-2016-4975
+|     	CVE-2013-1896	4.3	https://vulners.com/cve/CVE-2013-1896
+|     	CVE-2012-4558	4.3	https://vulners.com/cve/CVE-2012-4558
+|     	CVE-2012-3499	4.3	https://vulners.com/cve/CVE-2012-3499
+|     	CVE-2012-0053	4.3	https://vulners.com/cve/CVE-2012-0053
+|     	CVE-2011-4317	4.3	https://vulners.com/cve/CVE-2011-4317
+|     	CVE-2011-3348	4.3	https://vulners.com/cve/CVE-2011-3348
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2012-0021/	2.6	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2012-0021/	*EXPLOIT*
+|     	CVE-2012-2687	2.6	https://vulners.com/cve/CVE-2012-2687
+|     	CVE-2012-0021	2.6	https://vulners.com/cve/CVE-2012-0021
+|     	SSV:60250	1.2	https://vulners.com/seebug/SSV:60250	*EXPLOIT*
+|     	CVE-2011-4415	1.2	https://vulners.com/cve/CVE-2011-4415
+|     	EDB-ID:42745	0.0	https://vulners.com/exploitdb/EDB-ID:42745	*EXPLOIT*
+|     	1337DAY-ID-7972	0.0	https://vulners.com/zdt/1337DAY-ID-7972	*EXPLOIT*
+|     	1337DAY-ID-23169	0.0	https://vulners.com/zdt/1337DAY-ID-23169	*EXPLOIT*
+|_    	1337DAY-ID-12139	0.0	https://vulners.com/zdt/1337DAY-ID-12139	*EXPLOIT*
+8290/tcp closed unknown
+Service Info: Host:  ucal.local
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 71.49 seconds

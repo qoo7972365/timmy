@@ -51,4 +51,5 @@ PostgreSQL數據庫 psql -h 192.168.69.56 -U postsgres -p 5432
 
 ###數據庫服務嘗試弱密碼登入及暴力破解
 
+###先用common在用medium2.3
 
