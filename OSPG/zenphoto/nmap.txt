@@ -1,0 +1,26 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-01 16:06 EDT
+Nmap scan report for 192.168.55.41
+Host is up (0.22s latency).
+Not shown: 996 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 5.3p1 Debian 3ubuntu7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 83:92:ab:f2:b7:6e:27:08:7b:a9:b8:72:32:8c:cc:29 (DSA)
+|_  2048 65:77:fa:50:fd:4d:9e:f1:67:e5:cc:0c:c6:96:f2:3e (RSA)
+23/tcp   open  ipp     CUPS 1.4
+| http-methods: 
+|_  Potentially risky methods: PUT
+|_http-server-header: CUPS/1.4
+|_http-title: 403 Forbidden
+80/tcp   open  http    Apache httpd 2.2.14 ((Ubuntu))
+|_http-server-header: Apache/2.2.14 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+不允許遠端登入
+3306/tcp open  mysql   MySQL (unauthorized)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 68.76 seconds

