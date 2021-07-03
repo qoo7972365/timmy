@@ -1,0 +1,16 @@
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          192.168.236.62
++ Target Hostname:    192.168.236.62
++ Target Port:        80
++ Start Time:         2021-07-02 10:01:53 (GMT-4)
+---------------------------------------------------------------------------
++ Server: nginx/1.16.1
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ OSVDB-3092: /sitemap.xml: This gives a nice listing of the site content.
++ 7916 requests: 0 error(s) and 3 item(s) reported on remote host
++ End Time:           2021-07-02 10:33:37 (GMT-4) (1904 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested

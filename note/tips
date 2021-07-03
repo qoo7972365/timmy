@@ -54,3 +54,8 @@ PostgreSQL數據庫 psql -h 192.168.69.56 -U postsgres -p 5432
 ###先用common在用medium2.3
 
 ###任何不能的事情都嘗試其他方法
+
+###DNS Zone transfer
+nslookup
+server xxx.xxx.xxx.xxx
+127.0.0.1

