@@ -1,0 +1,6 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-04 01:46 EDT
+Nmap scan report for 192.168.199.96
+Host is up (0.21s latency).
+All 1000 scanned ports on 192.168.199.96 are open|filtered
+
+Nmap done: 1 IP address (1 host up) scanned in 216.30 seconds

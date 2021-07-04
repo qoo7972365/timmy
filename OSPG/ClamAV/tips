@@ -1,0 +1,7 @@
+nmap -sV -sC -Pn 192.168.199.42 > nmap.txt
+
+
+1.nmap掃描出又SMTP
+2.根據clamAV搜索exploit
+3.訪問31337端口取得shell
+nc 192.168.199.42 31337

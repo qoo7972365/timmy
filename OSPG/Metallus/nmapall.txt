@@ -1,0 +1,24 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-04 01:50 EDT
+Nmap scan report for 192.168.199.96
+Host is up (0.23s latency).
+Not shown: 65518 filtered ports
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+5040/tcp  open  unknown
+12000/tcp open  cce4x
+22222/tcp open  easyengine
+40443/tcp open  unknown
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+49832/tcp open  unknown
+49854/tcp open  unknown
+49943/tcp open  unknown
+49944/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 190.93 seconds

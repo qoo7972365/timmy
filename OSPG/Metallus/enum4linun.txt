@@ -1,0 +1,28 @@
+Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Sun Jul  4 01:45:36 2021
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... 192.168.199.96
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ====================================================== 
+|    Enumerating Workgroup/Domain on 192.168.199.96    |
+ ====================================================== 
+[E] Can't find workgroup/domain
+
+
+ ============================================== 
+|    Nbtstat Information for 192.168.199.96    |
+ ============================================== 
+Looking up status of 192.168.199.96
+No reply from 192.168.199.96
+
+ ======================================= 
+|    Session Check on 192.168.199.96    |
+ ======================================= 
+[E] Server doesn't allow session using username '', password ''.  Aborting remainder of tests.

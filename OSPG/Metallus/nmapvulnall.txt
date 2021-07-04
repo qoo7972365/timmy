@@ -1,0 +1,157 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-04 02:12 EDT
+Stats: 0:00:51 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 30.77% done; ETC: 02:14 (0:01:32 remaining)
+Nmap scan report for 192.168.199.96
+Host is up (0.25s latency).
+
+PORT      STATE SERVICE    VERSION
+5040/tcp  open  unknown
+22222/tcp open  ssh        OpenSSH for_Windows_8.1 (protocol 2.0)
+40443/tcp open  unknown
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 
+|     Set-Cookie: JSESSIONID_APM_40443=DC225568FB2BAF45CF6747CBBCAC2244; Path=/; HttpOnly
+|     Accept-Ranges: bytes
+|     ETag: W/"261-1591076589000"
+|     Last-Modified: Tue, 02 Jun 2020 05:43:09 GMT
+|     Content-Type: text/html
+|     Content-Length: 261
+|     Date: Sun, 04 Jul 2021 06:12:30 GMT
+|     Connection: close
+|     Server: AppManager
+|     <!-- $Id$ -->
+|     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+|     <html>
+|     <head>
+|     <!-- This comment is for Instant Gratification to work applications.do -->
+|     <script>
+|     window.open("/webclient/common/jsp/home.jsp", "_top");
+|     </script>
+|     </head>
+|     </html>
+|   HTTPOptions: 
+|     HTTP/1.1 403 
+|     Set-Cookie: JSESSIONID_APM_40443=E065CFE7A138BC95BCEC6CE9DC492800; Path=/; HttpOnly
+|     Cache-Control: private
+|     Expires: Thu, 01 Jan 1970 00:00:00 GMT
+|     Content-Type: text/html;charset=UTF-8
+|     Content-Length: 1810
+|     Date: Sun, 04 Jul 2021 06:12:30 GMT
+|     Connection: close
+|     Server: AppManager
+|     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+|     <meta http-equiv="Content-Type" content="UTF-8">
+|     <!--$Id$-->
+|     <html>
+|     <head>
+|     <title>Applications Manager</title>
+|     <link REL="SHORTCUT ICON" HREF="/favicon.ico">
+|     </head>
+|     <body style="background-color:#fff;">
+|     <style type="text/css">
+|     #container-error
+|     border:1px solid #c1c1c1;
+|     background: #fff; font:11px Arial, Helvetica, sans-serif; width:90%; margin:80px;
+|     #header-error
+|     background: #ededed; line-height:18px;
+|     padding: 15px; color:#000; font-size:8px;
+|     #header-error h1
+|     margin: 0; color:#000;
+|     font-
+|   RTSPRequest: 
+|     HTTP/1.1 505 
+|     vary: accept-encoding
+|     Content-Type: text/html;charset=utf-8
+|     Content-Language: en
+|     Content-Length: 2142
+|     Date: Sun, 04 Jul 2021 06:12:30 GMT
+|     Server: AppManager
+|     <!doctype html><html lang="en"><head><title>HTTP Status 505 
+|_    HTTP Version Not Supported</title><style type="text/css">h1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} h2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} h3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} body {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} b {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} p {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;} a {color:black;} a.name {color:black;} .line {height:1px;background-color:#
+49664/tcp open  msrpc      Microsoft Windows RPC
+49665/tcp open  msrpc      Microsoft Windows RPC
+49666/tcp open  msrpc      Microsoft Windows RPC
+49667/tcp open  msrpc      Microsoft Windows RPC
+49668/tcp open  msrpc      Microsoft Windows RPC
+49669/tcp open  msrpc      Microsoft Windows RPC
+49832/tcp open  tcpwrapped
+49854/tcp open  java-rmi   Java RMI
+| rmi-vuln-classloader: 
+|   VULNERABLE:
+|   RMI registry default configuration remote code execution vulnerability
+|     State: VULNERABLE
+|       Default configuration of RMI registry allows loading classes from remote URLs which can lead to remote code execution.
+|       
+|     References:
+|_      https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/misc/java_rmi_server.rb
+49943/tcp open  unknown
+| fingerprint-strings: 
+|   Kerberos, SMBProgNeg, X11Probe, ms-sql-s: 
+|_    CLOSE_SESSION
+49944/tcp open  unknown
+| fingerprint-strings: 
+|   Kerberos, SMBProgNeg, X11Probe, ms-sql-s: 
+|_    CLOSE_SESSION
+3 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port40443-TCP:V=7.91%I=7%D=7/4%Time=60E15150%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,246,"HTTP/1\.1\x20200\x20\r\nSet-Cookie:\x20JSESSIONID_APM_404
+SF:43=DC225568FB2BAF45CF6747CBBCAC2244;\x20Path=/;\x20HttpOnly\r\nAccept-R
+SF:anges:\x20bytes\r\nETag:\x20W/\"261-1591076589000\"\r\nLast-Modified:\x
+SF:20Tue,\x2002\x20Jun\x202020\x2005:43:09\x20GMT\r\nContent-Type:\x20text
+SF:/html\r\nContent-Length:\x20261\r\nDate:\x20Sun,\x2004\x20Jul\x202021\x
+SF:2006:12:30\x20GMT\r\nConnection:\x20close\r\nServer:\x20AppManager\r\n\
+SF:r\n<!--\x20\$Id\$\x20-->\n<!DOCTYPE\x20HTML\x20PUBLIC\x20\"-//W3C//DTD\
+SF:x20HTML\x204\.01\x20Transitional//EN\">\n<html>\n<head>\n<!--\x20This\x
+SF:20comment\x20is\x20for\x20Instant\x20Gratification\x20to\x20work\x20app
+SF:lications\.do\x20-->\n<script>\n\n\twindow\.open\(\"/webclient/common/j
+SF:sp/home\.jsp\",\x20\"_top\"\);\n\n</script>\n\n</head>\n</html>\n")%r(H
+SF:TTPOptions,841,"HTTP/1\.1\x20403\x20\r\nSet-Cookie:\x20JSESSIONID_APM_4
+SF:0443=E065CFE7A138BC95BCEC6CE9DC492800;\x20Path=/;\x20HttpOnly\r\nCache-
+SF:Control:\x20private\r\nExpires:\x20Thu,\x2001\x20Jan\x201970\x2000:00:0
+SF:0\x20GMT\r\nContent-Type:\x20text/html;charset=UTF-8\r\nContent-Length:
+SF:\x201810\r\nDate:\x20Sun,\x2004\x20Jul\x202021\x2006:12:30\x20GMT\r\nCo
+SF:nnection:\x20close\r\nServer:\x20AppManager\r\n\r\n<meta\x20http-equiv=
+SF:\"X-UA-Compatible\"\x20content=\"IE=edge\">\n<meta\x20http-equiv=\"Cont
+SF:ent-Type\"\x20content=\"UTF-8\">\n<!--\$Id\$-->\n\n\n\n\n\n\n\n\n\n<htm
+SF:l>\n<head>\n<title>Applications\x20Manager</title>\n\n<link\x20REL=\"SH
+SF:ORTCUT\x20ICON\"\x20HREF=\"/favicon\.ico\">\n\n</head>\n\n<body\x20styl
+SF:e=\"background-color:#fff;\">\n\n<style\x20type=\"text/css\">\n\t#conta
+SF:iner-error\n\t{\n\t\tborder:1px\x20solid\x20#c1c1c1;\n\t\tbackground:\x
+SF:20#fff;\x20font:11px\x20Arial,\x20Helvetica,\x20sans-serif;\x20width:90
+SF:%;\x20margin:80px;\n\t\x20\t\n\t}\n\n\t#header-error\n\t{\n\t\tbackgrou
+SF:nd:\x20#ededed;\x20line-height:18px;\n\t\tpadding:\x2015px;\x20color:#0
+SF:00;\x20font-size:8px;\n\t}\n\n\t#header-error\x20h1\n\t{\n\t\tmargin:\x
+SF:200;\x20\x20color:#000;\n\t\tfont-")%r(RTSPRequest,912,"HTTP/1\.1\x2050
+SF:5\x20\r\nvary:\x20accept-encoding\r\nContent-Type:\x20text/html;charset
+SF:=utf-8\r\nContent-Language:\x20en\r\nContent-Length:\x202142\r\nDate:\x
+SF:20Sun,\x2004\x20Jul\x202021\x2006:12:30\x20GMT\r\nServer:\x20AppManager
+SF:\r\n\r\n<!doctype\x20html><html\x20lang=\"en\"><head><title>HTTP\x20Sta
+SF:tus\x20505\x20\xe2\x80\x93\x20HTTP\x20Version\x20Not\x20Supported</titl
+SF:e><style\x20type=\"text/css\">h1\x20{font-family:Tahoma,Arial,sans-seri
+SF:f;color:white;background-color:#525D76;font-size:22px;}\x20h2\x20{font-
+SF:family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;fon
+SF:t-size:16px;}\x20h3\x20{font-family:Tahoma,Arial,sans-serif;color:white
+SF:;background-color:#525D76;font-size:14px;}\x20body\x20{font-family:Taho
+SF:ma,Arial,sans-serif;color:black;background-color:white;}\x20b\x20{font-
+SF:family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;}\x
+SF:20p\x20{font-family:Tahoma,Arial,sans-serif;background:white;color:blac
+SF:k;font-size:12px;}\x20a\x20{color:black;}\x20a\.name\x20{color:black;}\
+SF:x20\.line\x20{height:1px;background-color:#");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port49943-TCP:V=7.91%I=7%D=7/4%Time=60E1517E%P=x86_64-pc-linux-gnu%r(Ke
+SF:rberos,1A,"\0\0\0\x16\0\rCLOSE_SESSION\0\x010\0\0\0\0")%r(SMBProgNeg,1A
+SF:,"\0\0\0\x16\0\rCLOSE_SESSION\0\x010\0\0\0\0")%r(X11Probe,1A,"\0\0\0\x1
+SF:6\0\rCLOSE_SESSION\0\x010\0\0\0\0")%r(ms-sql-s,1A,"\0\0\0\x16\0\rCLOSE_
+SF:SESSION\0\x010\0\0\0\0");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port49944-TCP:V=7.91%I=7%D=7/4%Time=60E1517E%P=x86_64-pc-linux-gnu%r(Ke
+SF:rberos,1A,"\0\0\0\x16\0\rCLOSE_SESSION\0\x010\0\0\0\0")%r(SMBProgNeg,1A
+SF:,"\0\0\0\x16\0\rCLOSE_SESSION\0\x010\0\0\0\0")%r(X11Probe,1A,"\0\0\0\x1
+SF:6\0\rCLOSE_SESSION\0\x010\0\0\0\0")%r(ms-sql-s,1A,"\0\0\0\x16\0\rCLOSE_
+SF:SESSION\0\x010\0\0\0\0");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 207.39 seconds

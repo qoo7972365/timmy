@@ -1,0 +1,10 @@
+nmap -sV -sC -Pn 192.168.199.96 > nmap.txt
+nmap -p- -T5 192.168.199.96 -Pn > nmapall.txt
+
+nmap --script vuln -sV -Pn -p 135,139,445,12000  192.168.199.96  > nmapvuln.txt
+enum4linux 192.168.199.96 > enum4linun.txt
+nmap -sU 192.168.199.96 > nmapuu.txxt
+
+
+
+nmap --script vuln -sV -Pn -p 5040,22222,40443,49664,49665,49666,49667,49668,49669,49832,49854,49943,49944   192.168.199.96  > nmapvulnall.txt
