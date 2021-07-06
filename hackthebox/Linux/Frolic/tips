@@ -1,0 +1,42 @@
+nmap 10.129.156.153 -sV -sC -Pn > nmap.txt
+nmap 10.129.156.153 -p- > nmapall.txt
+
+
+gobuster dir  -u http://10.129.156.153:9999  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster.txt
+gobuster dir  -u http://10.129.156.153:9999/admin  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusteradmin.txt
+gobuster dir  -u http://10.129.156.153:9999/backup  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterbackup.txt
+gobuster dir  -u http://10.129.156.153:9999/dev  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterdev.txt
+gobuster dir  -u http://10.129.156.153:9999/dev/backup  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterdevbackup.txt
+gobuster dir  -u http://10.129.156.153:9999/test   -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobustertest.txt
+gobuster dir  -u http://10.129.156.153:9999/loop  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterloop.txt
+gobuster dir  -u http://10.129.156.153:1880/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobuster1880.txt
+gobuster dir  -u http://10.129.156.153:9999/playsms/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterplaysms.txt
+
+
+user - admin
+password - imnothuman
+
+ssh admin@10.129.106.151
+
+/admin (Status: 301)
+/backup (Status: 301)
+/dev (Status: 301)
+/test (Status: 301)
+
+
+
+1.nmap掃描出admin頁面後,查看到js內含帳號密碼
+2.登入後跳轉到success頁面發現發現,拿上網搜可以解密出路徑
+3.訪問路徑得到一串hash,並將hash中的空格去除
+4.將hash 做base64解密後存成hash64d,發現是zip檔案
+5.zip檔案有密碼,將檔案轉成john hash來破解
+zip2john hash64d > zippasshash
+6.使用hastcat破解密碼是password,要將hash前後多餘的字符去除
+hashcat -m 17200 zippasshash /usr/share/wordlists/rockyou.txt
+7.解壓zip檔案後取得index.php也是一串hash
+8.將index.php xxd 轉成base64,去除換行
+cat index.php| xxd  -r -p > index.php.base64
+9. base64 解密碼,拿上網brainfuck to text ,取得密碼idkwhatispass
+cat index.php.base64|base64 -d
+10.發現可以上傳CSV檔案,修改檔案內容php code可以被執行
+11.

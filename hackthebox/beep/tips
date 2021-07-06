@@ -1,7 +1,0 @@
-nmap -sTVC 10.129.95.229 -Pn > nmap.txt
-
-gobuster dir -k -u https://10.129.95.229 -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
-
-svwar -m invite -e200-300 10.129.95.229
-
-

@@ -1,0 +1,40 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.129.142.13/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     cgi,txt,php,py
+[+] Timeout:        10s
+===============================================================
+2021/05/06 08:45:06 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.cgi (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.hta.py (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htaccess.php (Status: 403)
+/.htaccess.py (Status: 403)
+/.htaccess.cgi (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.php (Status: 403)
+/.htpasswd.py (Status: 403)
+/.htpasswd.cgi (Status: 403)
+/.htpasswd.txt (Status: 403)
+/backup (Status: 301)
+/cgi-bin/ (Status: 403)
+/index.php (Status: 200)
+/index.php (Status: 200)
+/lib.php (Status: 200)
+/photos.php (Status: 200)
+/upload.php (Status: 200)
+/uploads (Status: 301)
+===============================================================
+2021/05/06 08:54:37 Finished
+===============================================================

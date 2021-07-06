@@ -1,0 +1,14 @@
+if grep  "AlwaysInstallElevated" *.txt; then  echo "有AlwaysInstallElevated服務,參考HTB LOVE" ;fi
+if grep  "ZKAccess" *.txt; then  echo "有ZKAccess服務,參考HTB Access" ;fi
+if grep  ".wasm" *.txt; then  echo "有.wasm檔案,參考HTB ophiuchi" ;fi
+if grep  "Docker" *.txt; then  echo "有Docker,參考HTB TheNotebook" ;fi
+if grep  "fpm" *.txt; then  echo "有fpm,參考HTB silo" ;fi
+if grep  "nsclient" *.txt; then  echo "nsclient,參考HTB ServMon" ;fi
+if grep  "pkg" *.txt; then  echo "pkg,參考HTB Schooled" ;fi
+if grep  "/dev/sdb" *.txt; then  echo "/dev/sdb,參考HTB Mirai" ;fi
+if grep  "docker-security" *.txt; then  echo "docker-security,參考HTB Laboratory" ;fi
+if grep  "knife" *.txt; then  echo "knife,參考HTB knife" ;fi
+if grep  "systemctl" *.txt; then  echo "systemctl,參考HTB Jarvis" ;fi
+if grep  "UsoSvc" *.txt; then  echo "UsoSvc,參考HTB remote" ;fi
+if grep  "cp" *.txt; then  echo "cp,參考HTB dynstr" ;fi
+if grep  "cloudMe" *.txt; then  echo "cloudMe,參考HTB buff" ;fi

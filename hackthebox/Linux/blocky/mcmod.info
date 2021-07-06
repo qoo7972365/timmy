@@ -1,0 +1,15 @@
+[
+    {
+        "modid": "griefprevention",
+        "name": "GriefPrevention",
+        "version": "3.1.1",
+        "description": "This plugin is designed to prevent all forms of grief.",
+        "url": "https://github.com/MinecraftPortCentral/GriefPrevention",
+        "dependencies": [
+            "spongeapi@6.0.0-SNAPSHOT-6ff094e"
+        ],
+        "requiredMods": [
+            "spongeapi@6.0.0-SNAPSHOT-6ff094e"
+        ]
+    }
+]

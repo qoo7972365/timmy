@@ -1,0 +1,16 @@
+nmap 10.129.1.108 -sC -sV -Pn > nmap.txt
+nmap 10.129.1.108 -p- > nmapall.txt
+nmap -sC -sV -Pn 10.129.1.108 -p 8067 > nmap8067.txt
+nc 10.129.1.108 8067
+
+1.nmap 發現8067端口是irc服務
+2.上網搜索漏洞發現exploit.py
+https://null-byte.wonderhowto.com/how-to/hack-unrealircd-using-python-socket-programming-0198050/
+3.取得reverse shell後,在家目力發現.backup檔案,藏有密碼
+4.將首頁圖片下載下來使用steghide取出密碼Kab6h+m+bbp2J:HG
+steghide info HackerAccessGranted.jpg
+steghide  --extract -sf HackerAccessGranted.jpg
+5.使用ssh登入用戶,Kab6h+m+bbp2J:HG
+6.ltrace viewuser
+7.創建/tmp/listuser取得root
+

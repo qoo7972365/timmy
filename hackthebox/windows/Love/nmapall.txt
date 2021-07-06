@@ -1,0 +1,10 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-05 23:59 EDT
+Warning: 10.129.157.58 giving up on port because retransmission cap hit (10).
+Stats: 1:34:49 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 55.21% done; ETC: 02:51 (1:16:56 remaining)
+Stats: 1:34:50 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 55.21% done; ETC: 02:51 (1:16:55 remaining)
+Stats: 1:34:50 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 55.22% done; ETC: 02:51 (1:16:55 remaining)
+Stats: 1:34:51 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 55.22% done; ETC: 02:51 (1:16:55 remaining)

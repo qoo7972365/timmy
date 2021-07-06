@@ -1,8 +1,0 @@
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-04-27 10:49 EDT
-Nmap scan report for 10.129.137.170
-Host is up (0.29s latency).
-Not shown: 999 open|filtered ports
-PORT    STATE SERVICE
-500/udp open  isakmp
-
-Nmap done: 1 IP address (1 host up) scanned in 155.67 seconds

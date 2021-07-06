@@ -23,5 +23,10 @@ mimikatz用法：
 4.sekurlsa::tickets
 5.lsadump::sam
 
+15. CEH.kdbx  檔案破解密碼提權 Jeeves
+16. metasploit search suggest use post/multi/recon/local_exploit_suggester
+17. firefox.exe_201130_180656.dmp 提權密碼 heist
+
+
 ###windows 提權限參考
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md

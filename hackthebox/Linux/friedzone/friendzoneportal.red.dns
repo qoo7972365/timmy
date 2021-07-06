@@ -1,0 +1,18 @@
+
+; <<>> DiG 9.16.11-Debian <<>> axfr @10.129.139.38 friendzoneportal.red
+; (1 server found)
+;; global options: +cmd
+friendzoneportal.red.	604800	IN	SOA	localhost. root.localhost. 2 604800 86400 2419200 604800
+friendzoneportal.red.	604800	IN	AAAA	::1
+friendzoneportal.red.	604800	IN	NS	localhost.
+friendzoneportal.red.	604800	IN	A	127.0.0.1
+admin.friendzoneportal.red. 604800 IN	A	127.0.0.1
+files.friendzoneportal.red. 604800 IN	A	127.0.0.1
+imports.friendzoneportal.red. 604800 IN	A	127.0.0.1
+vpn.friendzoneportal.red. 604800 IN	A	127.0.0.1
+friendzoneportal.red.	604800	IN	SOA	localhost. root.localhost. 2 604800 86400 2419200 604800
+;; Query time: 192 msec
+;; SERVER: 10.129.139.38#53(10.129.139.38)
+;; WHEN: Fri Apr 30 11:37:32 EDT 2021
+;; XFR size: 9 records (messages 1, bytes 309)
+

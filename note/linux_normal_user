@@ -6,7 +6,7 @@
 6.LFI的php reverse shell,參考oscp2/10.11.1.35
 7.Samba 2.2.7a版本可直接perl腳本取得revershe shell(參考10.11.1.115)
 8.linux phpliteadmin取得一般用戶(參考oscp2的10.11.1.116或是nineveh)
-9.wordpress登入後台,上傳theme取得reverse shell(參考10.11.1234)
+9.wordpress登入後台,上傳theme取得reverse shell(參考10.11.1.234,spectra)
 10.phpmyadmin4.8的Remote code executin(參考Jarvis)
 11.octoberCMS漏洞
 12.vsftp backdoor漏洞,參考lacasadepapel
@@ -22,3 +22,8 @@
 22. CMS Made Simple 後台漏洞利用(My-CMSMS)
 23. enum4lin查找用戶名後 vsftpd 用戶名字爆破stapler
 24. rsync 參考fail
+25. 電話服務參考beep
+26. jpg檔案上傳 networked
+27. php反序列化漏洞 參考Tenet
+28. SQLI cod=4 參考Jarvis
+29. jar檔案反編譯jd-gui

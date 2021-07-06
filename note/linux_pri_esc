@@ -11,7 +11,7 @@ echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29i
 10. memcached.ini 修改容提權
 11. 腳本提權限,中斷腳本內容及source配置檔提權
 12. systemctl suid提權,參考Javris
-13. tar * 提權限,參考skynet
+13. tar提權限,參考skynet,tartarsauce
 14. sudo snap提權 參考 armageddon
 15. knife題權,查看knife
 16. go語言腳本及main.wasm套件(參考ophiuchi)
@@ -22,3 +22,9 @@ echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29i
 21. [CVE-2016-4557] double-fdput() 漏洞利用Linux 4.4.0-21-generic 32bit
 22. mysql 5.x 已root用戶啟動可提權 參考banzai
 23. faul2ban 參考fail
+24. 容器及tac提權 參考HackTheBox waldo
+25. enc檔案解密題全 Luanne
+26. ifup 配置檔案提權
+27. passwd軟連到/etc/passwd 參考Teacher
+28. 4.4.0-116-generic #140-Ubuntu 內核漏洞 help
+29. python腳本提權import os,參考fridzone

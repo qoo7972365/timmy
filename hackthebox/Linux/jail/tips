@@ -1,0 +1,9 @@
+nmap -sV -sC -Pn 10.129.112.47 > nmap.txt
+
+gobuster dir  -u http://10.129.112.47 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  -x txt,php -t50 > gobuster.txt
+sudo mount -t nfs 10.129.112.47:/opt  /mnt/smb
+sudo  mount -t nfs -o vers=3 10.129.112.47:/var/nfsshare /mnt/smb
+ls -ld smb
+admin 1974jailbreak!
+
+

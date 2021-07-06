@@ -1,0 +1,6 @@
+nmap -Sv -sC -Pn $1 > nmap.txt
+nmap -p- -Pn -T5 > nmapall.txt
+nmap -sU  > nmapuu.txt
+nikto -h http://10.11.1.128:4167 > nikto.txt
+enum4linux 192.168.199.96 > enum4linun.txt
+snmpwalk -c public -v2c 192.168.75.37

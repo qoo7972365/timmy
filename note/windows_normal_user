@@ -13,3 +13,7 @@
 13. nvms服務的LFI,查找到密碼(參考servMon)
 14. telnet端口直接利用(Access)
 15. reverse shell 特殊字符避免,參考jacko
+16. cpassword解密碼參考 Active
+17. CFIDE ColdFusion 參考Artic
+18. windows裡面有redis服務,查找redis服務密碼提權
+19. lsass.DMP 解密

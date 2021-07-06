@@ -1,2 +1,0 @@
-nmap -sC -sV -Pn 10.129.66.165 > nmap.txt
-gobuster dir  -u http://10.129.66.165/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,cgi > gobuster.txt

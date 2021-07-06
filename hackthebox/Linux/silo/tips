@@ -1,0 +1,19 @@
+nmap -sVC  10.129.1.168 -Pn > nmap.txt
+
+
+nmap --script vuln -sV -p 135,139,445,1521,49152,49153,49154,49155,49159,49160,49161 -Pn 10.129.1.168   > nmapvuln.txt
+
+
+gobuster dir  -u http://10.129.1.168/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php,py,cgi > gobuster.txt
+
+
+https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
+https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm
+
+
+apt-get install ruby ruby-dev rubygems build-essential
+sudo gem install --no-document fpm
+fpm -s rpm -t deb zenmap-7.91-1.noarch.rpm
+
+sudo dpkg -i *.deb
+
