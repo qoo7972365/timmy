@@ -29,7 +29,12 @@ mimikatz用法：
 18. rds提權zenphoto
 19. firefox_creds密碼紀錄檔案提權,參考Gatekeeper
 20. powerup.ps1查看suggest的服務,可以restart的服務利用steel_moutain
-
+21. accesschk.exe檔案 參考10.11.1.14
+22. 添加管理權用戶及啟動遠程
+net user timmy timmy /add
+net  localgroup "Remote Desktop Users" "timmy" /add
+net  localgroup "Administrators" "timmy" /add
+23. 內核漏洞windows7 MS11-046
 
 ###windows 提權限參考
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md

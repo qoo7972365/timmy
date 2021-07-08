@@ -24,3 +24,4 @@ if grep  "Message.exe" *.txt; then  echo "Message.exe,參考TryHackMe HackPark" 
 if grep  "menu" *.txt; then  echo "menu,參考TryHackMe Kenobi" ;fi
 if grep  "/home/james/.suid_bash" *.txt; then  echo "/home/james/.suid_bash,參考TryHackMe overpass" ;fi
 if grep  "CVE-2017-0213" *.txt; then  echo "CVE-2017-0213,參考TryHackMe Retro_CTF" ;fi
+if grep  "MS11-046" *.txt; then  echo "MS11-046,參考oscp2 10.11.1.73" ;fi

@@ -1,1 +1,0 @@
-nmap -sV -sC -Pn 10.11.1.221 > nmap.txt

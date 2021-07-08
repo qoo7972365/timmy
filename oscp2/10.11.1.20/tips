@@ -1,3 +1,0 @@
-nmap -sC -sV -Pn 10.11.1.20 > nmap.txt
-
-dig axfr @10.11.1.20 svcorp.com
