@@ -4,6 +4,8 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CTF/crypt/RsaCtfTool" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/Daily_Bugle/joomblah-3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TryHackMe/Linux/Daily_Bugle/joomblah-3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TryHackMe/Linux/overpass/ssh-backdoor" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/Relevant/AutoBlue-MS17-010" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/overpass/ssh-backdoor" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hackthebox/Access/pypyodbc" vcs="Git" />

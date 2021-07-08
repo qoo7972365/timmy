@@ -26,6 +26,9 @@ mimikatz用法：
 15. CEH.kdbx  檔案破解密碼提權 Jeeves
 16. metasploit search suggest use post/multi/recon/local_exploit_suggester
 17. firefox.exe_201130_180656.dmp 提權密碼 heist
+18. rds提權zenphoto
+19. firefox_creds密碼紀錄檔案提權,參考Gatekeeper
+20. powerup.ps1查看suggest的服務,可以restart的服務利用steel_moutain
 
 
 ###windows 提權限參考

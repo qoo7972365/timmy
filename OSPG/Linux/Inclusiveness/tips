@@ -6,8 +6,8 @@ gobuster dir  -u http://192.168.189.14/secret_information/ -w /usr/share/dirbust
 
 
 
-└─$ wfuzz  -z file,user-agent.txt -H "Host: 192.168.189.14" -H "User-Agent: FUZZ" http://192.168.189.14/robots.txt
-└─$ wfuzz -p 127.0.0.1:8081:http --hh 59 -z file,user-agent.txt -H "Host: 192.168.189.14" -H "User-Agent: FUZZ" http://192.168.189.14/robots.txt
+wfuzz  -z file,user-agent.txt -H "Host: 192.168.189.14" -H "User-Agent: FUZZ" http://192.168.189.14/robots.txt
+wfuzz -p 127.0.0.1:8081:http --hh 59 -z file,user-agent.txt -H "Host: 192.168.189.14" -H "User-Agent: FUZZ" http://192.168.189.14/robots.txt
 
 
 
@@ -18,7 +18,7 @@ User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
 
 1.nmap掃描到80端口,gobuster掃描發現robots.txt
 2.需要更改user-agent才可訪問,須改成搜索引勤的user-agent
-3.查襖到sercret_information頁面有LFI
+3.查找到sercret_information頁面有LFI
 4.在/etc/vsftpd.conf找到ftp的路徑
 anon_root=/var/ftp/
 5.上傳webshell後訪問/var/ftp/pub/webshell.php

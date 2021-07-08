@@ -8,3 +8,6 @@ nmap -sU 192.168.199.96 > nmapuu.txxt
 
 
 nmap --script vuln -sV -Pn -p 5040,22222,40443,49664,49665,49666,49667,49668,49669,49832,49854,49943,49944   192.168.199.96  > nmapvulnall.txt
+
+1.nmap找到40443端口發現是Applications Manager服務
+2.根據服務找到漏洞腳本取得reverse shell

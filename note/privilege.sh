@@ -12,3 +12,15 @@ if grep  "systemctl" *.txt; then  echo "systemctl,參考HTB Jarvis" ;fi
 if grep  "UsoSvc" *.txt; then  echo "UsoSvc,參考HTB remote" ;fi
 if grep  "cp" *.txt; then  echo "cp,參考HTB dynstr" ;fi
 if grep  "cloudMe" *.txt; then  echo "cloudMe,參考HTB buff" ;fi
+if grep  "5.7.30 MySQL" *.txt; then  echo "5.7.30 MySQL,參考HTB Banzai" ;fi
+if grep  "PaperStream" *.txt; then  echo "PaperStream IP,參考HTB fail" ;fi
+if grep  "gcore" *.txt; then  echo "gcore,參考HTB Pelican" ;fi
+if grep  "double-fdput()" *.txt; then  echo "double-fdput(),參考HTB stapler" ;fi
+if grep  "impersonate_token" *.txt; then  echo "impersonate_token,參考TryHackMe Alfred" ;fi
+if grep  "anansi_util" *.txt; then  echo "anansi_util,參考TryHackMe Brainpan" ;fi
+if grep  "yum" *.txt; then  echo "yum,參考TryHackMe Daily_Bugle" ;fi
+if grep  "firefox" *.txt; then  echo "firefox,參考TryHackMe Gatekeeper" ;fi
+if grep  "Message.exe" *.txt; then  echo "Message.exe,參考TryHackMe HackPark" ;fi
+if grep  "menu" *.txt; then  echo "menu,參考TryHackMe Kenobi" ;fi
+if grep  "/home/james/.suid_bash" *.txt; then  echo "/home/james/.suid_bash,參考TryHackMe overpass" ;fi
+if grep  "CVE-2017-0213" *.txt; then  echo "CVE-2017-0213,參考TryHackMe Retro_CTF" ;fi
