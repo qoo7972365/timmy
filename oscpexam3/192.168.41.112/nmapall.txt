@@ -1,0 +1,13 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-10 01:21 EDT
+Nmap scan report for 192.168.41.112
+Host is up (0.23s latency).
+Not shown: 65529 filtered ports
+PORT     STATE SERVICE
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server
+4080/tcp open  lorica-in
+5021/tcp open  zenginkyo-2
+7680/tcp open  pando-pub
+8153/tcp open  quantastor
+
+Nmap done: 1 IP address (1 host up) scanned in 213.82 seconds

@@ -1,0 +1,33 @@
+nmap -sV -p- 192.168.208.58 > nmapall.txt
+
+
+
+
+mysql -u root -p -h 192.168.58.58
+gobuster dir  -u http://192.168.58.58/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+
+
+1.nmap發現80端口,查看到是服務Simple PHP Photo Gallery v0.8
+2.根據服務名稱上google,發現有exploit
+SimplePHPGal 0.7 - Remote File Inclusion
+3.根據48424.txt查找到有RFI
+4.測試443端口不通,只有445可以使用
+5.在html下查找到數據庫密碼
+define('DBUSER', 'root');
+define('DBPASS', 'MalapropDoffUtilize1337');
+define('DBNAME', 'SimplePHPGal');
+
+6.數據庫中有以下帳號密碼
+| josh     | VFc5aWFXeHBlbVZJYVhOelUyVmxaSFJwYldVM05EYz0= |
+| michael  | U0c5amExTjVaRzVsZVVObGNuUnBabmt4TWpNPQ==     |
+| serena   | VDNabGNtRnNiRU55WlhOMFRHVmhiakF3TUE9PQ==
+
+
+
+
+VFc5aWFXeHBlbVZJYVhOelUyVmxaSFJwYldVM05EYz0=:TW9iaWxpemVIaXNzU2VlZHRpbWU3NDc=
+U0c5amExTjVaRzVsZVVObGNuUnBabmt4TWpNPQ==:SG9ja1N5ZG5leUNlcnRpZnkxMjM=
+VDNabGNtRnNiRU55WlhOMFRHVmhiakF3TUE9PQ==:T3ZlcmFsbENyZXN0TGVhbjAwMA==
+7.上google解密出密碼,需要在用base64解密
+8.取得michael權限
+9.michael有passwd權限,寫入kali取得root

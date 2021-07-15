@@ -1,0 +1,63 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-09 22:03 EDT
+Nmap scan report for 192.168.41.86
+Host is up (0.23s latency).
+Not shown: 988 filtered ports
+PORT     STATE SERVICE       VERSION
+25/tcp   open  smtp          Mercury/32 smtpd (Mail server account Maiser)
+|_pop3-capabilities: UIDL TOP EXPIRE(NEVER) USER APOP
+143/tcp  open  imap          Mercury/32 imapd 4.62
+106/tcp  open  pop3pw        Mercury/32 poppass service
+110/tcp  open  pop3          Mercury/32 pop3d
+79/tcp   open  finger        Mercury/32 fingerd
+| finger: Login: Admin         Name: Mail System Administrator\x0D
+| \x0D
+|_[No profile information]\x0D
+有pl,cpp及metasploit可以嘗試,呆其他嘗試後都不能的話使用metasploit
+
+
+80/tcp   open  http          Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.2.32)
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.2.32
+|_http-title: Pic-A-Point http://point.oscp
+
+
+
+135/tcp  open  msrpc         Microsoft Windows RPC
+有找出些沒用得東西
+
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+|_imap-capabilities: AUTH=PLAIN IMAP4rev1 OK X-MERCURY-1A0001 complete CAPABILITY
+沒東西使用
+
+3306/tcp open  mysql?
+| fingerprint-strings: 
+|   GetRequest, NULL: 
+|_    Host '192.168.19.41' is not allowed to connect to this MariaDB server
+不允許外面訪問
+
+
+3389/tcp open  ms-wbt-server Microsoft Terminal Service
+可使用rdesktop嘗試登入
+
+9000/tcp open  http          Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.2.32)
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.2.32
+|_http-title: Eventually by HTML5 UP
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.91%I=7%D=7/9%Time=60E8FFF9%P=x86_64-pc-linux-gnu%r(NUL
+SF:L,4C,"H\0\0\x01\xffj\x04Host\x20'192\.168\.19\.41'\x20is\x20not\x20allo
+SF:wed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(GetRequest,
+SF:4C,"H\0\0\x01\xffj\x04Host\x20'192\.168\.19\.41'\x20is\x20not\x20allowe
+SF:d\x20to\x20connect\x20to\x20this\x20MariaDB\x20server");
+Service Info: Host: localhost; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: -2s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-07-10T02:03:54
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 197.89 seconds

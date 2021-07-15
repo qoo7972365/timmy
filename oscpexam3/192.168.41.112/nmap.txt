@@ -1,0 +1,32 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-10 01:19 EDT
+Nmap scan report for 192.168.41.112
+Host is up (0.22s latency).
+Not shown: 998 filtered ports
+PORT     STATE SERVICE       VERSION
+445/tcp  open  microsoft-ds?
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: OSCP
+|   NetBIOS_Domain_Name: OSCP
+|   NetBIOS_Computer_Name: OSCP
+|   DNS_Domain_Name: oscp
+|   DNS_Computer_Name: oscp
+|   Product_Version: 10.0.18362
+|_  System_Time: 2021-07-10T05:20:25+00:00
+| ssl-cert: Subject: commonName=oscp
+| Not valid before: 2021-04-25T14:09:18
+|_Not valid after:  2021-10-25T14:09:18
+|_ssl-date: 2021-07-10T05:21:04+00:00; -1s from scanner time.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -1s, deviation: 0s, median: -1s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2021-07-10T05:20:25
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 75.74 seconds

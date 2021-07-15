@@ -1,0 +1,13 @@
+nmap -Sv -sC -Pn $1 > nmap.txt
+nmap -p- -Pn -T5 > nmapall.txt
+nmap -sU  > nmapuu.txt
+nikto -h http://10.11.1.128:4167 > nikto.txt
+enum4linux 192.168.199.96 > enum4linun.txt
+snmpwalk -c public -v2c 192.168.75.37
+
+
+
+wpscan --url http://loly.lc/wordpress --usernames loly --passwords /usr/share/wordlists/rockyou.txt --max-threads 50
+wpscan --url http://loly.lc/wordpress --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+fernando

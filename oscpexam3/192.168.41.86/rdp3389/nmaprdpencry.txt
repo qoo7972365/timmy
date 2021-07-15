@@ -1,0 +1,17 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-10 01:17 EDT
+Nmap scan report for 192.168.41.86
+Host is up (0.22s latency).
+
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+| rdp-enum-encryption: 
+|   Security layer
+|     Native RDP: SUCCESS
+|   RDP Encryption level: Client Compatible
+|     40-bit RC4: SUCCESS
+|     56-bit RC4: SUCCESS
+|     128-bit RC4: SUCCESS
+|     FIPS 140-1: SUCCESS
+|_  RDP Protocol Version:  RDP 10.7 server
+
+Nmap done: 1 IP address (1 host up) scanned in 7.77 seconds

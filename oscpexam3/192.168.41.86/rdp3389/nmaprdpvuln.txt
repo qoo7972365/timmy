@@ -1,0 +1,9 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-10 01:17 EDT
+Nmap scan report for 192.168.41.86
+Host is up (0.22s latency).
+
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+|_rdp-vuln-ms12-020: ERROR: Script execution failed (use -d to debug)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.37 seconds

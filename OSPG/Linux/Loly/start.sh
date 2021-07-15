@@ -1,12 +1,12 @@
 #!/bin/bash
-nmap -sV -sC -Pn $1 > nmap.txt
-nikto -h http://$1 > nikto.txt
-enum4linux $1 > enum4linun.txt
-snmpwalk -c public -v2c $1 > snmpwalkpublic.txt
-snmp-check  $1> snmp.txt
+#nmap -sV -sC -Pn $1 > nmap.txt
+#enum4linux $1 > enum4linun.txt
+#snmpwalk -c public -v2c $1 > snmpwalkpublic.txt
+#snmp-check  $1> snmp.txt
 gobuster dir  -u http://$1/ -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
 gobuster dir  -u http://$1/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x txt,php  > gobustermedium.txt
 nmap -p- -Pn -T5  $1> nmapall.txt
+#nikto -h http://$1 > nikto.txt
 #nmap --script vuln -sV -p 135,80,139,445,80,49663,49666,49668 -Pn  $1  > nmapvuln.txt
 
 sudo nmap -sU $1 > nmapuu.txt

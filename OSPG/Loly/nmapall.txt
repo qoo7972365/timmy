@@ -1,5 +1,0 @@
-Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-05 21:16 EDT
-Nmap scan report for 192.168.176.121
-Host is up (0.015s latency).
-Skipping host 192.168.176.121 due to host timeout
-Nmap done: 1 IP address (1 host up) scanned in 900.36 seconds

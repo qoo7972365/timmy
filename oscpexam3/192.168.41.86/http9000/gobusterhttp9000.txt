@@ -1,0 +1,40 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://192.168.41.86:9000/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2021/07/10 01:08:42 Starting gobuster
+===============================================================
+/.htaccess (Status: 403)
+/.hta (Status: 403)
+/.htpasswd (Status: 403)
+/assets (Status: 301)
+/aux (Status: 403)
+/cgi-bin/ (Status: 403)
+/com1 (Status: 403)
+/com2 (Status: 403)
+/com3 (Status: 403)
+/con (Status: 403)
+/drupal (Status: 301)
+/images (Status: 301)
+/Images (Status: 301)
+/index.php (Status: 200)
+/licenses (Status: 403)
+/lpt1 (Status: 403)
+/lpt2 (Status: 403)
+/nul (Status: 403)
+/phpmyadmin (Status: 403)
+/prn (Status: 403)
+/server-info (Status: 403)
+/server-status (Status: 403)
+/webalizer (Status: 403)
+/wordpress (Status: 301)
+===============================================================
+2021/07/10 01:10:30 Finished
+===============================================================

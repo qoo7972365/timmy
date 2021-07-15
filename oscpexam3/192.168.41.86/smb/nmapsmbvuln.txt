@@ -1,0 +1,13 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-09 22:30 EDT
+Nmap scan report for 192.168.41.86
+Host is up (0.23s latency).
+
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+Nmap done: 1 IP address (1 host up) scanned in 13.61 seconds

@@ -25,7 +25,7 @@ https://www.exploit-db.com/exploits/7444
 7.使用sweetuu.php可以執行命令下面功能直接取得reverse shell
 8.查看passwd發現有Kibosh用戶,嘗試使用slogin的Kibosh密碼可以成功取得kibosh用戶
 
-python3 -c "import pty;pty.spawn('/bin/bash')"
+python -c "import pty;pty.spawn('/bin/bash')"
 export TERM=xterm
 ctrl+z
 stty raw -echo && fg

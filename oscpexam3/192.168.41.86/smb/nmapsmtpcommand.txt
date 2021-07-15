@@ -1,0 +1,9 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-09 22:23 EDT
+Nmap scan report for 192.168.41.86
+Host is up (0.22s latency).
+
+PORT   STATE SERVICE
+25/tcp open  smtp
+|_smtp-commands: localhost Hello nmap.scanme.org; ESMTPs are:, TIME, 
+
+Nmap done: 1 IP address (1 host up) scanned in 1.66 seconds

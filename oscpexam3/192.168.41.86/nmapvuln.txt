@@ -1,0 +1,311 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-09 22:58 EDT
+Stats: 0:00:40 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 93.75% done; ETC: 22:58 (0:00:02 remaining)
+Stats: 0:05:57 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 99.56% done; ETC: 23:04 (0:00:01 remaining)
+Stats: 0:07:09 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 99.56% done; ETC: 23:05 (0:00:01 remaining)
+Stats: 0:07:09 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 99.56% done; ETC: 23:05 (0:00:01 remaining)
+Stats: 0:07:09 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 99.56% done; ETC: 23:05 (0:00:01 remaining)
+Stats: 0:07:09 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 99.56% done; ETC: 23:05 (0:00:01 remaining)
+Nmap scan report for 192.168.41.86
+Host is up (0.23s latency).
+
+PORT     STATE    SERVICE        VERSION
+25/tcp   open     smtp           Mercury/32 smtpd (Mail server account Maiser)
+| smtp-vuln-cve2010-4344: 
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|_sslv2-drown: 
+79/tcp   open     finger         Mercury/32 fingerd
+80/tcp   open     http           Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.2.32)
+| http-cookie-flags: 
+|   /admin.php: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.41.86
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.41.86:80/track_status.php
+|     Form id: form
+|_    Form action: track_result.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /wordpress/: Blog
+|   /admin.php: Possible admin folder
+|   /login.php: Possible admin folder
+|   /wordpress/wp-login.php: Wordpress login page.
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|   /database/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.2.32
+| http-sql-injection: 
+|   Possible sqli for forms:
+|     Form at path: /track_status.php, form's action: track_result.php. Fields that might be vulnerable:
+|_      Consignment
+似乎有SQL Injection但不知道如何利用
+https://www.exploit-db.com/exploits/47427
+
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-trace: TRACE is enabled
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| vulners: 
+|   cpe:/a:apache:http_server:2.4.43: 
+|     	MSF:ILITIES/UBUNTU-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	*EXPLOIT*
+|     	CVE-2021-26691	7.5	https://vulners.com/cve/CVE-2021-26691
+|     	CVE-2020-11984	7.5	https://vulners.com/cve/CVE-2020-11984
+|     	CVE-2020-35452	6.8	https://vulners.com/cve/CVE-2020-35452
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	*EXPLOIT*
+|     	CVE-2021-30641	5.0	https://vulners.com/cve/CVE-2021-30641
+|     	CVE-2021-26690	5.0	https://vulners.com/cve/CVE-2021-26690
+|     	CVE-2020-9490	5.0	https://vulners.com/cve/CVE-2020-9490
+|     	CVE-2020-13950	5.0	https://vulners.com/cve/CVE-2020-13950
+|     	CVE-2019-17567	5.0	https://vulners.com/cve/CVE-2019-17567
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	*EXPLOIT*
+|     	CVE-2020-11993	4.3	https://vulners.com/cve/CVE-2020-11993
+|_    	CVE-2020-13938	2.1	https://vulners.com/cve/CVE-2020-13938
+105/tcp  open     ph-addressbook Mercury/32 PH addressbook server
+106/tcp  open     pop3pw         Mercury/32 poppass service
+110/tcp  open     pop3           Mercury/32 pop3d
+|_sslv2-drown: 
+135/tcp  open     msrpc          Microsoft Windows RPC
+139/tcp  open     netbios-ssn    Microsoft Windows netbios-ssn
+143/tcp  open     imap           Mercury/32 imapd 4.62
+|_sslv2-drown: 
+445/tcp  open     microsoft-ds?
+
+
+
+1030/tcp filtered iad1
+似乎沒用
+1444/tcp filtered marcam-lm
+似乎沒用
+2102/tcp filtered zephyr-srv
+似乎沒用
+
+2224/tcp open     http           Mercury/32 Mail Transport httpd
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+Mercury/32 Mail Transport httpd
+有幾個可能的腳本等等嘗試
+
+
+
+
+3306/tcp open     mysql?
+| fingerprint-strings: 
+|   Help, NULL, afp, ms-sql-s: 
+|_    Host '192.168.19.41' is not allowed to connect to this MariaDB server
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_sslv2-drown:
+遠端無法登入
+
+3389/tcp open     ms-wbt-server  Microsoft Terminal Service
+|_rdp-vuln-ms12-020: ERROR: Script execution failed (use -d to debug)
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_sslv2-drown:
+可嘗試登入
+
+4966/tcp filtered unknown
+4967/tcp filtered unknown
+5040/tcp open     unknown
+三個似乎沒用
+
+7080/tcp open     http           Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.2.32)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.41.86
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.41.86:7080/
+|     Form id: loginbox
+|     Form action: ft2.php
+|     
+|     Path: http://192.168.41.86:7080/js/filethingie.js
+|     Form id: 
+|     Form action: \
+|     
+|     Path: http://192.168.41.86:7080/ft2.php
+|     Form id: loginbox
+|_    Form action: ft2.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+可以創建資料夾及檔案,可創建立txt缺一個更改檔名的時機
+
+| http-enum:
+wordpress有user但暴力破解無效,後續可看wpscan的其他漏洞
+|   /wordpress/: Blog
+|   /wordpress/wp-login.php: Wordpress login page.
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.2.32
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-trace: TRACE is enabled
+| vulners: 
+|   cpe:/a:apache:http_server:2.4.43: 
+|     	MSF:ILITIES/UBUNTU-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	*EXPLOIT*
+|     	CVE-2021-26691	7.5	https://vulners.com/cve/CVE-2021-26691
+|     	CVE-2020-11984	7.5	https://vulners.com/cve/CVE-2020-11984
+|     	CVE-2020-35452	6.8	https://vulners.com/cve/CVE-2020-35452
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	*EXPLOIT*
+|     	CVE-2021-30641	5.0	https://vulners.com/cve/CVE-2021-30641
+|     	CVE-2021-26690	5.0	https://vulners.com/cve/CVE-2021-26690
+|     	CVE-2020-9490	5.0	https://vulners.com/cve/CVE-2020-9490
+|     	CVE-2020-13950	5.0	https://vulners.com/cve/CVE-2020-13950
+|     	CVE-2019-17567	5.0	https://vulners.com/cve/CVE-2019-17567
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	*EXPLOIT*
+|     	CVE-2020-11993	4.3	https://vulners.com/cve/CVE-2020-11993
+|_    	CVE-2020-13938	2.1	https://vulners.com/cve/CVE-2020-13938
+7680/tcp filtered pando-pub
+似乎沒用
+
+
+
+
+9000/tcp open     http           Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.2.32)
+Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+| http-csrf:
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.41.86
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.41.86:9000/
+|     Form id: signup-form
+|_    Form action: #
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /wordpress/: Blog
+|   /wordpress/wp-login.php: Wordpress login page.
+|   /README.txt: Interesting, a readme.
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.2.32'
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.2.32
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-trace: TRACE is enabled
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| vulners: 
+|   cpe:/a:apache:http_server:2.4.43: 
+|     	MSF:ILITIES/UBUNTU-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/UBUNTU-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-11984/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	7.5	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11984/	*EXPLOIT*
+|     	CVE-2021-26691	7.5	https://vulners.com/cve/CVE-2021-26691
+|     	CVE-2020-11984	7.5	https://vulners.com/cve/CVE-2020-11984
+|     	CVE-2020-35452	6.8	https://vulners.com/cve/CVE-2020-35452
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/ORACLE_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP9-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/FREEBSD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/FREEBSD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-9490/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	5.0	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-9490/	*EXPLOIT*
+|     	CVE-2021-30641	5.0	https://vulners.com/cve/CVE-2021-30641
+|     	CVE-2021-26690	5.0	https://vulners.com/cve/CVE-2021-26690
+|     	CVE-2020-9490	5.0	https://vulners.com/cve/CVE-2020-9490
+|     	CVE-2020-13950	5.0	https://vulners.com/cve/CVE-2020-13950
+|     	CVE-2019-17567	5.0	https://vulners.com/cve/CVE-2019-17567
+|     	MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/REDHAT_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/HUAWEI-EULEROS-2_0_SP8-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/CENTOS_LINUX-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/APACHE-HTTPD-CVE-2020-11993/	*EXPLOIT*
+|     	MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	4.3	https://vulners.com/metasploit/MSF:ILITIES/AMAZON-LINUX-AMI-2-CVE-2020-11993/	*EXPLOIT*
+|     	CVE-2020-11993	4.3	https://vulners.com/cve/CVE-2020-11993
+|_    	CVE-2020-13938	2.1	https://vulners.com/cve/CVE-2020-13938
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.91%I=7%D=7/9%Time=60E90CCE%P=x86_64-pc-linux-gnu%r(NUL
+SF:L,4C,"H\0\0\x01\xffj\x04Host\x20'192\.168\.19\.41'\x20is\x20not\x20allo
+SF:wed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(Help,4C,"H\
+SF:0\0\x01\xffj\x04Host\x20'192\.168\.19\.41'\x20is\x20not\x20allowed\x20t
+SF:o\x20connect\x20to\x20this\x20MariaDB\x20server")%r(ms-sql-s,4C,"H\0\0\
+SF:x01\xffj\x04Host\x20'192\.168\.19\.41'\x20is\x20not\x20allowed\x20to\x2
+SF:0connect\x20to\x20this\x20MariaDB\x20server")%r(afp,4C,"H\0\0\x01\xffj\
+SF:x04Host\x20'192\.168\.19\.41'\x20is\x20not\x20allowed\x20to\x20connect\
+SF:x20to\x20this\x20MariaDB\x20server");
+Service Info: Host: localhost; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 580.66 seconds

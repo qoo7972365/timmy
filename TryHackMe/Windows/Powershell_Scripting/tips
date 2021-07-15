@@ -53,3 +53,7 @@ windows查看本地起的port
 for($i=130; $i -le 140; $i++){
     Test-NetConnection localhost -Port $i
 }
+
+
+windows查找定時任務
+schtasks | FIND "ping"

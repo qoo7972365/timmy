@@ -1,0 +1,199 @@
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.10
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[32m[+][0m URL: http://192.168.41.86/wordpress/ [192.168.41.86]
+[32m[+][0m Started: Fri Jul  9 23:17:18 2021
+
+Interesting Finding(s):
+
+[32m[+][0m Headers
+ | Interesting Entries:
+ |  - Server: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.2.32
+ |  - X-Powered-By: PHP/7.2.32
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[32m[+][0m XML-RPC seems to be enabled: http://192.168.41.86/wordpress/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access
+
+[32m[+][0m WordPress readme found: http://192.168.41.86/wordpress/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[32m[+][0m The external WP-Cron seems to be enabled: http://192.168.41.86/wordpress/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[32m[+][0m WordPress version 5.5 identified (Insecure, released on 2020-08-11).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://192.168.41.86/wordpress/feed/, <generator>https://wordpress.org/?v=5.5</generator>
+ |  - http://192.168.41.86/wordpress/comments/feed/, <generator>https://wordpress.org/?v=5.5</generator>
+ |
+ | [31m[!][0m 10 vulnerabilities identified:
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Hardening Deserialization Requests
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/f2bd06cf-f4e9-4077-90b0-fba80c3d0969
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28032
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://github.com/WordPress/wordpress-develop/commit/add6bedf3a53b647d0ebda2970057912d3cd79d3
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |      - https://github.com/WordPress/Requests/security/advisories/GHSA-52qp-jpq7-6c54
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Disable Spam Embeds from Disabled Sites on a Multisite Network
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/a1941f4f-6adb-41e9-b47f-6eddd6f6a04a
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28033
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Cross-Site Scripting (XSS) via Global Variables
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/336deb2e-5286-422d-9aa2-6898877d55a9
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28034
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - XML-RPC Privilege Escalation
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/76a05ec0-08f3-459f-8379-3b4865a0813f
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28035
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28036
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://github.com/WordPress/wordpress-develop/commit/c9e6b98968025b1629015998d12c3102165a7d32
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Unauthenticated DoS Attack to RCE
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/016774df-5031-4315-a893-a47d99273883
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28037
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://github.com/WordPress/wordpress-develop/commit/2ca15d1e5ce70493c5c0c096ca0c76503d6da07c
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |      - https://threatpost.com/wordpress-patches-rce-bug/160812/
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Stored XSS in Post Slugs
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/990cf4ff-0084-4a5c-8fdb-db374ffcb5df
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28038
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Protected Meta That Could Lead to Arbitrary File Deletion
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/30662254-5a8d-40d0-8a31-eb58b51b3c33
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28039
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://github.com/WordPress/wordpress-develop/commit/d5ddd6d4be1bc9fd16b7796842e6fb26315705ad
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |
+ | [31m[!][0m Title: WordPress < 5.5.2 - Cross-Site Request Forgery (CSRF) to Change Theme Background
+ |     Fixed in: 5.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/ebd354db-ab63-4644-891c-4a200e9eef7e
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28040
+ |      - https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/
+ |      - https://github.com/WordPress/wordpress-develop/commit/cbcc595974d5aaa025ca55625bf68ef286bd8b41
+ |      - https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html
+ |      - https://hackerone.com/reports/881855
+ |
+ | [31m[!][0m Title: WordPress 4.7-5.7 - Authenticated Password Protected Pages Exposure
+ |     Fixed in: 5.5.4
+ |     References:
+ |      - https://wpscan.com/vulnerability/6a3ec618-c79e-4b9c-9020-86b157458ac5
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-29450
+ |      - https://wordpress.org/news/2021/04/wordpress-5-7-1-security-and-maintenance-release/
+ |      - https://blog.wpscan.com/2021/04/15/wordpress-571-security-vulnerability-release.html
+ |      - https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-pmmh-2f36-wvhq
+ |      - https://core.trac.wordpress.org/changeset/50717/
+ |      - https://www.youtube.com/watch?v=J2GXmxAdNWs
+ |
+ | [31m[!][0m Title: WordPress 3.7 to 5.7.1 - Object Injection in PHPMailer
+ |     Fixed in: 5.5.5
+ |     References:
+ |      - https://wpscan.com/vulnerability/4cd46653-4470-40ff-8aac-318bee2f998d
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-36326
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-19296
+ |      - https://github.com/WordPress/WordPress/commit/267061c9595fedd321582d14c21ec9e7da2dcf62
+ |      - https://wordpress.org/news/2021/05/wordpress-5-7-2-security-release/
+ |      - https://github.com/PHPMailer/PHPMailer/commit/e2e07a355ee8ff36aba21d0242c5950c56e4c6f9
+ |      - https://www.wordfence.com/blog/2021/05/wordpress-5-7-2-security-release-what-you-need-to-know/
+ |      - https://www.youtube.com/watch?v=HaW15aMzBUM
+
+[32m[+][0m WordPress theme in use: twentytwenty
+ | Location: http://192.168.41.86/wordpress/wp-content/themes/twentytwenty/
+ | Last Updated: 2021-03-09T00:00:00.000Z
+ | Readme: http://192.168.41.86/wordpress/wp-content/themes/twentytwenty/readme.txt
+ | [33m[!][0m The version is out of date, the latest version is 1.7
+ | Style URL: http://192.168.41.86/wordpress/wp-content/themes/twentytwenty/style.css?ver=1.5
+ | Style Name: Twenty Twenty
+ | Style URI: https://wordpress.org/themes/twentytwenty/
+ | Description: Our default theme for 2020 is designed to take full advantage of the flexibility of the block editor...
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org/
+ |
+ | Found By: Css Style In Homepage (Passive Detection)
+ | Confirmed By: Css Style In 404 Page (Passive Detection)
+ |
+ | Version: 1.5 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://192.168.41.86/wordpress/wp-content/themes/twentytwenty/style.css?ver=1.5, Match: 'Version: 1.5'
+
+[32m[+][0m Enumerating Users (via Passive and Aggressive Methods)
+
+ Brute Forcing Author IDs -: |======================================================================================|
+
+[34m[i][0m User(s) Identified:
+
+[32m[+][0m user
+ | Found By: Author Posts - Author Pattern (Passive Detection)
+ | Confirmed By:
+ |  Rss Generator (Passive Detection)
+ |  Wp Json Api (Aggressive Detection)
+ |   - http://192.168.41.86/wordpress/wp-json/wp/v2/users/?per_page=100&page=1
+ |  Rss Generator (Aggressive Detection)
+ |  Author Sitemap (Aggressive Detection)
+ |   - http://192.168.41.86/wordpress/wp-sitemap-users-1.xml
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[32m[+][0m WPVulnDB API OK
+ | Plan: free
+ | Requests Done (during the scan): 2
+ | Requests Remaining: 23
+
+[32m[+][0m Finished: Fri Jul  9 23:17:36 2021
+[32m[+][0m Requests Done: 51
+[32m[+][0m Cached Requests: 7
+[32m[+][0m Data Sent: 12.433 KB
+[32m[+][0m Data Received: 344.148 KB
+[32m[+][0m Memory used: 136.043 MB
+[32m[+][0m Elapsed time: 00:00:18

