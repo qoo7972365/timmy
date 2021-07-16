@@ -19,7 +19,7 @@ export TERM=xterm
 ctrl+z
 stty raw -echo && fg
 enter
-cexport TERM=xterm
+export TERM=xterm
 
 
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:e64fe0f24ba2489c05e64354d74ebd11:::

