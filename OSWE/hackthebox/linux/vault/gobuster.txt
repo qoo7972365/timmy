@@ -1,0 +1,33 @@
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://sparklays.com/sparklays/
+[+] Threads:        50
+[+] Wordlist:       /usr/share/dirb/wordlists/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt,php,html
+[+] Timeout:        10s
+===============================================================
+2021/07/22 10:52:58 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.hta.txt (Status: 403)
+/.hta.php (Status: 403)
+/.hta.html (Status: 403)
+/.htaccess (Status: 403)
+/.htaccess.php (Status: 403)
+/.htaccess.html (Status: 403)
+/.htaccess.txt (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.txt (Status: 403)
+/.htpasswd.php (Status: 403)
+/.htpasswd.html (Status: 403)
+/admin.php (Status: 200)
+/admin.php (Status: 200)
+/design (Status: 301)
+/login.php (Status: 200)
+===============================================================
+2021/07/22 10:54:27 Finished
+===============================================================

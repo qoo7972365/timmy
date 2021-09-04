@@ -1,0 +1,65 @@
+@echo off
+
+if %1QQ == QQ goto start
+
+cd bin
+cscript //nologo StopService.vbs >.\..\..\logs\restartlog.txt
+cd .\..
+cscript //nologo bin\shutdownforce.vbs 60>>.\..\logs\restartlog.txt
+
+cd .\..
+:start
+
+cd working
+
+cd bin
+
+cscript //nologo StartService.vbs
+
+set exit_code=%errorlevel%
+
+
+if [%exit_code%]==[10] goto end
+
+cd ..
+
+call .\bin\unpack.bat
+
+call .\setEnv.bat
+
+set NMS_HOME=.
+
+set JAVA_HOME=%NMS_HOME%\jre
+
+set NMS_CLASSES=.\classes
+
+set PATH=.\lib;%PATH%
+
+set CLASSPATH=%NMS_HOME%\..\logs;%NMS_HOME%\..\;%NMS_CLASSES%;%NMS_HOME%\resources\WebTransactionAgent.jar;%NMS_CLASSES%\AdventNetAppManager.jar;%NMS_CLASSES%\AdventNetOPExtn.jar;%NMS_CLASSES%\jfreechart.jar;%NMS_CLASSES%\jcommon.jar;%NMS_CLASSES%\AdventNetNPrevalent.jar;.\apache;.\apache\tomcat;%NMS_CLASSES%\ApiUtils.jar;.\;%WEBSERVER_CLASSPATH%;%DB_CLASSPATH%;%LICENSE_PATH%;%APPLN_MON_SERVER_CLASSPATH%;%USER_LIB_PATH%;%NMS_CLASSES%\trayicon.jar;%NMS_HOME%\..\lib\ext\classes12.zip;%NMS_CLASSES%\json.jar;%NMS_CLASSES%\jt400.jar;%NMS_CLASSES%\dnsjava-2.0.6.jar;%NMS_CLASSES%\commons-net-2.0.jar;%NMS_CLASSES%\aws-java-sdk-1.3.26.jar;%NMS_CLASSES%\stax-api-1.0.1.jar;%NMS_CLASSES%\stax-1.2.0.jar
+
+ipconfig>%NMS_HOME%\ipconfig.txt
+
+rem Removing the statsdata tables which are not required before starting the server.
+rem Just directly deleting the table source files from data location
+IF EXIST %NMS_HOME%\mysql\data\AMDB  del /F /Q %NMS_HOME%\mysql\data\AMDB\STATSDATA*.*> err.txt 2>&1
+
+IF EXIST ..\logs goto continue
+mkdir ..\logs
+:continue
+set count=1
+FOR %%G IN (../logs/console*) DO set /A count+=1
+set outfile=../logs/console%count%.txt
+
+start /B %JAVA_HOME%\bin\javaw -cp %CLASSPATH% -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=%TOMCAT_HOME%\conf\logging.properties -Dfile.encoding=UTF-8 -Dhttps.protocol=TLSv1 -Xms64m -Xmx512m -XX:PermSize=64m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=%NMS_HOME%\heapdump com.adventnet.appmanager.server.startup.StartServer %exit_code% > %outfile%
+
+goto end1
+
+:end
+
+cd ..
+
+:end1
+
+cd ..
+
+

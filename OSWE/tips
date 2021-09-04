@@ -1,0 +1,10 @@
+1.不允許檔案類型上傳,更改檔名後綴為php5或是前面插入magic byte
+2.Executable and Linkable Format，縮寫為ELF ,可將nmap可執行檔案傳到victim上執行
+3.ssh隧道tunnel
+ssh -L8081:localhost:80 dave@192.168.122.4####需要帳密
+使用~C進入ssh>  -L8081:localhost:80 ###不須帳密
+使用~C進入ssh>  -R127.0.0.1:4444: ###
+
+
+MySQL   /**/ 替換 空白
+Postgres  $$ 替換 '

