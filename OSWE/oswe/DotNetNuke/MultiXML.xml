@@ -1,0 +1,7 @@
+<customRootNode>
+<item objectType="MultiXMLDeserializer.ExecCMD, MultiXMLDeserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+<ExecCMD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+<cmd>notepad.exe</cmd>
+</ExecCMD>
+</item>
+</customRootNode>

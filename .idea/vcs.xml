@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/CTF/crypt/RsaCtfTool" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OSWE/oswe/BassMaster/bassmaster" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/Daily_Bugle/joomblah-3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/Linux/Daily_Bugle/joomblah-3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/TryHackMe/Linux/overpass/ssh-backdoor" vcs="Git" />

@@ -8,3 +8,17 @@ ssh -L8081:localhost:80 dave@192.168.122.4####需要帳密
 
 MySQL   /**/ 替換 空白
 Postgres  $$ 替換 '
+Postgres  LargeObject 二進制儲存檔案
+
+
+4.kali起samba,windows回傳檔案到samba
+sudo impacket-smbserver awae .
+
+5.windows相關指令
+tasklist |findstr /i calc
+taskkill /f /IM calc.exe
+Get-Content .\postgresql_11.log -wait -tail -1
+Get-Content  .\postgresql_11.log -tail 100 | Select-String -Patttern "(resourceid( >|\))|syntax error)"
+
+6.檔案內容匹配搜索
+grep -rnw "eval(" . --color 搜索任何執行code的js代碼
