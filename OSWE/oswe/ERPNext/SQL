@@ -1,0 +1,4 @@
+SELECT `doctype`, `name`, `content`, `title`, `route`
+FROM `__global_search`
+WHERE `published` = 1 AND  `route` like "offsec_scope%" AND MATCH(`content`) AGAINST ('\"offsec\"' IN BOOLEAN MODE)
+LIMIT 20 OFFSET 0

@@ -4,7 +4,7 @@
 ssh -L8081:localhost:80 dave@192.168.122.4####需要帳密
 使用~C進入ssh>  -L8081:localhost:80 ###不須帳密
 使用~C進入ssh>  -R127.0.0.1:4444: ###
-
+4.burp repeat最後不能有空行
 
 MySQL   /**/ 替換 空白
 Postgres  $$ 替換 '
