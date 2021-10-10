@@ -1,0 +1,461 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Appendix&nbsp;B.&nbsp;HyperSQL Database Files and Recovery</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL Stylesheets V1.78.1" name="generator">
+<meta name="keywords" content="HSQLDB, Data, Files">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="lists-app.html" title="Appendix&nbsp;A.&nbsp;Lists of Keywords">
+<link rel="next" href="building-app.html" title="Appendix&nbsp;C.&nbsp;Building HSQLDB Jars">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="lists-app.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Appendix&nbsp;B.&nbsp;HyperSQL Database Files and Recovery</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="building-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Appendix&nbsp;A.&nbsp;Lists of Keywords&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Appendix&nbsp;C.&nbsp;Building HSQLDB Jars</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="appendix">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title">
+<a name="dbfiles-app"></a>HyperSQL Database Files and Recovery</h1>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 5925 $</p>
+</div>
+<div>
+<p class="pubdate">2021-03-21</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl class="toc">
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files">Database Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_file_states">States</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files_procs">Procedures</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files_shutdown">Clean Shutdown</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files_startup">Startup</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_file_restore">Restore</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dfa_db_files"></a>Database Files</h2>
+</div>
+</div>
+</div>
+<p>Database catalogs opened with the <em class="glossterm">file:</em>
+    protocol are stored as a set of files. This document describes the
+    contents of these files and how they are stored.</p>
+<p>A database named 'test' is used in this description. The database
+    files will be as follows.</p>
+<div class="variablelist">
+<p class="title">
+<b>Database Files</b>
+</p>
+<table border="0" class="variablelist">
+<colgroup>
+<col valign="top" align="left">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td>
+<p>
+<span class="term">test.properties</span>
+</p>
+</td><td>
+<p>Contains the entry 'modified'. If the entry 'modified' is set
+          to 'yes' then the database is either running or was not closed
+          correctly. When the database is properly shutdown, 'modified' is set
+          to 'no'.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">test.script</span>
+</p>
+</td><td>
+<p>This file contains the SQL statements that makes up the
+          database up to the last checkpoint - it is in sync with the contents
+          of <code class="filename">test.backup</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">test.data</span>
+</p>
+</td><td>
+<p>This file contains the binary data records for CACHED tables
+          only.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">test.backup</span>
+</p>
+</td><td>
+<p>Depending on the backup mode ( SET FILES BACKUP INCREMENT
+          {TRUE | FALSE} ), this file contains either a backup of the parts of
+          the <code class="filename">test.data</code> that have been modified since the
+          last checkpoint (the default setting, TRUE) or the complete
+          compressed backup of the <code class="filename">test.data</code> file at the
+          time of last checkpoint (when FALSE).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">test.log</span>
+</p>
+</td><td>
+<p>This file contains the extra SQL statements that have modified
+          the database since the last checkpoint. It is used as a redo
+          log.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">test.lobs</span>
+</p>
+</td><td>
+<p>This file contains the lobs. If a database has no BLOB or CLOB
+          object, this file will not be present. This file contains all the
+          lobs that are currently in the database, as well as those that
+          belong to rows that have been deleted since the last checkpoint. The
+          space for deleted lobs is always reused after a CHECKPOINT.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A CHECKPOINT is an operations that saves all the changed data and
+    removes the <code class="filename">test.log</code> followed by the creation of an
+    empty log. A SHUTDOWN is equivalent to a CHECKPOINT followed by closing
+    the database.</p>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dfa_file_states"></a>States</h2>
+</div>
+</div>
+</div>
+<p>Database is closed correctly</p>
+<div class="itemizedlist">
+<p class="title">
+<b>State after running the <code class="literal">SHUTDOWN</code>
+      statement</b>
+</p>
+<ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+<p>The <code class="filename">test.data</code> file is fully updated.</p>
+</li>
+<li class="listitem">
+<p>When BACKUP INCREMENT TRUE is used, there is no
+        <code class="filename">test.backup</code> at all. Otherwise the
+        <code class="filename">test.backup</code> contains the full compressed
+        <code class="filename">test.data</code> file.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.script</code> contains all the metadata
+        and CREATE TABLE and other DDL statements. It also contains the data
+        for MEMORY tables.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.properties</code> contains the entry
+        'modified' set to 'no'.</p>
+</li>
+<li class="listitem">
+<p>There is no <code class="filename">test.log</code> file.</p>
+</li>
+</ul>
+</div>
+<p>Database is closed correctly with SHUTDOWN SCRIPT</p>
+<div class="itemizedlist">
+<p class="title">
+<b>State after running the <code class="literal">SHUTDOWN SCRIPT</code>
+      statement</b>
+</p>
+<ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+<p>The <code class="filename">test.data</code> file does not exist; all
+        CACHED table data is in the <code class="filename">test.script</code>
+        file</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.backup</code> does not exist.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.script</code> contains all the metadata
+        and DDL statements, followed by the data for MEMORY, CACHED and TEXT
+        tables.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.properties</code> contains the entry
+        'modified' set to 'no'.</p>
+</li>
+<li class="listitem">
+<p>There is no <code class="filename">test.log</code> file.</p>
+</li>
+</ul>
+</div>
+<p>Database is aborted</p>
+<p>If the database process was terminated with a SHUTDOWN, or the
+    SHUTDOWN IMMEDIATELY was used, the database is in aborted state.</p>
+<div class="itemizedlist">
+<p class="title">
+<b>Aborted database state</b>
+</p>
+<ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+<p>The <code class="filename">test.properties</code> contains
+        'modified=yes'.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.script</code> contains a snapshot of the
+        database at the last checkpoint.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.data</code> file is not necessarily
+        consistent.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.backup</code> file contains just sections
+        of the original <code class="filename">test.data</code> file, or a full
+        snapshot of <code class="filename">test.data</code> that corresponds to
+        <code class="filename">test.script</code> at the time of the last
+        checkpoint.</p>
+</li>
+<li class="listitem">
+<p>The <code class="filename">test.log</code> file contain all data change
+        statements executed since the checkpoint. As a result of abnormal
+        termination, the end of file may be incomplete.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dfa_db_files_procs"></a>Procedures</h2>
+</div>
+</div>
+</div>
+<p>The database engine performs the following procedures internally in
+    different circumstances.</p>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dfa_db_files_shutdown"></a>Clean Shutdown</h3>
+</div>
+</div>
+</div>
+<div class="procedure">
+<a name="N178CC"></a>
+<p class="title">
+<b>Procedure&nbsp;B.1.&nbsp;Clean HyperSQL database shutdown</b>
+</p>
+<ol class="procedure" type="1">
+<li class="step">
+<p>The <code class="filename">test.data</code> file is written completely
+          (all the modified cached table rows are written out) and
+          closed.</p>
+</li>
+<li class="step">
+<p>If backup mode is not INCREMENT, the
+          <code class="filename">test.backup.new</code> is created which contains the
+          compressed <code class="filename">test.data</code> file.</p>
+</li>
+<li class="step">
+<p>The file <code class="filename">test.script.new</code> is created using
+          the current state of the database.</p>
+</li>
+<li class="step">
+<p>The entry 'modified' in the properties file is set to
+          'yes-new-files' (Note: after this step, the
+          <code class="filename">test.data.new</code> and
+          <code class="filename">test.script.new</code> files constitute the
+          database)</p>
+</li>
+<li class="step">
+<p>The file <code class="filename">test.log</code> is deleted</p>
+</li>
+<li class="step">
+<p>The file <code class="filename">test.script</code> is deleted</p>
+</li>
+<li class="step">
+<p>The file <code class="filename">test.script.new</code> is renamed to
+          <code class="filename">test.script</code>
+</p>
+</li>
+<li class="step">
+<p>The file <code class="filename">test.backup</code> is deleted</p>
+</li>
+<li class="step">
+<p>If the file <code class="filename">test.backup.new</code> exists, it is
+          renamed to <code class="filename">test.backup</code>
+</p>
+</li>
+<li class="step">
+<p>The entry 'modified' in the properties file is set to
+          'no'</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dfa_db_files_startup"></a>Startup</h3>
+</div>
+</div>
+</div>
+<div class="procedure">
+<a name="N17916"></a>
+<p class="title">
+<b>Procedure&nbsp;B.2.&nbsp;Opening the Database</b>
+</p>
+<ol class="procedure" type="1">
+<li class="step">
+<p>Check if the database files are in use by checking a special
+          <code class="filename">test.lck</code> file.</p>
+</li>
+<li class="step">
+<p>See if the <code class="filename">test.properties</code> file exists,
+          otherwise create it.</p>
+</li>
+<li class="step">
+<p>If the <code class="filename">test.script</code> did not exist, then
+          this is a new database.</p>
+</li>
+<li class="step">
+<p>If it is an existing database, check in the
+          <code class="filename">test.properties</code> file if 'modified=yes'. In this
+          case the RESTORE operation is performed before the database is
+          opened normally.</p>
+</li>
+<li class="step">
+<p>Otherwise, if in the <code class="filename">test.properties</code> file
+          'modified=yes-new-files', then the (old)
+          <code class="filename">test.backup</code> and
+          <code class="filename">test.script</code> files are deleted and the new
+          <code class="filename">test.script.new</code> file is renamed to
+          <code class="filename">test.script</code>.</p>
+</li>
+<li class="step">
+<p>Open the <code class="filename">test.script</code> file and create the
+          database objects.</p>
+</li>
+<li class="step">
+<p>Create the empty <code class="filename">test.log</code> to append any
+          data change statements.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dfa_db_file_restore"></a>Restore</h3>
+</div>
+</div>
+</div>
+<p>The current <code class="filename">test.data</code> file is not necessarily
+      consistent. The database engine takes these steps:</p>
+<div class="procedure">
+<a name="N17958"></a>
+<p class="title">
+<b>Procedure&nbsp;B.3.&nbsp;Restore a Database</b>
+</p>
+<ol class="procedure" type="1">
+<li class="step">
+<p>Restore the old <code class="filename">test.data</code> file from the
+          backup. Depending on the backup mode, decompress the
+          <code class="filename">test.backup</code> and overwrite
+          <code class="filename">test.data</code>, or copy the original sections from
+          the <code class="filename">test.backup</code> file.</p>
+</li>
+<li class="step">
+<p>Execute all the statements in the
+          <code class="filename">test.script</code> file.</p>
+</li>
+<li class="step">
+<p>Execute all statements in the <code class="filename">test.log</code>
+          file. If due to incomplete statements in this file an exception is
+          thrown, the rest of the lines in the <code class="filename">test.log</code>
+          file are ignored. This can be overridden with the database
+          connection property <code class="literal">hsqldb.full_log_replay=true</code>
+          which results in the startup process to fail and allows the user to
+          examine and edit the <code class="filename">test.log</code> file.</p>
+</li>
+<li class="step">
+<p>Close the database files, before opening the restored
+          database.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 6319 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="lists-app.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="building-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Appendix&nbsp;A.&nbsp;Lists of Keywords&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Appendix&nbsp;C.&nbsp;Building HSQLDB Jars</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

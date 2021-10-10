@@ -1,0 +1,17 @@
+{
+ "db_name": "_1bd3e0294da19198",
+ "db_password": "32ldabYvxQanK4jj",
+ "db_type": "mariadb",
+ "mail_server": "192.168.119.147",
+ "use_ssl": 0,
+ "mail_port": 25,
+ "auto_email_id": "admin@randomdomain.com"
+  "limits": {
+  "space_usage": {
+   "backup_size": 1.0,
+   "database_size": 26.39,
+   "files_size": 2.0,
+   "total": 29.39
+  }
+ }
+}

@@ -1,0 +1,1809 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HyperSQL User Guide</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL Stylesheets V1.78.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="next" href="book-pref.html" title="Preface">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%">&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">HyperSQL User Guide</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="book-pref.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">&nbsp;</td><td align="center" width="40%">&nbsp;</td><td valign="top" align="right" width="30%">&nbsp;Preface</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="book">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title">
+<a name="guide"></a>HyperSQL User Guide</h1>
+</div>
+<div>
+<h2 class="subtitle">HyperSQL Database Engine 2.6.0</h2>
+</div>
+<table xmlns:xi="http://www.w3.org/2001/XInclude" class="titlead" cellspacing="0">
+<tr>
+<td>
+<div>
+<div class="authorgroup">
+<div class="editor">
+<h4 class="editedby">Edited by</h4>
+<h3 class="editor">
+<span class="orgname">The HSQL Development Group</span>
+</h3>
+</div>
+<div class="editor">
+<h4 class="editedby">Edited by</h4>
+<h3 class="editor">
+<span class="firstname">Blaine</span> <span class="surname">Simpson</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+<div class="editor">
+<h4 class="editedby">Edited by</h4>
+<h3 class="editor">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="legalnotice">
+<a name="N1003E"></a>
+<p>Copyright 2002-2021 Blaine Simpson, Fred Toussi and The HSQL
+      Development Group. Permission is granted to distribute this document
+      without any alteration under the terms of the HSQLDB license. You are
+      not allowed to distribute or display this document on the web in an
+      altered form.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2021-03-21</p>
+</div>
+</td><td class="sponsorad">
+<div xml:base="../doc-src/branding-frag.xhtml" class="branding">
+<img src="../images/hypersql_logo.png"></div>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl class="toc">
+<dt>
+<span class="preface"><a href="book-pref.html">Preface</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="book-pref.html#altformats-sect">Available formats for this document</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="running-chapt.html">1. Running and Using HyperSQL</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_introduction">Introduction</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_hsqldb_jar">The HSQLDB Jar</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_access_tools">Running Database Access Tools</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_hsqldb_db">A HyperSQL Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_inprocess">In-Process Access to Database Catalogs</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_server_modes">Server Modes</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_hsql_server">HyperSQL HSQL Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_http_server">HyperSQL HTTP Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_http_servlet">HyperSQL HTTP Servlet</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_connecting_db">Connecting to a Database Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_security">Security Considerations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_multiple_db">Using Multiple Databases</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc-data-access">Accessing the Data</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_closing_db">Closing the Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_new_db">Creating a New Database</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="sqlgeneral-chapt.html">2. SQL Language</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_standards">SQL Standards Support</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_definition_statements">Definition Statements (DDL and others)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_dml_statements">Data Manipulation Statements (DML)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_dql_statements">Data Query Statements (DQL)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_call_statement">Calling User Defined Procedures and Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_property_setting_statements">Setting Properties for the Database and the Session</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_general_operation_statements">General Operations on Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_transaction_statements">Transaction Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_comments_in_statements">Comments in Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_statements_in_routines">Statements in SQL Routines</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_data_tables">SQL Data and Tables</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_persist_tables">Persistent Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_temp_tables">Temporary Tables</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_data_type_guide">Short Guide to Data Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_types_ops">Data Types and Operations</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_numeric_types">Numeric Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_boolean_type">Boolean Type</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_char_types">Character String Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_binary_types">Binary String Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_bit_types">Bit String Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_lob_data">Lob Data</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_java_objects">Storage and Handling of Java Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_length_precision">Type Length, Precision and Scale</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_datetime_types">Datetime types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_interval_typs">Interval Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_array">Arrays</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_array_def">Array Definition</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_array_ref">Array Reference</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlgeneral-chapt.html#sgc_array_ops">Array Operations</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="databaseobjects-chapt.html">3. Schemas and Database Objects</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_schemas_schema_objects">Schemas and Schema Objects</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_names_references">Names and References</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_character_sets">Character Sets</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_collations">Collations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_distinct_types">Distinct Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_domains_info_schema">Domains</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_number_sequence">Number Sequences</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_tables">Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_views">Views</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_constraints">Constraints</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_assertions">Assertions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_triggers">Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_routines">Routines</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_indexes">Indexes</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_synonyms">Synonyms</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_schema_def_statements">Statements for Schema Definition and Manipulation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_common_elements">Common Elements and Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_renaming">Renaming Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_commenting">Commenting Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_schema_creation">Schema Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_table_creation">Table Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_sys_versioned_tables">Temporal System-Versioned Tables and SYSTEM_TIME Period</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_table_settings">Table Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_table_manupulation">Table Manipulation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_view_creation">View Creation and Manipulation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_domain_creation">Domain Creation and Manipulation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_trigger_creation">Trigger Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_routine_creation">Routine Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_sequence_creation">Sequence Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_procedure_satement">SQL Procedure Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_other_object_creation">Other Schema Objects Creation and Alteration</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_information_schema">The Information Schema</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_explain_references">References to Database Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_char_sets_info_schema">Predefined Character Sets, Collations and Domains</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_views_info_schema">Views in INFORMATION SCHEMA</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_visibility_info_schema">Visibility of Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_name_info_schema">Name Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_data_type_info_schema">Data Type Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_product_info_schema">Product Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_operations_info_schema">Operations Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_standard_views_info_schema">SQL Standard Views</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="builtinfunctions-chapt.html">4. Built In Functions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_string_binary_functions">String and Binary String Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_numeric_functions">Numeric Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_datetime_functions">Date Time and Interval Functions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_timezone_functions">Functions to Report the Time Zone.</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_current_datetime">Functions to Report the Current Datetime</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_extract_datetime">Functions to Extract an Element of a Datetime</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_datetime_arithmetic">Functions for Datetime Arithmetic</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_datetime_format">Functions to Convert or Format a Datetime</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_array_functions">Array Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_general_functions">General Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="builtinfunctions-chapt.html#bfc_system_functions">System Functions</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="dataaccess-chapt.html">5. Data Access and Change</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_cursors_result_sets">Cursors And Result Sets</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_columns_rows">Columns and Rows</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_cursor_navigation">Navigation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_cursor_updatability">Updatability</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_cursor_sensitivity">Sensitivity</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_cursor_holdability">Holdability</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_autocommit">Autocommit</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_overview">JDBC Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_parameters">JDBC Parameters</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_data_change">JDBC and Data Change Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_callable_statement">JDBC Callable Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_jdbc_return_values">JDBC Returned Values</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_declare_cursor">Cursor Declaration</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_syntax_elements">Syntax Elements</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_literals">Literals</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_sql_references">References, etc.</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_value_expression">Value Expression</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_sql_predicates">Predicates</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_aggregate_funcs">Aggregate Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_other_syntax_elements">Other Syntax Elements</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_data_access_statements">Data Access Statements</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_sql_select_statement">Select Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_table">Table</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_subquery">Subquery</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_query_specification">Query Specification</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_table_expression">Table Expression</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_joined_table">Joined Table</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_selection">Selection</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_projection">Projection</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_computed_columns">Computed Columns</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_naming">Naming</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_grouping_operations">Grouping Operations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_aggregation">Aggregation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_set_operations">Set Operations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_with_clause">With Clause and Recursive Queries</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_query_expression">Query Expression</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_ordering">Ordering</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_slicing">Slicing</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_explain_plan">Indexes Used in SELECT Statements</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_data_change_statements">Data Change Statements</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_delete_statement">Delete Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_truncate_statement">Truncate Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_insert_statement">Insert Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_update_statement">Update Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_merge_statement">Merge Statement</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="dataaccess-chapt.html#dac_diagnostics_state">Diagnostics and State</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="sessions-chapt.html">6. Sessions and Transactions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_session_attr_vars">Session Attributes and Variables</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_session_attr">Session Attributes</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_session_vars">Session Variables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_session_tables">Session Tables</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_tx_cc">Transactions and Concurrency Control</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_2pl">Two Phase Locking</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_2pl_si">Two Phase Locking with Snapshot Isolation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_locks_2pl">Lock Contention in 2PL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_locks_routines">Locks in SQL Routines and Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_mvcc">MVCC</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_choosing">Choosing the Transaction Model</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_schema_change">Schema and Database Change</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_tx_access_tables">Simultaneous Access to Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_viewing_sessions">Viewing Sessions</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sessions-chapt.html#snc_statements">Session and Transaction Control Statements</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="texttables-chapt.html">7. Text Tables</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_implementation">The Implementation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_table_definition">Definition of Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_scope">Scope and Reassignment</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_nulls">Null Values in Columns of Text Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_configuration">Configuration</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_disconnect">Disconnecting Text Tables</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_issues">Text File Usage</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_global_props">Text File Global Properties</a></span>
+</dt>
+<dt>
+<span class="section"><a href="texttables-chapt.html#ttc_transactions">Transactions</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="accesscontrol-chapt.html">8. Access Control</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_auth_and_access_ctrl">Authorizations and Access Control</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_built_in_roles_users">Built-In Roles and Users</a></span>
+</dt>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_listing">Listing Users and Roles</a></span>
+</dt>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_access_rights">Access Rights</a></span>
+</dt>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_fine_grained_access">Fine-Grained Data Access Control</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_statements">Statements for
+    Authorization and Access Control</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="sqlroutines-chapt.html">9. SQL-Invoked Routines</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_routine_definition">Routine Definition</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_routine_characteristics">Routine Characteristics</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_routines">SQL Language Routines (PSM)</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_advantages">Advantages and Disadvantages</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_statements">Routine Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_compound">Compound Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_table_vars">Table Variables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_vars">Variables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_cursors">Cursors</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_handlers">Handlers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_assignment">Assignment Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_select_single">Select Statement : Single Row</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_formal_parameters">Formal Parameters</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_iterated_statements">Iterated Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_for_statement">Iterated FOR Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_conditional">Conditional Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_return_statement">Return Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_control_statements">Control Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_exceptions">Raising Exceptions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_routine_polymorphism">Routine Polymorphism</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_returning_data">Returning Data From Procedures</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_recursive_routines">Recursive Routines</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_routines">Java Language Routines (SQL/JRT)</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_polymorphis">Polymorphism</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_procedures">Java Language Procedures</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_static_methods">Java Static Methods</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_legacy">Legacy Support</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_access_control">Securing Access to Classes and Routines</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_warning">Warning</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_aggregate_functions">User-Defined Aggregate Functions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_aggregate_function_definition">Definition of Aggregate Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_aggregate_functions">SQL PSM Aggregate Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_aggregate_functions">Java Aggregate Functions</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="triggers-chapt.html">10. Triggers</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_overview">Overview</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_before_triggers">BEFORE Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_after_triggers">AFTER Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_instead_of_triggers">INSTEAD OF Triggers</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_props">Trigger Properties</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_event">Trigger Event</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_granularity">Granularity</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_action_time">Trigger Action Time</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_row_references">References to Rows</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_condition">Trigger Condition</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_action_sql">Trigger Action in SQL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_action_java">Trigger Action in Java</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_creation">Trigger Creation</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="management-chapt.html">11. System Management</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_modes_tables">Modes of Operation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_modes_operation">Deployment Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_database_types">Database Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_table_types">Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_large_objects">Large Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_deploy_context">Deployment context</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#sgc_index_speed">Indexes and Query Speed</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#sgc_query_opt">Query Processing and Optimisation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#sgc_indexes_cond">Indexes and Conditions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#sgc_indexes_ops">Indexes and Operations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#sgc_indexes_order">Indexes and ORDER BY, OFFSET and LIMIT</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_acid_persistence">ACID, Persistence and Reliability</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_acid">Atomicity, Consistency, Isolation, Durability</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_system_operations">System Operations</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_system_versioned_tables">Temporal System-Versioned Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_replicated_databases">Replicated Databases</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#tspace_usage">Using Table Spaces</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_checking_tables_indexes">Checking Database Tables and Indexes</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_backup">Backing Up and Restoring Database Catalogs</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_online_backup">Making Online Backups</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_backup_syntax">Offline Backup Utility Syntax</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_offline_backup">Making Offline Backups</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_listing_backup">Examining Backups</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_restoring_backup">Restoring a Backup</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_database">Encrypted Databases</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_create">Creating and Accessing an Encrypted Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_speed">Speed Considerations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_security">Security Considerations</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_monitoring_operation">Monitoring Database Operations</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_external_monitoring">External Statement Level Monitoring</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_internal_monitoring">Internal Statement Level Monitoring</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_internal_event_monitoring">Internal Event Monitoring</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_jdc_logging">Log4J and JDK logging</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_server_monitoring">Server Operation Monitoring</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_database_security">Database Security</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_security_recommend">Basic Security Recommendations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_security_defaults">Beyond Security Defaults</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_authentication_control">Authentication Control</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_statements">Statements</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_system_operation_statements">System Operations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_data_management_statements">Data Management Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_database_settings">Database Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_sql_settings">SQL Conformance Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_cache_persistence">Cache, Persistence and Files Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_authntication_settings">Authentication Settings</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="deployment-chapt.html">12. Deployment Guide</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_mem_disk_use">Memory and Disk Use</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_table_mem_use">Table Memory Allocation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_result_mem_use">Result Set Memory Allocation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_temp_mem_use">Temporary Memory Use During Operations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_cache_mem_use">Data Cache Memory Allocation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_pool_mem_use">Object Pool Memory Allocation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_lob_mem_use">Lob Memory Usage</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_nio_access">Using NIO File Access</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_disk_space">Disk Space Use</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_no_logging">Using HyperSQL Without Logging Data Change</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_bulk_operations">Bulk Inserts, Updates and Deletes</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_managing_connections">Managing Database Connections</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_app_dev_testing">Application Development and Testing</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_tweaking">Tweaking the Mode of Operation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_embedded_desktop_db">Embedded Databases in Desktop Applications</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_embedded_server_db">Embedded Databases in Server Applications</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_mixed_mode_server">Mixed Mode : Embedding a HyperSQL Server (Listener)</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_server_db">Server Databases</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_upgrade_database">Upgrading Databases</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_script_manual_change">Manual Changes to the *.script File</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_backware_compatibility">Backward Compatibility Issues</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_dependency_applications">HyperSQL Dependency Settings for Applications</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_hsqldb_version_pull">What version to Pull</a></span>
+</dt>
+<dt>
+<span class="section"><a href="deployment-chapt.html#dec_maven_range_version">Range Versioning</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="compatibility-chapt.html">13. Compatibility With Other DBMS</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_other">Compatibility Overview</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_postgres">PostgreSQL Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_mysql">MySQL Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_firebird">Firebird Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_derby">Apache Derby Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_oracle">Oracle Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_db2">DB2 Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="compatibility-chapt.html#coc_compatibility_mssql">MS SQLServer and Sybase Compatibility</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="dbproperties-chapt.html">14. Properties</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_connection_url">Connection URL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_variables_url">Variables In Connection URL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_connection_props">Properties for Individual Connections</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_db_props_url">Properties for the Database</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_sql_conformance">SQL Conformance Properties</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_db_operations">Database Operations Properties</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_db_file_mem">Database File and Memory Properties</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_crypt_props">Crypt Properties</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="dbproperties-chapt.html#dpc_system_props">System Properties</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="listeners-chapt.html">15. HyperSQL Network Listeners
+    (Servers)</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_listener_types">Listeners</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_hsql_server">HyperSQL Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_http_server">HyperSQL HTTP Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_servlet">HyperSQL HTTP Servlet</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_server_props">Server and Web Server Properties</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_app_start">Starting a Server from your Application</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_app_stop">Shutting down a Server from your Application</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_remote_open">Allowing a Connection to Open or Create a Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_db_props_startup">Specifying Database Properties at Server Start</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_tls">TLS Encryption</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_tls_rquirements">Requirements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_ssl_connection">Encrypting your JDBC connection</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_privatekey">Making a Private-key Keystore</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_auto_server_unix">Automatic Server or WebServer startup on UNIX</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_acl">Network Access Control</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="unix-chapt.html">16. HyperSQL on UNIX</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_purpose">Purpose</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_install">Installation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_cat_setup">Setting up Database Catalog and Listener</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_access">Accessing your Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_addl_accts">Create additional Accounts</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_shutdown">Shutdown</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_daemon">Running Hsqldb as a System Daemon</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_init_script_portability">Portability of <code class="filename">hsqldb</code> init script</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_init_script_setup">Init script Setup Procedure</a></span>
+</dt>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_inittrouble">Troubleshooting the Init
+      Script</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="unix-chapt.html#uxc_upgrade">Upgrading</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="odbc-chapt.html">17. HyperSQL via ODBC</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="odbc-chapt.html#odbc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="odbc-chapt.html#odbc_unix_install-sect">Unix / Linux Installation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="odbc-chapt.html#odbc_windows_config-sect">Windows Installation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="odbc-chapt.html#odbc_settings-sect">Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="odbc-chapt.html#odbc_samples-sect">Samples</a></span>
+</dt>
+<dt>
+<span class="section"><a href="odbc-chapt.html#odbc_table-sect">Table of Settings</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="appendix"><a href="lists-app.html">A. Lists of Keywords</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="lists-app.html#lta_standard_keywords">List of SQL Standard Keywords</a></span>
+</dt>
+<dt>
+<span class="section"><a href="lists-app.html#lta_disallowed_keywords">List of SQL Keywords Disallowed as HyperSQL Identifiers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="lists-app.html#lta_function_keywords">Special Function Keywords</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="appendix"><a href="dbfiles-app.html">B. HyperSQL Database Files and Recovery</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files">Database Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_file_states">States</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files_procs">Procedures</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files_shutdown">Clean Shutdown</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_files_startup">Startup</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbfiles-app.html#dfa_db_file_restore">Restore</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="appendix"><a href="building-app.html">C. Building HSQLDB Jars</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="building-app.html#bga_overview">Purpose</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_gradle_invoke">Building with Gradle</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_building_ant">Building with Ant</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="building-app.html#bga_ant_obtaining">Obtaining Ant</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_ant_build">Building HSQLDB with Ant</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="building-app.html#bga_build_ide">Building with IDE Compilers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_codeswitcher">HyperSQL CodeSwitcher</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_build_docs">Building Documentation</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="appendix"><a href="openoffice-app.html">D. HyperSQL with OpenOffice</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_overview">HyperSQL with OpenOffice</a></span>
+</dt>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_database_tool">Using OpenOffice / LibreOffice as a Database Tool</a></span>
+</dt>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_db_files_convert">Converting .odb files to use with HyperSQL Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_extensions">OpenOffice / LibreOffice Extensions for HyperSQL</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="appendix"><a href="filelinks-app.html">E. HyperSQL File Links</a></span>
+</dt>
+<dt>
+<span class="index"><a href="sql-ind.html">SQL Index</a></span>
+</dt>
+<dt>
+<span class="index"><a href="book-ind.html">General Index</a></span>
+</dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p>
+<b>List of Tables</b>
+</p>
+<dl>
+<dt>1. <a href="book-pref.html#altformats-tbl">Available formats of this document</a>
+</dt>
+<dt>4.1. <a href="builtinfunctions-chapt.html#N1260F">TO_CHAR, TO_DATE and TO_TIMESTAMP format elements</a>
+</dt>
+<dt>14.1. <a href="dbproperties-chapt.html#N15E11">Memory Database URL</a>
+</dt>
+<dt>14.2. <a href="dbproperties-chapt.html#N15E47">File Database URL</a>
+</dt>
+<dt>14.3. <a href="dbproperties-chapt.html#N15E7E">Resource Database URL</a>
+</dt>
+<dt>14.4. <a href="dbproperties-chapt.html#N15EB1">Server Database URL</a>
+</dt>
+<dt>14.5. <a href="dbproperties-chapt.html#N15F3F">User and Password</a>
+</dt>
+<dt>14.6. <a href="dbproperties-chapt.html#N15F80">Closing old ResultSet when Statement is reused</a>
+</dt>
+<dt>14.7. <a href="dbproperties-chapt.html#N15FC7">Column Names in JDBC ResultSet</a>
+</dt>
+<dt>14.8. <a href="dbproperties-chapt.html#N16000">In-memory LOBs from JDBC ResultSet</a>
+</dt>
+<dt>14.9. <a href="dbproperties-chapt.html#N16031">Empty batch in JDBC PreparedStatement</a>
+</dt>
+<dt>14.10. <a href="dbproperties-chapt.html#N16067">Creating New Database</a>
+</dt>
+<dt>14.11. <a href="dbproperties-chapt.html#N160C6">Automatic Shutdown</a>
+</dt>
+<dt>14.12. <a href="dbproperties-chapt.html#N1613B">Validity Check Property</a>
+</dt>
+<dt>14.13. <a href="dbproperties-chapt.html#N1616C">Execution of Multiple SQL Statements etc.</a>
+</dt>
+<dt>14.14. <a href="dbproperties-chapt.html#N161AC">SQL Keyword Use as Identifier</a>
+</dt>
+<dt>14.15. <a href="dbproperties-chapt.html#N161D9">SQL Keyword Starting with the Underscore or Containing Dollar
+        Characters</a>
+</dt>
+<dt>14.16. <a href="dbproperties-chapt.html#N16206">Reference to Columns Names</a>
+</dt>
+<dt>14.17. <a href="dbproperties-chapt.html#N16233">String Size Declaration</a>
+</dt>
+<dt>14.18. <a href="dbproperties-chapt.html#N16260">Type Enforcement in Comparison and Assignment</a>
+</dt>
+<dt>14.19. <a href="dbproperties-chapt.html#N1628D">Foreign Key Triggered Data Change</a>
+</dt>
+<dt>14.20. <a href="dbproperties-chapt.html#N162D0">Use of LOB for LONGVAR Types</a>
+</dt>
+<dt>14.21. <a href="dbproperties-chapt.html#N162FD">Type of string literals in CASE WHEN</a>
+</dt>
+<dt>14.22. <a href="dbproperties-chapt.html#N1632A">Concatenation with NULL</a>
+</dt>
+<dt>14.23. <a href="dbproperties-chapt.html#N16357">NULL in Multi-Column UNIQUE Constraints</a>
+</dt>
+<dt>14.24. <a href="dbproperties-chapt.html#N16384">Truncation or Rounding in Type Conversion</a>
+</dt>
+<dt>14.25. <a href="dbproperties-chapt.html#N163B1">Decimal Scale of Division and AVG Values</a>
+</dt>
+<dt>14.26. <a href="dbproperties-chapt.html#N163DE">Support for NaN values</a>
+</dt>
+<dt>14.27. <a href="dbproperties-chapt.html#N1640B">Sort order of NULL values</a>
+</dt>
+<dt>14.28. <a href="dbproperties-chapt.html#N16438">Sort order of NULL values with DESC</a>
+</dt>
+<dt>14.29. <a href="dbproperties-chapt.html#N16468">String Comparison with Padding</a>
+</dt>
+<dt>14.30. <a href="dbproperties-chapt.html#N16497">Default Locale Language Collation</a>
+</dt>
+<dt>14.31. <a href="dbproperties-chapt.html#N164C4">Case-Insensitive Varchar columns</a>
+</dt>
+<dt>14.32. <a href="dbproperties-chapt.html#N164F1">Storage of Live Java Objects</a>
+</dt>
+<dt>14.33. <a href="dbproperties-chapt.html#N1651E">Names of System Indexes Used for Constraints</a>
+</dt>
+<dt>14.34. <a href="dbproperties-chapt.html#N1654B">DB2 Style Syntax</a>
+</dt>
+<dt>14.35. <a href="dbproperties-chapt.html#N16577">MSSQL Style Syntax</a>
+</dt>
+<dt>14.36. <a href="dbproperties-chapt.html#N165A3">MySQL Style Syntax</a>
+</dt>
+<dt>14.37. <a href="dbproperties-chapt.html#N165D0">Oracle Style Syntax</a>
+</dt>
+<dt>14.38. <a href="dbproperties-chapt.html#N165FD">PostgreSQL Style Syntax</a>
+</dt>
+<dt>14.39. <a href="dbproperties-chapt.html#N1662D">Default Table Type</a>
+</dt>
+<dt>14.40. <a href="dbproperties-chapt.html#N1665D">Transaction Control Mode</a>
+</dt>
+<dt>14.41. <a href="dbproperties-chapt.html#N16693">Default Isolation Level for Sessions</a>
+</dt>
+<dt>14.42. <a href="dbproperties-chapt.html#N166C6">Transaction Rollback in Deadlock</a>
+</dt>
+<dt>14.43. <a href="dbproperties-chapt.html#N166F3">Transaction Rollback on Interrupt</a>
+</dt>
+<dt>14.44. <a href="dbproperties-chapt.html#N16720">Time Zone and Interval Types</a>
+</dt>
+<dt>14.45. <a href="dbproperties-chapt.html#N16757">Opening Database as Read Only</a>
+</dt>
+<dt>14.46. <a href="dbproperties-chapt.html#N16787">Opening Database Without Modifying the Files</a>
+</dt>
+<dt>14.47. <a href="dbproperties-chapt.html#N167B7">Huge database files and tables</a>
+</dt>
+<dt>14.48. <a href="dbproperties-chapt.html#N167E7">Event Logging</a>
+</dt>
+<dt>14.49. <a href="dbproperties-chapt.html#N16817">SQL Logging</a>
+</dt>
+<dt>14.50. <a href="dbproperties-chapt.html#N16847">Temporary Result Rows in Memory</a>
+</dt>
+<dt>14.51. <a href="dbproperties-chapt.html#N16874">Unused Space Recovery</a>
+</dt>
+<dt>14.52. <a href="dbproperties-chapt.html#N168A6">Rows Cached In Memory</a>
+</dt>
+<dt>14.53. <a href="dbproperties-chapt.html#N168D5">Size of Rows Cached in Memory</a>
+</dt>
+<dt>14.54. <a href="dbproperties-chapt.html#N16904">Size Scale of Disk Table Storage</a>
+</dt>
+<dt>14.55. <a href="dbproperties-chapt.html#N16931">Size Scale of LOB Storage</a>
+</dt>
+<dt>14.56. <a href="dbproperties-chapt.html#N1695E">Compression of BLOB and CLOB data</a>
+</dt>
+<dt>14.57. <a href="dbproperties-chapt.html#N1698B">Internal Backup of Database Files</a>
+</dt>
+<dt>14.58. <a href="dbproperties-chapt.html#N169BC">Use of Lock File</a>
+</dt>
+<dt>14.59. <a href="dbproperties-chapt.html#N169EC">Logging Data Change Statements</a>
+</dt>
+<dt>14.60. <a href="dbproperties-chapt.html#N16A22">Automatic Checkpoint Frequency</a>
+</dt>
+<dt>14.61. <a href="dbproperties-chapt.html#N16A58">Automatic Defrag at Checkpoint</a>
+</dt>
+<dt>14.62. <a href="dbproperties-chapt.html#N16A85">Compression of the .script file</a>
+</dt>
+<dt>14.63. <a href="dbproperties-chapt.html#N16AB5">Logging Data Change Statements Frequency</a>
+</dt>
+<dt>14.64. <a href="dbproperties-chapt.html#N16AE2">Logging Data Change Statements Frequency</a>
+</dt>
+<dt>14.65. <a href="dbproperties-chapt.html#N16B0F">Use of NIO for Disk Table Storage</a>
+</dt>
+<dt>14.66. <a href="dbproperties-chapt.html#N16B42">Use of NIO for Disk Table Storage</a>
+</dt>
+<dt>14.67. <a href="dbproperties-chapt.html#N16B6F">Recovery Log Processing</a>
+</dt>
+<dt>14.68. <a href="dbproperties-chapt.html#N16B9C">Default Properties for TEXT Tables</a>
+</dt>
+<dt>14.69. <a href="dbproperties-chapt.html#N16BD0">Forcing Garbage Collection</a>
+</dt>
+<dt>14.70. <a href="dbproperties-chapt.html#N16C01">Crypt Property For LOBs</a>
+</dt>
+<dt>14.71. <a href="dbproperties-chapt.html#N16C2E">Cipher Key for Encrypted Database</a>
+</dt>
+<dt>14.72. <a href="dbproperties-chapt.html#N16C5B">Cipher Initialization Vector for Encrypted Database</a>
+</dt>
+<dt>14.73. <a href="dbproperties-chapt.html#N16C88">Crypt Provider Encrypted Database</a>
+</dt>
+<dt>14.74. <a href="dbproperties-chapt.html#N16CB5">Cipher Specification for Encrypted Database</a>
+</dt>
+<dt>14.75. <a href="dbproperties-chapt.html#N16CEF">Logging Framework</a>
+</dt>
+<dt>14.76. <a href="dbproperties-chapt.html#N16D19">Text Tables</a>
+</dt>
+<dt>14.77. <a href="dbproperties-chapt.html#N16D46">Java Functions</a>
+</dt>
+<dt>15.1. <a href="listeners-chapt.html#N16E12">common server and webserver properties</a>
+</dt>
+<dt>15.2. <a href="listeners-chapt.html#N16EAF">server properties</a>
+</dt>
+<dt>15.3. <a href="listeners-chapt.html#N16EE1">webserver properties</a>
+</dt>
+<dt>17.1. <a href="odbc-chapt.html#N17633">Settings List</a>
+</dt>
+</dl>
+</div>
+<div class="list-of-examples">
+<p>
+<b>List of Examples</b>
+</p>
+<dl>
+<dt>1.1. <a href="running-chapt.html#N10236">Java code to connect to the local hsql Server</a>
+</dt>
+<dt>1.2. <a href="running-chapt.html#N10240">Java code to connect to the local http Server</a>
+</dt>
+<dt>1.3. <a href="running-chapt.html#N10264">Java code to connect to the local secure SSL hsqls: and
+          https: Servers</a>
+</dt>
+<dt>1.4. <a href="running-chapt.html#N1030A">specifying a connection property to shutdown the database when
+        the last connection is closed</a>
+</dt>
+<dt>1.5. <a href="running-chapt.html#N10327">specifying a connection property to disallow creating a new
+        database</a>
+</dt>
+<dt>3.1. <a href="databaseobjects-chapt.html#N10B51">inserting the next sequence value into a table row</a>
+</dt>
+<dt>3.2. <a href="databaseobjects-chapt.html#N10B58">numbering returned rows of a SELECT in sequential order</a>
+</dt>
+<dt>3.3. <a href="databaseobjects-chapt.html#N10B64">using the last value of a sequence</a>
+</dt>
+<dt>3.4. <a href="databaseobjects-chapt.html#N10C09">Column values which satisfy a 2-column UNIQUE
+        constraint</a>
+</dt>
+<dt>6.1. <a href="sessions-chapt.html#N13A67">User-defined Session Variables</a>
+</dt>
+<dt>6.2. <a href="sessions-chapt.html#N13A7C">User-defined Temporary Session Tables</a>
+</dt>
+<dt>6.3. <a href="sessions-chapt.html#N13B8F">Setting Transaction Characteristics</a>
+</dt>
+<dt>6.4. <a href="sessions-chapt.html#N13BBD">Locking Tables</a>
+</dt>
+<dt>6.5. <a href="sessions-chapt.html#N13C20">Rollback</a>
+</dt>
+<dt>6.6. <a href="sessions-chapt.html#N13C52">Setting Session Characteristics</a>
+</dt>
+<dt>6.7. <a href="sessions-chapt.html#N13C68">Setting Session Authorization</a>
+</dt>
+<dt>6.8. <a href="sessions-chapt.html#N13C95">Setting Session Time Zone</a>
+</dt>
+<dt>11.1. <a href="management-chapt.html#N14C97">Using CACHED tables for the LOB schema</a>
+</dt>
+<dt>11.2. <a href="management-chapt.html#N14E0A">Creating a system-versioned table</a>
+</dt>
+<dt>11.3. <a href="management-chapt.html#N14EC7">Displaying DbBackup Syntax</a>
+</dt>
+<dt>11.4. <a href="management-chapt.html#N14ED2">Offline Backup Example</a>
+</dt>
+<dt>11.5. <a href="management-chapt.html#N14EF3">Listing a Backup with DbBackup</a>
+</dt>
+<dt>11.6. <a href="management-chapt.html#N14F0A">Restoring a Backup with DbBackup</a>
+</dt>
+<dt>11.7. <a href="management-chapt.html#N15201">SQL Log Example</a>
+</dt>
+<dt>11.8. <a href="management-chapt.html#N1568F">Finding foreign key rows with no parents after a bulk
+        import</a>
+</dt>
+<dt>12.1. <a href="deployment-chapt.html#N15933">Using CACHED tables for the LOB schema</a>
+</dt>
+<dt>12.2. <a href="deployment-chapt.html#N15A45">MainInvoker Example</a>
+</dt>
+<dt>12.3. <a href="deployment-chapt.html#N15BA9">Sample Range Ivy Dependency</a>
+</dt>
+<dt>12.4. <a href="deployment-chapt.html#N15BBB">Sample Range Maven Dependency</a>
+</dt>
+<dt>12.5. <a href="deployment-chapt.html#N15BC6">Sample Range Gradle Dependency</a>
+</dt>
+<dt>12.6. <a href="deployment-chapt.html#N15BDE">Sample Range ivy.xml loaded by Ivyxml plugin</a>
+</dt>
+<dt>12.7. <a href="deployment-chapt.html#N15BE3">Sample Range Groovy Dependency, using Grape</a>
+</dt>
+<dt>15.1. <a href="listeners-chapt.html#N17007">Exporting certificate from the server's keystore</a>
+</dt>
+<dt>15.2. <a href="listeners-chapt.html#N17019">Adding a certificate to the client keystore</a>
+</dt>
+<dt>15.3. <a href="listeners-chapt.html#N1702D">Specifying your own trust store to a JDBC client</a>
+</dt>
+<dt>15.4. <a href="listeners-chapt.html#N170A8">Getting a pem-style private key into a JKS keystore</a>
+</dt>
+<dt>15.5. <a href="listeners-chapt.html#N17131">Validating and Testing an ACL file</a>
+</dt>
+<dt>16.1. <a href="unix-chapt.html#N173F9">example sqltool.rc stanza</a>
+</dt>
+<dt>C.1. <a href="building-app.html#N17B04">Buiding the standard HSQLDB jar file with Ant</a>
+</dt>
+<dt>C.2. <a href="building-app.html#N17B1D">Example source code before CodeSwitcher is run</a>
+</dt>
+<dt>C.3. <a href="building-app.html#N17B24">CodeSwitcher command line invocation</a>
+</dt>
+<dt>C.4. <a href="building-app.html#N17B2E">Source code after CodeSwitcher processing</a>
+</dt>
+</dl>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 6319 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%">&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="book-pref.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">&nbsp;</td><td align="center" width="20%">&nbsp;</td><td valign="top" align="right" width="40%">&nbsp;Preface</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

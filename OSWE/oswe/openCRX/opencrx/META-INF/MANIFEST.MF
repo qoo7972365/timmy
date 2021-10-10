@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.7
+Created-By: 1.8.0_191-8u191-b12-0ubuntu0.18.04.1-b12 (Oracle Corporati
+ on)
+Specification-Vendor: openCRX
+Specification-Version: 4.2
+Implementation-Vendor: openCRX
+Implementation-Vendor-Id: org.opencrx
+Implementation-Version: 4.2.0-20190102T124143Z
+Specification-Title: openCRX/Core EAR
+Implementation-Title: EAR for jre-1.8
+
