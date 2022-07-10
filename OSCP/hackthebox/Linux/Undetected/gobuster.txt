@@ -1,0 +1,28 @@
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://store.djewelry.htb/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /Users/timmy/github/SecLists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Extensions:              txt,php
+[+] Timeout:                 10s
+===============================================================
+2022/07/09 12:35:34 Starting gobuster in directory enumeration mode
+===============================================================
+/images               (Status: 301) [Size: 325] [--> http://store.djewelry.htb/images/]
+/index.php            (Status: 200) [Size: 6215]                                       
+/products.php         (Status: 200) [Size: 7447]                                       
+/login.php            (Status: 200) [Size: 4129]                                       
+/cart.php             (Status: 200) [Size: 4396]                                       
+/css                  (Status: 301) [Size: 322] [--> http://store.djewelry.htb/css/]   
+/js                   (Status: 301) [Size: 321] [--> http://store.djewelry.htb/js/]    
+/vendor               (Status: 301) [Size: 325] [--> http://store.djewelry.htb/vendor/]
+/fonts                (Status: 301) [Size: 324] [--> http://store.djewelry.htb/fonts/] 
+/server-status        (Status: 403) [Size: 283]                                        
+===============================================================
+2022/07/09 17:56:21 Finished
+===============================================================

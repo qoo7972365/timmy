@@ -1,0 +1,1 @@
+nmap 10.10.11.143 -sV -sC -Pn > nmap.txt
