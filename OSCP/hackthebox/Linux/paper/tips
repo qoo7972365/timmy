@@ -1,1 +1,31 @@
 nmap 10.10.11.143 -sV -sC -Pn > nmap.txt
+gobuster dir  -u http://10.10.11.143/ -w /Users/timmy/Tools/SecLists/Discovery/Web-Content/common.txt
+wpscan --url http://office.paper/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+
+
+
+BURP找到域名 
+根據域名找到wordpress
+根據wrapper找到wordpress版本5.2.3
+根據5.2.3找到有查看草稿漏洞
+查看wordpress內容有說早搞內有重要訊息
+找到草稿內有註冊bot連結
+註冊bot之後 利用bot的漏洞LFI找到密碼
+recyclops list sale
+recyclops file test.txt
+
+export ROCKETCHAT_USER=recyclops
+export ROCKETCHAT_PASSWORD=Queenofblad3s!23
+
+rocketchat 1001:1001::/home/rocketchat:/bin/bash
+dwight 1004:1004::/home/dwight:/bin/bash
+
+ssh rocketchat@10.10.11.143 
+ssh dwight@10.10.11.143 
+
+
+找到密碼後ssh登入跑linpeas.sh 找到CVE漏洞CVE-2021-3560.
+執行CVE漏洞提權
+
+
+
