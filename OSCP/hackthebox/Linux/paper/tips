@@ -3,6 +3,13 @@ gobuster dir  -u http://10.10.11.143/ -w /Users/timmy/Tools/SecLists/Discovery/W
 wpscan --url http://office.paper/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
 
 
+使用了nmap及gobuster之後並沒有發現任何有用訊息，嘗試使用burp分析網頁請求，發現有X-Backend-Server: office.paper
+綁定host之後訪問首頁，發現是wordpress
+wpscan --url http://office.paper/ --disable-tls-checks --enumerate vp --api-token yebWdQNmyXU7oApKQatIaLPe5NL0EkYTjuSunpp5DIU
+使用wpscan掃描可發現該版本漏洞
+使用瀏覽器插件Wappalyzer，查看到是使用wordpress 5.2.3版本
+
+
 
 BURP找到域名 
 根據域名找到wordpress
