@@ -1,0 +1,24 @@
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://artcorp.htb/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /Users/timmy/Tools/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Timeout:                 10s
+===============================================================
+2022/07/10 23:29:53 Starting gobuster in directory enumeration mode
+===============================================================
+/.htpasswd            (Status: 403) [Size: 199]
+/.hta                 (Status: 403) [Size: 199]
+/.htaccess            (Status: 403) [Size: 199]
+/assets               (Status: 301) [Size: 234] [--> http://artcorp.htb/assets/]
+/css                  (Status: 301) [Size: 231] [--> http://artcorp.htb/css/]   
+/index.html           (Status: 200) [Size: 4427]                                
+/server-status        (Status: 403) [Size: 199]                                 
+===============================================================
+2022/07/10 23:30:46 Finished
+===============================================================
