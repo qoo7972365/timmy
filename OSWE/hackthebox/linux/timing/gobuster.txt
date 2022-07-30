@@ -1,0 +1,40 @@
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.11.135/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /Users/timmy/Tools/SecLists/Discovery/Web-Content/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Extensions:              txt,php
+[+] Timeout:                 10s
+===============================================================
+2022/07/22 22:46:48 Starting gobuster in directory enumeration mode
+===============================================================
+/.hta                 (Status: 403) [Size: 277]
+/.htaccess            (Status: 403) [Size: 277]
+/.htpasswd            (Status: 403) [Size: 277]
+/.hta.txt             (Status: 403) [Size: 277]
+/.htaccess.txt        (Status: 403) [Size: 277]
+/.htpasswd.txt        (Status: 403) [Size: 277]
+/.hta.php             (Status: 403) [Size: 277]
+/.htaccess.php        (Status: 403) [Size: 277]
+/.htpasswd.php        (Status: 403) [Size: 277]
+/css                  (Status: 301) [Size: 310] [--> http://10.10.11.135/css/]
+/footer.php           (Status: 200) [Size: 3937]                              
+/header.php           (Status: 302) [Size: 0] [--> ./login.php]               
+/images               (Status: 301) [Size: 313] [--> http://10.10.11.135/images/]
+/image.php            (Status: 200) [Size: 0]                                    
+/index.php            (Status: 302) [Size: 0] [--> ./login.php]                  
+/index.php            (Status: 302) [Size: 0] [--> ./login.php]                  
+/js                   (Status: 301) [Size: 309] [--> http://10.10.11.135/js/]    
+/login.php            (Status: 200) [Size: 5609]                                 
+/logout.php           (Status: 302) [Size: 0] [--> ./login.php]                  
+/profile.php          (Status: 302) [Size: 0] [--> ./login.php]                  
+/server-status        (Status: 403) [Size: 277]                                  
+/upload.php           (Status: 302) [Size: 0] [--> ./login.php]                  
+===============================================================
+2022/07/22 22:49:35 Finished
+===============================================================
