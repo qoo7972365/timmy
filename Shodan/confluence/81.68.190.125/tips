@@ -1,0 +1,38 @@
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.isolation">2</property>
+    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.url">jdbc:mysql://81.68.190.125:9002/confluence</property>
+    <property name="hibernate.connection.username">root</property>
+
+confluence
++--------+-----------+---------------------------------------------------------------------------+
+| id     | user_name | credential                                                                |
++--------+-----------+---------------------------------------------------------------------------+
+| 393217 | admin     | {PKCS5S2}bytl0FWLk8AYlRqICuu0yF2dK4mfLPMaF4ca7flzAGD87xs4JNsMbaIhVUrzyi1x |
+| 393218 | admin     | nopass                                                                    |
+| 393219 | yanyan    | nopass                                                                    |
+| 393220 | dengkui   | nopass                                                                    |
++--------+-----------+---------------------------------------------------------------------------+
+
+jira
++-------+-----------+---------------------------------------------------------------------------+
+| id    | user_name | credential                                                                |
++-------+-----------+---------------------------------------------------------------------------+
+| 10000 | admin     | {PKCS5S2}Q1+V5Z9N/6U5JO7Zn/8M23DQ8GNuaOBts/j+RidTFG1zxNj9O4i+2gX7+STLm+JI |
+| 10100 | yanyan    | {PKCS5S2}5+rIWyRinnzvCbbiBAieDtG62Cx53Sako4VQmW4McbDZPlN82tSZnJh3+Xh7HDF+ |
+| 10101 | dengkui   | {PKCS5S2}X5KE0UYkdb6UOxEWglEG6LSXLu7CXPnECndX5Hp2XV+txjpFt05Du2IF0GGjDBkd |
++-------+-----------+---------------------------------------------------------------------------+
+
+
+tcp        0      0 0.0.0.0:9001            0.0.0.0:*               LISTEN      1162/sshd           
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      9566/nginx: master  
+tcp6       0      0 :::8091                 :::*                    LISTEN      10909/java          
+tcp6       0      0 :::31458                :::*                    LISTEN      -                   
+tcp6       0      0 :::9002                 :::*                    LISTEN      1037/mysqld         
+tcp6       0      0 :::9003                 :::*                    LISTEN      10312/java          
+tcp6       0      0 127.0.0.1:9004          :::*                    LISTEN      10312/java          
+tcp6       0      0 :::9007                 :::*                    LISTEN      11627/java          
+tcp6       0      0 127.0.0.1:9008          :::*                    LISTEN      11627/java  
+
+
+ＪＩＲＡ跟知識庫 但沒利用價值

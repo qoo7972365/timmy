@@ -1,0 +1,114 @@
+阿里云登录帐号:ciyiyy
+手机号：15389054975
+密码：cyyy8821@
+
+
+验证地址和账户：
+
+https://auth.zsgyfj.net/auth/index.htm
+
+系统管理员：
+
+账号：sysadmin@800000       密码：gyfj@1115
+
+生产环境：
+
+管理员账号：sysadmin@gyfj    密码：Xn800888
+
+王晓黎账号：wangxiaoli@gyfj   密码：gyfj@20201115
+
+生产环境演示环境：
+
+管理员账号：sysadmin@demo  密码：gyfj@2020
+
+王晓黎账号：wangxiaoli@demo   密码：gyfj@2020
+
+测试环境：
+
+管理员账号：sysadmin@gyfj    密码：Xn800888
+
+王晓黎账号：wangxiaoli@gyfj     密码：gyfj@2020
+
+#################################
+ip地址：192.168.30.11  账号：root 密码：xiniunet
+
+
+包机器：192.168.5.249   /xiniu/fnwdeploy.sh（正式和预发环境）
+
+
+
+预发布环境信息：
+
+#################################
+#collaboration 预发环境配置
+47.98.161.147 collaboration.xiniunet.com
+
+
+
+test环境auth-test.xiniunet.com账号信息：
+
+账号：sysadmin@800000，密码：Demo123;
+
+账号：Alisa@800000，密码：xiniunet;
+
+账号：sysadmin@300089，密码：xiniunet；
+
+账号：alisa@300089，密码：xn300089.
+
+
+
+预发布环境auth.xiniunet.com账号信息：
+
+账号：anlijuan@300029，密码：ABCajh123。
+
+
+################################################
+ip地址：192.168.50.47（45 被慈益内部机器占用）  账号：root 密码：opsadmin@2022修改hostnamehostnamectl set-hostname prd-db-clickhousehostname修改IP，为192.168.50.45cd /etc/sysconfig/network-scriptsvi /etc/sysconfig/network-scripts/ifcfg-ens192datehwclockntpdate pool.ntp.orghwclock --systohchwclock -wdaterebootservice network restart : Ascending sort applied, activate to apply a descending sort
+################################################
+客户端连接
+
+iP:192.168.50.47
+
+user:default
+
+pwd:1I0FD2td
+
+
+####################################
+RAM账号：wangwanshuo@xiniunet.onaliyun.com
+RAM密码：|CvudtZ!6jMhvD@UUcSEZL7lvm{4E7Vu 第一次登录后必须自己修改为自己的密码
+
+数据库访问账号：wangwanshuo, 密码钉钉已发送
+
+开通instance1 platform, instance2 new\erp\retail\business
+
+请遵守信息安全规范，请勿将个人账号提供给他人使用及泄漏数据给无关人员,违反按制度处理。
+
+####################################
+
+
+自建：
+
+普陀米修斯， 心跳， opsdb
+
+ops:
+
+账号：
+
+erp
+
+xiniunet_suzhou
+
+grafana:
+
+账号：admin
+
+密码：xiniunet
+
+prometheus:
+
+无密码，需要跳板机到生产访问。
+
+地址：www.aliyun.com
+账号：xiniunet1@163.com
+密码：xiniunet@2019
