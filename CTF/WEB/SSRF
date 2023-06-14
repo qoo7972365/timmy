@@ -1,3 +1,7 @@
 參考資料：https://secure-cookie.io/attacks/ssti/
 參考資料：https://github.com/onsra03/WU-n00bz-CTF-2023/blob/main/README.md
 參考資料：https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2
+繞過方式：
+1.  __class__ >> ['__cl''ass__']
+2.  () >> (+)
+
