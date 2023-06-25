@@ -22,3 +22,9 @@ Get-Content  .\postgresql_11.log -tail 100 | Select-String -Patttern "(resourcei
 
 6.檔案內容匹配搜索
 grep -rnw "eval(" . --color 搜索任何執行code的js代碼
+
+
+
+7.SQL注入的時候，檢測union時
+id=1'union select --用'結束之前
+id=1 union select 直接使用
