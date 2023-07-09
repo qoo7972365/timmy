@@ -1,15 +1,14 @@
 1.不允許檔案類型上傳,更改檔名後綴為php5或是前面插入magic byte
 2.Executable and Linkable Format，縮寫為ELF ,可將nmap可執行檔案傳到victim上執行
-3.ssh隧道tunnel
-ssh -L8081:localhost:80 dave@192.168.122.4####需要帳密
-使用~C進入ssh>  -L8081:localhost:80 ###不須帳密
-使用~C進入ssh>  -R127.0.0.1:4444: ###
+3. php mysql union 注入參數,其中condition可以改成ascii(substring(password,1,1))=[CHAR]
+1 UNION SELECT CASE WHEN (condition) THEN SLEEP(5) ELSE 0 END FROM users) --
+
 4.burp repeat最後不能有空行
 
 MySQL   /**/ 替換 空白
 Postgres  $$ 替換 '
 Postgres  LargeObject 二進制儲存檔案
-
+'
 
 4.kali起samba,windows回傳檔案到samba
 sudo impacket-smbserver awae .
@@ -28,3 +27,10 @@ grep -rnw "eval(" . --color 搜索任何執行code的js代碼
 7.SQL注入的時候，檢測union時
 id=1'union select --用'結束之前
 id=1 union select 直接使用
+
+
+
+9.重點在登入驗證方式，密碼重置，忘記密碼，記得我登入，id=這些常見的參數先測試，搜索的地方先查參數是否有過濾
+10.直接在source code裡面grep搜我這些關鍵字"exec”, “sql”, “DB"
+11.如果.htaccess有設置php_flag engine off,看看是不是可以透過上傳檔案功能把它改寫掉
+12.如果php上傳的檔案有過濾，如果是黑名單，那有很多格式都可以嘗試，如果是只允許白名單，那就比較難
